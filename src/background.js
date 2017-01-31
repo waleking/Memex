@@ -1,4 +1,6 @@
 import './activity-logger/background'
+import './create-links/background'
+
 
 function openOverview() {
     browser.tabs.create({
