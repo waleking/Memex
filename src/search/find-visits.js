@@ -7,6 +7,7 @@ import sortBy from 'lodash/fp/sortBy'
 import db from '../pouchdb'
 import { convertVisitDocId, visitKeyPrefix, getTimestamp } from '../activity-logger'
 import { getPages } from './find-pages'
+import { addLinksAmongVisits } from './find-links'
 
 
 // Get query result indexed by doc id, as an {id: row} object.
@@ -65,6 +66,11 @@ export function getLastVisits({
         normaliseFindResult
     ).then(
         visitsResult => insertPagesIntoVisits({visitsResult})
+    ).then(
+        visitsResult => addLinksAmongVisits({
+            visitsResult,
+            maxTime: new Date().getTime(), // no upper time limit
+        })
     )
 }
 
@@ -131,6 +137,12 @@ export function addVisitsContext({
             update('rows', rows =>
                 rows.map(row => ({...row, isContextualResult: true}))
             )
+        ).then(contextResult =>
+            addLinksAmongVisits({
+                visitsResult: contextResult,
+                maxTime: timestamp + maxSuccedingTime,
+                minTime: timestamp - maxPrecedingTime,
+            })
         )
     })
     // When the context of each visit has been retrieved, merge and return them.
