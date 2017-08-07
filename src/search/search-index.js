@@ -164,6 +164,60 @@ export async function addPages({ pageDocs, visitDocs = [], bookmarkDocs = [] }) 
     return new Promise((...args) => index.concurrentAdd(indexOpts, input, standardResponse(...args)))
 }
 
+/**
+ * Returns a function that affords adding either a visit or bookmark to an index.
+ * The function should perform the following update, using the associated page doc ID:
+ *  - grab the existing index doc matching the page doc ID
+ *  - perform update to appropriate timestamp field
+ *  - delete the original doc form the index
+ *  - add the updated doc into the index
+ */
+const addTimestamp = field => async ({ _id, page })  => {
+    const index = await indexP
+
+    const existingDoc = await get(page._id) // Get existing doc
+    existingDoc[field].push(_id) // Perform in-memory update
+    await del(page._id) // Delete existing doc
+    return add(existingDoc) // Add new updated doc
+}
+
+export const addVisit = addTimestamp('visitTimestamps')
+export const addBookmark = addTimestamp('bookmarkTimestamps')
+
+/**
+ * @param {string} id ID of the doc to find in the index
+ * @returns A single index doc that matches the supplied ID.
+ */
+export async function get(id) {
+    const index = await indexP
+
+    return new Promise((resolve, reject) =>
+        index.get([id])
+            .on('data', resolve)
+            .on('error', reject))
+}
+
+/**
+ * @param {any} id ID of the doc to attempt to delete from the index.
+ * @returns Boolean denoting that the delete was successful (else error thrown).
+ */
+export async function del(id) {
+    const index = await indexP
+
+    return new Promise((...args) => index.del([id], standardResponse(...args)))
+}
+
+/**
+ * @param doc The doc to queue up for adding into the index.
+ * @returns Boolean denoting that the add was successful (else error thrown).
+ */
+export async function add(doc) {
+    const index = await indexP
+    const input = [doc]
+
+    return new Promise((...args) => index.concurrentAdd(indexOpts, input, standardResponse(...args)))
+}
+
 export async function count(query) {
     const index = await indexP
 
