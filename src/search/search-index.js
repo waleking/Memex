@@ -176,13 +176,50 @@ const addTimestamp = field => async ({ _id, page })  => {
     const index = await indexP
 
     const existingDoc = await get(page._id) // Get existing doc
-    existingDoc[field].push(_id) // Perform in-memory update
+    if (!existingDoc) {
+        throw new Error('Page associated with timestamp is not recorded in the index')
+    }
+
+    (existingDoc[field] || []).push(_id) // Perform in-memory update
     await del(page._id) // Delete existing doc
     return add(existingDoc) // Add new updated doc
 }
 
 export const addVisit = addTimestamp('visitTimestamps')
 export const addBookmark = addTimestamp('bookmarkTimestamps')
+
+/**
+ * Returns a function that affords removing either a visit or bookmark from the index.
+ * The function should perform the following update, using the associated page doc ID:
+ *  - grab the existing index doc matching the page doc ID
+ *  - perform update to appropriate timestamp field, removing the existing ID
+ *  - delete the original doc form the index
+ *  - add the updated doc into the index
+ */
+const removeTimestamp = field => async ({ _id, page }) => {
+    const index = await indexP
+
+    const existingDoc = await get(page._id) // Get existing doc
+    if (!existingDoc) {
+        throw new Error('Page associated with timestamp is not recorded in the index')
+    }
+
+    // Perform in-memory update by removing the timestamp
+    const indexToRemove = existingDoc[field].indexOf(_id)
+    if (indexToRemove === -1) {
+        throw new Error('Associated timestamp is not recorded in the index')
+    }
+    existingDoc[field] = [
+        ...existingDoc[field].slice(0, indexToRemove),
+        ...existingDoc[field].slice(indexToRemove + 1),
+    ]
+
+    await del(page._id) // Delete existing doc
+    return add(existingDoc) // Add new updated doc
+}
+
+export const removeVisit = removeTimestamp('visitTimestamps')
+export const removeBookmark = removeTimestamp('bookmarkTimestamps')
 
 /**
  * @param {string} id ID of the doc to find in the index
