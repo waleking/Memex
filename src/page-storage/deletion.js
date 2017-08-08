@@ -13,7 +13,7 @@ export async function deleteVisitAndPage({visitId, deleteAssoc = false}) {
 
     // Either delete all associated docs or just try to delete page/s if orphaned
     const docs = deleteAssoc ? await getAssociatedDocs({pageId}) : await getOrphanedPageDocs({pageId})
-    handleIndexUpdate(docs, visit)
+    handleIndexDeletes(docs, visit)
     await deleteDocs(docs)
 }
 
@@ -68,14 +68,14 @@ async function getOrphanedPageDocs({pageId}) {
  * @param {any} visitDoc The visit doc being deleted from Pouch. If this is not associated
  *  with any of the pages in `docsToDelete`, the corresponding index doc will be updated.
  */
-async function handleIndexUpdate(docsToDelete = [], visitDoc) {
+export async function handleIndexDeletes(docsToDelete = [], visitDoc) {
     // Grab all page docs IDs (index indexes by page doc)
     const indexDocIds = docsToDelete
         .filter(doc => doc.id.startsWith('page/')) // Filter out visits/bookmarks
         .map(doc => doc.id)
 
     // If visit not already in pages to delete, delete it
-    if (!indexDocIds.includes(visitDoc.page._id)) {
+    if (visitDoc && !indexDocIds.includes(visitDoc.page._id)) {
         await index.removeVisit(visitDoc)
     }
 
