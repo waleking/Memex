@@ -198,13 +198,16 @@ export async function get(id) {
 }
 
 /**
- * @param {any} id ID of the doc to attempt to delete from the index.
+ * @param {string|Array<string>} ids Single ID, or array of IDs, of docs to attempt to delete from the index.
  * @returns Boolean denoting that the delete was successful (else error thrown).
  */
-export async function del(id) {
+export async function del(ids) {
     const index = await indexP
 
-    return new Promise((...args) => index.del([id], standardResponse(...args)))
+    // Typeguard on input; make single ID into array if need be
+    const toDelete = typeof ids === 'string' ? [ids] : ids
+
+    return new Promise((...args) => index.del(toDelete, standardResponse(...args)))
 }
 
 /**
