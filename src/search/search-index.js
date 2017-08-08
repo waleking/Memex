@@ -222,16 +222,21 @@ export const removeVisit = removeTimestamp('visitTimestamps')
 export const removeBookmark = removeTimestamp('bookmarkTimestamps')
 
 /**
- * @param {string} id ID of the doc to find in the index
+ * @param {string|Array<string>} ids Single ID, or array of IDs, of docs to attempt to find in the index.
  * @returns A single index doc that matches the supplied ID.
  */
-export async function get(id) {
+export async function get(ids) {
     const index = await indexP
 
+    // Typeguard on input; handle either array or single
+    const isSingle = typeof ids === 'string'
+    let found = []
+
     return new Promise((resolve, reject) =>
-        index.get([id])
-            .on('data', resolve)
-            .on('error', reject))
+        index.get(isSingle ? [ids] : ids)
+            .on('data', datum => found.push(datum))
+            .on('error', reject)
+            .on('end', () => resolve(isSingle ? found[0] : found)))
 }
 
 /**
