@@ -349,22 +349,22 @@ const bulkResultsToArray = ({ results }) =>
 
 export async function filterVisitsByQuery({
     query,
-    startDate = 0,
-    endDate = Date.now(),
+    startDate,
+    endDate,
     skipUntil,
     limit = 10,
 }) {
     const indexQuery = new QueryBuilder()
         .searchTerm(query || '')
-        .startDate(startDate || 0)
-        .endDate(endDate || Date.now)
+        .startDate(startDate)
+        .endDate(endDate)
         .skipUntil(skipUntil || undefined)
         .limit(limit || 10)
         .get()
     console.log(indexQuery) // DEBUG
 
     // Using index results, fetch matching pouch docs
-    const results = await find(query)
+    const results = await find(indexQuery)
     const docIds = results.map(res => ({ id: res.id }))
     const bulkRes = await db.bulkGet({ docs: docIds })
     const normalised = normaliseFindResult({ docs: bulkResultsToArray(bulkRes) })
