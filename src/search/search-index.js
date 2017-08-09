@@ -347,6 +347,12 @@ const bulkResultsToArray = ({ results }) =>
         .filter(list => list.length)
         .map(list => list[0].ok)
 
+// Allows easy "flattening" of index results to just be left with the Pouch doc IDs
+const extractDocIdsFromIndexResult = indexResult => indexResult
+    .map(({ document: doc }) => [doc.id, ...doc.bookmarkTimestamps, ...doc.visitTimestamps]) // Grab IDs from doc
+    .reduce((prev, curr) => [...prev, ...curr], []) // Flatten everything
+    .map(id => ({ id })) // Map them into appropriate shape for pouch bulkGet query
+
 export async function filterVisitsByQuery({
     query,
     startDate,
@@ -365,7 +371,7 @@ export async function filterVisitsByQuery({
 
     // Using index results, fetch matching pouch docs
     const results = await find(indexQuery)
-    const docIds = results.map(res => ({ id: res.id }))
+    const docIds = extractDocIdsFromIndexResult(results)
     const bulkRes = await db.bulkGet({ docs: docIds })
     const normalised = normaliseFindResult({ docs: bulkResultsToArray(bulkRes) })
 
