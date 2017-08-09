@@ -13,6 +13,8 @@ class QueryBuilder {
      * our current search does not differentiate between visits and bookmarks.
      */
     _setDate = op => time => {
+        // Don't add anything if the time isn't given
+        if (!time) { return this }
         const currentBookmarks = this.bookmarkTimestamps.length ? this.bookmarkTimestamps[0] : {}
         const currentVisits = this.visitTimestamps.length ? this.visitTimestamps[0] : {}
         const updatedBookmarks = [{ ...currentBookmarks, [op]: `bookmark/${time}` }]
