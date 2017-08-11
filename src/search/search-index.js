@@ -1,16 +1,9 @@
 /* eslint promise/param-names: 0 */
 import initSearchIndex from 'search-index'
 import reduce from 'lodash/fp/reduce'
-import stream from 'stream'
-import JSONStream from 'JSONStream'
 
 import db, { normaliseFindResult } from 'src/pouchdb'
 import QueryBuilder from './query-builder'
-
-export const INDEX_STORAGE_KEY = 'search-index'
-// How many different keys in local storage are being used
-export let storageKeyCount = 0
-export const SERIALIZE_BUFFER_SIZE = 10000000 // 5 MB
 
 const indexOpts = {
     batchSize: 500,
@@ -30,71 +23,7 @@ const indexOpts = {
         content: {
             fieldedSearch: true,
         },
-    }
-}
-
-class StorageReader extends stream.Readable {
-    constructor(options) {
-        super(options)
-
-        // State used to iterate through storage keys
-        this.currentStorageKey = 0
-    }
-
-    _fetchFromStorage = async key =>
-        (await browser.storage.local.get(key))[key] || null
-
-    async _read() {
-        const storageKey = `${INDEX_STORAGE_KEY}-${this.currentStorageKey++}`
-        const data = await this._fetchFromStorage(storageKey)
-        this.push(data)
-    }
-}
-
-class StorageWriter extends stream.Writable {
-    constructor(options = { bufferSize: SERIALIZE_BUFFER_SIZE }) {
-        const { bufferSize, ...writableOpts } = options
-        super(writableOpts)
-
-        // Dumb buffer to keep data in before writing out to a new key when `bufferSize` is reached
-        this.dataBuffer = ''
-        this.bufferSize = bufferSize || SERIALIZE_BUFFER_SIZE
-    }
-
-    _isBufferFull = () => this.dataBuffer.length > this.bufferSize
-
-    // Writes out data buffer to the next storage key; resets buffer
-    async _writeOutBuffer() {
-        const storageKey = `${INDEX_STORAGE_KEY}-${storageKeyCount++}`
-        await browser.storage.local.set({ [storageKey]: this.dataBuffer })
-        this.dataBuffer = '' // Reset data buffer
-    }
-
-    async _write(chunk, _, next) {
-        let err
-        try {
-            if (this._isBufferFull()) {
-                await this._writeOutBuffer()
-            } else {
-                this.dataBuffer += chunk.toString()
-            }
-        } catch (error) {
-            err = error
-        } finally {
-            next(err)
-        }
-    }
-
-    async _final(next) {
-        let err
-        try {
-            await this._writeOutBuffer() // Write out remaining data in buffer
-        } catch (error) {
-            err = error
-        } finally {
-            next(err)
-        }
-    }
+    },
 }
 
 const combineContentStrings = reduce((result, val) => `${result}\n${val}`, '')
@@ -172,9 +101,7 @@ export async function addPages({ pageDocs, visitDocs = [], bookmarkDocs = [] }) 
  *  - delete the original doc form the index
  *  - add the updated doc into the index
  */
-const addTimestamp = field => async ({ _id, page })  => {
-    const index = await indexP
-
+const addTimestamp = field => async ({ _id, page }) => {
     const existingDoc = await get(page._id) // Get existing doc
     if (!existingDoc) {
         throw new Error('Page associated with timestamp is not recorded in the index')
@@ -197,8 +124,6 @@ export const addBookmark = addTimestamp('bookmarkTimestamps')
  *  - add the updated doc into the index
  */
 const removeTimestamp = field => async ({ _id, page }) => {
-    const index = await indexP
-
     const existingDoc = await get(page._id) // Get existing doc
     if (!existingDoc) {
         throw new Error('Page associated with timestamp is not recorded in the index')
@@ -299,36 +224,6 @@ export async function size() {
     const index = await indexP
 
     return new Promise((...args) => index.countDocs(standardResponse(...args)))
-}
-
-export async function store() {
-    const index = await indexP
-
-    return new Promise((resolve, reject) => {
-        const storageStream = new StorageWriter()
-            .on('error', reject)
-            .on('finish', () => resolve('finished storing'))
-
-        index.dbReadStream({ gzip: true })
-            .pipe(JSONStream.stringify('', '\n', ''))
-            .pipe(storageStream)
-            .on('error', reject)
-    })
-}
-
-export async function restore() {
-    const index = await indexP
-
-    return new Promise((resolve, reject) => {
-        const indexWriteStream = index.dbWriteStream()
-            .on('error', reject)
-            .on('finish', () => resolve('finished restoring'))
-
-        new StorageReader()
-            .pipe(JSONStream.parse())
-            .pipe(indexWriteStream)
-            .on('error', reject)
-    })
 }
 
 export async function destroy() {
