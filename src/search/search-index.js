@@ -7,6 +7,7 @@ import QueryBuilder from './query-builder'
 
 const indexOpts = {
     batchSize: 500,
+    appendOnly: true,
     indexPath: 'test',
     preserveCase: false,
     compositeField: false,
