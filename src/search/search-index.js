@@ -236,12 +236,16 @@ export async function destroy() {
             err ? reject(err) : resolve('index destroyed')))
 }
 
+// TODO: clean all this up; should be moved to wherever is most relevant (src/pouchdb ?)
+
 // Gets all the "ok" docs from Pouch bulk result, returning them as an array
 const bulkResultsToArray = ({ results }) => results
     .map(res => res.docs)
     .map(list => list.filter(doc => doc.ok))
     .filter(list => list.length)
     .map(list => list[0].ok)
+
+const getTimestampFromId = id => id.split('/')[1]
 
 // Allows easy "flattening" of index results to just be left with the Pouch doc IDs
 const extractDocIdsFromIndexResult = indexResult => indexResult
@@ -283,7 +287,7 @@ export async function filterVisitsByQuery({
     metaDocs = metaDocs.map(doc => {
         doc.page = pageDocs[doc.page._id]
         return doc
-    })
+    }).sort((a, b) => getTimestampFromId(a._id) < getTimestampFromId(b._id))
 
     return {
         ...normaliseFindResult({ docs: metaDocs }),
