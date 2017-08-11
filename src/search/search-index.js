@@ -1,6 +1,7 @@
 /* eslint promise/param-names: 0 */
 import initSearchIndex from 'search-index'
 import reduce from 'lodash/fp/reduce'
+import partition from 'lodash/fp/partition'
 
 import db, { normaliseFindResult } from 'src/pouchdb'
 import QueryBuilder from './query-builder'
@@ -235,13 +236,12 @@ export async function destroy() {
             err ? reject(err) : resolve('index destroyed')))
 }
 
-// Gets all the "ok" docs in returned array
-const bulkResultsToArray = ({ results }) =>
-    results
-        .map(res => res.docs)
-        .map(list => list.filter(doc => doc.ok))
-        .filter(list => list.length)
-        .map(list => list[0].ok)
+// Gets all the "ok" docs from Pouch bulk result, returning them as an array
+const bulkResultsToArray = ({ results }) => results
+    .map(res => res.docs)
+    .map(list => list.filter(doc => doc.ok))
+    .filter(list => list.length)
+    .map(list => list[0].ok)
 
 // Allows easy "flattening" of index results to just be left with the Pouch doc IDs
 const extractDocIdsFromIndexResult = indexResult => indexResult
@@ -257,7 +257,7 @@ export async function filterVisitsByQuery({
     limit = 10,
 }) {
     const indexQuery = new QueryBuilder()
-        .searchTerm(query || '')
+        .searchTerm(query || '*') // Search by wildcard by default
         .startDate(startDate)
         .endDate(endDate)
         .skipUntil(skipUntil || undefined)
@@ -267,12 +267,26 @@ export async function filterVisitsByQuery({
 
     // Using index results, fetch matching pouch docs
     const results = await find(indexQuery)
+
+    // Using the index result, grab doc IDs and then bulk get them from Pouch
     const docIds = extractDocIdsFromIndexResult(results)
     const bulkRes = await db.bulkGet({ docs: docIds })
-    const normalised = normaliseFindResult({ docs: bulkResultsToArray(bulkRes) })
+    const docs = bulkResultsToArray(bulkRes)
+
+    // Parition into meta and page docs
+    let [pageDocs, metaDocs] = partition(({ _id }) => _id.startsWith('page/'))(docs)
+
+    // Put pageDocs into an easy-lookup dictionary
+    pageDocs = reduce((dict, pageDoc) => ({ ...dict, [pageDoc._id]: pageDoc }), {})(pageDocs)
+
+    // Insert page docs into the relevant meta docs
+    metaDocs = metaDocs.map(doc => {
+        doc.page = pageDocs[doc.page._id]
+        return doc
+    })
 
     return {
-        rows: normalised.rows,
+        ...normaliseFindResult({ docs: metaDocs }),
         resultExhausted: results.length < limit,
     }
 }
