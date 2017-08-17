@@ -13,7 +13,7 @@ const indexOpts = {
     indexPath: 'test',
     preserveCase: false,
     compositeField: false,
-    nGramLength: { gte: 1, lte: 5 },
+    nGramLength: 1,
     separator: /[|' .,\-|(\n)]+/,
     stopwords: require('stopword').en,
     fieldOptions: {
