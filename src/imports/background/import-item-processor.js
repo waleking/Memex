@@ -1,10 +1,12 @@
 import { dataURLToBlob } from 'blob-util'
+import whenAllSettled from 'when-all-settled'
 
 import db from 'src/pouchdb'
-import updateDoc from 'src/util/pouchdb-update-doc'
+import { generatePageDocId } from 'src/page-storage'
 import fetchPageData from 'src/page-analysis/background/fetch-page-data'
 import { revisePageFields } from 'src/page-analysis'
 import { IMPORT_TYPE, DOWNLOAD_STATUS } from 'src/options/imports/constants'
+import * as index from 'src/search/search-index'
 
 const fetchPageDataOpts = {
     includePageContent: true,
@@ -36,13 +38,22 @@ async function processHistoryImport(importItem) {
     // Sort out all binary attachments
     const _attachments = await formatFavIconAttachment(favIconURI)
 
-    // Perform the update: page stub "filling-out" + db logic
-    await updateDoc(db, importItem.assocDocId, pageStub => revisePageFields({
-        ...pageStub,
+    // Construct the page doc ready for PouchDB from fetched + import item data
+    const pageDoc = revisePageFields({
+        _id: generatePageDocId({
+            timestamp: importItem.timestamp,
+            nonce: importItem.browserId,
+        }),
+        url: importItem.url,
         content,
         _attachments,
-        isStub: false,
-    }))
+    })
+
+    // Index and store the newly-found page data
+    await whenAllSettled([
+        index.addPages({ pageDocs: [pageDoc] }),
+        db.put(pageDoc),
+    ])
 
     // If we finally got here without an error being thrown, return the success status message + pageDoc data
     return { status: DOWNLOAD_STATUS.SUCC }
@@ -57,8 +68,7 @@ async function processHistoryImport(importItem) {
  */
 export default async function processImportItem(importItem = {}) {
     switch (importItem.type) {
-        // There's really no difference between history and bookmarks at this stage, hence
-        //  they use the same processing function to grab associated page data
+        // TODO: Handle bookmarks differently
         case IMPORT_TYPE.BOOKMARK:
         case IMPORT_TYPE.HISTORY: return await processHistoryImport(importItem)
         default: throw new Error('Unknown import type')
