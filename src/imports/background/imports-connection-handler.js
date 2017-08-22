@@ -21,7 +21,13 @@ const clearImportInProgressFlag = async () =>
     await browser.storage.local.remove(importProgressStorageKey)
 
 // Binds an import type to a function that transforms a history/bookmark doc to an import item.
-const transformToImportItem = type => item => ({ url: item.url, type })
+const transformToImportItem = type => item => ({
+    browserId: item.id,
+    url: item.url,
+    // HistoryItems contain lastVisitTime while BookmarkTreeNodes contain dateAdded
+    timestamp: item.lastVisitTime || item.dateAdded,
+    type,
+})
 
 /**
  * Handles building the list of import items in local storage. Note that these are only
@@ -129,7 +135,7 @@ export default async function importsConnectionHandler(port) {
     const batch = new PromiseBatcher({
         inputBatchCallback: getImportItems,
         processingCallback: processImportItem,
-        concurrency: 2,
+        concurrency: 1,
         observer: getBatchObserver(port),
     })
 
