@@ -135,7 +135,7 @@ export default async function importsConnectionHandler(port) {
     const batch = new PromiseBatcher({
         inputBatchCallback: getImportItems,
         processingCallback: processImportItem,
-        concurrency: 1,
+        concurrency: 2,
         observer: getBatchObserver(port),
     })
 

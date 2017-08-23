@@ -1,5 +1,4 @@
 import { dataURLToBlob } from 'blob-util'
-import whenAllSettled from 'when-all-settled'
 
 import db from 'src/pouchdb'
 import { generatePageDocId } from 'src/page-storage'
@@ -7,6 +6,7 @@ import fetchPageData from 'src/page-analysis/background/fetch-page-data'
 import { revisePageFields } from 'src/page-analysis'
 import { IMPORT_TYPE, DOWNLOAD_STATUS } from 'src/options/imports/constants'
 import * as index from 'src/search/search-index'
+import { transformToVisitDoc } from 'src/imports'
 
 const fetchPageDataOpts = {
     includePageContent: true,
@@ -22,6 +22,16 @@ const formatFavIconAttachment = async favIconURL => {
 
     const blob = await dataURLToBlob(favIconURL)
     return { favIcon: { content_type: blob.type, data: blob } }
+}
+
+/**
+ * @param {PageDoc} pageDoc Page doc to get visits and create visit docs for.
+ * @returns {Array<IVisitDoc>} Array of visit docs gotten from URLs in `pageDoc`.
+ */
+async function createAssociatedVisitDocs(pageDoc) {
+    const visitItems = await browser.history.getVisits({ url: pageDoc.url })
+
+    return visitItems.map(transformToVisitDoc(pageDoc))
 }
 
 /**
@@ -49,11 +59,13 @@ async function processHistoryImport(importItem) {
         _attachments,
     })
 
-    // Index and store the newly-found page data
-    await whenAllSettled([
-        index.addPages({ pageDocs: [pageDoc] }),
-        db.put(pageDoc),
-    ])
+    const visitDocs = await createAssociatedVisitDocs(pageDoc)
+    console.log(visitDocs.length)
+
+    // Schedule indexing of searchable data, but don't wait for it
+    index.addPagesConcurrent({ pageDocs: [pageDoc], visitDocs })
+    // Store the new data in Pouch
+    await db.bulkDocs([pageDoc, ...visitDocs])
 
     // If we finally got here without an error being thrown, return the success status message + pageDoc data
     return { status: DOWNLOAD_STATUS.SUCC }
