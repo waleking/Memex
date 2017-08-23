@@ -6,7 +6,7 @@ import fetchPageData from 'src/page-analysis/background/fetch-page-data'
 import { revisePageFields } from 'src/page-analysis'
 import { IMPORT_TYPE, DOWNLOAD_STATUS } from 'src/options/imports/constants'
 import * as index from 'src/search/search-index'
-import { transformToVisitDoc } from 'src/imports'
+import { transformToVisitDoc, transformToBookmarkDoc } from 'src/imports'
 
 const fetchPageDataOpts = {
     includePageContent: true,
@@ -34,6 +34,13 @@ async function createAssociatedVisitDocs(pageDoc) {
     return visitItems.map(transformToVisitDoc(pageDoc))
 }
 
+async function createAssociatedBookmarkDoc(pageDoc, importItem) {
+    // Web Ext. API should return array of BookmarkItems; grab first one
+    const [bookmarkItem] = await browser.bookmarks.get(importItem.browserId)
+
+    return transformToBookmarkDoc(pageDoc)(bookmarkItem)
+}
+
 /**
  * Handles processing of a history-type import item. Checks for exisitng page docs that have the same URL.
  *
@@ -59,13 +66,16 @@ async function processHistoryImport(importItem) {
         _attachments,
     })
 
+    // Fetch and create meta-docs
     const visitDocs = await createAssociatedVisitDocs(pageDoc)
-    console.log(visitDocs.length)
+    const bookmarkDocs = importItem.type === IMPORT_TYPE.BOOKMARK
+        ? [await createAssociatedBookmarkDoc(pageDoc, importItem)]
+        : []
 
     // Schedule indexing of searchable data, but don't wait for it
-    index.addPagesConcurrent({ pageDocs: [pageDoc], visitDocs })
+    index.addPagesConcurrent({ pageDocs: [pageDoc], visitDocs, bookmarkDocs })
     // Store the new data in Pouch
-    await db.bulkDocs([pageDoc, ...visitDocs])
+    await db.bulkDocs([pageDoc, ...bookmarkDocs, ...visitDocs])
 
     // If we finally got here without an error being thrown, return the success status message + pageDoc data
     return { status: DOWNLOAD_STATUS.SUCC }
@@ -80,7 +90,6 @@ async function processHistoryImport(importItem) {
  */
 export default async function processImportItem(importItem = {}) {
     switch (importItem.type) {
-        // TODO: Handle bookmarks differently
         case IMPORT_TYPE.BOOKMARK:
         case IMPORT_TYPE.HISTORY: return await processHistoryImport(importItem)
         default: throw new Error('Unknown import type')
