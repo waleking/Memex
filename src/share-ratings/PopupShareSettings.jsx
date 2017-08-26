@@ -4,9 +4,13 @@ import styles from './PopupShareSettings.css'
 
 import minixhr from 'minixhr'
 
+
+//var chris_up = require('../../img/worldbrain-logo.png'); // Tell Webpack this JS file uses this image
+
+
 const apiUrl = 'https://api.graph.cool/simple/v1/cj6smhqc40ehh0184ghuupaok'
 
-const friends = ['cj6ssbxgc5ro201641e08gdt9']/*
+const friends = ['cj6ssbxge5ro201641e08gdt9']/*
     'cj6ssbxgc9ro201641e08gdt9',
     'cj6so9jvh0h830156udspa1hd',
     'cj6sxz9o1iyrc0143ob0kre90',
@@ -19,16 +23,19 @@ class PopupShareSettings extends Component {
     constructor() {
         super()
         this.state = {}
+        this.state.up = 0
+        this.state.down = 0
         //this.ural = 'fj'
     }
 
     renderChildren() {
-        if(!this.state.ratings){return(<div>sdhfuikpqsa</div>)}
+        if(!this.state.ratings){return(<div></div>)}
         //return (<div>{JSON.stringify(this.state.ratings.data.allRatings)}</div>)
         return this.state.ratings.data.allRatings.map((rating,i)=>{
             console.log('rating: ', rating.person.name)
             return(<li key={i} className={styles.userEntry}>
-                        <div className={styles.userPicture}/>
+                        
+                        {(rating.rating === 1)? '+1' : '-1'}
                         <div className={styles.userName}>
                             {rating.person.name}
                         </div>
@@ -77,6 +84,13 @@ class PopupShareSettings extends Component {
             minixhr(request, (data, res, xhr, header) => {
                 data = JSON.parse(data)
                 this.setState({ratings:data})
+                var up = 0;
+                var down = 0;
+                console.log(data)
+                //if(!data.allRatings)return
+                data.data.allRatings.map((rating,i)=>{if (rating.rating === 1) up++; if(rating.rating === -1) down++})
+                this.setState({up:up,down:down})
+                //console.log(up,down)
             })
         })
     }
@@ -94,8 +108,8 @@ class PopupShareSettings extends Component {
                     <a className={`${styles.voteField} ${styles.voteButton}`} onClick={()=>{this.rate(1)}} >
                         <i className='material-icons'>keyboard_arrow_up</i>
                     </a>
-                    <div className={styles.voteField}>2</div>
-                    <div className={styles.voteField}>2</div>
+                    <div className={styles.voteField}>{this.state.up ? this.state.up : ''}</div>
+                    <div className={styles.voteField}>{this.state.down ? this.state.down : ''}</div>
                     <a className={`${styles.voteField} ${styles.voteButton}`} onClick={()=>{this.rate(-1)}} >
                         <i className='material-icons'>keyboard_arrow_down</i>
                     </a>
