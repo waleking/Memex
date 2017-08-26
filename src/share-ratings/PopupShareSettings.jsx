@@ -16,9 +16,9 @@ class PopupShareSettings extends Component {
     }
 
     renderChildren() {
-        return users.map(user => {
-            return (<li className={styles.userEntry}>
-                <div className={styles.userPicture}></div>
+        return users.map((user, i) => {
+            return (<li key={i} className={styles.userEntry}>
+                <div className={styles.userPicture} />
                 <div className={styles.userName}>
                     {user}
                 </div>

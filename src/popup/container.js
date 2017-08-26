@@ -229,13 +229,13 @@ class PopupContainer extends Component {
                 {this.renderBlacklistButton()}
                 {
                     this.state.isArchiveEnabled && (
-                    <Button icon='archive' onClick={this.onArchiveBtnClick} disabled={archiveBtnDisabled}>
-                        Archive Current Page
-                    </Button>
-                )
+                        <Button icon='archive' onClick={this.onArchiveBtnClick} disabled={archiveBtnDisabled}>
+                            Archive Current Page
+                        </Button>
+                    )
                 }
                 <hr />
-                <PopupShareSettings/>
+                <PopupShareSettings />
             </div>
         )
     }
