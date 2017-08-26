@@ -6,13 +6,14 @@ import minixhr from 'minixhr'
 
 const apiUrl = 'https://api.graph.cool/simple/v1/cj6smhqc40ehh0184ghuupaok'
 
-const friends = [
+const friends = ['cj6ssbxgc5ro201641e08gdt9']/*
     'cj6ssbxgc9ro201641e08gdt9',
     'cj6so9jvh0h830156udspa1hd',
     'cj6sxz9o1iyrc0143ob0kre90',
     'cj6t2y4muraug01431glom6nm',
     'cj6t2xr4kqkry0162oj6wrmve',
     'cj6t62xnnvq170179dxpbppj9']
+    */
 
 class PopupShareSettings extends Component {
     constructor() {
@@ -70,7 +71,7 @@ class PopupShareSettings extends Component {
             const request = {
                 url: apiUrl,
                 method: 'POST',
-                data: JSON.stringify({query: `{allRatings (filter: {AND:[{urlHash: "${url}"},{person: {id_in: ["${friends.join('","')}"] }}]}) {rating urlHash person{name}} }`}),
+                data: JSON.stringify({query: `{allRatings (filter: {AND:[{urlHash: "${url}"},{person: {id_not_in: ["${friends.join('","')}"] }}]}) {rating urlHash person{name}} }`}),
                 headers: {'Content-Type': 'application/json'},
             }
             minixhr(request, (data, res, xhr, header) => {
