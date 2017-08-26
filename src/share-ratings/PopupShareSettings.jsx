@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import styles from './PopupShareSettings.css'
 
-const users = [
+const worldbrain_network = [
     'Alex',
     'Sandra',
     'Marta',
@@ -10,13 +10,13 @@ const users = [
 ]
 
 class PopupShareSettings extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {}
     }
 
     renderChildren() {
-        return users.map((user, i) => {
+        return worldbrain_network.map((user, i) => {
             return (<li key={i} className={styles.userEntry}>
                 <div className={styles.userPicture} />
                 <div className={styles.userName}>
@@ -40,10 +40,14 @@ class PopupShareSettings extends Component {
                 <h3 className={styles.title}>Ratings from your Network</h3>
                 <hr />
                 <div className={styles.votesContainer}>
-                    <div className={styles.voteField}><i className='material-icons'>keyboard_arrow_up</i></div>
+                    <a className={`${styles.voteField} ${styles.voteButton}`} onClick={this.upvoteSite}>
+                        <i className='material-icons'>keyboard_arrow_up</i>
+                    </a>
                     <div className={styles.voteField}>2</div>
-                    <div className={styles.voteField}>3</div>
-                    <div className={styles.voteField}><i className='material-icons'>keyboard_arrow_down</i></div>
+                    <div className={styles.voteField}>2</div>
+                    <a className={`${styles.voteField} ${styles.voteButton}`} onClick={this.downvoteSite}>
+                        <i className='material-icons'>keyboard_arrow_down</i>
+                    </a>
                 </div>
                 <ul className={styles.usersList}>
                     {this.renderChildren()}
