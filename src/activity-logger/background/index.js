@@ -14,6 +14,7 @@ const tabs = {}
 
 // Listens for url changes of the page
 browser.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+
     if (changeInfo.url && tab.url && isLoggable(tab)) {
         // Check if we already have a debounced function for this tab and cancel it
         if (tabs[tabId]) {
