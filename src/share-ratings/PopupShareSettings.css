@@ -19,8 +19,8 @@
     align-items: center;
 }
 
-.voteButtom {
-
+.voteButton {
+    cursor: pointer;
 }
 
 .voteCount {

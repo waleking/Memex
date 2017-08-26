@@ -2,6 +2,30 @@
     margin-top: 20px;
 }
 
-th {
+th, td {
 	text-align: left;
+}
+
+.addUserTable {
+	width: 100%;
+}
+
+.addUserRow {
+	width: 100%;
+}
+
+.addUserLabel {
+	width: 100px;
+}
+
+.addUserInput > input {
+	width: 100%;
+}
+
+.addUserButton {
+	width: 100px;
+}
+
+.usersTable {
+	width: 100%;
 }
