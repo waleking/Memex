@@ -37,7 +37,7 @@ const ShareRatingsContainer = () => (
                 onChange={toggleSharing}
                 checked={sharingEnabled()}
             />
-            <label htmlFor='enableSharingCheckbox'>Enable Sharing</label>
+            <label htmlFor='enableSharingCheckbox'>Sharing enabled</label>
         </section>
         <section className={styles.section}>
             <button onClick={onClickButton}>Button</button>

@@ -12,6 +12,7 @@ import { findPagesByUrl } from 'src/search/find-pages'
 import { transformToBookmarkDoc } from 'src/imports'
 import { generatePageDocId } from 'src/page-storage'
 import { FREEZE_DRY_BOOKMARKS_KEY } from 'src/options/preferences/constants'
+import { Ratings } from 'src/share-ratings/create_dat'
 import * as index from 'src/search/search-index'
 import db from 'src/pouchdb'
 
