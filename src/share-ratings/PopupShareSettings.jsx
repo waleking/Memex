@@ -26,6 +26,14 @@ class PopupShareSettings extends Component {
         })
     }
 
+    upvoteSite() {
+        console.log('Upvote')
+    }
+
+    downvoteSite() {
+        console.log('Downvote')
+    }
+
     render() {
         return (
             <div>
