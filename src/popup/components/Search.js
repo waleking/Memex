@@ -3,6 +3,15 @@ import PropTypes from 'prop-types'
 
 import styles from './Popup.css'
 
+/*********************************************/
+/*                Pepe Becker                */
+/*********************************************/
+import * as constants from '../constants'
+import buttonStyles from './Button.css'
+/*********************************************/
+/*                    End                    */
+/*********************************************/
+
 const Search = ({ onSearchEnter, onSearchChange, searchValue }) => (
     <form className={styles.searchContainer}>
         <i className='material-icons'>search</i>
@@ -14,6 +23,9 @@ const Search = ({ onSearchEnter, onSearchChange, searchValue }) => (
             onChange={onSearchChange}
             value={searchValue}
         />
+        <a className={buttonStyles.clickableIconNeg} href={`${constants.OPTIONS_URL}#/settings`} target='_blank' tabIndex='-1'>
+            <i className='material-icons'>settings</i>
+        </a>
     </form>
 )
 

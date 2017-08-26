@@ -18,6 +18,14 @@ import * as constants from './constants'
 import { itemBtnBlacklisted } from './components/Button.css'
 import { FREEZE_DRY_ARCHIVE_KEY } from '../options/preferences/constants'
 
+/*********************************************/
+/*                Pepe Becker                */
+/*********************************************/
+import PopupShareSettings from '../share-ratings/PopupShareSettings.jsx'
+/*********************************************/
+/*                    End                    */
+/*********************************************/
+
 // Transforms URL checking results to state types
 const getBlacklistButtonState = ({ loggable, blacklist }) => {
     if (!blacklist) return constants.BLACKLIST_BTN_STATE.BLACKLISTED
@@ -227,15 +235,7 @@ class PopupContainer extends Component {
                 )
                 }
                 <hr />
-                <LinkButton href={`${constants.OPTIONS_URL}#/settings`} icon='settings'>
-                    Settings
-                </LinkButton>
-                <LinkButton href={`${constants.OPTIONS_URL}#/import`} icon='file_download'>
-                    Import History &amp; Bookmarks
-                </LinkButton>
-                <LinkButton href={constants.FEEDBACK_URL} icon='feedback'>
-                    Feedback
-                </LinkButton>
+                <PopupShareSettings/>
             </div>
         )
     }

@@ -1,0 +1,56 @@
+.title {
+    color: black;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.votesContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.voteField {
+    flex-grow: 1;
+    height: 40px;
+    border: 1px solid #EEE;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.voteButtom {
+
+}
+
+.voteCount {
+
+}
+
+.usersList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.userEntry {
+    width: 100%;
+    border-bottom: 1px solid #EEE;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.userPicture {
+    width: 30px;
+    height: 30px;
+    background: red;
+    border-radius: 50%;
+}
+
+.userName {
+    height: 100%;
+    margin-left: 10px;
+}

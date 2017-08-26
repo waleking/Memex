@@ -32,6 +32,7 @@
     "level-js": "^2.2.4",
     "lodash": "^4.17.4",
     "moment": "^2.18.1",
+    "npm": "^4.6.1",
     "page-metadata-parser": "git+https://github.com/Treora/page-metadata-parser.git#npm-testable",
     "pdfjs-dist": "^1.8.492",
     "pouchdb-browser": "^6.2.0",
