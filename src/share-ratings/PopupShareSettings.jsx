@@ -35,10 +35,13 @@ class PopupShareSettings extends Component {
             console.log('rating: ', rating.person.name)
             return(<li key={i} className={styles.userEntry}>
                         
-                        {(rating.rating === 1)? '+1' : '-1'}
+                       {(rating.rating === 1)? (<img className={styles.userPicture} src="http://i.imgur.com/aKDNYXq.png" alt="b"/>) :
+                        (<img className={styles.userPicture} src="http://thumb.ibb.co/hhJYMk/finn_down.jpg" alt="g"/>)}
                         <div className={styles.userName}>
                             {rating.person.name}
+                            <span className={styles.rating}>{(rating.rating === 1)? " +1" : "-1"}</span>
                         </div>
+                        
                     </li>)
         })
     }
@@ -108,8 +111,8 @@ class PopupShareSettings extends Component {
                     <a className={`${styles.voteField} ${styles.voteButton}`} onClick={()=>{this.rate(1)}} >
                         <i className='material-icons'>keyboard_arrow_up</i>
                     </a>
-                    <div className={styles.voteField}>{this.state.up ? this.state.up : ''}</div>
-                    <div className={styles.voteField}>{this.state.down ? this.state.down : ''}</div>
+                    <div className={styles.voteField}>{this.state.up ? this.state.up : '0'}</div>
+                    <div className={styles.voteField}>{this.state.down ? this.state.down : '0'}</div>
                     <a className={`${styles.voteField} ${styles.voteButton}`} onClick={()=>{this.rate(-1)}} >
                         <i className='material-icons'>keyboard_arrow_down</i>
                     </a>
