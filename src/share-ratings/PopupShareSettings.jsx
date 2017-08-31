@@ -47,6 +47,16 @@ class PopupShareSettings extends Component {
     }
 
     rate(rating) {
+          if (rating === 1) {
+          var up = this.state.up + 1
+          this.setState({up: up})
+        }
+
+        if (rating === -1) {
+          var up = this.state.up - 1
+          this.setState({up: up})
+        }
+
         this.getRatings();
         if (!rating) rating = 0
         var url = ''

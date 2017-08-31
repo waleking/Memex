@@ -33,8 +33,11 @@ const formatTime = (visitStart, showTime) => {
 
 const visitToSuggestion = timeFilterApplied => doc => {
     const url = escapeHtml(shortUrl(doc.url))
-    const title = escapeHtml(doc.page.title)
+    const title = escapeHtml(doc.page.content.title)
     const time = formatTime(doc.visitStart, timeFilterApplied)
+
+    console.log("DOC: ", doc)
+
 
     return {
         content: doc.url,
