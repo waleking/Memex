@@ -1,4 +1,7 @@
 // Stuff that is to be accessible from other modules (folders)
+export {
+    default as extractPageContent,
+} from './content_script/extract-page-content'
 
 // The properties of a page that should be indexed for full-text search.
 export const searchableTextFields = [

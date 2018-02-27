@@ -43,7 +43,7 @@ module.exports = function(config) {
             // webpack configuration
             resolve: {
                 extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
-                modules: [path.join(__dirname, 'src', 'js'), 'node_modules'],
+                modules: [path.join(__dirname), 'node_modules'],
             },
             module: {
                 rules: [

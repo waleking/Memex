@@ -1,33 +1,37 @@
 import { expect } from 'chai'
+import { extractPageContent } from 'src/page-analysis'
+
+function retryUntilTrue(f) {
+    return new Promise((resolve, reject) => {
+        const retry = () => {
+            try {
+                if (!f()) {
+                    return setTimeout(retry, 100)
+                }
+                resolve()
+            } catch (e) {
+                reject()
+            }
+        }
+
+        retry()
+    })
+}
 
 async function loadURL(url) {
     const response = await fetch(url)
     const html = await response.text()
 
-    const { iframe, iframeDoc } = await new Promise(resolve => {
-        const iframe = document.createElement('iframe')
-        document.body.appendChild(iframe)
+    const iframe = document.createElement('iframe')
+    document.body.appendChild(iframe)
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document
+    await retryUntilTrue(() => iframeDoc.readyState === 'complete')
 
-        function checkIframeLoaded() {
-            // Get a handle to the iframe element
-            const iframeDoc =
-                iframe.contentDocument || iframe.contentWindow.document
+    iframeDoc.open()
+    iframeDoc.write(html)
+    iframeDoc.close()
 
-            // Check if loading is complete
-            if (iframeDoc.readyState === 'complete') {
-                iframe.contentDocument.open()
-                iframe.contentDocument.write(html)
-                iframe.contentDocument.close()
-                resolve({ iframe, iframeDoc })
-                return
-            }
-
-            // If we are here, it is not loaded. Set things up so we check   the status again in 100 milliseconds
-            window.setTimeout(checkIframeLoaded, 100)
-        }
-
-        checkIframeLoaded()
-    })
+    await retryUntilTrue(() => iframeDoc.body)
 
     return {
         document: iframeDoc,
@@ -35,8 +39,8 @@ async function loadURL(url) {
     }
 }
 
-describe('Testing in the browser', () => {
-    it('should be good', async function() {
+describe('Integration test from page analysis to search index', () => {
+    it('should be able to extract page content, store and search it', async function() {
         this.timeout(10 * 1000)
 
         const indexResponse = await fetch(
@@ -51,11 +55,15 @@ describe('Testing in the browser', () => {
             }
 
             const htmlURL = htmlBase + htmlPath
-            const { document, destroy } = await loadURL(htmlURL)
+            const result = await loadURL(htmlURL)
             try {
-                console.log(htmlURL, document.title)
+                const content = await extractPageContent(
+                    result.document,
+                    'https://' + htmlPath,
+                )
+                // console.log(content)
             } finally {
-                destroy()
+                result.destroy()
             }
         }
     })
