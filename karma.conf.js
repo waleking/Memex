@@ -1,11 +1,13 @@
 const path = require('path')
 const webpack = require('webpack')
 
+process.env.CHROME_BIN = require('puppeteer').executablePath()
+
 module.exports = function(config) {
     config.set({
         files: [
             // all files ending in "test"
-            './node_modules/phantomjs-polyfill/bind-polyfill.js',
+            // './node_modules/phantomjs-polyfill/bind-polyfill.js',
             'test/browser.js',
             // each file acts as entry point for the webpack configuration
         ],
@@ -58,11 +60,12 @@ module.exports = function(config) {
             require('istanbul-instrumenter-loader'),
             require('karma-mocha'),
             require('karma-coverage'),
-            require('karma-phantomjs-launcher'),
+            // require('karma-phantomjs-launcher'),
+            require('karma-chrome-launcher'),
             require('karma-spec-reporter'),
             require('karma-sourcemap-loader'),
         ],
 
-        browsers: ['PhantomJS'],
+        browsers: ['ChromeHeadless'],
     })
 }
