@@ -1,0 +1,526 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12472420/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 19 Jan 1994, Wed.  ' .-- .-- .-- j um Anmlm CIRCULATION: 1,138,353 DAILY 1,521,197 SUNDAY WEDNESDAY, JANUARY 19, 1994 COPYRIGHT 1994THETIMES MIRROR COMPANYCCt 104 PAGES DAILY S0 DESIGNATED AREAS HIGHER' md Staggte 'to B"><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 19 Jan 1994, Wed.  &#039; .-- .-- .-- j um Anmlm CIRCULATION: 1,138,353 DAILY 1,521,197 SUNDAY WEDNESDAY, JANUARY 19, 1994 COPYRIGHT 1994THETIMES MIRROR COMPANYCCt 104 PAGES DAILY S0 DESIGNATED AREAS HIGHER&#039; md Staggte &#039;to B"><meta name="keywords" content=", jrademacher, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12472420/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12472420/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=157364240&width=557&height=954&crop=0_0_3885_6776&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671591&h=40e4de8aa181a2bfe5920be9064413ef">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "19 Jan 1994, Wed";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12757833">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12472420"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12472420#spot=12472420"  onclick="checkViewAccess('image',157364240,'/image/?spot=12472420#spot=12472420',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=157364240&width=557&height=954&crop=0_0_3885_6776&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671591&h=40e4de8aa181a2bfe5920be9064413ef" alt=" - &#039; .-- .-- .-- j um Anmlm CIRCULATION: 1,138,353..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">&#039; .-- .-- .-- j um Anmlm CIRCULATION: 1,138,353 DAILY 1,521,197 SUNDAY WEDNESDAY, JANUARY 19, 1994 COPYRIGHT 1994THETIMES MIRROR COMPANYCCt 104 PAGES DAILY S0 DESIGNATED AREAS HIGHER&#039; md Staggte &#039;to Bfi sOef Quiake Toll Rises to 40; Services Still COLUMN ONE The Long and Uneasy Night After Demons, real and &quot;imagined, haunt residents in the wake of Monday&#039;s quake. The day is more easyV one newly homeless woman said. To many, darkness meant anxiety, anguish and aftershocks. By DAVID FERRELL andSHERYLSTOLBERG TIMES STAFF WRITERS &quot; And then night fell. ..The screaming sirens and staccato staccato din of television helicopters had all but disappeared. Burned-out Burned-out Burned-out cars and buckled freeways lay silent. Homes lay in ruins. All that initial upheaval had subsided, leaving leaving the city to bed down under curfew, on edge, alone in the dark. j After a day of catastrophe, many in Los Angeles worked their own twist, on the words of the poet Dylan Thomas: They did not go gently. , Rather, they entered a night of uncommon trepidation. They found themseives confronting demons both real and imagined. In the long hours before dawn, weary residents residents tried to find rest, sometimes amid homelessness and despair. All the while, they wondered if the darkness which had delivered Monday&#039;s temblor would strike again. &quot;The day is more easy,&quot; said Zoila Zuleta, who along with her three children curled up on flattened flattened cardboard boxes in the parking lot of a Lucky supermarket supermarket in Sepulveda. &quot;The night. . . ,&quot; her voice drifted off. &quot;The night is awful.&quot; . Some left homeless huddled under under blankets in store parking lots. Others slept in their own homes, but with one eye open, removing the mirror from above the dresser, wrapping the favorite vase in towels, towels, putting the running shoes by the bed just in case. In Woodland Hills, shaken residents fought fears of the night in grand style: They threw a block party. Thousands camped out in parks, unwilling or unable to go home. Far-flung Far-flung Far-flung commuters got up in the wee hours 3 a.m, in the case of one Antelope Valley man to beat a freeway rush that was expected to be hellish but wasn&#039;t. Motels in Lancaster -filled -filled up, with Santa CJarita Valley residents hungry for electricity and hot showers. Aftershocks rocked the region, making for restless slumber. Would the next one be the magnitude- magnitude- magnitude- 5 that seismologists were predicting? Or would it be bigger? Please see NIGHT, All Inman Quits as Nominee for Defense Secretary Post Cabinet: Ex-admiral Ex-admiral Ex-admiral blames press and politics for his withdrawal. Clinton apparently did not try to stop him. S By ART PINE G TIMES STAFF WRITER i WASHINGTON-Retired WASHINGTON-Retired WASHINGTON-Retired Navy Adm.; Bobby Ray Inman abruptly withdrew Tuesday as President Clinton&#039;s nominee for defense secretary, secretary, saying he had been troubled troubled by attacks on his reputation and by &quot;reports&quot; that Senate Minority Minority Leader Bob Dole (R-Kan.) (R-Kan.) (R-Kan.) was preparing to begin a campaign against him. The surprise withdrawal stunned official Washington and the defense community. It left the White House scrambling to minimize minimize political damage to the Administration Administration and to find a new Please see INMAN, A27 irw art e. j DON BARTLETTI Loa Angeles Times Earthquake victims, among thousands displaced by disaster, find shelter at Northridge Junior High School. ProbeTies Reagan, Bush to Iran-Contra Iran-Contra Iran-Contra Cover-Up Cover-Up Cover-Up Inquiry: Report says neither broke law but allowed effort to deceive. Ex-Presidents Ex-Presidents Ex-Presidents call conclusions unfair. By ROBERT L JACKSON and RONALD J.OSTROW TIMES STAFF WRITERS WASHINGTON Former Presidents Presidents Ronald Reagan and George Bush engaged in conduct that contributed contributed to &quot;a concerted effort to deceive Congress and the public&quot; about the Iran-Contra Iran-Contra Iran-Contra scandal, according according to the final report issued Tuesday by the independent counsel counsel who investigated the affair. In his findings, Lawrence E. Walsh concluded that neither Reagan Reagan nor Bush violated any criminal laws in connection with the af-. af-. af-. fair in which the Reagan Administration Administration secretly sold weapons to Iran in the mid-1980s mid-1980s mid-1980s in order to gain the release of American hostages hostages in Lebanon and to generate funds to aid rebel forces in Nicaragua. Nicaragua. But Reagan&#039;s &quot;disregard&quot; for limits imposed by Congress emboldened emboldened some of his Administration&#039;s Administration&#039;s highest-ranking highest-ranking highest-ranking officials to engage in illegal actions, Walsh said. He charged that Reagan &quot;set the stage for the illegal activities of others by encouraging and, in gen Aaociated Pita Inman at the news conference. f Ml I - i &#039; &#039; S I &#039;Hi.-?- &#039;Hi.-?- &#039;Hi.-?- &#039;Hi.-?- I &#039; eral terms, ordering support of the Contras&quot; during a two-year two-year two-year period when Congress had prohibited military military aid to the rebels. As for then-Vice then-Vice then-Vice President Bush, Walsh said: &quot;Contrary to his public pronouncements, ... he was fully aware of the Iran arms sales. Bush was regularly briefed, along with the President Reagan, on the Iran arms sales, and he participated in discussions to obtain obtain third-country third-country third-country support for the Contras.&quot; In separate statements released Tuesday, Reagan, Bush and sever- sever- LOST LESSONS? Experts fear that scandal&#039;s lessons lessons have been obscured. A27 al other former officials named in the report called Walsh&#039;s conclusions conclusions inaccurate and unfair. Reagan termed the report &quot;an expensive, self-administered self-administered self-administered pat on the back and a vehicle for baseless accusations that he could never have proven in court.&quot; Bush said no one should try to criminalize what was &quot;a political dispute between the executive and legislative branches over foreign Please see PROBE, A26 MORE EARTHQUAKE COVERAGE STORIES, PHOTOS: A2-20;Bl-6;Cl;Dl;Tl-8 A2-20;Bl-6;Cl;Dl;Tl-8 A2-20;Bl-6;Cl;Dl;Tl-8 A2-20;Bl-6;Cl;Dl;Tl-8 A2-20;Bl-6;Cl;Dl;Tl-8 A2-20;Bl-6;Cl;Dl;Tl-8 A2-20;Bl-6;Cl;Dl;Tl-8 ISOLATED IN SANTA CLARITA Santa Clarita residents, used to a comfortable life &quot;over the hill&quot; from L.A., found themselves isolated and cut off from jobs. A3 EMERGENCY RESPONSE The quake caught fire officials short of specialized search and rescue equipment, but other aspects aspects of emergency response plans worked well. A7 REAL ESTATE IN LIMBO The impact of the earthquake sent tremors through the real estate markets across Southern California, throwing many deals into limbo. Dl WEATHER: Sunny today and Thursday with early morning fog near the coast. Civic Center lowhigh today: 5082. Details: B7 TOP OF THE NEWS ON A2 Homeless or Just Fearful, Many Camp Out By SUSAN BYRNES, SCOTT GLOVER and SONIA NAZARIO SPECIAL TO THE TIMES Evoking images of Depression -era -era refugee camps, 20,000 people slept outside last night in more than 70 parks throughout the city. Officials say thousands more camped on front lawns and in driveways, parking lots and even median strips. They huddled against cold and tried to cope with fears and indignitiesfrom indignitiesfrom aftershocks and the lack of food to roaming derelicts and an encounter with coyotes. Cars were turned into bedrooms and sheets formed lean-tos lean-tos lean-tos in earthquake-ravaged earthquake-ravaged earthquake-ravaged parts of Los Angeles, from the hard-hit hard-hit hard-hit San Fernando Valley to neighborhoods scattered from Echo Park to the Westside. Many people simply refused refused to sleep indoors. Others without shelter did not know when they could return home. &quot;We don&#039;t have money, we don&#039;t have anything,&quot; said Marta Franco, Franco, who sat on shabby blankets in the park outside the Winnetka Recreation Center in the west Valley with her husband and five children. The earthquake had split the walls and blown out the windows Please see CAMP, A8 On the Fault Line &quot;W ill flJllfe fosats! lot Angeles Timea ON THE FAULT LINE: A SPECIAL SECTION Five writers ponder life in a shaky Eden: the importance of a concrete artery, a day &quot;unplugged,&quot; &quot;unplugged,&quot; the fates that spare us or crush us, and a report from ground zero. Section T B Disaster: Aftershocks from 6.6 temblor continue. Many turn neighborhoods and parks into campgrounds while others seek refuge in shelters and hotels. By HENRY WEINSTEIN and TIMOTHY WILLIAMS, times staff writers As waves of aftershocks continued to jolt quake-ravaged quake-ravaged quake-ravaged Southern California, life was anything but back to normal Tuesday for vast swaths of the region, which was struggling to xlig out from the rubble, maneuver over a crumpled freeway system and assess the devastation without full benefit of power, gas or phones. . -. -. v A day after a magnitude 6.6 earthquake rumbled violently under under the San Fernando Valley, tens of thousands of frazzled and displaced displaced residents turned their neighborhoods into sprawling campgrounds, burning tree limbs for warmth, boiling water against contaminants, stocking up on batteries batteries and wondering when or if they will be able to return home. &quot;At least if I die here, they&#039;ll find me quick and not have to search for me in the rubble,&quot; said Silvia Martinez, 25, who was camped out , at Echo Park Lake, where she had set up a frayed mattress under a makeshift tent of black garbage bags strung between two shopping carts. The day&#039;s major developments: The death toll climbed to 40. Among the latest fatalities was the 16th body to be pulled from the three-story three-story three-story Northridge Meadows apartments, which became the focus focus of a grim rescue mission after it collapsed into two floors. Four other deaths in the latest tally were attributed to heart attacks. One other died in a traffic accident on Monday. Medical officials said that 530 people had suffered injuries serious enough to be hospitalized, while another 2,333 injured were treated and released. Hospitals remained swamped across the Valley, doctors doctors performed triage in parking lots and kidney patients scrambled to find dialysis treatment. Unable or unwilling to venture back to their homes, as many as 20,000 people had set up camp in at least 70 city parks. Thousands more were holed up at emergency shelters or were checked into hotels. hotels. As top federal officials met to discuss how best to bring emergency emergency aid to the region, President Clinton announced he would visit Los Angeles today. Insurance industry industry officials estimated that insured insured damage from the quake and aftershocks will exceed $1 billion. With scores of employees staying staying away from work, traffic on the region&#039;s fractured roadways was remarkably light. Already, demolition demolition crews were busy tearing down crumbled and debris-strewn debris-strewn debris-strewn stretches of the Santa Monica and Golden State freeways. Nearly 82,000 customers were still without power, at least 50,000 had no water and 28,000 were without natural gas. Although telephone service was largely restored, restored, officials said lines remained congested and urged residents to limit their calls. Mayor Richard Riordan ex- ex- Please see QUAKE, A4 Apartment Collapse Probe! Raises Questions on Codes i Safety: Plywood construction was not required when complex was built. Builder says rules were followed. By RICHARD SIMON, CLAIRE SPIEGEL and HUGO MARTIN TIMES STAFF WRITERS The San Fernando Valley apartment apartment complex that collapsed and killed 16 people Monday was built like thousands of other structures throughout Los Angeles without plywood reinforcement that gives extra strength to walls during earthquakes, according to preliminary preliminary reports from city and state building officials Tuesday. Plywood reinforcing has been used to meet city and state building codes that were strengthened after the 1971 Sylmar earthquake, but it was not required when the apartment apartment complex was built, officials Downi Amid Ruins, Clues to Deep-Mysteries Deep-Mysteries Deep-Mysteries By ROBERT LEE HOTZ TIMES SCIENCE WRITER . Amid a cacophony of distant sirens, helicopters and sputtering gas mains, Caltech earthquake geologist geologist James F. Dolan was taking testimony from the bowed picket fences, whip-snaked whip-snaked whip-snaked foundations and buckled sidewalks north of the epicenter of Monday&#039;s 6.6 earthquake. The evidence he collect . ed told a story of how in a pre-dawn pre-dawn pre-dawn instant the full force of the Northridge : quake surged up from a point 10 miles beneath the ground to break the surface surface almost two miles north, in the front yards of a few suburban households in Granada Hills. His find-Please find-Please find-Please see RUINS, A9 Commuters Make the Adjustment By GREG KR1KORIAN t and RALPH FRAMMOLINO ... TIMES STAFF WRITERS Gird yourself, the experts warned. Read the writing on the seismo-cam. seismo-cam. seismo-cam. The mighty freeways have been hobbled. Prepare for the Commute From Hell. But like most disasters in Southern California, Day 1 of the traffic apocalypse looked more sweeping on TV than it was in the real life of this resilient region. There was bedlam, yes, but it . was of a patchy sort, punctuating long, sunny spans of open road. -.v -.v Part of this was a function of the continuing state of emergency; Spooked by the aerial photos of collapsed freeways and buckled roads, thousands of Angelenos spent Tuesday&#039;s rush hours hun-; hun-; hun-; kered down at home. Schools can-.&#039; can-.&#039; can-.&#039; celed classes. Some government offices were closed. News an-I an-I an-I nouncers urged motorists to stay off the roads. ; But part, too, was what traffic engineers hope will be a permanent Please see COMMUTE, A14 said. City officials have not pinpointed the cause of the building&#039;s dramatic&#039; failure, but they said they will evaluate whether it was an isolated incident or one that indicates a widespread problem. , &#039; &#039;; They also said they will examine whether old wood-frame wood-frame wood-frame buildings should be required to meet more stringent standards, as is now re-&#039; re-&#039; re-&#039; quired of unreinforced masonry buildings. , Brian Heller, whose company built the apartment building that &#039; collapsed, said the building was constructed according to existing codes then and with &quot;every earthquake earthquake device that was required ... and I think that included Please see CODES, A9 j: i I</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1994/01/19">19 Jan 1994, Wed</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1994/01/19/Main%20Edition">Main Edition</a>,&nbsp;
+<a href="/image/157364240/">Page 1</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1994/01/19">19 Jan 1994, Wed</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1994/01/19/Main%20Edition">Main Edition</a>,&nbsp;
+<a href="/image/157364240/">Page 1</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/jrademacher/" class="avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li><a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>   19 Jul 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>  &ndash;  19 Jul 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12472420"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1994/01/19">19 Jan 1994, Wed</a>
+&nbsp;•&nbsp;<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1994/01/19/Main%20Edition">Main Edition</a>
+&nbsp;•&nbsp;<a href="/image/157364240/">Page 1</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12472420#spot=12472420"  onclick="checkViewAccess('image',157364240,'/image/?spot=12472420#spot=12472420',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/157364240/250/0/0_0_3885_6776/0/yes/0_0_3885_6776.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by jrademacher <a href="/profile/jrademacher/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17032274//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/202572050/150/150/979_370_1005_1627.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/15165540//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/200841071/150/150/0_64_3401_5191.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/14866343/test/" title="test">
+<i><img src="/i/spacer.gif" alt="test" style="background-image: url(https://img.newspapers.com/img/thumbnail/201375373/150/150/2251_1001_1310_1757.jpg);"/></i>
+<span class="alsoby-text">test</span></a>
+</li>
+<li> <a href="/clip/13450538/thornton_ad/" title="Thornton Ad">
+<i><img src="/i/spacer.gif" alt="Thornton Ad" style="background-image: url(https://img.newspapers.com/img/thumbnail/281264290/150/150/3338_2836_2139_2999.jpg);"/></i>
+<span class="alsoby-text">Thornton Ad</span></a>
+</li>
+<li> <a href="/clip/12524149//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/196463225/150/150/0_0_4045_6413.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12472420;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12472420&amp;name=&amp;print=1';
+var imageId = "157364240";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12472420\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 19 Jan 1994, Wed\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"19 Jan 1994, Wed\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/157364240\\/400\\/400\\/0_0_3885_6776\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1994-01-19";
+var pageEdition = "Main Edition";
+var pageNumber = "1";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":463,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

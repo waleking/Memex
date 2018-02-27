@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12498387/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 10 Sep 1958, Wed.  FLORID ARY PEPPER LOSES PR M Mr Times Telephone Numbers MAdison 5-2345 5-2345 5-2345 for lubKfpbfr .rv;r. colli end oil orrr colli eH thot eonceminfl cloiifid odvrtiiinjj. MAdlSOIt S-441 S-441 S-441 I"><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 10 Sep 1958, Wed.  FLORID ARY PEPPER LOSES PR M Mr Times Telephone Numbers MAdison 5-2345 5-2345 5-2345 for lubKfpbfr .rv;r. colli end oil orrr colli eH thot eonceminfl cloiifid odvrtiiinjj. MAdlSOIt S-441 S-441 S-441 I"><meta name="keywords" content=", jrademacher, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12498387/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12498387/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=162154788&width=557&height=815&crop=0_0_3326_4958&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671609&h=27683ec8b080b28120fe6dbcd89dff82">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "10 Sep 1958, Wed";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12784170">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12498387"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12498387#spot=12498387"  onclick="checkViewAccess('image',162154788,'/image/?spot=12498387#spot=12498387',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=162154788&width=557&height=815&crop=0_0_3326_4958&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671609&h=27683ec8b080b28120fe6dbcd89dff82" alt=" - FLORID ARY PEPPER LOSES PR M Mr Times Telephone..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">FLORID ARY PEPPER LOSES PR M Mr Times Telephone Numbers MAdison 5-2345 5-2345 5-2345 for lubKfpbfr .rv;r. colli end oil orrr colli eH thot eonceminfl cloiifid odvrtiiinjj. MAdlSOIt S-441 S-441 S-441 I for all clamfivd odvenivino colli. Co s An LIBERTY UNDER THE LAW TRUE INDUSTRIAL FREEDOM Q A.M. J FINAL VOL. LXXVI1 IN FOUR PARTS WEDNESDAY MORNING, SEPTEMBER 10, 1958 72 PAGES DAILY 10c 1 Am Not in Love With n N Pepper Defeated in Florida Primary Holland Nominated for Senate Again; Nine Other States Vote MIAMI, Sept. 9 WW Sen. Spessard Holland won a! smashing victory over Challenger Claude Pepper today: in Florida&#039;s Democratic primary. Pepper blamed his defeat defeat on the integration issue. epper. herv champion nl New Deal causes in the: l!)&quot;0s. conceded defeat in the face of returns from more; 1han two-thirds two-thirds two-thirds of the State&#039;s precincts showing him trail-: trail-: trail-: ing hy more than liTOulf votes. Returns in 1700 of 1SS0&#039; precincts Rave Holland o75,-009 o75,-009 o75,-009 and Pepper 205.020. It) States Voting (The Florida primary was one of 10 in as many States to practically wind up the picking of candidates for ihej .November elections.) , .&amp; ii.o,;,m i,-.,.&#039;i.!conceded i,-.,.&#039;i.!conceded i,-.,.&#039;i.!conceded GOP Admits Bad Beating in Maine Illuslraled on Pag 3, Part I WASHINGTON, Sept. 9 i;P) Stunned Republicans: today they had da Senatorial battle betweenitaken a bad beating in the conservative 1 1 o 1 1 a n djMaine&#039;s elections. But thev and the liberal Pcpper.!djspu,pd Domoorntic rnin rule both came nut. for scg-u. scg-u. scg-u. , . , relation. Holland urged altha,,ne ,f&quot;lts signal a na- na- more vigorous approach to&#039; tional t ivnd. retain il. j From President Kisenhow- Kisenhow- iovii there wus no GOP disposition to minimize the NAVY READY TO BUILD Fishers SEVEN NEW ATOM SUBS A . Aumu to Spat WASHINGTON, Sept. 9 (UPD The Navy today today announced a new shipbuilding program providing providing for seven more nuclear-powered nuclear-powered nuclear-powered submarines. submarines. Nine guided-missile guided-missile guided-missile frigates and five guided-missile guided-missile guided-missile destroyers also are planned. The total building program for the year which started July 1 called for starting construction on 78 ships at a cost of about. .$1,600,000,000. Defense Secretary Neil H. McElroy has not yet given the go-ahead go-ahead go-ahead for four Polaris-firing Polaris-firing Polaris-firing missile submarines for which Congress provided money over McElroy&#039;s objections. Dulles Hints at Deal With Communist China Cease-Fire Cease-Fire Cease-Fire Might Bring Peaceful Accord on Quemoy, He Tells News Conference Pepper&#039;s Statement &quot;It is tragic with this mu ter member and ip i ral problem facing the South.jpolit ical leadership has fallen into the bands of the extremists.&quot; Pepper told newsmen after announcing that be had con- con- ccded. Pepper telephoned Hoi land a message of congratti-j congratti-j congratti-j lations and pledged his; support in the November general election against Republican Republican Lcland Hvzer, a Miami attorney shock whirl wind sweep in Maine that toppled a Republican Sena- Sena- bcpnblican House kept the Gov-i Gov-i Gov-i Democratic ernors hands. Sized l!p by President The smashing victory of Democratic Gov. Edmund S. Muskie over GOP Sen. Fred- Fred- erick G. Payne w-as w-as w-as sized up WAITS FOR RETURNS Rep. Coya Knutson, who spurned her husband&#039;s plea to quit politics, waits with son Terry, 19, in Moorhead, Minn., for vote results. i.Pj Wirephoto LA SWELTERS IN IRep. Knutson, 90-DEG. 90-DEG. 90-DEG. HEAT AGAIN Who Spurned Mate, Leads Temperatures Sizzle for Fifth Straight Day and There&#039;s No Relief Yet in Sight ..Los Angeles sweltered under 90-deg. 90-deg. 90-deg. temperatures! MINNEAPOLIS, Sept. 9 iSi jyesterday making the fifth consecutive day that ther-KeP- ther-KeP- ther-KeP- ther-KeP- Loa Knutson tD) . .. ...&#039;.: :-ihv :-ihv :-ihv President Kwmihn.vor nvlmometens have reached or tODDed the 90-dei. 90-dei. 90-dei. mark. -&quot;inn., -&quot;inn., aiming tor a tmrd uemocrauc nomination no &quot; ............... .... - , ... Florida i tantamount loia Republican beating which No immediate relief is inj jterm over the bitter opposi- opposi- election. t.heIe was n&quot; use trying tokjRlu, the weatherman .said.iTEMPERATURES tion of her husband, ingn icmperaiure louay is; Los Anee es temnera- temnera- disguise. Similar Chairman iloade Alcorn K.iii&#039;:ePecte1 10 be in a statement &quot;we look a: Yesterday&#039;s high of 00 was GOP National tures vesterdav: McFarland Leading : A n . in MriZOna rnmary ;in a statement &quot;we took a: esteruay s mgn oi uu waSj jjjdnight 71 rllUtlMA. cpt. :.-n :.-n :.-n &#039;J--rtLiiis &#039;J--rtLiiis &#039;J--rtLiiis &#039;J--rtLiiis rtuu a nan irmii iij2 &#039; -v.... -v.... ... ..... Gov Ernest W McFarland;-&#039;11 McFarland;-&#039;11 McFarland;-&#039;11 lne Maine election ves- ves- a 1&#039; of at a.m. It lumped into a 2-1 2-1 2-1 lead io-terday.&quot; io-terday.&quot; io-terday.&quot; &#039; was the hottest Sept. 0 since night over Democratic Na-! Na-! Na-! But Alcorn was unwilling 105B when the temperature tional Committeeman Ste-lto Ste-lto Ste-lto go along with the conten- conten- reached 102. Lowest on rec-phen rec-phen rec-phen Langmarie in rpum1tion ol Democratic National ord was a cool -J -J 8 de? in from todav&#039;s primarv for thc&#039;Chairman Paul M. Butler 11- 11- was locked in a tight race tonight the Minnesota primary BY ROBERT T. HARTMANN Times Washington Bureau Chief . WASHINGTON, Sept. 9 Secretary of State Dulles today indicated a willingness on the part of the United States to negotiate some settlement if Communist China will agree to a cease-fire cease-fire cease-fire in Formosa Strait. Dulles told a news confer-; confer-; confer-; ence that he does not helieveJjTORM HALTS there will be war in the area,&#039;; f the United States stands: I I S CONVOYS TAIPEI. Sept. 0 lFi Stormy weather in Formosa Formosa Strait today stopped the U.S. 7tii Fleet from convoying the supply run to beleaguered beleaguered Quemov. The Reds kept up a sporadic artillerv- artillerv- bom bardment of Quemov today. today. And in liloscow the Soviet Union announced its support of Communist Communist China&#039;s decision to extend its territorial waters to 12 miles. The announcement said a Russian note had been delivered in Peiping. firm and united against the use of force to alter the situation situation there. He said U.S. naval vessels now convoying Nationalist Story on shelling ot Quemoy on Page 2, Pari 1. ships up the three-mile three-mile three-mile ter-j ter-j ter-j ritorial waters of Quemoyj and Matsu probably would: reply in kind if &quot;deliberate-! &quot;deliberate-! &quot;deliberate-! lv&quot; &quot;fired Upon by the main-i main-i main-i (land Communists, but an ac cidental shell hit would bej &quot;another matter again.&quot; He; brushed off Peiping&#039;s 12-mile 12-mile 12-mile claim as a &quot;grab.&quot; J Barrage of Questions Under a barrage of ques-! ques-! ques-! tions asking whether the ad-, ad-, ad-, !w h i c h otherwise broughtiministration has decided to Please Turn to Pg. 7, Col. I Please Turn to Pg. fi, Col. :i INDEX OF FEATURES Nixon Plans Two LA. Visits to Aid GOP Vice-President Vice-President Vice-President Nixon plans two appearances here on behalf of the Republicans. Story on Page 1, Part 3. ON OTHER PAGES ASTROLOGV. Pase r,. Part BRIDGE BY SHEINVVOl.D. SmoK Swept Away Among other high temperatures temperatures were 102 in Ontario, Ontario, 9H in San Bernardino, 07 in Riverside and Bur- Bur- bank, OG in. Van Nuys and 01 tin Pasadena. j A layer of light smog was Iswept from the city by aft-lernoon aft-lernoon aft-lernoon breezes, but it will 1 a.m. 2a.m. . . a.m. . . 4a.m. 5 a.m. . . &quot;r.20 a.m. t a.m. . . 7 a.m. . S a.m. . . U a.m . . . 10a.m. . 11 a.m. . Xoon 1 p.m. 1:46 p.m. I p.m. p.m. 4 p.m. 5 p.m. p.m. 7 p.m. S p.m. II p.m. 10 p.m. 1 1 p.m. i jected as unrealistic Dulles seemed to suggest theiP&#039;nSf. &#039;ong-standing &#039;ong-standing &#039;ong-standing claim internal civil war and there- there- &quot; 8. Part 2. CLASSIFIED. Pn COMICS. Pnpi T. I&#039;srt CnOSSWORD. Pcc 2: D11AMA AND MUSIC 2:i. Part 1. OR. ALVAREZ. p.-?p p.-?p p.-?p KOfTORlAI.. Pvci-- Pvci-- Pvci-- t. FAMILY. P;iz- P;iz- !-.-. !-.-. !-.-. !-.-. !-.-. I-FINANCIAI.. I-FINANCIAI.. I-FINANCIAI.. Pxws GAI.I.LP POI.l.. pkp IIOPPKI!. PaM 21. Pari 1. .II&#039;MBLK n A.M K. Pairs II. Part 2. -Mi -Mi LLMORK. Pace 20. Part 1. 111-27, 111-27, 111-27, Part .1. .MOTION PICTURES. Pages 21-23, 21-23, 21-23, ,., ., Part 1. 27. Pa-t Pa-t Pa-t 2. POl.VZOIDES. Paite 1.1. Part 1. RADIO. Pace 7. Part 2. SII1PPINU. Pace !). Part 2. SOUTHLAND. Pace 27. Part 1. SPORTS. Panes 1-K. 1-K. 1-K. Pan 1. TKi.Et ISIOV Pace fc. Part 2 VITAL RECORD. Pace fi. Part 1. WEATHER Pace fi. Cart 4. return today, the Air Pollu tion Control District announced, announced, Litrht. eve irritation was t- t- i i I i forecast for the central and I ypnOOn neien I northeast basin and San Per- Per- r-., r-., r-., D.. J nando and San Gabriel Val-: Val-: Val-: rurmubd-uuuiiu rurmubd-uuuiiu rurmubd-uuuiiu iievs. Sept. 10! There will he some morn-i morn-i morn-i MANILA Sent. 9 liPI- liPI- Theimg fog and low clouds nearjCurtis LeMay arrived todavjthe issues j easy nomination to partyldetend the onshore islands, j ss ticket toppe: on ; Returns from l.&quot;)4 of thejUnited States might try toj. S7 Trict of Northwestern Minne-ireach Minne-ireach Minne-ireach a peaceful settlementj fore .u slde &#039;;rated, S4 .-ota. .-ota. .-ota. gave Mrs. Knutson 39871 with the Reds, if thev pjve jurisdiction. He said, What&#039;s What&#039;s votes to 3507 for Marvin!&quot;an effective dependable ever e theory of it may; be. 46-year-old 46-year-old 46-year-old 46-year-old 46-year-old Moor-I Moor-I Moor-I renunciation of force.&quot; ieiyuuu. k.iu tna. tnere J 1 ... . . . . are in thic citiinttnn eomen r 1 he United States this; V&quot;. &quot; ..v..... ... ......... morning sent a telegram tojich could lead to an in- in- ,v. r-,,i r-,,i r-,,i Ah,M,,!ternationaI war. ; to Poland, Wang Ping-nam, Ping-nam, Ping-nam, nfi-ciT-in nfi-ciT-in nfi-ciT-in nfi-ciT-in nfi-ciT-in iinmedi-jte iinmedi-jte iinmedi-jte - tn r-n. r-n. r-n. sume tihe bilateral ta&#039;lks with! a&quot;d as,kecI if he,felt &quot;&quot;ifrom the hou American Ambassador .Ia-ru&quot;Sduu&quot; .Ia-ru&quot;Sduu&quot; .Ia-ru&quot;Sduu&quot; . L t , 1 ,i, R,m catroctori h,.iCongress and tell the Amen- Amen- Red Premier jEvenson. 4B-year-old 4B-year-old 4B-year-old 4B-year-old 4B-year-old Moor .head businessman Won&#039;t Go Home J ! F.venson&#039;s backers includ-! includ-! includ-! ed the Congresswoman&#039;s hus-1 hus-1 hus-1 jband, a hotel operator at iOklee. Minn.. avIio kicked up ja public rumpus this sum-mer sum-mer sum-mer over his wife&#039;s pro-Please pro-Please pro-Please Turn to Pg. 28, Col. 1 LeMay in Manila ion Far East Trip When a newsman noted &#039;Dulles had twice mentioned Chou En-lai!LdI En-lai!LdI En-lai!LdI PfP&#039; penis in- in- .0,111,. ,eor! n tlao voiveo, nie oecrciary saia ne ! BY TED SELL Debbie Reynolds and Eddie Eddie Fisher, &quot;Hollywood&#039;s ideal couple&quot; during their jwell-reporled jwell-reporled jwell-reporled courtship and I three-year three-year three-year marriage, yesterday yesterday admitted to a &quot;misunderstanding&quot; &quot;misunderstanding&quot; without explaining explaining whether it was icaused by an equally well-; well-; well-; reported rendezvous be-jtween be-jtween be-jtween the young crooner land glamorous- glamorous- Elizabeth Taylor in New York. In New York, as Miss Taylor Taylor boarded a plane for Lo.3 Angeles, she called romance i rumors &quot;garbage.&quot; On ar- ar- i- i- I Illuslraled on Pago 3. Part I j rival here, she said almost nothing. Fisher declared. &quot;I am not in love with Liz and Liz in not in love with me.&quot; Debbie consulted with press advisers and then said she was &quot;shocked&quot; by the newspaper stories about her husband&#039;s meetings with their old family friend in Manhattan. After that, in a way. it was every man for himself as Miss Taylor arrived in town, disappeared into the Beverly Hills Hotel and presumably out again and Eddie slipped away from home and switched automobiles automobiles to evade pursuers. Delays Return Where everyone bad disappeared disappeared to remained m doubt. Debbie, however, apparently apparently was still at home where a group of MGM press agents stood watch. Fisher arrived in Los Angeles Angeles early yesterday morning morning after delavine his return . Jfrom New York for a week. apartment of Comedian Joey Forman. Seven hours later, he went home for his conference conference with Debbie. While Debbie and Eddie talked, their older child Carrie Frances, 2:! months old, could be heard playing in the house. The couple also have a son born last Feb. 24. Later the counle darted o ntit thp hf-V hf-V hf-V withl &quot; &#039; ricasc Turn to I&#039;g. A. Col. z White House last week end Asked what he expects the Warsaw negotiations will produce, Dulles said as a minimum . he hopes for a Gen.lmodus Vivendi assuring will not be re- re- is in contact with Congres-i, Congres-i, Congres-i, sional leaders by telephone.! The country is pretty well alerted, he added, judging: by newspaper headlines andi radio reports. j &quot;Of course, the vital point is I think it is understood i M A N I L A. UWednesdav) W AVeatlier Riirp.ati rpnnrtprt : thp rnsst thp weatherman li-nm li-nm li-nm Tm.; rrt - ,: e ....!, -eielont -eielont leerec.-ive leerec.-ive leerec.-ive iinrfav arailher tviilmmv Hel. s.iitl &#039; . Ualt, t CI, j, w it i&#039;,Mt, --h!eh --h!eh --h!eh ,v..frt Uwihnugh perhaps it should be :en. is building up in the Pa-: Pa-: Pa-: Yesterday&#039;s h :: in i ii i I y:command post for Americanlworld war.&quot; rific-anrl rific-anrl rific-anrl moving in the gen-rangerl gen-rangerl gen-rangerl from at a.m. air operations in the Formo- Formo- At another point in the leral direction of Formosa. lo 29vi at 2 p.m. &#039;sa area. &#039;press conference, Dulles re- re- Please Turn to Tg. 28, Col. t .made better understood . iwhat is at stake there is not! THE WEATHER Ught smog today. U.S. Weather Bureau forecast: Mostly sunny today and Thursday. Local Local fog nr low clouds along the coast late night and early mornings. mornings. Not much temperature temperature change. High today about 9?,.</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1958/09/10">10 Sep 1958, Wed</a>,&nbsp;
+<a href="/image/162154788/">Page 1</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1958/09/10">10 Sep 1958, Wed</a>,&nbsp;
+<a href="/image/162154788/">Page 1</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/jrademacher/" class="avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li><a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>   20 Jul 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>  &ndash;  20 Jul 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12498387"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1958/09/10">10 Sep 1958, Wed</a>
+&nbsp;•&nbsp;<a href="/image/162154788/">Page 1</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12498387#spot=12498387"  onclick="checkViewAccess('image',162154788,'/image/?spot=12498387#spot=12498387',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/162154788/250/0/0_0_3326_4958/0/yes/0_0_3326_4958.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by jrademacher <a href="/profile/jrademacher/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17032274//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/202572050/150/150/979_370_1005_1627.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/15165540//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/200841071/150/150/0_64_3401_5191.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/14866343/test/" title="test">
+<i><img src="/i/spacer.gif" alt="test" style="background-image: url(https://img.newspapers.com/img/thumbnail/201375373/150/150/2251_1001_1310_1757.jpg);"/></i>
+<span class="alsoby-text">test</span></a>
+</li>
+<li> <a href="/clip/13450538/thornton_ad/" title="Thornton Ad">
+<i><img src="/i/spacer.gif" alt="Thornton Ad" style="background-image: url(https://img.newspapers.com/img/thumbnail/281264290/150/150/3338_2836_2139_2999.jpg);"/></i>
+<span class="alsoby-text">Thornton Ad</span></a>
+</li>
+<li> <a href="/clip/12524149//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/196463225/150/150/0_0_4045_6413.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12498387;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12498387&amp;name=&amp;print=1';
+var imageId = "162154788";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12498387\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 10 Sep 1958, Wed\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"10 Sep 1958, Wed\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/162154788\\/400\\/400\\/0_0_3326_4958\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1958-09-10";
+var pageEdition = "";
+var pageNumber = "1";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":398,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

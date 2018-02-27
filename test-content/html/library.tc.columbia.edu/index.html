@@ -1,0 +1,461 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head>
+<title>The Gottesman Libraries @ Teachers College, Columbia University</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<link rel="stylesheet" href="assets/lib.css" type="text/css">
+<script src="assets/jquery-2.1.4.min.js" type="text/javascript"></script>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link title="Gottesman Libraries News" type="application/rss+xml" rel="alternate" href="http://library.tc.columbia.edu/news_feed.php">
+</head>
+<body>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-2832117-6', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- Piwik -->
+    <script type="text/javascript">
+    var _paq = _paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+        var u="//piwik.tc-library.org/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '7']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+    </script>
+    <!-- End Piwik Code -->
+    <div id="wrap">
+        <div id="header">
+            <div id="banner">
+                <a href="http://library.tc.columbia.edu" target="_parent">
+                    <img src="assets/images/top_l.jpg" />
+                </a>
+            </div>
+            <div id="search">
+                <form class="search" target="_top" action="search.php" method="get">
+                    <input title="keyword" name="kw" id="kw" type="text" size="15" maxlength="255" value=""/>
+                    <select  title="where" name="where" id="where">
+                        <option selected>Super Search</option>
+                        <option >TC Catalog (EDUCAT)</option>
+                        <option >CU Catalog (CLIO)</option>
+                        <option >Both Catalogs (TC & CU)</option>
+                        <option >Journal A-Z List</option>
+                        <option >PocketKnowledge</option>
+                        <option >Our Website</option>
+                        <option >Knowledge Database</option>
+                    </select>
+                    <select title="fields" id="fields" name="fields">
+                    </select>
+                    <input type="image" src="assets/images/go.gif" class="push-bottom" 
+                        onClick="if (document.getElementById('kw').value == '') {window.alert('Your search is empty'); return false;} else { this.form.submit(); }" value="Search" alt="Go"/>
+                    <a href="javascript:searchHelp()" title="Search Help">
+                        <img src="assets/images/help.gif" border=0 alt="Search Help" class="push-bottom" />
+                    </a>
+                </form>
+            </div><!-- END #search -->
+        </div>
+        <div id="breadcrumb">
+            <div class="headbar">
+                <a href="log_and_go.php?url=http%3A%2F%2Flibrary.tc.columbia.edu&name=HOME" title="HOME" target="_top">HOME</a> | <a href="log_and_go.php?url=http%3A%2F%2Flibrary.tc.columbia.edu%2Finfo.php&name=LIBRARY+INFO" title="LIBRARY INFO" target="_top">LIBRARY INFO</a> | <a href="log_and_go.php?url=http%3A%2F%2Fwww.tc.columbia.edu&name=TC+HOME" title="TC HOME" target="_top">TC HOME</a> | <a href="log_and_go.php?url=http%3A%2F%2Fwww.columbia.edu%2Fcu%2Flweb%2F&name=CU+LIBRARIES" title="CU LIBRARIES" target="_top">CU LIBRARIES</a> | <a href="log_and_go.php?url=http%3A%2F%2Flibrary.tc.columbia.edu%2Fnews.php&name=NEWS" title="NEWS" target="_top">NEWS</a> &gt;&nbsp;
+            </div>
+            <div id="news_roller">
+                <ul class="news-items">
+                    <li><a href='news.php?id=1605'>Sign Up Online for Edlab's <i>New Learning Times</i></a></li><li><a href='news.php?id=1604'>Workshops: <i>Career Development Program: Skype Interviews</i>, Monday, 2/26, 3:30-5pm</a></li><li><a href='news.php?id=1603'>Film Talk: <i>Adelante</i>, Wednesday, 2/14, 5-7pm</a></li><li><a href='news.php?id=1602'>Book Talk: <i>The Transformative Mind</i>, with Anna Stetsanko, Wednesday, 2/28, 4-5pm</a></li><li><a href='news.php?id=1600'>News Displays: <i>Children Receive First Polio Vaccine</i>, Friday, 2/23</a></li><li><a href='news.php?id=1598'>Live Musical Performances: <i>Wadsworth Strings</i>, Wednesday, 2/14, 5-6:30pm</a></li><li><a href='news.php?id=1591'>February Databases: <i>Change Leadership</i></a></li><li><a href='news.php?id=1588'>February Staff Picks: <i>Survivors, Settlers & Assimilators: Transforming Jewish Identities</i></a></li><li><a href='news.php?id=1587'>Everett Cafe News: <i>Grassroot Algorithms: A New Book Display on Social Media</i>, starting early February</a></li><li><a href='news.php?id=1586'>Exhibits: <i>Portraits of Power</i>, by Artist Adam Tramantano, Friday, 2/19 - Monday, 3/12</a></li>                </ul>
+            </div>
+            <div id="hours_display">
+                <a href="log_and_go.php?url=http%3A%2F%2Flibrary.tc.columbia.edu%2Finfo.php&name=Current+Hours" title="Current Hours" target="_top">We are open today 8 AM to 11 PM</a>            </div>
+        </div>
+        <div id="main">
+
+<table cellpadding=0 cellspacing=0 vspace=0 hspace=0 width="738" summary="This table contains information on library resources, services, events, and pockets in PocketKnowledge">
+<tr>
+    <td bgcolor="White" width="248" valign="top">
+        <a href="log_and_go.php?url=services.php&name=Library+Services" title="Library Services" ><img src='assets/images/services.jpg' border=0 alt="Library Services"/></a>        <ul>
+        <li><a href="log_and_go.php?url=ask.php&name=Ask+a+Librarian+Services" title="Ask a Librarian Services" >Ask a Librarian Services</a></li>
+        <li><a href="log_and_go.php?url=http%3A%2F%2Fdocdel.tc-library.org%2F&name=Course+Reserves" title="Course Reserves" >Course Reserves</a> | <a href="log_and_go.php?url=request.php&name=Request+Materials" title="Request Materials" >Request Materials</a></li>
+        <li> <a href="log_and_go.php?url=education.php&name=Education+Program" title="Education Program" >Education Program</a></li>
+        <li> <a href="log_and_go.php?url=printing.php&name=Printing+and+Scanning" title="Printing and Scanning" >Printing and Scanning</a></li>
+        <li><a href="log_and_go.php?url=http%3A%2F%2Fcollab.tc-library.org%2Fuser.php&name=Reserve+Group+Rooms+%26+Classrooms" title="Reserve Group Rooms & Classrooms" >Reserve Group Rooms & Classrooms</a></li>
+        <li> <a href="log_and_go.php?url=alumni.php&name=Services+for+TC+Alumni" title="Services for TC Alumni" >Services for TC Alumni</a></li>
+        <li> <a href="log_and_go.php?url=stacks.php&name=Stack+Guide" title="Stack Guide" >Stack Guide</a> | <a href="log_and_go.php?url=https%3A%2F%2Fpayments.tc-library.org%2F&name=Pay+Fines" title="Pay Fines" >Pay Fines</a></li>
+        <li><a href="log_and_go.php?url=support.php%3Fdq%3Dgeneralq&name=Submit+a+Support+Request" title="Submit a Support Request" >Submit a Support Request</a></li>
+        <li><a href="log_and_go.php?url=http%3A%2F%2Feducat.tc.columbia.edu%2Fpatroninfo&name=View+and+renew+checked-out+books" title="View and renew checked-out books" >View and renew checked-out books</a></li>
+        </ul>
+    </td>
+    <td width=1 background="assets/images/dot.jpg"><img src="assets/images/dot.jpg" /></td>
+
+    <td bgcolor="White" width="243" valign="top">
+        <a href="log_and_go.php?url=resources.php&name=Library+Resources" title="Library Resources" ><img src='assets/images/resources.jpg' border=0 alt="Library Resources"/></a>        <ul>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Feducat.tc.columbia.edu%2F&name=TC+Catalog+%28EDUCAT%29" title="TC Catalog (EDUCAT)" >TC Catalog (EDUCAT)</a></li>
+            <li><a href="log_and_go.php?url=central_search.php&name=TC+Super+Search" title="TC Super Search" >TC Super Search</a></li>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fclio.columbia.edu%2Fcatalog%23&name=CU+Catalog+%28CLIO%29" title="CU Catalog (CLIO)" >CU Catalog (CLIO)</a></li>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2F&name=all+TC+Journals+and+Databases" title="all TC Journals and Databases" >Journals & Databases</a> (<a href="log_and_go.php?url=db_topic.php&name=Journals+and+Databases+by+genre%2Fdepartment" title="Journals and Databases by genre/department" >by genre/dept</a>)</li>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2Flog%3FL%3DVQ2ST5LQ8V%26D%3DBGE%26%26U%3Dhttp%3A%2F%2Feduproxy.tc-library.org%2F%3Furl%3Dhttp%3A%2F%2Fsearch.proquest.com.eduproxy.tc-library.org%3A8080%2Fpqdtglobal%2Fdissertations%2FfromDatabasesLayer%3Faccountid%3D14258&name=Digital+Dissertations" title="Digital Dissertations" >Digital Dissertations</a> (<a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2Flog%3FL%3DVQ2ST5LQ8V%26D%3DBGE%26%26U%3Dhttp%3A%2F%2Feduproxy.tc-library.org%2F%3Furl%3Dhttp%3A%2F%2Fproquest.umi.com%2Fpqdweb%3FRQT%3D512%26querySyntax%3DPQ%26searchInterface%3D1%26SrchMode%3D2%26TS%3D1215451323%26moreOptState%3DCLOSED%26clientId%3D65913%26h_pub_title%3D%26h_pub_title1%3D%26h_pub_title2%3D%26h_pub_title3%3D%26h_pub_title4%3D%26h_pub_title5%3D%26h_pub_title6%3D%26h_pub_title7%3D%26h_pmid%3D%26h_pmid1%3D%26h_pmid2%3D%26h_pmid3%3D%26h_pmid4%3D%26h_pmid5%3D%26h_pmid6%3D%26h_pmid7%3D%26SQ%3D%255Bcolumbia%2Buniversity%2Bteachers%2Bcollege%255D%26FO%3DSCH%26OP1%3DOR%26SQ1%3D%255Bteachers%2Bcollege%252C%2Bcolumbia%2Buniversity%255D%26FO1%3DSCH%26OP2%3DAND%26SQ2%3D%26FO2%3DCITABS%26OP3%3DAND%26SQ3%3D%26FO3%3DCITABS%26OP4%3DAND%26SQ4%3D%26FO4%3DCITABS%26OP5%3DAND%26SQ5%3D%26FO5%3DCITABS%26OP6%3DAND%26SQ6%3D%26FO6%3DCITABS%26DBId%3DG647%26date%3DALL%26onDate%3D%26beforeDate%3D%26afterDate%3D%26fromDate%3D%26toDate%3D%26OpAD%3DAND%26AD%3D%26OpSCH%3DAND%26SCH%3D%26OpSU%3DAND%26SU%3D%26OpIF%3DAND%26IF%3D%26OpLA%3DAND%26LA%3Dany%26MTYPE%3Dall%26sortby%3DREVERSE_CHRON%26PageSize%3D10&name=Digital+Dissertations+from+TC" title="Digital Dissertations from TC" >from TC</a>)</li>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2Flog%3FL%3DVQ2ST5LQ8V%26D%3DBID%26U%3Dhttp%253A%252F%252Feduproxy.tc-library.org%252F%253Furl%253Dhttp%253A%252F%252Fsite.ebrary.com%252Flib%252Fteacherscollege&name=Ebooks" title="Ebooks" >Ebooks</a> | <a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2Flog%3FL%3DVQ2ST5LQ8V%26D%3DWED%26%26U%3Dhttp%3A%2F%2Feduproxy.tc-library.org%2F%3Furl%3Dhttp%3A%2F%2Fvnweb.hwwilsonweb.com%2Fhww%2Fjumpstart.jhtml%3Fcustid%3D0000124743%26prod%3DEDUFT&name=Education+Full+Text" title="Education Full Text" >Education Full Text</a> | <a href="log_and_go.php?url=http%3A%2F%2Fsearch.proquest.com.eduproxy.tc-library.org%3A8080%2Feric%2Fadvanced%3Faccountid%3D14258&name=ERIC" title="ERIC" >ERIC</a></li>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2Flog%3FL%3DVQ2ST5LQ8V%26D%3DJAV%26%26U%3Dhttp%3A%2F%2Feduproxy.tc-library.org%2F%3Furl%3Dhttp%3A%2F%2Fwww.jstor.org%2F&name=JSTOR" title="JSTOR" >JSTOR</a> | <a href="log_and_go.php?url=http%3A%2F%2Fwww.columbia.edu%2Fcgi-bin%2Fcul%2Fresolve%3FAND3603&name=LexisNexis" title="LexisNexis" >LexisNexis</a> | <a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2Flog%3FL%3DVQ2ST5LQ8V%26D%3DCVF%26%26U%3Dhttp%3A%2F%2Feduproxy.tc-library.org%2F%3Furl%3Dhttp%3A%2F%2Fgateway.ovid.com%2Fovidweb.cgi%3FT%3DJS%26MODE%3Dovid%26NEWS%3Dn%26PAGE%3Dmain%26D%3Dmesz&name=MEDLINE" title="MEDLINE" >MEDLINE</a></li>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fwww.columbia.edu%2Fcgi-bin%2Fcul%2Fresolve%3FAKV9469&name=OED" title="OED" >OED</a> | <a href="log_and_go.php?url=http%3A%2F%2Fsearch.proquest.com.eduproxy.tc-library.org%3A8080%2Fadvanced%3Faccountid%3D14258&name=ProQuest" title="ProQuest" >ProQuest</a> | <a href="log_and_go.php?url=http%3A%2F%2Fvq2st5lq8v.search.serialssolutions.com%2Flog%3FL%3DVQ2ST5LQ8V%26D%3DDOR%26%26U%3Dhttp%3A%2F%2Feduproxy.tc-library.org%2F%3Furl%3Dhttp%3A%2F%2Fgateway.ovid.com%2Fovidweb.cgi%3FT%3DJS%26MODE%3Dovid%26NEWS%3Dn%26PAGE%3Dmain%26D%3Dpsyh&name=PsycINFO" title="PsycINFO" >PsycINFO</a></li>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Feduproxy.tc-library.org%2F%3Furl%3Dhttp%3A%2F%2Fwww.psychotherapy.net%2Fstream%2Fteacherscollege&name=Psychotherapy.net+%28videos%29" title="Psychotherapy.net (videos)" >Psychotherapy.net (videos)</a></li> 
+        </ul>
+    </td>
+    <td width=1 background="assets/images/dot.jpg"><img src="assets/images/dot.jpg" /></td>
+    <td bgcolor="White" width="245" valign="top">
+    <a href="log_and_go.php?url=frame.php%3Fdest%3Dhttp%253A%252F%252Fcollab%252Etc%252Dlibrary%252Eorg%252Fevent%255Fcalendar%252Ephp%26frametitle%3DUpcoming%2BEvents&name=more+events" title="more events" ><img src='assets/images/events.jpg' border=0 alt="Upcoming Events"/></a>        <ul>
+        <li><a href='frame.php?dest=http%3A%2F%2Fcollab.tc-library.org%2Fview_entry.php%3Fid%3D257316%26pview%3D1&frametitle=Events'>Banner Security Review</a></li>
+<li><a href='frame.php?dest=http%3A%2F%2Fcollab.tc-library.org%2Fview_entry.php%3Fid%3D257094%26pview%3D1&frametitle=Events'>Chinese Drill Class</a></li>
+<li><a href='frame.php?dest=http%3A%2F%2Fcollab.tc-library.org%2Fview_entry.php%3Fid%3D257313%26pview%3D1&frametitle=Events'>DGroup</a></li>
+<li><a href='frame.php?dest=http%3A%2F%2Fcollab.tc-library.org%2Fview_entry.php%3Fid%3D257672%26pview%3D1&frametitle=Events'>Ed_Tech Panel Meeting</a></li>
+<li><a href='frame.php?dest=http%3A%2F%2Fcollab.tc-library.org%2Fview_entry.php%3Fid%3D257535%26pview%3D1&frametitle=Events'>group discussion</a></li>
+<li><a href='frame.php?dest=http%3A%2F%2Fcollab.tc-library.org%2Fview_entry.php%3Fid%3D256943%26pview%3D1&frametitle=Events'>Integrative Project</a></li>
+        </ul>
+    </td>
+    </tr>
+    <tr>
+    <td bgcolor="White">
+        <div class="block" style="text-align: right; ">
+        <a href="log_and_go.php?url=services.php&name=more+services" title="more services" >more&gt;&gt;</a>&nbsp;&nbsp;
+        </div>
+    </td>
+    <td width="1" background="assets/images/dot.jpg"><img src="assets/images/dot.jpg" /></td>
+    <td  bgcolor="White">
+        <div class="block" style="text-align: right; "><a href="log_and_go.php?url=resources.php&name=more+resources" title="more resources" >more&gt;&gt;</a>&nbsp;&nbsp;
+        </div>
+    </td>
+    <td width="1" background="assets/images/dot.jpg"><img src="assets/images/dot.jpg" /></td>
+    <td  bgcolor="White">
+        <div class="block" style="text-align: right; "><a href="log_and_go.php?url=frame.php%3Fdest%3Dhttp%253A%252F%252Fcollab%252Etc%252Dlibrary%252Eorg%252Fevent%255Fcalendar%252Ephp&name=more+events" title="more events" >more&gt;&gt;</a>&nbsp;&nbsp;
+        </div>
+    </td>
+    </tr>
+    <tr><td colspan=5 height="36" background="assets/images/pk_bg.jpg"><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu&name=PocketKnowledge" title="PocketKnowledge" ><img src='assets/images/pk_title.jpg' border=0 alt="Browse PocketKnowledge"/></a></td></tr>
+        <tr>
+<td bgcolor="White" valign="top">
+        <img style="margin-left: 8px" src="assets/images/pk_prog.jpg" alt="Academic Program Pockets"/>
+        <ul>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F14&name=Mathematics%2C+Science+%26amp%3B+Technology" title="Mathematics, Science &amp; Technology" >Mathematics, Science &amp; Technology</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F15&name=Organization+%26amp%3B+Leadership" title="Organization &amp; Leadership" >Organization &amp; Leadership</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F12&name=Human+Development" title="Human Development" >Human Development</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F13&name=International+%26amp%3B+Transcultural+Studies" title="International &amp; Transcultural Studies" >International &amp; Transcultural Studies</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F11&name=Health+%26amp%3B+Behavior+Studies" title="Health &amp; Behavior Studies" >Health &amp; Behavior Studies</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F7&name=Arts+%26amp%3B+Humanities" title="Arts &amp; Humanities" >Arts &amp; Humanities</a></li>        </ul>
+    </td>
+    <td width=1 background="assets/images/dot.jpg"></td>
+    <td bgcolor="White" valign="top">
+        <img style="margin-left: 4px" src="assets/images/pk_picks.jpg" alt="Pocket Picks"/>
+        <ul>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F121&name=George+Z.+F.+Bereday+Collection" title="George Z. F. Bereday Collection" >George Z. F. Bereday Collection</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F3598&name=A.+Harry+Passow+Collection" title="A. Harry Passow Collection" >A. Harry Passow Collection</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F19&name=Teachers+College+Faculty" title="Teachers College Faculty" >Teachers College Faculty</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F119&name=William+F.+Russell+Collection+%281927-1954%29" title="William F. Russell Collection (1927-1954)" >William F. Russell Collection (1927-1954)</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F3594&name=John+K.+Norton+Collection" title="John K. Norton Collection" >John K. Norton Collection</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F127&name=Hazel+W.+Hertzberg+Collection" title="Hazel W. Hertzberg Collection" >Hazel W. Hertzberg Collection</a></li>        </ul>
+    </td>
+    <td width=1 background="assets/images/dot.jpg"></td>
+    <td bgcolor="White" valign="top">
+        <img style="margin-left: 4px"  src="assets/images/pk_recent.jpg" alt="Pockets Recently Added To"/>
+        <ul>
+            <li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F214763&name=Gia" title="Gia" >Gia</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F213174&name=School+Funding+Plans" title="School Funding Plans" >School Funding Plans</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F211542&name=New+York+State+School+Finance+Reform+Archive" title="New York State School Finance Reform Archive" >New York State School Finance Reform Archive</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F214717&name=Language+Corpora%3A+Eric%2C+Gia%2C+Kathryn%2C+Peter" title="Language Corpora: Eric, Gia, Kathryn, Peter" >Language Corpora: Eric, Gia, Kathryn, Peter</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F214746&name=Eric" title="Eric" >Eric</a></li><li><a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F212753&name=Education+Adequacy" title="Education Adequacy" >Education Adequacy</a></li>        </ul>
+    </td>
+    </tr>
+
+    <tr>
+    <td bgcolor="White">
+    <div class="block"  style="text-align: right; ">
+    <a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%2F1417&name=PK-+more+Academic+Programs" title="PK- more Academic Programs" >more&gt;&gt;</a>    </div>
+    </td>
+    <td width="1" background="assets/images/dot.jpg"><img src="assets/images/dot.jpg" /></td>
+    <td  bgcolor="White">
+    <div class="block"  style="text-align: right; ">
+        <a href="log_and_go.php?url=pk_pics.php&name=PK-+more+pocket+pics" title="PK- more pocket pics" >more&gt;&gt;</a>    </div>
+    </td>
+    <td width="1" background="assets/images/dot.jpg"><img src="assets/images/dot.jpg" /></td>
+    <td  bgcolor="White">
+    <div class="block"  style="text-align: right; ">
+    <a href="log_and_go.php?url=http%3A%2F%2Fpocketknowledge.tc.columbia.edu%2Fhome.php%2Fbrowse%3Fsortfiles%3Drecency%26tab%3Dcomm&name=PK-+more+recent" title="PK- more recent" >more&gt;&gt;</a>    </div>
+    </td>
+    </tr>
+    <tr><td colspan=5 height=5 background="assets/images/blue_line.jpg"></td></tr>
+
+    <tr><td colspan=5 height="71" background="assets/images/services_bg.jpg">
+        <table height=71 width="738" vpsace=0 hspace=0 cellpadding=0 cellspacing=0 border=0>
+            <Tr><td width="22%"><center><a href="log_and_go.php?url=https%3A%2F%2Fedlab.tc.columbia.edu&name=EdLab" title="EdLab" ><img src='assets/images/edlab.gif' border=0 alt="EdLab"/></a></center></td>
+
+                <td width="20%"><center><a href="log_and_go.php?url=https%3A%2F%2Fnewlearningtimes.com&name=NLT" title="NLT" ><img src='assets/images/nlt_logo.png' border=0 alt="New Learning Times"/></a></center></td>
+
+                <td width="18%"><center><a href="log_and_go.php?url=http%3A%2F%2Fvialogues.com&amp;name=Vialogues" title="Vialogues"><img src="assets/images/vialogues_logo.gif" border="0" alt="Vialogues" style="height: 50px;"></a></center></td>       
+
+            <td width="14%"><center><a href="log_and_go.php?url=http%3A%2F%2Frhizr.com&name=Rhizr" title="Rhizr" ><img src='assets/images/rhizr.jpg' border=0 alt="Rhizr"/></a></center></td>
+
+            <td width="26%"><center><a href="log_and_go.php?url=tcr.php&name=Teachers+College+Record" title="Teachers College Record" ><img src='assets/images/tcr.jpg' border=0 alt="Teachers College Record"/></a></a></center></td></Tr>
+        </table>
+
+    </td></tr>
+    <tr><td colspan=5 height="11"><img src="assets/images/ser_bottom.jpg" /></td></tr>
+    <tr><td colspan=5 height="27" bgcolor="#c2c2b6"><img src="assets/images/pop_search.jpg" alt="Popular Searches"/></td></tr>
+    <tr><td colspan=5 bgcolor="White">
+    <div class="block">
+        <a href='search.php?nr=1&where=Super+Search&fields=Any&kw=Children+of+the+great+depression'><font style='font-size:0.81em'>Children of the great depression</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=dsm+5'><font style='font-size:1.09em'>dsm 5</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=curriculum+and+aims'><font style='font-size:1.66em'>curriculum and aims</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=clep'><font style='font-size:1.15em'>clep</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=A+research+primer+for+communication+sciences+and+disorders'><font style='font-size:0.7em'>A research primer for communication sciences and disorders</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Our+Website&fields=Any&kw=paw+print'><font style='font-size:0.98em'>paw print</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=teaching+by+principles'><font style='font-size:1.15em'>teaching by principles</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Knowledge+Database&fields=All&kw=cognition'><font style='font-size:1.32em'>cognition</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=The+Grammar+Book'><font style='font-size:1.77em'>The Grammar Book</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=Student+development+in+college%3A+Theory%2C+research%2C+and+practice'><font style='font-size:1.83em'>Student development in college: Theory, research, and practice</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=current+psychotherapies'><font style='font-size:0.7em'>current psychotherapies</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Journal+A-Z+List&fields=Title+begins+with&kw=PubMed'><font style='font-size:1.04em'>PubMed</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Both+Catalogs+%28TC+%26+CU%29&fields=Title&kw=cognitive+psychology+and+its+implications'><font style='font-size:0.7em'>cognitive psychology and its implications</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=understanding+action+learning'><font style='font-size:1.15em'>understanding action learning</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=CU+Catalog+%28CLIO%29&fields=Journal&kw=harvard+business+review'><font style='font-size:0.81em'>harvard business review</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Journal+A-Z+List&fields=Title+begins+with&kw=teachers+college+record'><font style='font-size:0.87em'>teachers college record</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Knowledge+Database&fields=All&kw=register'><font style='font-size:1.6em'>register</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=An+Introduction+to+Theories+of+Personality'><font style='font-size:0.87em'>An Introduction to Theories of Personality</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=psychoanalytic+diagnosis'><font style='font-size:0.93em'>psychoanalytic diagnosis</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=harry+potter'><font style='font-size:0.81em'>harry potter</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=paying+the+price'><font style='font-size:0.93em'>paying the price</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=room+reservation'><font style='font-size:0.81em'>room reservation</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=Counseling+the+Culturally+Diverse'><font style='font-size:1.43em'>Counseling the Culturally Diverse</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=rethinking+disability'><font style='font-size:1.15em'>rethinking disability</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Both+Catalogs+%28TC+%26+CU%29&fields=Title&kw=pedagogy+of+the+oppressed'><font style='font-size:1.09em'>pedagogy of the oppressed</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=issues+and+ethics+in+the+helping+professions'><font style='font-size:0.93em'>issues and ethics in the helping professions</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=CU+Catalog+%28CLIO%29&fields=Keyword%28s%29&kw=Elementary+Statistics'><font style='font-size:0.93em'>Elementary Statistics</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=Case+studies+in+multicultural+counseling+and+therapy'><font style='font-size:0.7em'>Case studies in multicultural counseling and therapy</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=RETHINKING+MULTICULTURAL+EDUCATION'><font style='font-size:0.76em'>RETHINKING MULTICULTURAL EDUCATION</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Both+Catalogs+%28TC+%26+CU%29&fields=Title&kw=americanah'><font style='font-size:0.76em'>americanah</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=measurement+and+evaluation+in+psychology+and+education'><font style='font-size:1.04em'>measurement and evaluation in psychology and education</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=organizational+psychology'><font style='font-size:1.09em'>organizational psychology</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=Souto-Manning'><font style='font-size:0.87em'>Souto-Manning</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=Statistics+in+Plain+English'><font style='font-size:1.09em'>Statistics in Plain English</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Journal+A-Z+List&fields=Title+begins+with&kw=Making+Differences+Matter'><font style='font-size:0.87em'>Making Differences Matter</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Knowledge+Database&fields=All&kw=Printing'><font style='font-size:2.5em'>Printing</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=pillars+of+the+republic'><font style='font-size:0.76em'>pillars of the republic</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=exceptional+children+'><font style='font-size:0.98em'>exceptional children </font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=designing+and+conducting+ethnographic+research'><font style='font-size:1.38em'>designing and conducting ethnographic research</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=the+new+meaning+of+educational+change'><font style='font-size:1.04em'>the new meaning of educational change</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Knowledge+Database&fields=All&kw=test'><font style='font-size:1.38em'>test</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=principles+of+marketing'><font style='font-size:1.09em'>principles of marketing</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=schuh+jones+harper+student+services'><font style='font-size:1.43em'>schuh jones harper student services</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=Assessing+grammar'><font style='font-size:0.7em'>Assessing grammar</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=understanding+by+design'><font style='font-size:2.22em'>understanding by design</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Our+Website&fields=All&kw=hours'><font style='font-size:1.54em'>hours</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Both+Catalogs+%28TC+%26+CU%29&fields=Title&kw=education'><font style='font-size:2.11em'>education</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Super+Search&fields=Any&kw=The+first+interview'><font style='font-size:0.81em'>The first interview</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Our+Website&fields=All&kw=endnote'><font style='font-size:0.81em'>endnote</font></a>&nbsp&nbsp; 
+
+<a href='search.php?nr=1&where=Knowledge+Database&fields=Any&kw=Print'><font style='font-size:1.09em'>Print</font></a>&nbsp&nbsp; 
+
+        <div align="right"><a href="log_and_go.php?url=trends.php&name=more+trends" title="more trends" >more&gt;&gt;</a>    </div>
+    </td></tr>
+    <tr><td colspan=5><img src="assets/images/pop_bottom.jpg" /></td></tr>
+    <tr><td colspan=5><center>
+    </td></tr>
+</table>
+
+    </div><!-- END #main -->
+
+            <div id="ads">
+    <!-- BEGIN DAN!! -->
+<script type="text/javascript">
+
+    //<![CDATA[
+
+
+    function fbcp_elem_by_class(classname, node) {
+        if(!node) node = document.getElementsByTagName("body")[0];
+        var a = [];
+        var re = new RegExp('\\b' + classname + '\\b');
+        var els = node.getElementsByTagName("*");
+
+        for(var i=0,j=els.length; i<j; i++)
+            if(re.test(els[i].className))a.push(els[i]);
+
+        return a;
+    }
+
+
+    function fbcp_on_window_status_change() {
+        if(fbcp_on_window_status_change.thdlr)
+            clearTimeout(fbcp_on_window_status_change.thdlr);
+
+        fbcp_on_window_status_change.thdlr = setTimeout('fbcp_readjust_player_location()', 300);
+    }
+    fbcp_on_window_status_change.thdlr = null;
+    window.onresize = function() { fbcp_on_window_status_change(); };
+
+
+    function fbcp_readjust_player_location() {
+        var elems = fbcp_elem_by_class('fbcp_player');
+
+        for(var i in elems) {
+            var player = elems[i];
+            var w = fbcp_resize_player.player_width[player.id] || 0;
+            var enlarged = fbcp_resize_player.player_enlarged[player.id] || 0;
+            if(w) {
+                fbcp_move_player_display(player.id, w, enlarged);
+            }
+        }
+    }
+
+
+    function fbcp_elem_pos(obj) {
+        var orig_obj = obj;
+        var curleft = curtop = 0;
+        if (obj.offsetParent) {
+            curleft = obj.offsetLeft
+            curtop = obj.offsetTop
+            while (obj = obj.offsetParent) {
+                curleft += obj.offsetLeft
+                curtop += obj.offsetTop
+            }
+        }
+        return [curtop, curleft];
+    }
+
+
+    function fbcp_window_width() {
+        if (self.innerWidth) {
+            return self.innerWidth;
+        }
+        else if (document.documentElement && document.documentElement.clientWidth) {
+            return document.documentElement.clientWidth;
+        }
+        else if (document.body) {
+            return document.body.clientWidth;
+        }
+        else return 0;
+    }
+
+
+    function fbcp_move_player_display(player_id, player_width, overflow_adjust) {
+        var container_id = player_id + '_container';
+        var flash_holder = document.getElementById(player_id);
+        var container_loc = fbcp_elem_pos(document.getElementById(container_id));
+
+        var container_left = container_loc[1];
+        var new_left = container_left;
+
+        // eliminate any margins from the initial html rendering because these
+        // will just cause problems when absolutely positioning by px
+        flash_holder.style.margin = '0px';
+
+        // make the flash tiny to have it not be included in the body width
+        fbcp_resize_embed_object(player_id, null, 2)
+
+        while((new_left + player_width > document.body.scrollWidth - 25) && overflow_adjust) {
+            new_left -= 5;
+        }
+        if(new_left < 0) new_left = 0;
+
+        // return flash to it''s normal width and position left
+        fbcp_resize_embed_object(player_id, null, player_width)
+        flash_holder.style.left = new_left + 'px';
+
+    }
+
+
+    function fbcp_resize_player(player_id, h, w, is_enlarged) {
+
+        // must be called before player is resized
+        fbcp_move_player_display(player_id, w, is_enlarged);
+
+        // resize the flash movie
+        fbcp_resize_embed_object(player_id, h, w);
+
+        fbcp_resize_player.player_enlarged[player_id] = is_enlarged;
+        fbcp_resize_player.player_height[player_id] = h;
+        fbcp_resize_player.player_width[player_id] = w;
+    }
+    fbcp_resize_player.player_enlarged = new Array();
+    fbcp_resize_player.player_height = new Array();
+    fbcp_resize_player.player_width = new Array();
+
+
+
+    function fbcp_resize_embed_object(player_id, h, w) {
+        var flash_holder = document.getElementById(player_id);
+
+        // get embed and object
+        var f_object = (flash_holder.getElementsByTagName('OBJECT'))[0];
+        var f_embed = (flash_holder.getElementsByTagName('EMBED'))[0];
+
+        if(f_object && f_object.style) {
+            f_object.style.width = w + 'px';
+            if(h) f_object.style.height = h + 'px';
+        }
+
+        if(f_embed && f_embed.style) {
+            f_embed.style.width = w + 'px';
+            if(h) f_embed.style.height = h + 'px';
+        }
+    }
+
+    //]]>
+</script>
+
+<!-- END DAN!! --><iframe src="http://gottesman.pressible.org/feed-2" width="225" height="325" frameborder="0" scrolling="no" style="border-bottom:3px solid #408cc0; border-top:3px solid #408cc0;margin-bottom:5px" ></iframe><a href="log_and_go.php?url=news.php%3Fid%3D1600&name=https%3A%2F%2Fcdn.tc-library.org%2FLibraryAds%2F20180206100413-180219_news_219x365_jpg_8f75a1d106532046630e4922e58dc327.jpeg" title="https://cdn.tc-library.org/LibraryAds/20180206100413-180219_news_219x365_jpg_8f75a1d106532046630e4922e58dc327.jpeg" ><img src="https://cdn.tc-library.org/LibraryAds/20180206100413-180219_news_219x365_jpg_8f75a1d106532046630e4922e58dc327.jpeg" class="ads-style" alt="Ad" /></a><span class="pull-right"><a href="log_and_go.php?url=ads.php&name=all+ads" title="all ads" >all ads &gt;&gt;</a></span>    </div>
+    
+    <div id="footer">
+        <div class="center">
+            The Gottesman Libraries @ Teachers College | 525 W. 120th St. | New York, NY 10027 | <a href="log_and_go.php?url=%2Fsupport.php%3Fdq%3Dgeneralq&name=Contact+Us" title="Contact Us" >Contact Us</a> | <a href="admin.php">intranet</a> | <a href="http://twitter.com/librarytc" target="_blank"><img src="assets/images/twitter-icon2.jpg" />&nbsp;twitter</a>
+        </div>
+
+    </div>
+</div><!-- END #wrap -->
+
+
+<script src="assets/lib.js" type="text/javascript"></script>
+<script src="assets/jquery.easy-ticker.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $("#news_roller").easyTicker({
+        interval: 7000,
+        height: "10px"
+    });
+</script>
+</body></html>

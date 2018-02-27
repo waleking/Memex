@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12453507/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 30 Apr 1992, Thu.  A22 THURSDAY. APRIL 30, 1992 LOS ANGELES TIMES' i RODNEY G. KING TRIAL: THE VERDICTS VERDICT: All Four Officers Acquitted Continued from Al officers. With the jury unable to reach a consensus, a mistr"><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 30 Apr 1992, Thu.  A22 THURSDAY. APRIL 30, 1992 LOS ANGELES TIMES&#039; i RODNEY G. KING TRIAL: THE VERDICTS VERDICT: All Four Officers Acquitted Continued from Al officers. With the jury unable to reach a consensus, a mistr"><meta name="keywords" content=", jrademacher, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12453507/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12453507/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=177464439&width=557&height=902&crop=0_0_3103_5119&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671638&h=b4780e49652a6e276c65423a02087f96">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "30 Apr 1992, Thu";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12738621">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12453507"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12453507#spot=12453507"  onclick="checkViewAccess('image',177464439,'/image/?spot=12453507#spot=12453507',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=177464439&width=557&height=902&crop=0_0_3103_5119&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671638&h=b4780e49652a6e276c65423a02087f96" alt=" - A22 THURSDAY. APRIL 30, 1992 LOS ANGELES TIMES&#039;..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">A22 THURSDAY. APRIL 30, 1992 LOS ANGELES TIMES&#039; i RODNEY G. KING TRIAL: THE VERDICTS VERDICT: All Four Officers Acquitted Continued from Al officers. With the jury unable to reach a consensus, a mistrial was declared on that count by Judge Stanley M.Weisberg. Except for the single deadlocked count, all four defendants, who are white, were acquitted on all counts. The unresolved count is an assault charge against Powell; prosecutors will announce May 15 whether they will retry the officer. Upon hearing the verdicts, Bri-seno Bri-seno Bri-seno who had testified that he believed his fellow officers were &quot;out of control&quot; when they beat and stomped King leaped to his feet and hugged his attorney. Powell Powell and his attorney, Michael Stone, hugged each other. &quot;I&#039;m very happy,&quot; Powell told reporters. &quot;But it&#039;s hard to be surprised. I felt all along that I was innocent. Now I know I&#039;m innocent.&quot; innocent.&quot; Attorney Darryl Mounger, who defended Koon, said he believed the verdict turned on &quot;truth.&quot; &quot;He Koon wasn&#039;t doing anything anything but making an arrest.&quot; Mounger added that the trial represented a &quot;no-win&quot; &quot;no-win&quot; &quot;no-win&quot; situation for all concerned. &quot;Nobody wins,&quot; he said. &quot;These officers have been punished enough. Rodney King got out of jail, where he should be, and instead he&#039;s going to win a million dollars (in a civil lawsuit.&quot; As Koon left the courthouse, angry -bystanders -bystanders shouted &quot;Guilty!&quot; and scuffled briefly with sheriff&#039;s deputies flanking the ser- ser- LA. NIGHTMARE Scenes of the violence that followed the acquittals of officers officers in the Rodney G. King beating case. B2 geant. Powell was greeted by a similar crowd that hurled rocks at him as he left. The prosecutors, who had stared silently at their table during the reading of the verdicts, hung their heads and marched out of the courtroom. &quot;My reaction is shock first, then disappointment,&quot; said Deputy Dist. Atty. Terry White, the lead prosecutor prosecutor in the case. &quot;Obviously we feel the evidence warranted a conviction conviction of the defendants and the jury disagreed with us. &quot; The defense strategy turned on persuading the jury that King was a combative suspect who did not comply with officers&#039; orders. Evidently, Evidently, it worked. &quot;He refused to get out of the car,&quot; said one juror who was interviewed interviewed by The Times. &quot;His two companions got out of the car and complied with all the orders and he just continued to fight. So the Police Department had no alternative. alternative. He was obviously a dangerous person. . . . Mr. King was controlling controlling the whole show with his actions.&quot; Extraordinary secrecy measures surrounded the jury, which was sequestered throughout its deliberations. deliberations. Members refused to talk to reporters after the verdicts were read in a packed, silent courtroom at the East County Courthouse. &quot;This experience has been an extremely difficult and stressful one, one that we have all agonized over a great deal,&quot; said a statement prepared by the jury forewoman, a 64-year-old 64-year-old 64-year-old 64-year-old 64-year-old military contracts manager. &quot;We feel we have done the best job we could have done.&quot; The statement was read by a court official after the jurors were whisked away in a Ventura County Sheriff&#039;s Department bus to a nearby nearby Travelodge where they had been sequestered during their deliberations. deliberations. There, they were escorted escorted to pick up their bags, some of which had masking tape placed on tags to conceal their names and addresses. The four defendants were ac- ac- The Rodney G.King Beating continued from previous page tuedj Snapshots off Key Who: Stanley M. Welsberg, age48 Position: Los Angeles Superior Court Judge Background: The son &#039; of a sheet metal worker; bom In East Los Angeles and graduated from UCLA and the UCLA School of Law. Served tor 18 years as a deputy district attorney for Los Angeles County. He was made a Municipal Court judge in 1986 and elevated to the Superior Court bench two years later. Compiled by Times researcher Cecilia Rasmussen quitted on one count of assault with a deadly weapon. All except Powell were acquitted of assault under the color of authority; the jury deadlocked deadlocked 8 to 4 favoring acquittal on this count for Powell. He may face a new trial on that count. Powell and Koon were acquitted of filing a false police report. Koon also was found not guilty of acting as an accessory after the fact. King&#039;s attorney, Steve Lerman, was furious with the verdicts. &quot;It says it&#039;s OK to beat somebody on the ground and beat the crap out of him,&quot; Lerman said. &quot;They the jurors chose to ignore and disregard disregard the fundamental issue: The issue of brutal, vicious felonious assault against this man. There is nothing Rodney King did to deserve deserve this fate, and the defendants defendants are walking out as heroes. &quot;The fact- fact- that maybe 12 white jurors are not going to convict four white cops, it may be as basic as that.&quot; The officers&#039; legal troubles are not over, however. A federal civil rights investigation, which had been put on hold pending the trial&#039;s outcome, will be reactivated, U.S. Atty. Lourdes G. Baird said. Elsewhere in the country, there was a similar outpouring of anger. &quot;I am shocked, outraged and frightened for our nation,&quot; said Joseph Lowery, president of the Southern Christian Leadership Conference. &quot;We all cried and prayed for our nation. . . .Even in Johannesburg,-South Johannesburg,-South Johannesburg,-South Africa, they have begun to punish white officers officers who assault black people.&quot; Lowery planned to hold a prayer vigil at Martin Luther King Jr.&#039;s tomb in Atlanta today. The King beating quickly became became a watershed event in Los Angeles history, spawning an unprecedented unprecedented move to reform the Police Department, hastening the retirement of one chief and the hiring of another and forcing this ethnically diverse city into profound profound introspection on the state of race relations. With tensions running high after the beating, a blue-ribbon blue-ribbon blue-ribbon panel was formed to investigate the Police Police Department. Named the Christopher Christopher Commission for its chairman, chairman, former U.S. Assistant Secretary of State Warren Christopher, Christopher, the panel found a police force plagued by tacitly condoned racism and abuse at the hands of rogue cops. The commission called on Chief Daryl P. Gates to step down. After Wednesday&#039;s verdicts. Gates met with reporters at Parker Center but declined to express his opinion about the jury&#039;s verdict. &quot;An awful lot of people will voice their opinion,&quot; Gates said. &quot;I don&#039;t intend to.&quot; Gates directed much of his news conference to urge calm in the city. But even as he spoke, a crowd gathered in front of Parker Center. As Gates left the room, demonstrators demonstrators were shouting &quot;LAPD are rednecks! LAPD are racists!&quot; &quot;This may be a test,&quot; Gates said. cover vice officer after picking up a transvestite prostitute in Hollywood. Hollywood. May 30: A Times reporter refuses refuses to disclose confidential source, which prompts the judge to impose a $1,500 fine. L. June 5: Passage of lit Charter Amendment 5 RrfOIIRS grants the council unprecedented power over the city&#039;s 40 commissions, including the controversy-ridden controversy-ridden controversy-ridden Police Commission. June It: Christopher Commission Commission drops bid for officers&#039; personnel personnel files rather than allow a court representative to sit in on its closed-door closed-door closed-door deliberations. June 21: State parole board Players in the King Trial Who: Michael Stone, age 45 Position: Represents Officer Laurence M. Powell Background: Police sergeant for the city of Orange from 1972 to 1979; graduated from Western State University law school In Fullerton In 1978; police attorney for the city of Orange and general counsel for the Los Angeles Police Protective League before going into private practice In Los Angeles. Who: John D. Bamett, age 44 Position: Represents Officer Theodore J. Briseno Background: Graduated from the San Francisco University School of Law In 1973; served a five-year five-year five-year stint in the Orange County public defender&#039;s office before going Into private practice with a reputation as an expert trial attorney. Public, Parochial Classes Canceled By RICH CONNELL TIMES STAFF WRITER Classes were canceled today for thousands of students attending dozens of schools operated by the Los Angeles Unified School District, the Compton Unified School District and the Los Angeles Archdiocese because of fears for the safety of children, school officials said. All campuses were shut down in 30-square-mile 30-square-mile 30-square-mile 30-square-mile 30-square-mile area bordered on the north by Adams Boulevard, on the west by La Cienega Boulevard, on the south by Imperial Highway and the east by Alameda Street, Warren Furatani, president of the Los Angeles Unified School District board said late Wednesday. The archdiocese closed schools in the same vicinity between Central Avenue and La Cienega. All schools in the Compton district were shut down. Los Angeles school officials were monitoring the spread of the violence to determine if more &quot;I believe people will meet that test.&quot; Later, as violence spread through parts of the city, Gates activated the LAPD Emergency Command Center, canceled police leaves and declared a permanent alert. Gates&#039; designated successor, Philadelphia Police Commissioner Willie L. Williams, who is black, was monitoring the riots on television television at his Philadelphia home. &quot;The outbursts by these people are certainly in no way helping the healing process. It&#039;s making it very difficult for those people who were trying to take this court decision and make changes. &quot;It&#039;s a no-win no-win no-win situation, everything everything that occurred in the last few hours, the rioting, the fires, the shooting death. &quot;They are going to solidify the views of those people who are not wanting to see things smoothed over, but want them further divided.&quot; divided.&quot; He declined to comment on the LAPD&#039;s tactics of holding back during the early stages of the rioting, but said he will review it when he takes office in several weeks. He also said he will consult with Los Angeles officials today to see if he could play any role in calming the situation. &quot;Tactically,&quot; Williams told The Times, &quot;it&#039;s probably one of the most crucial times in the history of the Police Department one of the most crucial, precarious times in Chief Gates&#039; career and mine.&quot; Legal experts said the jurors may have reached the verdicts based on their fears of crime and pre-existing pre-existing pre-existing pre-existing attitudes favoring police officers. officers. The key factor, they agreed, was the change of venue granted to the defense. Moving the trial out of Los Angeles County to more conservative conservative and less racially diverse Simi Valley produced a jury disposed disposed to siding with police, the decides not to charge King with a parole violation in connection with his1 arrest May 28. June 22: Two-day Two-day Two-day summit meeting meeting involving the U.S. Justice Department, 20 Los Angeles County police chiefs and 60 minority community representatives representatives produces agreement to form a permanent working group to tackle issues aggravating police-minority police-minority police-minority relations. June 24: King sells option to a film company to make a movie. June 25: Police Protective League official advises officers to be less aggressive on the streets to protect their careers. June 26: Damage claim of $83 million filed by King and his wife &#039; 1 IM!lM.MJ.imlM I Who: Paul OePasquale, age 46 Position: Represents Timothy E. Wind Background: Graduated from Boalt Hall school of law at UC Berkeley. Specializes In police law, civil rights litigation and criminal defense law. closures might be necessary. Also late Wednesday, the Southern California Rapid Transit District announced that it was canceling bus service because of the violence. &quot;The safety of the kids is most important,&quot; Furatani said. &quot;We have a lot of children traveling on school buses, picking up students, carrying them to different parts of the city and traveling on freeways,&quot; some of which had been shut down. He said the cancellation of RTD bus service also would have meant that many students would be walking to classes in the areas where there had been disturbances. Furatani appealed to the thousands of young people whose schools were closed to remain home and off the streets. He said the district was preparing to provide counseling and discussion groups about the Rodney Rodney G. King verdict and the rioting to students throughout the city, especially in the areas most affected. experts said. The six-man, six-man, six-man, six-woman six-woman six-woman jury included one Latina and one Asian-American. Asian-American. Asian-American. Only a handful of blacks were present in the original jury pool. The four officers&#039; defense attorneys attorneys had sought to portray King as a hard-to-handle hard-to-handle hard-to-handle hard-to-handle hard-to-handle suspect who made the officers fear for their lives. A convicted felon on parole, King was drunk the night he led police on a high-speed high-speed high-speed chase through the streets of Los Angeles County until stopping in Lake View Terrace. There, he was ordered ordered out of his car, and the beating followed. &quot;I tried to put them in the shoes of the police officers,&quot; said Stone, &quot;and I think I was able to do that. We got the jurors to look at the case not from the eye of the camera or the eye of a video cameraman, but from the eyes of the officers who were out there that night.&quot; Powell is the officer seen leveling leveling most of the blows at King, who was swung at more than 50 times and stung by an electrical Taser gun. In speaking to reporters, Powell directed some of his wrath at Gates. &quot;He should have backed us up,&quot; Powell said. &quot;He should have backed up his policies,&quot; but the verdicts &quot;show that he was wrong.&quot; The jury heard 29 days of testimony testimony from 55 witnesses and was shown the videotape on numerous occasions. King did not testify at the trial. In an interview with the district attorney&#039;s office four months after the beating, he said he &quot;saw death in Powell&#039;s eyes&quot; and was certain he would be killed by officers who beat him furiously and repeatedly called him &quot;nigger.&quot; Throughout Los Angeles on Wednesday, residents who sat glued to their television sets to watch the delivering of the verdicts verdicts expressed astonishment. &quot;The jury apparently didn&#039;t see is rejected by the city, clearing the path to seek damages in court. June 29: Freddie Helms, a passenger passenger with King on the night of the beating, is killed in car crash. July 2: Police Commission orders Gates to make sweeping changes in handling misconduct allegations. allegations. Tift CnlntlrJI&#039; j Christopher RjOfft Commission report is released suggesting Gates step down. Police Commissioners Lomax and Williams resign after the Christopher Commission suggested suggested that the entire Police Commission should step down. July 10: Gates strips Assistant si Who: Darryl Mounger, age 46 Position: Represents Sgt. StaceyC. Koon Background: Former LAPO sergeant with almost 10 years experience as a defense representative for police officers in Board of Rights hearings. Graduated from Southwestern University School of Law in Los Angeles in 1989 and Immediately began private , practice, specializing In criminal, labor and administrative law. Who: Terry White. 35 Position: Deputy district attorney and lead prosecutor Background: Graduated from UCLA School of Law in 1 984 and Immediately joined the the district attorney&#039;s office. In 199 1 , joined the office&#039;s Special Investigation Division, which Is responsible for Investigating public officials, sheriff&#039;s deputies and police officers. and hear the same trial I heard,&quot; said Inglewood resident Terry Coleman, Coleman, 49, a former police officer who estimates that he saw 95 of the trial on television. &quot;The Verdict&#039;s Verdict&#039;s just as racist as what happened happened that night. I&#039;m ashamed to be from Los Angeles. I&#039;m happy I don&#039;t have a uniform anymore. &quot;I feel like I did when I heard that Martin Luther King died,&quot; added Coleman, who is black. &quot;I felt each of those not guiltys each one of them.&quot; A white bus driver in the San Fernando Valley, who asked that his name not be used, had a similar reaction. &quot;It&#039;s the worst thing that has happened in this nation since Kennedy Kennedy was shot in &#039;63,&quot; he said. &quot;Those guys are as guilty as guilty can be. There ain&#039;t a one of them that ain&#039;t guilty.&quot; At the Lake View Terrace spot where the beating took place, about 100 people gathered to vent their rage, peacefully but forcefully. forcefully. &quot;The verdict is very wrong,&quot; said Russell Baldwin, who is black. &quot;They had it on tape. It showed the cops were wrong. . . . The verdict makes us open targets for police. police. . . . Who are we supposed to call for protection now?&quot; &#039; &#039;&#039;&quot;Phis shows you can&#039;t trust the A justice system,&quot; said Anthony Anthony Ellis, another protester. &quot;What is justice? What kind of example do we have to show our kids?&quot; Although some police officers were surprised by the trial&#039;s outcome, outcome, many expressed satisfaction. William Frio, spokesman for the LAPD, said he was shocked but saw a positive side. &quot;We&#039;re a very professional department,&quot; department,&quot; he said, &quot;and I think this verdict somewhat vindicates the department&quot; &quot;I didn&#039;t hear any whoops of cheering, there wasn&#039;t anyone jumping for joy,&quot; said James S. Chief David D. Dotson of his command command after he complained openly of the chief&#039;s record in disciplining disciplining officers. July 11: Gates tells two members of the City Council that he will leave his post at the end of the year. Jury 15: The City Council&#039;s Public Public Safety Committee begins hearings on reform proposals contained in the Christopher Commission report. Defense files request to remove Judge Bernard J. Kamins from the case. July 16: Police Commission orders Gates to reinstate Dotson as head of the Internal Affairs division. Who: AlanS. Yochelson, 37 PosfUon: Deputy district attorney and co-prosecutor co-prosecutor co-prosecutor Background: Graduated from Southwestern University School of Law In 1980; Joined the Los Angeles County district attorney&#039;s office In 1981, and was assigned as co-prosecutor co-prosecutor co-prosecutor in the Night Stalker case from 1987 to 1990. Ellis, a detective in the depart &#039; ment&#039;s Pacific Division. j &quot;We&#039;ve definitely been slimjj. ! We&#039;ve been slimed,&quot; Ellis said. &quot;There&#039;s a lot of open disrespect for ! law enforcement. It&#039;s police-bash police-bash police-bash ; ing to its extreme. It&#039;s the vogu &#039;. thing to do.&quot; S Bill Violante, president of the Police Protective League, said that ! although the acquittals were &quot;a &#039; victory for these four LAPD off i- i- ; cers . . . this verdict should not be interpreted as approval of the i manner in which the arrest of ; Rodney King occurred.&quot; j Now, he said, the union intends to call on the mayor and the Clfy , Council to reinstate the use of thfe ; controversial carotid hold, which ; was stricken from police policy, i leaving officers in the field with ! few basic tools beyond &quot;the side; ! handled baton.&quot; i &quot;It is incumbent upon city offir &#039; cials to come up with another tpol : so that we do not have othel- othel- , similar incidents with the use of a side-handled side-handled side-handled baton,&quot; Violante said. : Throughout the three-month three-month three-month trial, defense attorneys had maneuvered maneuvered to keep the issue of race out of the trial. But when Powell was on the stand, his attorney, Stone, inadvertently asked him about police computer messages he&#039; : had sent before the beating, opening opening the door for prosecutor Whit&quot;1 to quiz the officer about computer&#039;&quot;&#039; messages he sent 20 minutes before the beating. In one of those messages, Powell&quot;&#039; told a fellow officer about an&#039;&quot; earlier incident involving a dispute&#039;: among a black family that Powell described as &quot;right out of &#039;Gorillas&quot; in the Mist&#039;&quot; &quot; White grilled Powell about thd &quot; message. But on the stand, he &quot; sought to maintain that he did not&quot;J consider the message to be racist.-&#039; racist.-&#039; racist.-&#039; Nevertheless, White told the jury &quot; in his closing summation that the&#039; 1 message was &quot;clearly racially mo-&#039; mo-&#039; mo-&#039; tivated.&quot; Another trial strategy involved &#039; Briseno, who, to the surprise&#039; of ! many, mounted a separate defense&#039; ;; and said he tried to stop the &#039; beating. On the stand, Briseno testified&quot; &#039; that he tried to push Powell&#039;s baton &#039; away. He said he only &quot;placed his&#039;:&#039;, foot&quot; on King in an attempt to make the motorist lie still so Pow- Pow- ell and Wind would put away their &quot; batons. He said he later tried to &quot; report to police supervisors that &quot; the other three officers had used excessive force on King. Briseno did not speak to report- report- u ers Wednesday, but Powell was asked if his assertions had caused a. permanent rift. . .r! Powell said: &quot;I congratulated him after this. I have no animosi-&quot; animosi-&quot; animosi-&quot; -. -. ty.&quot; Wind, who was on probation at .,i the time of the beating, was fired,.:; soon thereafter. The other officers,-. officers,-. officers,-. suspended without pay since the incident, now face internal Police, Department hearings. Koon&#039;s is;.&quot; scheduled for next week before an LAPD administrative tribunal. ,,; E3 July 19: Judge Kamins refuses to. -quit -quit case. July 22: In a video played at , , rr police roll calls, Gates announces&quot;, April, 1992, date for retirement.&#039;: Tjjj Jury 23: State appeals court orders trial of officers out of the county because of publicity and sui political fallout. . July 26: King cleared o&#039;n felony assault charges for allegedly &#039; &quot; &#039; &#039; attempting to run over an under, cover police officer on May 28. &#039; w July 29: Six LAPD officers whtji&#039;&quot;&quot;&#039;. were among 19 present during the King beating are taken off duty &#039; without pay. &#039; &#039;&quot;&#039;. Aug. 7: Police Department off i -&quot; -&quot; &quot; &#039; cials begin interviewing more Tr: than 100 officers who allegedly :&#039; . -k -k -</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1992/04/30">30 Apr 1992, Thu</a>,&nbsp;
+<a href="/image/177464439/">Page 22</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1992/04/30">30 Apr 1992, Thu</a>,&nbsp;
+<a href="/image/177464439/">Page 22</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/jrademacher/" class="avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li><a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>   18 Jul 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>  &ndash;  18 Jul 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12453507"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1992/04/30">30 Apr 1992, Thu</a>
+&nbsp;•&nbsp;<a href="/image/177464439/">Page 22</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12453507#spot=12453507"  onclick="checkViewAccess('image',177464439,'/image/?spot=12453507#spot=12453507',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/177464439/250/0/0_0_3118_5119/0/yes/0_0_3103_5119.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by jrademacher <a href="/profile/jrademacher/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17032274//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/202572050/150/150/979_370_1005_1627.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/15165540//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/200841071/150/150/0_64_3401_5191.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/14866343/test/" title="test">
+<i><img src="/i/spacer.gif" alt="test" style="background-image: url(https://img.newspapers.com/img/thumbnail/201375373/150/150/2251_1001_1310_1757.jpg);"/></i>
+<span class="alsoby-text">test</span></a>
+</li>
+<li> <a href="/clip/13450538/thornton_ad/" title="Thornton Ad">
+<i><img src="/i/spacer.gif" alt="Thornton Ad" style="background-image: url(https://img.newspapers.com/img/thumbnail/281264290/150/150/3338_2836_2139_2999.jpg);"/></i>
+<span class="alsoby-text">Thornton Ad</span></a>
+</li>
+<li> <a href="/clip/12524149//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/196463225/150/150/0_0_4045_6413.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12453507;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12453507&amp;name=&amp;print=1';
+var imageId = "177464439";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12453507\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 30 Apr 1992, Thu\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"30 Apr 1992, Thu\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/177464439\\/400\\/400\\/0_0_3103_5119\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1992-04-30";
+var pageEdition = "";
+var pageNumber = "22";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":463,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

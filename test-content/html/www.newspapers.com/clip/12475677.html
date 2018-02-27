@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12475677/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 09 Jan 1918, Wed.  In Two Parts 20 Pages PAKT I TELEGRAPH SHEET 10 PACES. Under Law Equal Rights True Industrial Freedort WILSON ACCEPTS THE CHALLENGE OF PEACE WEDNESDAY MOKNING, 1 JANUARY 9, 1918. ..dgJsggJ yri.TJ3 SLS"><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 09 Jan 1918, Wed.  In Two Parts 20 Pages PAKT I TELEGRAPH SHEET 10 PACES. Under Law Equal Rights True Industrial Freedort WILSON ACCEPTS THE CHALLENGE OF PEACE WEDNESDAY MOKNING, 1 JANUARY 9, 1918. ..dgJsggJ yri.TJ3 SLS"><meta name="keywords" content=", jrademacher, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12475677/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12475677/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=155942691&width=557&height=682&crop=0_0_4003_4995&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671579&h=0b6e738b15c293004b51b309f71ebc6a">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "09 Jan 1918, Wed";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12761126">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12475677"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12475677#spot=12475677"  onclick="checkViewAccess('image',155942691,'/image/?spot=12475677#spot=12475677',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=155942691&width=557&height=682&crop=0_0_4003_4995&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671579&h=0b6e738b15c293004b51b309f71ebc6a" alt=" - In Two Parts 20 Pages PAKT I TELEGRAPH SHEET 10..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">In Two Parts 20 Pages PAKT I TELEGRAPH SHEET 10 PACES. Under Law Equal Rights True Industrial Freedort WILSON ACCEPTS THE CHALLENGE OF PEACE WEDNESDAY MOKNING, 1 JANUARY 9, 1918. ..dgJsggJ yri.TJ3 SLSIE?) Lifeerty . - a GERMAN &quot;It is Too Much,&quot; Text Gammeotary. TEUTONIC EDITORS ANSWER LLOYD GEORGE. Newspapers of Germany Doubt that Britain will Fight &quot;to the Last Breath&quot; for Alsace-Lorraine. Alsace-Lorraine. Alsace-Lorraine. BT ATLANTIC CABLE AND A. P.J A S1STERDA1I. Jan. Dlseus- Dlseus- stag tho statement of w aims mad Friday by Premier Ilord George, th Ehenlseh West-falisch West-falisch West-falisch Zelttrag of Essen says: &quot;When Lloyd George and British tabor demand Alsace for Franco and th German colonies, Arabia, Syria and Palestine for England and speak of the war indemnity w will hav to pay. the- the- answer In view of the actual war situation Is. &quot;It In too much.&quot; &quot; The newspaper thinks, however, that the calmer tone In which Lloyd George spoke la worth nothing. u4 adds: &quot;Well. XJord George, too. wIU one day become reasonable. Until then, the XT-boats XT-boats XT-boats and Hlndenburga sword will help.&quot; &quot;WAR SPEECH. The Frankfurter Zeitung says: &quot;Only a defeated Germany could think of negotlatrnco the terms laid down by Lloyd George. It Is a new war speech, and a way to terminate the war win only be open when t2ie movement which has begun begun in England and other Entente countries Is strong enough, to replace replace Uoyd George, Clemenoeau and Baron Sonnlno by men who recognize recognize the Impossible nature of such speeches and draw consequences from such recognition. &quot;How far we are from that thne it is hand totsvyj. POINT. The Xachrlchten of rDusseldorf says: - THE DAY&#039;S NEWS SUMMED UP. THE SKY. Partly cloudy: wind at 5 p,T&quot;,, southwest; -velocity, -velocity, six miles. Thermometer, highest. 63 dec.: lowest. 62 dec. Forecast, &#039;Wednesday, fair. For complete report seo last page of Cart one. CITY. Dr. J. A. B. Scberer of the J&amp;tate and National Councils of Defease Defease and other prominent citizens protested the proposed plan to re-baOd re-baOd re-baOd cities In France, declaring: that this la one or the things Germany must do when peace is declared, further, that an money available should go to prosecute the war. Two men and a woman were arrested arrested on a charge that they bad -fixed&quot; -fixed&quot; the yes ot would-be would-be would-be draft- draft- evaders m that they could not pam the physical tests. A man alleged to be a reserve officer officer In the German army and a member of Its intelligence service was arrested by a beach Police Chief. Federal Judge Bledsoe called on the nead of local army Intelligence hurean for tho person of a man ar rested under the espionage ace The pastor or the Hollywood Methodist Church, whose women members lauded deposed paciflbt preacher, deplored their action in their resolutions public A prominent dub woman filed mitt against a Stockton woman for 3100.000 damages for alleged libel. In a letter sent a friend. The Board of Public Service voted to lower the water rates to beet growers so that they could soften their ground for plowing. The opinion or the Supremo Court in an action pending; against County Auditor Lewis was asked to help in settling present row. The Emergency Fleet Corporation asked Mayor &quot;Woodman to Investigate Investigate the possibilities of increasing shipbuilding at the harbor. SOUTHERN CALIFORNIA. Beet growers reject Food Administrator 1 .reposal to have the Federal Trade Commission adjust differences with lactones ana ux pneo ot beets. Funeral services conducted Pasadena for a prominent Chicago man who had made his winter home there ior a numncr ol years. Enraged husband assaults a sol dler at Long Beach, charring that hn had been too Intimate with his wife. Failure of gun to shoot averts tragedy. Bench dties threaten to sac Los Angeles to abate alleged nuisance auea oy oaors rrom toe outfall Move cm foot to rhanrr- rhanrr- name of Xewport Beach to Port Orange and to consolidate -wide -wide area under den nit geographical designation. PACIFIC SLOPE. Removal of restrictions on Mexican and Chinese labor advocated by totc Council of Defense in San Francisco confercncc TJoan sharks said to e making raids on Liberty Bonds r loaning money on them to soldier. Meeting arranged between alleged TXmdu plot ship at lonely island told tn plot testimony. State Development Board would t have women and children help har- har- vewt this years crops account -Oiort- -Oiort- -Oiort- ags or laser. PRICE 2lj CENTS I &quot;The main point of the speech Is that Uoyd George pledges Great Britain to fight to the last breath for Alsace-Lorraine. Alsace-Lorraine. Alsace-Lorraine. &quot;We do not believe, believe, however, the British people will fight to the last breath for this war aim.&quot; Tho Boersen Courier of Berlin re-cards re-cards re-cards Mr. Lloyd George&#039;s speech as an attempt to Isolate Germany by Intimidating her allies. The Boersen Zeltung says that an Important point In connection with the speech is that there Is a material material difference between the present British war aims and those known to have been held recently. The Tages Zeltumr makes the statement that a peace assuring to the people of the German empire a safe and free future can be attained only by victory over England. OTHER VIEWS. Tho Ereus Zcitung declares that Mr. Lloyd George&#039;s programme can be carried through only after the completo defeat ef Germany. In the Tagliche Rundschau of Berlin, Gen. Llebert says the balance balance of the war Is greatly In favor of Great Britain, which has firmly In hand not only the Cape-to-Cairo Cape-to-Cairo Cape-to-Cairo Cape-to-Cairo Cape-to-Cairo line of communication, but the more important overland from Cairo to the Persian Gulf. These questions, the general writes, must be settled at the peace conference, and everything everything depends on the skill of the anti-British anti-British anti-British group whether it or Great Britain shall finally triumph, YIEXXA C030CENT. . The Neoe Frele Press of YSennaJ says: &quot;Lloyd George&#039;s peace terms are (Continued on Third Pago.) San Francisco head of Underwrit er&#039; Board scores Incendiary acts of alien enemies; blames LW.W. Regulation in selling of sugar modified; farmers and miners buy larger supplies. GENERAL EASTERN&quot;. Cotton take big jump when news of President&#039;s President&#039;s message is rcceiTcd on exchange. exchange. New York Committee on Public Information and New Agencies flashes President&#039;s message to all parts of world. British Foreign Secretary Balfour has narrow escape from submarine on trip bock to England. Kansas City letter state. N&#039;evr York stock market falls back several points on announcement of the President s speech. Chicago fuel famine made worst In years account of heavy snow. VV ASHIN GTON&#039;. Ample water sup ply Is assured San Diego; Kettacr bill meets favor. Coal budget plan for pooling fuel Is proposed by the Fuel Administration, Administration, and manufacturers asked to assist assist plans. &#039; Secretary of &quot;War &#039;Baker issue statement saying Germany is preparing preparing for a blow on the west front. Figures for PostofBco Department, for November show decrease over 1916. Serbian mission visits White House and explains attitude of country country toward the United Mate. President pledges the United States to Allied policy of no separate peace in his special message to con gress. FOREIGN&quot;. Number of dead in Guatemala City from earthquakes estimated at 6000: many are fleeing to Mexico tot safety. Amsterdam! bears that reports of intent to abutn American prisoners In Germany a&quot;e denied by Berlin. Italy reopens school In Venice: government told children to return return to city. Hungarians demanding separate identity, hut Austria, is not well disposed disposed toward move. THE GREAT WAR. Following closely unon the statement of David I Uoyd George, the British Prime 1 Minister, of Great Britain war 1 aims. President .WUson has laid bc- bc- Ilore the American Congrei and the 1 world at large che condition which tne American government conaer &#039; arc absolutely essential as the basis of a general peace. Tin press of Germany and Austria-Hungary Austria-Hungary Austria-Hungary Austria-Hungary In editorial comment on the address of David Lloyd i George is unanimous that tha terms j as, vt forth by the British Premier as the basis for peace are not acceptable acceptable to the Teutonic trille. Tnereiore, it ts not unlikely that President Wilson&#039;s address will be received by the enemy newspapers In a like manner. TuofttcuU advlrrs are to ther ITrct that the RuIan pcawv delegation t resumption nr the pourparler- pourparler- with &#039; th- th- eneim drtecate-t. drtecate-t. drtecate-t. No confirma- confirma- Unr. of thi report has been rccclvf-tL rccclvf-tL rccclvf-tL TMMENSE CONCESSIONS 1 REQUIRED Interpretation of thkPresidenfs Programme Programme Asks More than Europe Demanded of France. BT TRAXK H. SIMONDS. BT DIRECT WIRE EXCLUSIVE DISPATCH-! DISPATCH-! DISPATCH-! N&quot; ETC YORK BUREAU OF THE TIHES, Jan. 8. The President&#039;s peace terms re quire thre stupendous concessions concessions on th part of Germany. They demand that she ahall consent consent to the destruction of her groat schc-ie schc-ie schc-ie of &quot;Mlttel Euro Euro pa;&quot; that she and her armies hall surrender 210,000 square miles of conquered territory. Inhabited Inhabited by 40.000,000. an area greater than that of Germany before the war. and a population In excess of that of Franca In 1911. and. finally,, that Germany. Austria and Turkey ahall cede territory in their possession when the war broke out. Actually, the President jakes greater demands on Gem any than victorious Euros&#039; qsfe?ja and took from France &amp;&amp;s Waterloo and at the Congress of Vienna. Looked at from the point of view of tho &quot;Mlttel-Europa&quot; &quot;Mlttel-Europa&quot; &quot;Mlttel-Europa&quot; scheme, the President&#039;s terms break the back of this notion by restoring Rumania and Serbia and bestowing upon the latter a sea coast, obviously in Albania. It was to break down such a barrier that Austria, at Germany&#039;s Germany&#039;s direction, assailed Serbia in July, 1914. and produced the world war. When Serbia and Rumania have been restored. Bulgaria .and Turkey willb cut off from Austria and Germany. AMPUTATION. But tbeamputatlon at the waist, if TOeTfcay use this figure. Is accompaaOT by similar operations operations on ai four limbs. The two arms of &quot;illttel Europa,&quot; that extending westward through Belgium to the coast, is eliminated eliminated by the restoration of Bel-glum: Bel-glum: Bel-glum: that which extends eastward eastward to Riga Is cut off by the creation of a free Poland, having having Danzig as a- a- sea port, and by tha restoration to Russia of the remainder of Russian nrn conquered conquered by the Germans and Austrian. Austrian. In the same way, by depriving depriving the Turk of his Meso-potamlan Meso-potamlan Meso-potamlan and Syrian lands, as well as his Armenian provinces. President Wilson takes off both legs. But the President does not stop there. He not only insists upon the restitution by Germany Germany and Austria of all the lands taken In t&amp;e present war. but he demands that Germany shall cede Alsace-Lorraine Alsace-Lorraine Alsace-Lorraine to France, and the Polish districts districts of Prussia to the new Poland. By these two cessions Gerwany would lose more than 12,000 square miles, and between 5.000.000 and 6.000,000 of people which were theirs before the present war. Austria would, in the (ume fashion, fashion, have to give up Trieste and the Trent! no, with nearly a million million people and 4000 or S000 square miles. SUMMARY. In sum. In the present war, Germany and her allies have conquered 120.000 square miles of Russian territory. 7000 square miles of French territory. 12.-000 12.-000 12.-000 square miles of Belgian territory territory (with Luxemburg Included:) Included:) 40.000 square miles of Serbian and Montenegrin territory, territory, 33,000 square miles of Rumanian Rumanian territory, and $000 square miles of Greek and Albanian Albanian soiL A total area of 210.000 square miles, about equal to that of Germany, has been taken by the Kaiser and his allies, allies, together wtih a population Of 40,000.000. In addition to the restoration . Invariable, CAN FIND NO CHANGE IN BRITISH WAR AIMS BY ATLANTIC AMSTERDAM. Jan. S- S- The Nord Deutsche Allgemelne Zc tung, the semi-official semi-official semi-official German German org.in. says: &quot;Even if Dvld Lloyd Georce now .&#039;or obvious reasons renounces the talk about all kinds of crushing aims with whlcn he formerly w-as w-as w-as wont o make an impression on the v asses of &#039;its own people and the .Allies, and .C thoso points in which Russia hau the greatest interest s-cro s-cro s-cro craped from the general pro- pro- rramme of the Entent. there, nev- nev- ertheless. ha-H ha-H ha-H been virtually no rinee In F.r.c&#039;-and&#039;s F.r.c&#039;-and&#039;s F.r.c&#039;-and&#039;s own war alma They are, af oeinre, tne result ot tho v.m fo- fo- unrestricted world power. Mr Lo;d Jeoro knw oda a.- a.- -xhen -xhen he made hi- hi- first war speech. tiat th territor jlI integrity , t th Austro-flgar-j.&quot;. Austro-flgar-j.&quot;. Austro-flgar-j.&quot;. Austro-flgar-j.&quot;. Austro-flgar-j.&quot;. mor aa well as that of the other allies of Germany, ash form the corner of the German OF GERMANY. of the vHvt area Included within the conq.ieits of Germany and her allies. President Wilson asks tho return of Ahtaco-Lorraia Ahtaco-Lorraia Ahtaco-Lorraia to P-a-ico P-a-ico P-a-ico P-a-ico P-a-ico and the cession to Po-uuid Po-uuid Po-uuid or German territory inhabited inhabited bv Polos Tho first demand would deprive Germany of &quot;mi&quot; -.q -.q iar miles and - 000,000 people; the second of some iu,u&#039;tn qu.ire miles of Prussian territory including portions of the prcn mco of Posen. East and West Prussia and SUesla. Austria. Is. In the same way, asked to surrender her Italian-speukln? Italian-speukln? Italian-speukln? districts, which are those of the Trentino and about Trieste All told, the area of these districts would pot exceed 5000 square miles, and the population population is certainly less than a million. More considerable Is the- the- demand for the cession of Austria&#039;s Polls district. Incident to tho creation of a free Poland. This would take some 200,000 square miles of Gallcia and about 6,000,000 people. ARABIA Finally. Turkey, under the President&#039;s proposal would lose Arabia. Armenia, Syria. Palestine Palestine and Mesopotamia. That is about one-half one-half one-half of the Turkish empire, and not leas than 7,000,-000 7,000,-000 7,000,-000 people a full-third full-third full-third of the population of the empire. Tur-kev Tur-kev Tur-kev would be restricted to the Anatolian district, in which the Osraanli element predominates. and &quot;he would lose his hoid Jupoa; - e;iift and -Jerusalem. -Jerusalem. Such. In detail, are the President&#039;s President&#039;s war -terms -terms m their relation relation to the Raiser&#039;s map. They are terms which carry with them not alone tne Immediate distribution of Germany&#039;s present present edifice of Mitteleuropa, but erect barriers against anv later attempt of Germany to expand to the east at the expense of Russia, or to the south through the obliteration of Balkan states. , In demanding autonomy for the various races of Apstrla. autonomy within the Austrian empire, the President undertakes undertakes to destroy the dominion of the Hungarian and German elements. elements. HAPSBTJRG EMPIRE. Today the Hapsburg empire contains 24.000.000 Slavs. 4.000.-000 4.000.-000 4.000.-000 Rumanians and Italians, and onlv 12,000,000 German and 10. 000. 000 Hungarians. Were the Slavs and Latins to gala fair representation In the government, government, Austria-Hungarywould Austria-Hungarywould Austria-Hungarywould be dominated by Teuton and Magyar no longer, and Germany would lose her one great ally in the world. In such a case. Austria, under under the rule of the Slavic majority majority and Poland, erected Into a strong state, would be effective effective barriers to German expansion expansion eastward and southward, and German ambitions fort European European hegemony, and Turkish colonial expansion would disappear. disappear. President Wilson has gone far beyond Uoyd George in th matter of Poland, Russia i and Austria-Hungary. Austria-Hungary. Austria-Hungary. He has reechoed reechoed the British Prlm. Minister&#039;s Minister&#039;s terms in the Balknaa. fn Asiatic Turkey, In Belgla and in the matter of Alsace-Lorraine Alsace-Lorraine Alsace-Lorraine Alsace-Lorraine and the Italian Irredenta. But the terms he has adopt -d -d will only be accepted by a conquered conquered Germany, partlci larly in the case pf Poland and lsace-Lorralne. lsace-Lorralne. lsace-Lorralne. Therefore the immediate immediate effect of his speech will a resumption of hostilities and an abandonment of ncgolatlona. CABLE AND A. P. atone In the building of aJnew peace. Nevertheless, he adher to nls im- im- p.rlaIIUc war aim. Rh Uwlr un- un- i &quot;P&quot;y or in. wman OToairared dcmanSs. an4 only bv a r-icy-ln r-icy-ln r-icy-ln r-icy-ln r-icy-ln bandUnc tho peace nreotla-chans. nreotla-chans. nreotla-chans. In Jono trie tn live the lm- lm- ! JOJ&quot;L Eo&quot;&#039;?Ss- Eo&quot;&#039;?Ss- &quot; ?c PTBorton that-he that-he that-he like, bto accoant W TSfS &quot;jSfa&#039;Y s the alteraUon of the m -Italy -Italy and po- po- &quot;fJ? &amp;&#039;XttJaLZ of him- him- and his aUle&#039; &#039; LABOR LEADER TO BE AUSTRALIAN PREMIER (BY pacific CAin.1 v r.; I MELBOURNE (Antral.) Jan. S. i Frtn k Gwynn Tu d ot, lead e - of j he :bor part&quot; and a member f .hft -jlousc -jlousc or r.epre enU-tive enU-tive enU-tive wtU h tnc ncxt prime Minister of Aur tra.&#039; la z on. William Morris H&#039;irhen vii!rrcl the -signannn -signannn vTi thar So far. we are able to com-ih com-ih com-ih nationalist governmnt to tne- tne- yre. thm only with those made lj Ooc-nr-Ger.ra- Ooc-nr-Ger.ra- Ooc-nr-Ger.ra- Ooc-nr-Ger.ra- Ooc-nr-Ger.ra- Ooc-nr-Ger.ra- thi morning a!ur allies. &quot;SVaen the Germ in list of 1 a. result of the defeat of the - 1 acrlpaon pronoaaia. wilson s peace programme. It Open covenants of peace. Absolute freedom of the seas. J Removal of all economic barriers. Guarantees for the reduction of national anna- anna- 3. 4. ments. 5. 6. Impartial adjustment Evacuation of all Russian territory. 7. Evacuation of Belgium. J 8. All French territory to be freed and restored and reparation for the taking of Alsace-Lorraine. Alsace-Lorraine. Alsace-Lorraine. $ 9. Readjustment of Italy&#039;s frontiers. $ 10. Greatest opportunity for autonomous develop- develop- ment of the peoples of Austria-Hungary. Austria-Hungary. Austria-Hungary. 1 1. Evacuation of Rumania. Serbia and Montenegro. 12. Secure sovereignty for Turkey&#039;s portion of the Ottoman empire. 1 3. Establishment of an independent Polish state. J 1 4. General association of nations to guarantee integ- integ- $ rity of small states. $ -1 -1 IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t IM-K-K-H-8&#039;;&quot;i&#039;&#039;t &#039;?-:-H&quot;i&#039;&#039;W-i &#039;?-:-H&quot;i&#039;&#039;W-i &#039;?-:-H&quot;i&#039;&#039;W-i &#039;?-:-H&quot;i&#039;&#039;W-i &#039;?-:-H&quot;i&#039;&#039;W-i &#039;?-:-H&quot;i&#039;&#039;W-i &#039;?-:-H&quot;i&#039;&#039;W-i &#039;I ! I 1 1 H-K H-K H-K M M&quot;!-M M&quot;!-M M&quot;!-M Pronouncement. TEXT OF THE BY PRESIDENT WILSON. Memorable Speech tive to Congress tBY A. P. NIGHT WIRE. WASHEiGTCX, Jan. 5. i OUffw-ing OUffw-ing OUffw-ing is the full text of Presl- Presl- Congress on America&#039;s war and peace programme: Gentlemen of the Congress: One more, as retMatedlv before. &#039;Vo anntMriMMi nf t Cmtnl Em- Em- i-pEeaA i-pEeaA i-pEeaA -indicated -indicated Cbelx -flesJrw -flesJrw Catena the objects ot the war -ana -ana the possible bases of a general peace. Parleys have been In prog ress at Brest-Litovsk Brest-Litovsk Brest-Litovsk between itus-slan itus-slan itus-slan representatives and representatives representatives of the Central Powers, to which the attention of all the belligerent belligerent has been invited for the purpose of ascertaining whether It (may be possible to extend these par leys Into a general conference witn regard to terms of peace and settlement. settlement. The Russian representa tives presented not only a perfectly definite statement of the principles upon which they would be willing to conclude peace, but also an equally dcfinlto programme of the concrete application of those principles, xne representatives of the Central Powers, Powers, on their part, presented an outline outline of settlement, which. If much less definite, seemed susceptible of liberal Interpretation until their spe dflc programme of practical terms was added. That programme proposea no concessions at ail either to sov ereignty of Russia or to the preferences preferences of the population with whose fortunes It dealt, but meant, in a word, that the Central Empires were to keeD every foot of territory their armed forces had occupied every province, every city, every point of vantage as a permanent addition to their territories and their power. It Is a reasonable con Jecture that the general principles of settlement which they at first suggested, originated with the more liberal statesmen of Germany una Austria, the men who have bejeun to feel the force of their own peo EDITORIAL COMMENT ON AIMS Tendency to Find a Russia in Wilson&#039;s Speech. ZBY DIRECT WIRE x T EW YORK BUREAU OF THE i 1 TIMES. Jan. S. Editorial com- com- ment on th President&#039; ad dress today follows: THE WORLD: It Is apparent ti it tho Preddenfa programme is -d-dreesed -d-dreesed -d-dreesed -d-dreesed In particular to th Ru.wn-i Ru.wn-i Ru.wn-i people, whp- whp- have been shamefully tricked by the German government, and perhapa by their own Boishe-ikl Boishe-ikl Boishe-ikl rulers, and to the German S--(.uhsts. S--(.uhsts. S--(.uhsts. S--(.uhsts. who are again Incensed by io rteai with isa own hich has cynically repud&#039;:ited tho-1 tho-1 tho-1 1 ptiico principles of the Ke.cn.. t ana again affirmed Its policy of &#039;Sn-&#039; &#039;Sn-&#039; &#039;Sn-&#039; ptrlnllstlc aggression. THK STAAXS ZETTCVf.: It the Central Empire Trove, arxi 1 thev- thev- should be equally aUIinc to ! tAte their war alms ss unequivo cally as tho United Stt and ?-!tiin ?-!tiin ?-!tiin have stated theirs Out a such &#039;,,ni:-ra.nge &#039;,,ni:-ra.nge &#039;,,ni:-ra.nge interchange of pjrpo iht perhaps eventuate &quot;n3J Tie President hawnndflnbtedly nt i fort the demands which ne regan. I rsntlal to the termination of lm im iilMi.tlll It Will b Protests I-X-XX I-X-XX I-X-XX I-X-XX I-X-XX of all colonial claims. ADDRESS Delivered by Execu in Joint Session. pie&#039;s thought and pur pot while the concrete terms of actual settlement, came from the military leaders who nave no thought but to kd what they have got. The negotiations have been broken off. The Russian representatives were sincere and In earnest. They- They- cannot entertain&quot; such proposals of conquest and domination. The whole incident- incident- la full of significance. significance. It is also full of perplexity. perplexity. &#039;With whom are the Russian representatives dealing? For whom are the representatives of the Central Central Empires speaking? Are they! peaking for the majorities of their respects e Parliaments or for the minority parties, that military and, imperialistic minority which has so far dominated their whole policy and: control In the affairs of Turkey and of the Balkan states which have felt obliged to become their associates associates in this war? The Russian representatives have insisted, very justly, very wisely, and In the true spirit of democracy, that the conferences conferences they have ben holding with the Teutonic and Turkish statesmen should be held -ulthln -ulthln open, not closed doors, and all the world has been audience as was desired. To whom hae we been listening then? To those who speak the spirit and intention of the resolutions of the German Reichstag of the 9th of Julv. last, the spirit and -intention -intention of th Liberal leaders and parties of German v, or to those who reMst and defy that spirit and intention and Insist upon conquest and sub jugation? Or are we listening. In fact, to both unreconciled and in open hopeleis contradiction? Thee are very serious and pregnant questions Upon the answer them depends the peace of the world. But whatever the results of he (Continued on Fourth Page.) OF AMERICA. Special Address to EXCLUSIVE DISPATCH.) will afford some clew to the direc- direc- tioa in which the wind Is blowing. ROCKY MOUNTAIN iSEWS (DENVER:) At that moment when Russia appeared tn the grasp of th Pan-German Pan-German Pan-German group of Imperialists, appeared, in strangely&quot; dramatio form. without previous announcement, the President or toe United states before- before- before- Congress, as the champion and would-be would-be would-be deliverer of the Russian idem at one sao recognition to ;?&quot;t P,T.&#039; IXSZZZL. tlon, to its. deliverances regarding i general peace ror tne world, and to iJreNL.Kovajc negotiations wan Germaav This is most signlflcanr: &#039; The Wilson .messase was meant, first for Russia, second for Germany, and third for the people at home and the nations with which we are aTiled for wjir To the Central Powers Powers the message was generous. Th imfrcan terms were eridentlv in tended to bring further response from German. Jvare uiract than heretofore CHTCAOO HERALD: No one can ft.kv what will emeree I&#039;om the Rus sian situation. To eau it perplexing ix to put ii muan. tct oyond JI ietion President WUson&#039;s decUra- decUra- 1 m tear the mask still further from Prussia s dishonest peace nego-tiAtimtii. nego-tiAtimtii. nego-tiAtimtii. and shows Russia where her true &quot;Interests lie, wher alea h can possibly get sympathy and CConttanrd on Seoaod Paga4 cand MERICA&#039;S WAR AIMS 11 IN DEFINITE TERMS. President Pledges United States to the Allied Policy of &quot;No Separate -Peace&quot; -Peace&quot; with Germans. r .VSHIXGTOX. Jan. S America&#039;s programme of war and peace, with def inite terms upon which, the nations nations great and small lighting together against German world domination are ready to lay down their arras, was given to the world by President Wilson today through an address to Congress in Joint session. For this programme, based upon the righting of wrongs and the safeu of peace-loving peace-loving peace-loving peonies peonies desiring to live thel- thel- own liCi. tho President committed thi United States to light and continue to Sght until It Is .tchleed. Thus he pledged the country to the Allied policy of no separate peace. &quot;Wo cannot be separated In interest or divided in purpose.&quot; he said. &quot;We etand together to the end.&quot; CHALLENGE ANSWERED. The speech, heard by Congress Congress at an hour&#039;s notice and accepted with a wave of approval approval that brought together virtually every element of both houses, was delivered as a direct direct response to the German challenge In the negotiations with the Russians at Brest-Lltovsk. Brest-Lltovsk. Brest-Lltovsk. It followed closely and approved the address of the Eritlsh Premier, but was far morn spcculc in statement of terms, robbing of force In advance advance any German peace drive designed to confuse the Entente and American goxernmenta and their people, while at the same time presenting the foundation for genuine negotiations whenever whenever the Central Power. are ready to talk of a Just peace. Fourteen concrete proposals laid down by the President be-Ican be-Ican be-Ican with the declaration that the days of private International understandings are gone, and that covenants of peace must be reached in the open. Briefly summarised, the other points were: Absolute freedom of the seaa in peace or war. except aa they may be closed by International action; removal of economic barriers barriers among nations associating themselves to maintain peace; guarantees of the reduction of armaments to the lowest consistent consistent point with domestic safety: safety: impartial adjustment of colonial colonial claims, based upon the principle that tho peoples concerned concerned have equal rights with the governments: evacuation of all Russian territory and opportunity opportunity for Russia&#039;s political development: development: eacuatlon of Bel-glum: Bel-glum: Bel-glum: evacuation of French territory territory and righting of the Alsace-Lorraine Alsace-Lorraine Alsace-Lorraine Alsace-Lorraine wrong: readjustment readjustment of Italy&#039;s frontiers along recognizable, lines of nationality; nationality; free opportunity for autonomous autonomous development of the peoples peoples of Austria-Hungary: Austria-Hungary: Austria-Hungary: evacuation evacuation of Rumania. Serbia and Montenegro, and guarantees for afl the Balkan states: sovereignty sovereignty for Turkey&#039;s portion of the Ottoman umpire and autonomy for other nationalities: an Independent Independent Poland with, access to the sea. and general association of nations for mutual guarantees guarantees &quot;r independence and territorial territorial integrity to large and small states alike. SYVPATHT FOR RTJIA. A notable feature tff the address address -CI--US -CI--US -CI--US -CI--US -CI--US the sympathetic attitude, attitude, of the President toward Tables BURDEN OF ARGUMENT SHIFTED UPON BERLIN. President&#039;s Message and Others of BT DIKECT WIRE EXCLUSIVE DISPATCH. i;W VORKK &#039;KUREALT OF per of the war. So clear Is Its v-Tnr v-Tnr v-Tnr nvts, Jan. S. Satis- Satis- OO&quot; statement that no rLiht -minded -minded N ! statement of Aintf Id&#039;s &quot;ar acts wa Pre! S,V today. Jam IV. Gerard, formr.nbassador to Ger many said&quot; &#039; &#039; &quot;It is deflaiunnd puts the whole burden of arfumcn: ou the other side I aui particularly Impressed wits the sccettenco of tho passages in tho IjrsMeRtii statement which refer t Russia. The Germans haw hern fooling ths orId all the tle.pretrdlng to stand for a peace xrithout annexations when they in- in- tended to mak them all along as was nnally brought out In the Hesitations Hesitations at Rrest-LItoi Rrest-LItoi Rrest-LItoi -fc -fc Ths statement &#039;h:uld drive them back on the tn ih. CREATES DEEP TIT&quot;T;V.IT Frederick C Penfleid latr Ambassador Ambassador to Austria, said. ix. is reauieat wiiaon a greatest i vturanc and th leading ctata pa-i pa-i pa-i Together.&quot; P. NIGHT WIRE. the Russian representatives wh deilt with the Germans at the peace conference the Bolshevik Bolshevik I. often execrwted f or their defection from the Entente and for permitting themselvea to be drawn Into the Teutonic peaco trap. Tho Russians, he Said, presenting a perfectly clear statement of the principles upon upon which they would be willing willing to conclude- conclude- peace, were sincere sincere and in earnest, ard when they found that the actual German German terms of settlement cam-from cam-from cam-from the military leadorv. -vho -vho had no thought hut to keep what they had taken rh nv-gotlatlon nv-gotlatlon nv-gotlatlon were broke&quot; o&quot; Upon the question of ihetfc-er ihetfc-er ihetfc-er the Russians and the world are to listen to the militarv and Imperialistic minority which so far has dominated the Teutonic policy, or to the Liberal leader and parties who speak the sp&#039;.rit and intentions of the resolutions adopted by the German Reichstag Reichstag last July, the President declared, declared, must depend the peace of the world. This was in line with his previous declaration that the word of the present rulers of Germany could not he taken for anything worth whlln. but he took care to disclaim, any intention to suggest a change In German institutions. Everywhere tn Washington It was agreed that the President had made a great addresa and had given expression to the views of the American people as a whole. The dtffcrer.ee of opinion was as to whether It was a peace or a war speech. Some member of both houses of Congress proteased to believe that the- the- Germans might find the terms laid down acceptable as basis of . negotiation and to hop that a bona-lido bona-lido bona-lido offer trtgf result. In most quarters however, there was no such optimism, and the speech was looked upon upon as a great war document clearing the atmosphere for th governments and peoples righting righting Germany, heartening the disorganized disorganized Russians and furnishing furnishing a light for the Gcntuut people themselves when they want to see it. PSYCHOLOGICAL MOMENT. In response to the universal query as to tha reasons which. Impelled the Chief Executive to make his appearance so unexpectedly unexpectedly before Congress again to j nciitte the aims of the Univ j &quot;tales and its cooellig-rentsj cooellig-rentsj cooellig-rentsj . was stated authoritatively authoritatively oat In the opinion cf President Wilson the psychological psychological moment had arrived when it was absolutely necessary to make a strong effort to counteract counteract the evil effects of German duplicity and double dealing upon upon the Russians who had been charged to meet the trained German negotiators. It Is felt that no efforts should be spared to prevent a resumption of th Brest-Li Brest-Li Brest-Li to vsk negotiations by the Russians, without carnet hut kindly admonition bv th Allies and America of the terrible terrible dangers to which she is exposed. Th President assumed in his message to Congress that tht negotiations have been broken off. Yet. It la felt In official circles circles here. that, alarmed by th Irritating effect upon their own people of the sudden withdrawal of the longed-for longed-for longed-for peace with their eastern neighbor, from (Con tinned on Second Page.) Turned. Defined by Gerard Prominence. It. It is bound to create deep thought In Vienna, in Petrograd and in Constantinople, but the deepest and most interest In Berlin. PACIFISTS ROCTED. John Spargo, who resigned fmn the Executive Committee of th American Socialist party last aprinc because of the pro-German pro-German pro-German attitude of tho official organisation, said: &quot;It is a masterly presentation oi th almi of th? democratic peoples, nobly conceived and admirably expressed. expressed. T don&#039;t e how -y -y internationalist internationalist can nnd fault with it. Following so soon after Lie, o. George&#039;s statement. wb!fh &#039;t sup plements, tho address leaves our pacifists not a leg to sf md un. nor a peg upon hich to hang a criticism.&quot; SHOULD GO TO ENXirr Former Speaker Cannon sail-&quot;I sail-&quot;I sail-&quot;I this avidrua could e r-Md. r-Md. r-Md. every mart, won an and t v-j v-j v-j thoroughly esjUlad and Austria.&quot; Grmanw a,</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1918/01/09">09 Jan 1918, Wed</a>,&nbsp;
+<a href="/image/155942691/">Page 1</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1918/01/09">09 Jan 1918, Wed</a>,&nbsp;
+<a href="/image/155942691/">Page 1</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/jrademacher/" class="avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li><a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>   19 Jul 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>  &ndash;  19 Jul 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12475677"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1918/01/09">09 Jan 1918, Wed</a>
+&nbsp;•&nbsp;<a href="/image/155942691/">Page 1</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12475677#spot=12475677"  onclick="checkViewAccess('image',155942691,'/image/?spot=12475677#spot=12475677',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/155942691/250/0/0_0_4003_4995/0/yes/0_0_4003_4995.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by jrademacher <a href="/profile/jrademacher/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17032274//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/202572050/150/150/979_370_1005_1627.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/15165540//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/200841071/150/150/0_64_3401_5191.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/14866343/test/" title="test">
+<i><img src="/i/spacer.gif" alt="test" style="background-image: url(https://img.newspapers.com/img/thumbnail/201375373/150/150/2251_1001_1310_1757.jpg);"/></i>
+<span class="alsoby-text">test</span></a>
+</li>
+<li> <a href="/clip/13450538/thornton_ad/" title="Thornton Ad">
+<i><img src="/i/spacer.gif" alt="Thornton Ad" style="background-image: url(https://img.newspapers.com/img/thumbnail/281264290/150/150/3338_2836_2139_2999.jpg);"/></i>
+<span class="alsoby-text">Thornton Ad</span></a>
+</li>
+<li> <a href="/clip/12524149//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/196463225/150/150/0_0_4045_6413.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12475677;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12475677&amp;name=&amp;print=1';
+var imageId = "155942691";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12475677\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 09 Jan 1918, Wed\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"09 Jan 1918, Wed\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/155942691\\/400\\/400\\/0_0_4003_4995\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1918-01-09";
+var pageEdition = "";
+var pageNumber = "1";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":450,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

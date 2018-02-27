@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12013616/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 10 Apr 1962, Tue.  If you had S7 or SS million dollars in liquid cash and a line of credit that let you borrow $10 million more, what would you do with it? High on the list of things I would not do with it is build a ba"><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 10 Apr 1962, Tue.  If you had S7 or SS million dollars in liquid cash and a line of credit that let you borrow $10 million more, what would you do with it? High on the list of things I would not do with it is build a ba"><meta name="keywords" content=", Tronc_Archives, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12013616/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12013616/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=161920663&width=557&height=808&crop=0_0_3954_5842&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671561&h=3afc8ba1253b49bd8ea83fc1d1f53d2d">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "10 Apr 1962, Tue";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12292170">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/Tronc_Archives/" class="c-avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12013616"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12013616#spot=12013616"  onclick="checkViewAccess('image',161920663,'/image/?spot=12013616#spot=12013616',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=161920663&width=557&height=808&crop=0_0_3954_5842&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671561&h=3afc8ba1253b49bd8ea83fc1d1f53d2d" alt=" - If you had S7 or SS million dollars in liquid..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">If you had S7 or SS million dollars in liquid cash and a line of credit that let you borrow $10 million more, what would you do with it? High on the list of things I would not do with it is build a baseball park. It is also, as it happens, high on the list of things most people would not do with it. Which explains why more than one businessman in the City of the Angels goes down to the hill overlooking Chavez Ravine in the hills athwart :the city these days and stares incredulously at the ;scene before him. There, by heaven and by Walter O&#039;Malley, just as he said it would, stands a baseball park. Not just ;any baseball park but the Taj Mahal, Parthenon iand Westminster Abbey of baseball II is a work t art even if you think a hit-and-run hit-and-run hit-and-run hit-and-run hit-and-run is an auto HERE IT LOOK IT OVER HOMER OUTPUT TO BE SLASHED BY PAUL ZIMMERMAN, Sports Editor The crashing thunder of home runs that were hit at the Coliseum and VVrigley Field last season -will -will be diminished perceptibly perceptibly this year when ihe Dodgers and Angels Irnove into Chavez Ra-ivine. Ra-ivine. Ra-ivine. ! While important, this will be only one of a number of salubrious effects effects a respectable playing playing field will have on major baseball here. The two Los Angeles stadia held the dubious honor in 1961 of making possible more circuit wallops than any others in the land. Despite all the hoorah READY TO GO Here is the 1 962 Dodger squod. Left to right, front row: Andy Carey, Daryl Spe&quot;-.&#039; Spe&quot;-.&#039; Spe&quot;-.&#039; cer, Larry Sherry, Maury Wills, coach Greg Mul-ieavy, Mul-ieavy, Mul-ieavy, coach Pete Reiser, manager Wort Alston, cooch Leo Purocher, coach Joe Becker, Lee Walls, Don Dry)!. Second row: Jack Smith, Dick Dodger Stadium in Chover Rovine opens today with the first baseball gome about the Coliseum&quot; &#039;Chinese Curtain&quot; in left field. Wrigley Field made a piker out of its neighbor stadium to the west. A total of 248 homers were powdered out of the park on Avalon. compared compared to a mere 192 at the Coliseum. To give you some idea what these&#039;figures mean. Tiger Stadium in Detroit took No. 2 honors in the American League with Go less circuit clouts. It is interesting to note here that, after all the complaint about the Coliseum Coliseum when the Dodgers Turn to Pg. 23, Col. 1 accident, a pitcher something to pour lemonade out of and a slider an unexpected trip on a banana peel. Like all works of art, it grew out of great travail, travail, was conceived in controversy and executed under under harassment. Like a Rembrandt, it is a one- one- THE BIG PUSH Here on May 23, 1960, with Trocewski, Larry Burright, Doug Camilli, Wally Moon, Thad Tillofson, Bobby Prescott, Ron Per-ranoski. Per-ranoski. Per-ranoski. Third row: Willie Davis, Ron Fairly, Tim Harkness, Ken McMullen, Pet Richert, coach Carrol Beringer, Willard Hunter, Jim Gilliam. Fourth row: traveling secretory Lee Scott, Tommy JIM MURRAY Monument to Walter was Chavez Ravine site stadium area excavated. purpose artifact.. Its acoustics will not play host to the lyric soarings of great music, only the muted profanities of frustrated athletes and the off-key off-key off-key earaches of the Star-Spangled Star-Spangled Star-Spangled Banner. No Greek tragedies will adorn the infield, just the minor ones of a shortstop who forgot to bend down, a&#039; batter who misjudged the plane of a thrown ball and, perhaps, perhaps, the pitcher who went to the well too often and got full of good wine. The ballet performed there will be the kind truekdrivers understand and the Ballet Russe does not. The entrechats will be intended to elude hemorrhaging hemorrhaging from spike wounds, not to outdo Nijin-sky. Nijin-sky. Nijin-sky. The tour jetes will be meant to bring a run, not applause. H is a su-ange su-ange su-ange monument to the career, life and times of Walter F. O&#039;Malley, a man who came into Turn to Pg.il, Col. I played in.Arnerica&#039;s most Eight mill ion cubic ya moved for the stadium Davis, Frank Howard, Jim Ward, Norm Sherry, Liv Julian, Johnny Werbas, Duke Snider, Joe Moeller. Fifth row: Sandy Koufox, John Rose&#039;-boro, Rose&#039;-boro, Rose&#039;-boro, Nick Willhite, Johnny Pod res, Stan Williams, Williams, Phil Ortega. Dodgrs open 1962 season today against defending chempion Cincinnati. .1 beautiful boll park. The rds of earth had to be and the parking areas. ioaJSngeles (Etas .Ua SOUVENIR SECTION PART VI TUESDAY MORNING, APRIL 10, 1962 rsa- rsa- - &quot; &quot; r &#039; i tfirr&#039; - - fi- - - project took nearly three Time photo tv Dick Ollvtr from KAAPC Newest Baseball BY CHARLIE PARK O&#039;Malley&#039;s Mammoth Miracle (Dodger Stadium w the landlord Dodpers Wnd Chavez Ravine to the tenant Angels) is an eyepopper, the most glamorous baseball park in history. Sprawled across an area which only a short time ago was a mountainous mountainous goat pasture, it. truly is an artistic and rngincering marvel. The 56.000-seat 56.000-seat 56.000-seat structure structure embodies scads of unique features, includ-in includ-in includ-in the way it was financed. financed. It is the first major league park to be built with private funds in nearly 40 years. The tab runs close to $18 million. Baseball &#039;Firsts&#039; Dodger president Walter Walter F. O&#039;Malley points with pride to these baseball baseball &quot;firsts&quot; his dream baby offers: 1 Seven different front rows: 2 Dugout boxes. 3 Seat sections in different different colors. 4 Biggest message board in baseball. 5 Terraced parking eliminating virtually all vertical climbing. . 6 Unobstructed vision vision from each seat. 7 70&quot; of the seat3 within the infield area. Boxes Below Field There are four tiers in the stadium, plus a fifth level between the second second and third tiers on which is housed the exclusive exclusive Stadium Club, the &quot;Diamond Room,&quot; a posh restaurant: the &quot;Abner Doubleday Lounge.&quot; some 1.600 de luxe seats, pressbox, ra years to complete Alrwatch Helicopter piloted by Herb Green Stadium Marvel dio and television booths and the Dodger offices. The first front row is below the field on the same level as the players&#039; players&#039; dugouts and was prepared for a select 234 patrons. There are two pavilions pavilions (bleachers, to you) in the outfield, each with 3,000 seats which have back supports. Field level seats are yellow: loge level, orange; orange; Stadium Club and dugout boxes, red. yellow yellow and blue; third tier, green, and top tier, blue. Color-Keyed Color-Keyed Color-Keyed Tickets are color-keyed color-keyed color-keyed to correspond with the hues of the sections, sections, as are the parking&#039; areas which will hold 16.000 cars. There are 24 powder rooms for the gals and an equal number of rest rooms for men throughout throughout the park. On the top tier is a public restaurant. restaurant. The scats are i.mong the widest and most modern ever supplied for a sports arena, measuring measuring from 19 to 22 in. in width instead of the usual 17-18. 17-18. 17-18. Backs and seats are of steam-bent steam-bent steam-bent hardwood. Four scoreboards will keep fans posted on everything everything that happens. Two are in the outfield and two auxiliary boards are on balcony railings of the Stadium Club level. Message Board The board In right centeriield, 75x34 ft, ia above the pavilion and gives line-ups, line-ups, line-ups, score by innings and game statistics. statistics. The one in left center center flashes results of other other games, attendance, , Torn tePr.t, Cell &#039;</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1962/04/10">10 Apr 1962, Tue</a>,&nbsp;
+<a href="/image/161920663/">Page 119</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1962/04/10">10 Apr 1962, Tue</a>,&nbsp;
+<a href="/image/161920663/">Page 119</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/Tronc_Archives/" class="avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<ul>
+<li><a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a>   29 Jun 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/Tronc_Archives/" class="c-avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a>  &ndash;  29 Jun 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12013616"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1962/04/10">10 Apr 1962, Tue</a>
+&nbsp;•&nbsp;<a href="/image/161920663/">Page 119</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12013616#spot=12013616"  onclick="checkViewAccess('image',161920663,'/image/?spot=12013616#spot=12013616',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/161920663/250/0/0_0_3954_5842/0/yes/0_0_3954_5842.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by Tronc_Archives <a href="/profile/Tronc_Archives/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17064363/1938_lat_masthead/" title="1938 LAT MASTHEAD">
+<i><img src="/i/spacer.gif" alt="1938 LAT MASTHEAD" style="background-image: url(https://img.newspapers.com/img/thumbnail/160072725/150/150/1007_199_2406_398.jpg);"/></i>
+<span class="alsoby-text">1938 LAT MASTHEAD</span></a>
+</li>
+<li> <a href="/clip/16044195//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120746810/150/150/0_0_4085_5705.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044101//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/717_4503_1087_1163.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044068//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/0_0_4845_6750.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044023//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/722_4517_1083_1173.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12013616;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12013616&amp;name=&amp;print=1';
+var imageId = "161920663";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12013616\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 10 Apr 1962, Tue\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"10 Apr 1962, Tue\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/161920663\\/400\\/400\\/0_0_3954_5842\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1962-04-10";
+var pageEdition = "";
+var pageNumber = "119";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":355,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

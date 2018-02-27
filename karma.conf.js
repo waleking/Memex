@@ -10,6 +10,13 @@ module.exports = function(config) {
             // './node_modules/phantomjs-polyfill/bind-polyfill.js',
             'test/browser.js',
             // each file acts as entry point for the webpack configuration
+            {
+                pattern: 'test-content/html/**/*',
+                included: false,
+                served: true,
+                watched: false,
+                nocache: true,
+            },
         ],
 
         // frameworks to use

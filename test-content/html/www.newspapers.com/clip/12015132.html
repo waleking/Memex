@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12015132/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 29 Oct 1981, Thu.  Late Racing Morning Final Circulation: 1 .036.522 Daily 1.290, 194 Sunday Thursday, October 29, 1981 MF184 pages Copyright 1981. Los Angeles TimesDaily 25c Dodgers Rout NoYo, Wie Series Reagan Wins A "><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 29 Oct 1981, Thu.  Late Racing Morning Final Circulation: 1 .036.522 Daily 1.290, 194 Sunday Thursday, October 29, 1981 MF184 pages Copyright 1981. Los Angeles TimesDaily 25c Dodgers Rout NoYo, Wie Series Reagan Wins A "><meta name="keywords" content=", Tronc_Archives, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12015132/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12015132/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=171157487&width=557&height=843&crop=0_0_3180_4904&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671552&h=5b805ce3ffae8e745053ae77a665cd35">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "29 Oct 1981, Thu";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12293709">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/Tronc_Archives/" class="c-avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12015132"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12015132#spot=12015132"  onclick="checkViewAccess('image',171157487,'/image/?spot=12015132#spot=12015132',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=171157487&width=557&height=843&crop=0_0_3180_4904&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671552&h=5b805ce3ffae8e745053ae77a665cd35" alt=" - Late Racing Morning Final Circulation: 1..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">Late Racing Morning Final Circulation: 1 .036.522 Daily 1.290, 194 Sunday Thursday, October 29, 1981 MF184 pages Copyright 1981. Los Angeles TimesDaily 25c Dodgers Rout NoYo, Wie Series Reagan Wins A WACS Fight By RUDY ABRAMSON. Times Stall Writer WASHINGTON By a vote of 52 to 48. the Senate on Wednesday cleared the way for the controversial S8.5-bilIion S8.5-bilIion S8.5-bilIion AWACS sale to Saudi Arabia, handing President Reagan a come-from-behind come-from-behind come-from-behind come-from-behind come-from-behind victory in his first major foreign policy showdown with Congress. Ending a fierce struggle that had &quot; gone on for months, the vote turned Wage Concessions Steelmaker, Union Going ThroughMill By BARRY SIEGEL. Times Staff Writer CANTON. Ohio When the Tim-ken Tim-ken Tim-ken Co. announced earlier this year it was considering building a $500-million $500-million $500-million steel mill here that would provide 1.000 new jobs, it seemed a godsend for this depressed industrial industrial area. There was just one hitch. The Timken Co. wanted the sort of contract concessions from the United Steelworkers that a number of other unions have recently been granting recession-strained recession-strained recession-strained companies companies in an effort to retain jobs and keep plants open. The company said the concessions concessions were needed to make the project economically feasible and competitive in the world market Without them. Timken might build the plant on alternative sites in Kentucky or Tennessee. County and state officials there were eagerly eagerly offering everything from tax breaks to new roads. A Second Hitch So, after negotiations, union leaders leaders here endorsed the concession package and offered it to the rank-and-file rank-and-file rank-and-file rank-and-file rank-and-file workers. Then came a second hitch. On Oct 11. workers startled Timken. Timken. government and union leaders by voting narrowly to reject the concessions. Distracted by warm fall weather and a Cleveland Browns-Pittsburgh Browns-Pittsburgh Browns-Pittsburgh Steelers football football game on television. 83 of the 9.000 union members eligible did not even bother to vote. The union rejection has left this city of 95,000 in an uproar. Community leaders, letter writers writers and local newspaper editorials have described the vote with expressions expressions such as &quot;disbelief,&quot; &quot;amazed,&quot; &quot;hard to understand.&quot; &quot;self-destructive&quot; &quot;self-destructive&quot; &quot;self-destructive&quot; and &quot;selfish tunnel tunnel vision.&quot; The steelworkers have not been very happy either. Workers have threatened periodically periodically to burn down union leaders&#039; houses if they negotiated concessions, concessions, according to some sources within the union. Union officials shake their heads and acknowledge Please see UNION, Pate 16 AWACS Struggle Carries a Price, However Victory Bolsters Reagan&#039;s Hand at Home, Abroad By JACK NELSON. Times Washington Bureau. Chief WASHINGTON President Reagan&#039;s Reagan&#039;s stunning victory in the Senate on the sale of AWACS radar aircraft to Saudi Arabia should strengthen his hand at home and abroad, even though he achieved it at some political political cost. At home, the victory bolstered Reagan&#039;s image as a strong leader by demonstrating once again his mastery of the legislative process and his determination to keep a promise, even when he faces what seems to be almost insurmountable opposition. Abroad, the victory should shore up U.S. relations with Saudi Arabia and strengthen pro-Western pro-Western pro-Western elements elements in the Saudi ruling family, who favor the continued high levels of oil production that are important for the U.S. economy as well as its security. back a bid by opponents of the sale to veto an agreement concluded between between the Reagan Administration and the Saudi government last February. February. Four senators who had opposed the sale Sen. Slade Gorton (R-Wash.). (R-Wash.). (R-Wash.). Sen. William S. Cohen (R-Me.). (R-Me.). (R-Me.). Sen. Mark Andrews (R-N.D.) (R-N.D.) (R-N.D.) and Sen. Edward Zorinsky CD-Neb, CD-Neb, CD-Neb, (switched sides during the final debate, two of them on the roll-call roll-call roll-call vote, to give the President his victory. Until this week, the Senate had appeared certain to veto the transaction transaction and block a presidential arms sale for the first time in history. Breakdown by Party However, the President carried the day when 41 Republicans. 10 Democrats and Independent Harry F. Byrd of Virginia voted to kill a resolution that would have disapproved disapproved the sale. Voting for the resolution resolution were 36 Democrats and 12 Republicans. California&#039;s senators split on the issue, with Republican S. I. Hayakawa supporting the President and Democrat Alan Cranston Cranston opposing him. The House voted. 301 to 111. two weeks ago to disapprove the sale, but both houses of Congress must reject proposed arms sales before they are dead. The White House managed to reverse reverse the votes of several opposing Republican senators and save the agreement Wednesday by sending Congress a five-page five-page five-page letter of assurances assurances regarding sale of the five airborne warning and control system system planes to the Saudis. The letter went beyond the language of the official official agreement itself. In recent days, the President had given top priority to personal appeals appeals to senators, arguing that de- de- Text of Reagan letter. Page 11. Other stories. Pages 7. 9 and 10. feat of the sale would gravely undermine undermine his foreign policy leadership. leadership. He waged his campaign into the last hours of Senate consideration. consideration. . Opponents of the salefnaintained to the end that it would accelerate the arms race in the volatile Middle East, undermine the security of Israel Israel and jeopardize the security of sophisticated military technology by putting it into the hands of a potentially unstable government in Saudi Arabia. Minutes after the vote, the President President took the first step in what is expected to be a concerted effort to reassure Israel that the present relationship relationship between the two countries countries will remain the keystone of U.S. Middle East policy. Please see AWACS, Page 6 But Administration officials recognize recognize that in the end they may have to pay for their victory. A White House aide, suggesting that the wounds inflicted at home and abroad might be a long time healing, healing, said. &quot;A win is better than a loss, but there is blood all over the floor.&quot; In forcing the issue on the sale despite heavy opposition, the Administration Administration rolled over some Republicans Republicans as well as Democrats in the Senate and antagonized the American Jewish community, which fought the deal to the bitter end. A leading Jewish lobbyist in Washington, who declined to be identified, said he expects the Jewish Jewish community to react bitterly against Reagan, but added, &quot;A lot Please see REAGAN, Page 12 Dodger players rejoice over winning the World Series by beating Yankees, 9-2, 9-2, 9-2, in sixth game in Last-Minute Last-Minute Last-Minute Letter Sews Up Vote in Senate By GEORGE SKELTON and PAUL HOUSTON, Times Staff Writers WASHINGTON A last-minute last-minute last-minute letter from President Reagan spelling spelling out guarantees to keep AWACS radar surveillance planes from being being used against Israel or falling into enemy hands was the final maneuver that sewed up the President&#039;s President&#039;s dramatic victory in the Senate Senate on Wednesday. But what really spelled victory for the White House was a combination combination of Reagan charm and old-fashioned old-fashioned old-fashioned pressure politics a combination combination Reagan has used several times before in such legislative fights. As Reagan is fond of saying, he first tries to help legislators &quot;see the light.&quot; And if they don&#039;t, he says, &quot;we make them feel the heat.&quot; One of those who felt the heat was Sen. David Pryor (D-Ark.). (D-Ark.). (D-Ark.). Called to the White House for a private private meeting, Pryor held out and voted against Reagan in the end but said. &quot;The President&#039;s lobbying effort effort was as strong as train smoke, as they say back home.&quot; Voted Against, Then For Another Democrat who got the treatment. Sen. Edward Zorinsky of Nebraska, had previously voted against the sale of AWACS and other other military equipment to Saudi Arabia Arabia when the deal came up in the Senate Foreign Relations Committee. Committee. But after his session with Reagan Reagan on Wednesday. Zorinsky went back to the Senate and voted for the sale. &quot;Sure I feel pressured.&quot; the senator senator told reporters. Zorinsky said he was lobbied in- in- tensely by &quot;everyone who&#039;s got a vested interest (in the deal) economically, economically, both in the state of Ne- Ne- Flease see STRATEGY, Page 8 I NDEX Astratogr Pan II METRO Page2 BookRelfews V VIEW 21.22,25,26 Clanifed VII CLASSIFIED 1-16 1-16 1-16 Cooks V VIEW 27 CiDmrord VII CLASSIFIED 16 DewAoby II METRO 3 Editorials II METRO 10,11 Films VI CALENDAR 1-7 1-7 1-7 Local News 11 METRO 1-7,9,12 1-7,9,12 1-7,9,12 Markets IV BUSINESS 1-12 1-12 1-12 Mak V! CALENDAR 1-3 1-3 1-3 Redoes VIII FOOD Sports HI SPORTS 1-16 1-16 1-16 Stage VI CALENDAR 2 Tangle Town l-C l-C l-C 6 TV-Radio TV-Radio TV-Radio VI CALENDAR I.S-10,12 I.S-10,12 I.S-10,12 Weather, Deatlu II METRO g Millions Walk Off Jobs in 1-Hour 1-Hour 1-Hour Polish Strike By DAN FISHER, Times Staff Writer WARSAW Millions of Polish workers walked peacefully off the job for an hour Wednesday in what both Solidarity union chief Lech Walesa and Premier Wojciech Ja-ruzelski Ja-ruzelski Ja-ruzelski said they hoped would be the last such nationwide strike in Poland. Walesa, who appeared at Warsaw&#039;s Warsaw&#039;s Rosa Luxembourg light-bulb light-bulb light-bulb factory for the national protest, said: &quot;I want this to be the last strike of this kind. We should find more effective protests that would help us.&quot; A few hours later, Jaruzelski who is also the head of Poland&#039;s Communist Party, the country&#039;s defense defense minister and a general in the army opened a meeting of the party&#039;s policy-setting policy-setting policy-setting Central Committee Committee by calling on the union to stop such walkouts &quot;in the name of the highest good, in the name of the salvation of the nation.&quot; Despite an intense government Attorney Sues Store Pays for Rude Cashier By MARK GLADSTONE, Times Staff Writer Torrance attorney Donald B. Brown was angry enough when a market checker was rude and suspicious suspicious over his $25 check, but he became became really furious when his complaint complaint to the store chain brought a response he calls &quot;insulting and humiliating.&quot; humiliating.&quot; Brown filed a $150,000 suit against Alpha Beta and the checker on charges of slander and intentional intentional infliction of emotional distress. He contended it was time someone stood up for courtesy and good manners on the part of those serving serving the public. Superior Court Judge Thomas Fredericks agreed with him and. after after a brief non-jury non-jury non-jury trial, ruled in his favor. Brown was awarded a judgment judgment of $500. plus court costs. Please tee RODE, Page 21 The Weather Variable clouds today and fair Friday. Highs today. 68 and Friday 72 to 76; lows 52 to 56. High Wednesday. Wednesday. 72; low. 60. High Oct 28 last year. 82: low, 56. Record high Oct. 28. 94 in 1931: record low. 45 in 1903. Complete weather details and smog forecast In Part II, Page 8. a M SUSAN HENDLEK Lot Angela Tuna New York. From left are Derrel Thomas, Steve Howe, Steve Yeager and Steve Garvey. propaganda campaign over the last several days and dire warnings to cancel the protest, the strike went off without incident. Solidarity had called the walkout to protest food shortages, government economic policies and alleged harassment of union activists. Solidarity officials described the strike as an unqualified success that, they claimed, was supported by 75 to 90 of all Polish workers not just Solidarity members depending depending on their location. Jaruzelski. however, told the Central Committee that &quot;this time the strike did not have total support. support. For the first time, on such a scale and with such clarity, a stand against the strike was taken&quot; by a number of organizations, including the pro-government pro-government pro-government trade unions. Polish television reported Wednesday Wednesday night that almost one-third one-third one-third of the workers at the Luxembourg light bulb plant, where Walesa spoke, refused to support the strike. The walkout was only the second of its kind since Solidarity was born more than 14 months ago in the shipyards of the port city of Gdansk. The union staged a four-hour four-hour four-hour national national warning strike on March 27 to protest the beatings of three of its members in Bydgoszcz. Wednesday&#039;s protest halted all municipal transportation in cities Please see POLES, Page 14 Soviet Sub Runs Aground Near Swedish Naval Base STOCKHOLM 0B-A 0B-A 0B-A 250-foot 250-foot 250-foot Soviet submarine with a crew of 54 ran aground and became stuck in shallow water in a secret zone near a Swedish naval base, authorities said Wednesday. Sweden lodged a strong protest with the Soviet Union over violation violation of Swedish territorial waters and refused Kremlin requests to let the Soviets tow the sub free. Authorities said that Warsaw Pact units equipped for submarine salvage apparently were heading toward the area 300 miles south of Stockholm where the submarine ran aground Tuesday night. They said Swedish naval reinforcements were on their way to ward them off. The sub was aground in the Karlskrona Archipelago, which juts into the Baltic Sea. The captain, identified only as Gushin. blamed &quot;navigational error due to faulty radar radar and bad weather,&quot; officials said. But Jan-Ake Jan-Ake Jan-Ake Berg, spokesman for the Swedish chief of staff, dis Comeback Trail Led to 4th Title Pedro Guerrero drove in five runs with a home run. triple and single and the Dodgers climaxed a remarkable remarkable series of playoff comebacks comebacks Wednesday night by routing the New York Yankess. 9-2. 9-2. 9-2. to win the 78th World Series at Yankee Stadium. !t was the fourth straight victory for the Dodgers after they had dropped the first two games at Yankee Stadium. Previously, they had come from an 0-2 0-2 0-2 deficit to beat the Houston Astros, 3-2. 3-2. 3-2. in the National National League West divisional playoffs playoffs and had overcome Montreal. 3-2. 3-2. 3-2. after trailing 1-2 1-2 1-2 in the NL championship championship playoffs. The result was an exact reversal of the 1978 World Series when the Yankees lost the first two games at Dodger Stadium, then won the next four. The victory gave Los Angeles its fourth world championship and its first since 1965 when they beat the Minnesota Twins. Previously they won championships in 1959 over the Chicago White Sox and in 1963 over the Yankees. Frustrated Since 1965 They had been frustrated since 1965. however, losing to the Baltimore Baltimore Orioles in 1966. the Oakland A&#039;s in 1974 and the Yankees in 1977 and 1978. &quot;It feels just like 1 anticipated.&quot; said Dodger manager Tom Lasorda. &quot;I&#039;m the happiest man in the world. We&#039;re bringing the championship back to Los Angeles where it belongs. belongs. &#039;These guys gave me a lifetime of thrills in one year.&quot; Said Guerrero, who was voted a share of the Most Valuable Player award with Ron Cey and Steve Yeager: &quot;I feel so happy. I thank God for making this dream come true. I always dream of playing the Yankees in the World Series and winning. I&#039;m having trouble believing believing it really happened. It feels so good.&quot; Cey, whose participation in the game had been doubtful because of the effects of his beaning by Rich Gossage on Sunday, started at third base and got two hits in three trips, scoring a run and driving in one. before before taking himself out of the lineup in the sixth inning. &quot;I felt OK at the beginning but then I got a little queasy.&quot; Cey said. &quot;I may have tried to do too much. I&#039;m glad it&#039;s over.&quot; Steinbrenner Apologizes Yankee owner George Steinbrenner. Steinbrenner. bitter over his team&#039;s collapse, issued this statement: &quot;I want to sincerely apologize to the people of New York and to the fans of the New York Yankees everywhere for the performance of the Yankee team in the World Series.&quot; Burt Hooton was the winning pitcher, going 5VS innings and allowing allowing five hits and both New York runs. Steve Howe came on in relief, giving up only two hits and no runs in 3 innings. Victory parade Friday, Part II, Page 1. Game details in Sports Section. Section. counted the possibility of navigational navigational failure. He said, &quot;You only have to look at the nautical charts to realize that it is virtually impossible. impossible. To get that far inside the archipelago archipelago requires very careful navigation.&quot; navigation.&quot; Swedish Foreign Minister Ola Ullsten said the government found the captain&#039;s plea unacceptable and demanded an explanation from the Soviets, who frequently hold maneuvers in the Baltic and call it the &quot;Sea of Peace.&quot; &quot;When we were alerted that a sub had been sighted so far inside Swedish waters, we were very skeptical,&quot; Lennart Foreman, navy commander, said. &quot;We thought it very unlikely that a submarine managed to get that far into Swedish Swedish waters, which are very unsuitable unsuitable for navigation in submerged position.&quot; The sub was identified as belonging belonging to the &quot;Whisky&quot; class, a non-Please non-Please non-Please see SUB. Page 12</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1981/10/29">29 Oct 1981, Thu</a>,&nbsp;
+<a href="/image/171157487/">Page 1</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1981/10/29">29 Oct 1981, Thu</a>,&nbsp;
+<a href="/image/171157487/">Page 1</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/Tronc_Archives/" class="avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<ul>
+<li><a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a>   29 Jun 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/Tronc_Archives/" class="c-avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a>  &ndash;  29 Jun 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12015132"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1981/10/29">29 Oct 1981, Thu</a>
+&nbsp;•&nbsp;<a href="/image/171157487/">Page 1</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12015132#spot=12015132"  onclick="checkViewAccess('image',171157487,'/image/?spot=12015132#spot=12015132',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/171157487/250/0/0_0_3318_4904/0/yes/0_0_3180_4904.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by Tronc_Archives <a href="/profile/Tronc_Archives/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17064363/1938_lat_masthead/" title="1938 LAT MASTHEAD">
+<i><img src="/i/spacer.gif" alt="1938 LAT MASTHEAD" style="background-image: url(https://img.newspapers.com/img/thumbnail/160072725/150/150/1007_199_2406_398.jpg);"/></i>
+<span class="alsoby-text">1938 LAT MASTHEAD</span></a>
+</li>
+<li> <a href="/clip/16044195//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120746810/150/150/0_0_4085_5705.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044101//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/717_4503_1087_1163.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044068//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/0_0_4845_6750.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044023//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/722_4517_1083_1173.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12015132;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12015132&amp;name=&amp;print=1';
+var imageId = "171157487";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12015132\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 29 Oct 1981, Thu\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"29 Oct 1981, Thu\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/171157487\\/400\\/400\\/0_0_3180_4904\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1981-10-29";
+var pageEdition = "";
+var pageNumber = "1";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":459,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

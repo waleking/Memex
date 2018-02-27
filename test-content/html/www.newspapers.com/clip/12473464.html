@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12473464/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 07 Aug 1945, Tue.  to Jut IN TWO PARTS ALL THE NEWS ALL THE TIME largest Horns Delivered Circulation Largest Advertising Volume LIBERTY UNDER THE LAW TRUE INDUSTRIAL FREEDOM PART I - GENERAL NEWS Timet Offlcei 202 Watt "><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 07 Aug 1945, Tue.  to Jut IN TWO PARTS ALL THE NEWS ALL THE TIME largest Horns Delivered Circulation Largest Advertising Volume LIBERTY UNDER THE LAW TRUE INDUSTRIAL FREEDOM PART I - GENERAL NEWS Timet Offlcei 202 Watt "><meta name="keywords" content=", jrademacher, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12473464/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12473464/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=159724935&width=557&height=727&crop=0_0_4354_5790&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671567&h=0aae0a64fa043c2a54c6f31514bd1302">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "07 Aug 1945, Tue";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12758892">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12473464"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12473464#spot=12473464"  onclick="checkViewAccess('image',159724935,'/image/?spot=12473464#spot=12473464',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=159724935&width=557&height=727&crop=0_0_4354_5790&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671567&h=0aae0a64fa043c2a54c6f31514bd1302" alt=" - to Jut IN TWO PARTS ALL THE NEWS ALL THE TIME..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">to Jut IN TWO PARTS ALL THE NEWS ALL THE TIME largest Horns Delivered Circulation Largest Advertising Volume LIBERTY UNDER THE LAW TRUE INDUSTRIAL FREEDOM PART I - GENERAL NEWS Timet Offlcei 202 Watt First Street . Let Angeles 53, Cat. Times Telephone Number MAdlson 2345 Vol. lxiv cc TUESDAY MORNING, AUGUST 7, 1945 DAILY, FIVE CENTS mm mm mm IP koine Ace&#039;s &#039;Shooting Star7 Blows Up in Test Flight Over North Hollywood niuiltcrted ob Page 3. Par) 1 Maj. Ulchard I. Bong, the i 24-year-old 24-year-old 24-year-old 24-year-old 24-year-old Army pilot who hot down 40 Jap planes to become become America&#039;s foremost ace, yesterday died in the aerial explosion of a P-80 P-80 P-80 jet-pro- jet-pro- jet-pro- jet-pro- pelled Shooting Star which he was flying as a test pilot for the Army&#039;s Air Technical Service Command. ,A witness said tne super-fast super-fast super-fast j airplane of tomorrow burst into ; flame and exploded SO feel above the ground&#039; In the vicinity of I Satsuma St and Oxnard Blvd.. North Hollywood, four mln- mln- j utes after he took; off from the , Lockheed terminal at 2:30 p.m. 1 The .witness, Mrs. George H. &#039; Kane Jr. of 6118 Satsuma St., paid she saw a man Jump from j the plane with his Jiands over his head. She said she did not J&quot;) iee a parachute. An instant later, according to her story, the crtft literally disintegrated in a I naming&#039; eptploalon which caught i the pilot in the air. Othir Witnesses &#039; With three men, also wit nesses to the crash, Mrs. Zane &#039; raced to a vacant tot where the flying parts of the ship landed. They saw Bong&#039;s body about 100 , feet away from the plane&#039;s turbine, turbine, wrapped in flames. It was obvious that the curly-i curly-i curly-i headed winner of the Congres-I Congres-I Congres-I sional Medal of Honor and the &#039; &quot;hottest&quot; combat pilot in the I nation&#039;s hlitorv. was dead. Although .Mrs. Zane saw no &#039; evidence of a parachute as the figure leaped from the plane, charred remnants of a chute ! were still attached to Maj. Bong&#039;s t body. It could not be determined, I according to Army officers at the 1 scene, whether he had attempt&#039; ed to &quot;hit the silk&quot; from such a 1 low altitude or whether the para&#039; &#039; chute pack had spilled open s when his hurtling body hit the &#039; around. From Frank Bodenhamer, Lockheed service mechanic who ! watched Bong lift the jet plane ! Into the air, came this descrtp- descrtp- I tlon of the tragedy: &quot;We . always watch those I Shooting Stars take off. Maj. Bong took off normally, but as y &#039; he passed the control tower we noticed a man on tne observa i tlon platform of the tower run i nround on the other side to j watch the plane. Terrible &#039;Sight l &quot;We knew something was wrong when we saw a puff of black smoke come out just as he leveled off in flight. The right wing seemed. to tip. a little. The &#039; next thing we&#039; knew the escape i natch came on. The plane start&#039; ed Into a glide and then sort of nosed over straight down. We saw a column of smoke go ; up in the air about 400 feet. It &#039; was a terrible sight.&quot; i As soon as Bong &#039;was air borne. It was learned, he contacted contacted the control tower at the Tom to Page 8, Column 6 V-,Tr.!, V-,Tr.!, V-,Tr.!, Times photo CAREER ENDS Here&#039;s recent recent photo of Maj. Richard Bong, plane blast victim. &#039;xplosion Ki s Mai. mng Major Plant Extension Here Forecasting large expansion of the automobile industry here, negotiations are under way for the purchase of 125 acres north of Van Nuys by the General Motors Corp. as site for an ex tensive assembly plant to supplement supplement the corporation&#039;s pres ent plant on Tweedy Blvd. In the South Gate area, it was learned yesterday. Also disclosed was that the Andrew Jergens Co. Is taking steps to acquire 40 acres in the same Van Nuys locality for a new plant. Part of Ranch Both sites are part of the Panorama Ranch and the prop-ertles prop-ertles prop-ertles are being acquired from the Panorama Corp. Roy C. See-ley, See-ley, See-ley, head of the realty firm which bears his name. Is repre senting General Motors and the Panorama Corp. In the 125-acre 125-acre 125-acre deal and also is participating in the Jergens transaction. The area on which it is proposed proposed to build the new assembly assembly plant Is north of the Southern Southern Pacific tracks with frontage frontage on-Van on-Van on-Van Nuys Blvd. It will give employment to 5000 workers, workers, it was, stated. While the amount of the Investment was not disclosed it Is understood It will run to several million dollars. FEATURES INDEX Yanks Give Germans New Privileges Rights to form local unions and engage In political activities almost forgotten rights for Germans were granted by Gen. Elsenhower In American occupied occupied zone of Germany. Turn to Page 5. Part I. On Other Pasts AMUSEMENTS. Plg 7, Pxt II. COMICS, Pge 11. Part I. &#039; PlKANCIL Page 0. Part 1. HOPPEn. Page 6, Part II. P0LYZO1DE8. Paga 2. Part I. RADIO. Page 9. Part II. -RATION -RATION POINTERS. Paga S, Part II. SOUTHLAND. Paga 2. Part II. SPORTS, paga 8. Part II. VITAL RECORD. Paga e. Part II. WEATHER. Paga S. Part II. &#039; WOMEN. Pag 5, Part II. Plant to Double Doubling of the size of the Tweedy Blvd. plant, now going forward, will considerably Increase Increase the work personnel there. In the next 40 days that plant, it was reported, will begin its first assemhly of Chevrolet trucks. Los Angeles, now second only to Detroit in automobile assembly, assembly, will become the center of vastly Increased automobile output output after the war as result of various scheduled plant and pro ductlon expansions here. Death Ends Career of Sen. Johnson Californian Fought to Last Against All Foreign Alliances WASHINGTON, Aug. 6. (JP) Sen. Hiram Warren Johnson died today, fighting to the end the battle against tie-ups tie-ups tie-ups with foreign nations which he began a quarter-century quarter-century quarter-century ago in the bitter battle battle against the League of Nations. Nations. Death, attributed by his phy sician to thrombosis of a cere bral artery, came at 6:40 ajn. In Bethesda Naval Hospital. The 78-year-old 78-year-old 78-year-old 78-year-old 78-year-old California Re publican, a national political figure figure since early In the century, had been under treatment there for two and a half weeks. He was in a coma when the end came. Opposed Charter One of the Senator&#039;s last offi cial acts was to cast the one vote In the Senate Foreign Relations Relations Committee against ratification ratification of the United Nations charter for a world organization of nations. Even after the onset of his fatal Illness his vote was re corded against final ratification through a pair witn two charter charter supporters, Sens. Reed (R.) Kan., and Thomas (H.) Ida. (Pairs of treaties require two Senators bracketed against one, because of the two-thirds two-thirds two-thirds vote requirement for ratification.) Committee Factor to End The silver-haired silver-haired silver-haired Johnson, long a fire-breathing fire-breathing fire-breathing debater In the Senate, had been heard sel dom on the floor In recent months. But he was still a factor factor to be reckoned with In cdm-mittee cdm-mittee cdm-mittee room and cloak room. He had been expected to come out again to the open fighting in the senate cnamDer in op position to the charter, but ill ness Intervened. One of his last great floor battles was against passage of the bill to draft teen age youths early in the war. men tie pleaded with tears In his eyes against &quot;calling children to fight our battles.&quot; Against United Action Only recently he told a reporter reporter he believed this was no time to consider legislation for postwar collective action by na tions. Elected to the Senate In 1916 after six years as Governor of California, Johnson was rank ing Republican in the chamber. He took office March 16, 1017, Turn to Page 6, Column I Heat Down to 82; Further Drop Due A break In the heat wave of the last few weeks which saw the mercury climb to a year&#039;s high of 91 degrees occurred yesterday yesterday when the thermometer registered a comparatively cool 82 degrees, 7 points below Sunday&#039;s Sunday&#039;s 89. The temperature will continue Its drop today, the Weather Bureau Bureau said, forecasting clear weather except for early morning morning low clouds and somewhat cooler. INVENTORS CLAIM GADGET WILL PEEL, FREEZE AND WASH CHICAGO, Aug. 6. (VP) An electric appliance manufacturer manufacturer said today a combination combination clothes washer, potato potato peeler, dish washer and Ice cream freezer will be on the market early in 1946, barring unexpected developments. developments. Edward N. Hurley, president president of the Hurley machine division of the Electric Household Utilities, said the gadget will sell for less than standard prewar washing machines, can be operated dally as a dishwasher and potato peeler, and can be converted to a clothes washer washer by an attachment which the housewife can connect in less than a minute.- minute.- Another tub with an outer outer compartment for Ice and salt wilt freeze ice cream, whipping it continuously as It Is frozen. PASSES Sen. Hirom Johnson, Johnson, who died yesterday in Maryland Naval Hospital. Recent &#039;Quakes&#039; Now Revealed as Bomb Blasts BY THI ASSOCIATED PRESS Many of the earthquakes that Southern California has experi enced in the last three years weren&#039;t earthquakes at all, but the explosion of atomic bombs. Larry Crosby, general man ager of the Blng Crosby Enter prises, which Include the Crosby Research Foundation, said last night the foundation had been using its facilities for about three years In assisting the gov ernment in developing the bomb. California institute of Technology Technology physicists aided in the work. &quot;We have been sworn to se crecy,&quot; said Crosby, &quot;and it Isn&#039;t my purpose now to discuss any of the methods used In extract ing the atomic energy from uranium. uranium. I see no reason, however, not to say that in our detonation detonation tests, made In desert country country not far from Los Angeles, the explosion of a pea-size pea-size pea-size amount created a hole In the des ert big enough to drop In large-size large-size large-size house. &quot;Workers had to use tongs 10 feet long In&#039; extracting the energy energy from uranium. It Is taken at extremely high temperature. An unusuauy large amount of materials materials has to be used to extract a very small amount of the en ergy. Long and painstaking work went into perfecting a container for the explosive. Eventually we were, preempted; we were sworn to secrecy and that was the last of the project so far as we were concerned.&quot; B 29 s Pound Man&#039;s Most Destructive Navy Arsenal on Honshu New Raid Follows Wiping Out of Jap &#039;Mystery Town&#039; GUAM, Aug. 7. (II.E) A force of 125 B-29&#039;s B-29&#039;s B-29&#039;s attacked the Toyokawa naval arsenal on Honshu Island with high explosive bombs at noon today, today, Gen. Carl A. Spaatz announced. announced. The raid followed two days of heavy aerial blows, one of which wiped out a Japanese &quot;mystery town&quot; Sunday In what may have been an attack on new-ly new-ly new-ly developed Japanese rocket- rocket- launching installations. With long-range long-range long-range fighters from Iwo Jima as escorts, the Super fortresses hit Toyokawa, one of lapan&#039;s few remaining arsenals, for the first time. It Is on the South-Central South-Central South-Central Honshu coast, 85 miles southeast of Nagoya. Kenney Raid Disclosed The Strategic Air Forces chief gave no details of tne new strike, which came shortly after front dispatches disclosed mat the assault by more than 400 fighters and bombern of Gen. Force, One Equal to 2000 B-29 B-29 B-29 Loads, Blasts Nips WASHINGTON, Aug. 6. (P) The most terrible destructive force ever harnessed by man atomic energy released by the disintegration of jjranium is now being turned on the islands of Japan by United States bombers. The Japanese face a threat of utter desolation and their capitulation may be greatly speeded up. Existence of the great new weapon was announced personally by President Truman in a statement issued through the White House today. He said the first atomic bomb, invented and perfected in the United States, had been dropped on the Japanese army base of Hiroshima 16 hours before. v Hiro shima is on the main Japanese island of Honshu, 450 miles west of Tokyo. New Ultimatum May Follow Atom Bomb LONDON, Aug. 6. Pl The London DSHy Mall said today In a Washington dis-patch dis-patch dis-patch quoting &quot;reliable sources&quot; that Japan would he served with a new ultimatum ultimatum to surrender within 48 hours or face obliteration from the atomic bomb. The Dally Mall said the ultimatum will say: &quot;We will withhold use of the atomic bomb for 48 hours, In which time you can surrender. surrender. Otherwise you face the prospect of the entire obliteration of the Japanese nation.&quot; Four Bandits Beat and Rob Actor Louis Adlon, film player and brother-in-law brother-in-law brother-in-law brother-in-law brother-in-law of Marlon Uavies, former film star, was robbed ol $180 cash and $2500 In Jewelry early yesterday by four bandits who forced his car to the curb on the Sunset Strip and then beat him severely about the face and head. Adlon, husband of Rose Davles, had Just left a party at a near-by near-by near-by apartment house and was driving to his home at 321 Ocean Front, Santa Monica, when the attack occurred. Destroyer Blast Claims 21 Lives WASHINGTON, Aug. 6. (VP) Twenty-one Twenty-one Twenty-one men lost their lives when the destroyer LaVallette struck a mine Feb. 14 In Marl-veles Marl-veles Marl-veles Bay on Luzon in the Philippines. Philippines. Four. were wounded. The LaVallette was part of a bombardment group pounding Corregidor and Bataan, the Navy Navy said today in reporting that the ship now Is at San Francisco for &#039; repair. i George C. Kenney&#039;s Okinawa based Far Eastern Air Force demolished the &quot;mystery town.&quot; Liberators, Mitchells, M u s- s- tangs, Invaders and Thunder bolts heaped 570 tons of gaso line-jelly line-jelly line-jelly bombs on the&#039; South ern Kyushu city of Taramizu They left It a sea of flames. Returning Returning pilots told of seeing a nuge catapult like machine extending extending over Ihe water. It ap peared to be similar to rocket-launching rocket-launching rocket-launching devices used by the Germans In their bombardment of Britain. Results Detailed Spaatz also said that final re ports on the five-way five-way five-way B-29 B-29 B-29 strike Monday showed that 572 bombers bombers hit the primary targets, 2S Turn to Page 4, Column 6. Atom-Splitting Atom-Splitting Atom-Splitting Test by Science Group Disclosed WASHINGTON. Aue. 8. OJ.R) In a New Mexico desert wilderness wilderness 120 miles from Albuquerque, a steel tower poked like a giant finger through the predawn dark ness last July to. Two &#039; groups of scientists a dozen men In alt huddled silent ly In a pouring rain. Their anxious eyes were fixed In the direction of the tower 10,000 yards distant from one group; 17,000 yards from the other. On the tower hung perhaps the fate of a nation Japan&#039;s. From it was suspended an atomic bomb an object repre senllng a $2,000,000,000 invest ment and three years of effort by the finest scientific brains which the United States and Britain could muster. Flash Blinding Maj. Gen. Islle R. Groves one of the scientists, looked at his watch. The seconds ticked off. He ordered his colleagues to lie down with their feet facing tne tower, men, at precisely o.w a.m., ne gave tne signal. There was a blinding flash. Tne dark wilderness was no longer dark. It seemed as If a million daz zling floodlights had been turned on. The blinding brilliance was brighter than the brightest daylight. daylight. A mountain range three miles from Groves&#039; observation post stood out in bold relief Ball of Fire Rises A giant ball of fire issued from the tower. &quot;We all rolled over and looked through dark glasses at the ball of fire,&quot; Groves recalled. About 40 seconds later, there came a . tremendous sustained roar and a heavy pressure wave that knocked over two men out side the control station 10,000 yards away. A blast like a heavy clap of thunder rocked an area 300 miles In diameter. Residents of a dozen towns and isolated spots as much as Turn to Page 2, Column 4 JAP BROADCAST NOTES TRUMAN ANNOUNCEMENT SAN FRANCISCO, Aug. 6. (VP) The Japanese Domel Agency noted in a broadcast tonight that President Trumnn had announced announced the dropping of an atomic bomb on Hiroshima. - It was the first Japanese reference reference to the new type of bomb and the broadcast, recorded by the Federal Communications Commission, made no comment on Its effects. Earlier the Osaka radio announced announced the cancellation of various various trains In Hiroshima Prefecture. Prefecture. This broadcast did not refer to the atomic bomb. &#039; Other earlier Japanese broad casts reported only that Hiro shima, tjouinwestern Honshu army center, had been raided by &quot;a small number&quot; of American B-20&#039;s B-20&#039;s B-20&#039;s with incendiaries and ex plosives at 8:20 a.m. Monday (To- (To- xyo time.) A dm. Kichisaburo Nomura, the Japanese Ambassador to the United States at the time of Pearl Harbor, was quoted In a Dome! Agency dispatch as de claring that the three -power -power Potsdam ultimatum to Nippon to surrender or be destroyed was &quot;tne neignt or imperil nonce. Nomura spoke before the un leashing by the United States of us new devastating weanon which President Truman noted had been used only after rejec-l rejec-l rejec-l uon ox uie roisaam ultimatum. That one bomb alone carried an explosion more violent than 2000 B-29 B-29 B-29 Superfortresses normally could carry to an enemy city using old type TNT bombs. Secretary of War Stlmson followed through with a report that the blast stirred a cloud of smoke and dust over Hiroshima Hiroshima so Impenetrable as to make immediate, accurate observation observation of results Impossible. The power of the bomb, Stlm son said, Is such as to &quot;stagger the Imagination.&quot; He assert ed It would, &quot;prove a tremendous aid&quot; In shortening the Japanese war. Old Speculation on Air Attacks Revived Stlmson&#039;s emphasis on this point renewed speculation all over again as to whether Japan may be completely crushed by air attack without Invasion. Mr. Truman noted that he Japanese refected the sur render ultimatum from Potsdam, and that this had been Intended to spare the Japanese people from &quot;utter destruction.&quot; destruction.&quot; Now, he said, with the new bomb, the Japanese &quot;may- &quot;may- expect a rain of ruin from the air the like of which has never been seen on this earth.&quot; The announcement heralded an Anglo-American Anglo-American Anglo-American victory at&#039; a cost of $2,000,000,000 In one of the grimmest battles of the war the battle of the laboratories to unlock the secrets of the atom and yoke Its energies to military use. The Germans were striving desperately to win this highly secret contest in the closing months of the European strug-: strug-: strug-: gle. New Epoch Seen for War and Peace Scientists agreed that a new epoch In both war and peadei probably Is at hand. Although much experimenting remains&#039; to be done, this newly controlled energy doubtless can bet used also to drive rockets, planes, ships and trains for con-structlve con-structlve con-structlve as well as destructive purposes. President Truman said the new bomb, which draws Its en- en- ergy from the same sources as the sun, has more power than 20,000 tons of T N T, Itself a tremendously powerful explosive. explosive. Since one B-29 B-29 B-29 ordinarily can deliver about 10 tons q&#039;f bombs to a target, that means that 2000 Superfortresses would be required to accomplish with TNT the destruction that one plane with one of these new bombs can achieve. By another standard, Mr. Truman declared the bomb has 2000 times the blast power of the llrton British &quot;Grand Slam&quot; bomb the most concentrated bundle of destruction previously known on this earth. In fact, in evaluating the enormous power involved in this new weapon, the President had to reach beyond the limits of the earth for comparison. &quot;It is a harnessing of the basic power of the universe,&quot; he said. &quot;The force from which the sun draws its Dower has been loosed against those who brought wat to the Far East.&#039;.&#039; (The sun&#039;s energy Is produced by decomposition of atoms.) Warning Prepared by Churchill Issued This line appeared to hold dramatic possibilities for props.- props.- ganda against the Japanese. They regard their Emperor Hlrohito as a direct descendant of the sun goddess. Now they can be told that the very power of the sun itself is being turned to their destruction. Following the- the- announcement in Washington Prime Min ister Attlee issued in London a similar statement which had been prepared by former Prime Minister Churchill before he left office. &quot;It Is now for Japan to realize in the glare of the first atomic bomb which has smitten her,&quot; Churchill said, &quot;what the consequences will be of an Indefinite continuance of this terrible means of maintaining a rule of law in the world.&quot; The test of the highly secret weapon was carried out on the morning of July 16 In the New Mexico desert 120 miles southwest of Albuquerque. The flash was so brilliant that a blind girl In Albuquerque was reported to have exclaimed exclaimed &quot;What was that?&quot; The War Department said two men who were standing six miles away were blown down. President Truman, as he was nearlng American shores on the cruiser Augusta, homeward bound from the Potsdam Potsdam conference, and Secretary Stlmson worked together Turn to Page 2, Column 1 I-&#039; I-&#039; I-&#039; I</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1945/08/07">07 Aug 1945, Tue</a>,&nbsp;
+<a href="/image/159724935/">Page 1</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1945/08/07">07 Aug 1945, Tue</a>,&nbsp;
+<a href="/image/159724935/">Page 1</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/jrademacher/" class="avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li><a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>   19 Jul 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>  &ndash;  19 Jul 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12473464"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1945/08/07">07 Aug 1945, Tue</a>
+&nbsp;•&nbsp;<a href="/image/159724935/">Page 1</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12473464#spot=12473464"  onclick="checkViewAccess('image',159724935,'/image/?spot=12473464#spot=12473464',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/159724935/250/0/0_0_4354_5790/0/yes/0_0_4354_5790.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by jrademacher <a href="/profile/jrademacher/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17032274//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/202572050/150/150/979_370_1005_1627.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/15165540//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/200841071/150/150/0_64_3401_5191.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/14866343/test/" title="test">
+<i><img src="/i/spacer.gif" alt="test" style="background-image: url(https://img.newspapers.com/img/thumbnail/201375373/150/150/2251_1001_1310_1757.jpg);"/></i>
+<span class="alsoby-text">test</span></a>
+</li>
+<li> <a href="/clip/13450538/thornton_ad/" title="Thornton Ad">
+<i><img src="/i/spacer.gif" alt="Thornton Ad" style="background-image: url(https://img.newspapers.com/img/thumbnail/281264290/150/150/3338_2836_2139_2999.jpg);"/></i>
+<span class="alsoby-text">Thornton Ad</span></a>
+</li>
+<li> <a href="/clip/12524149//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/196463225/150/150/0_0_4045_6413.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12473464;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12473464&amp;name=&amp;print=1';
+var imageId = "159724935";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12473464\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 07 Aug 1945, Tue\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"07 Aug 1945, Tue\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/159724935\\/400\\/400\\/0_0_4354_5790\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1945-08-07";
+var pageEdition = "";
+var pageNumber = "1";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":524,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

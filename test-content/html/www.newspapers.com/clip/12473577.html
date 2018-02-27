@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12473577/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 08 Dec 1941, Mon.  ALL THE NEWS ALL THE TIME LARGEST HOME-DELIVERED HOME-DELIVERED HOME-DELIVERED CIRCULATION LARGEST ADVERTISING VOLUME MAdiion 2345 Tt TImo TeUpfcon Numbtr VOL. LXI City Springs to Attention Los Angele"><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 08 Dec 1941, Mon.  ALL THE NEWS ALL THE TIME LARGEST HOME-DELIVERED HOME-DELIVERED HOME-DELIVERED CIRCULATION LARGEST ADVERTISING VOLUME MAdiion 2345 Tt TImo TeUpfcon Numbtr VOL. LXI City Springs to Attention Los Angele"><meta name="keywords" content=", jrademacher, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12473577/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12473577/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=160847010&width=557&height=746&crop=0_0_4294_5857&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671576&h=3cb4d8cef3c8f3ac63396840b349f96a">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "08 Dec 1941, Mon";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12759005">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12473577"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12473577#spot=12473577"  onclick="checkViewAccess('image',160847010,'/image/?spot=12473577#spot=12473577',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=160847010&width=557&height=746&crop=0_0_4294_5857&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671576&h=3cb4d8cef3c8f3ac63396840b349f96a" alt=" - ALL THE NEWS ALL THE TIME LARGEST..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">ALL THE NEWS ALL THE TIME LARGEST HOME-DELIVERED HOME-DELIVERED HOME-DELIVERED CIRCULATION LARGEST ADVERTISING VOLUME MAdiion 2345 Tt TImo TeUpfcon Numbtr VOL. LXI City Springs to Attention Los Angeles, Stunned by Sudden War Start, Turns Wholeheartedly to Defense Task; &#039;They Started It, We&#039;ll Finish It,&#039; Motto Los Angeles was a city alert yesterday as every man and woman, electrified by the news that Japan had struck at this country 2400 miles westward stand solidly for total defence. Stunned at first, incredulous that Japan actually had bombed Pearl Harbor aefenscs, the city was set buzzing as the news flashed through the streets. Traffic lanes jammed, tele-. tele-. tele-. phones clattered incessantly and I if f the downtown area swarmed with curious citizens. WE&#039;LL FINISH IT&#039; Then came a reaction as truly i American as apple pie. Minutes after news of the Japanese attack was heard, de-j de-j de-j fense and ?lav enforcement i agencies began operating. Citizens Citizens attached to defense groups mobilized. The city shrugged off its amazement. The word was: &quot;They started it we&#039;ll finish It!&quot; Soldiers and sailors, their leaves canceled, were ordered tojvcrsjve activities. report immediately to their sta- sta- lions. This they did with the least confusion. All officers and men in the services were ordered to report for duty henceforth in uniform. No more mufti. It&#039;s war. FAREWELL SCENES There were farewell scenes in train and bus depots. Mothers, fathers and sweethearts came to wish their loved ones luck. But they were,ca1n, those going and those staying. Everywhere the import of war was apparent From San Diego to the Oregonj border fighter planes of the 4th Interceptor Command waited on; flight lines ready to go. Anti-aircraft Anti-aircraft Anti-aircraft crews, artillery and machine guns pointing skyward, skyward, guarded&quot; Southland aircraft factories. All members of the Aircraft Warning Service were ordered to report to their headquarters headquarters and all observation posts were directed to be manned at all times. E.B.I. SEIZES ALIENS Under command of Brig. Gen. William O. Ryan, the 4th Interceptor Interceptor Command is charged with the-, the-, the-, primary defense of the Pa-Turn Pa-Turn Pa-Turn to Page F, Column 7 IN THE TIMES&#039; TODAY RADIO. Page 10, Part I. COMICS. Page 21, Part I. FASHIONS, CLUBS, SOCIETY. Pages 5, 6, 7, S, 9 and 10, Part II. TOM TREANOr&quot;. Page 6, Part I. WESTBROOK PEGLER. Page 7, Part I. .PUZZLE. Page 20, Part I. &quot;DRAMA. Page 11, Part II. WEATHER; Page 10, Part I. DEATH NOTICES. Page 10, Part I, - PICTORIAL &quot;PAGES. Pages E and D. THE SOUTHLAND. : Southland cities speed civilian defense plans. First class graduated from maritime school at Port Hue-nemc. Hue-nemc. Hue-nemc. Page 22. Part I. SPOUTS. Hollywood Bears wallop Columbus Bulls. Pago 17, Pan t. rosfeiWM; mogul meet today. Paga 17, Part I. M LTU 0 in ;he Pacific, took his or herj Japanese Aliens Roundup Starts F.B.J. Hunting Down 300 Subversives and Plans to Hold 3000 Today A great man hunt was under way last night in Southern California California as the Federal Bureau of Investigation agents sought 300 alien Japanese suspected of sub- sub- As soon as war is declared against Japan, judged a certainty today when Congress meets, 3000 additional Japanese aliens are to be rounded up and placed in protective protective custody by government agents. The Times learned. SUSPECTS ROUNDER VP During the afternoon andj night, close to 200 suspicious Jap-! Jap-! Jap-! anesc were rounded up by police, deputy sheriffs and special offi-! offi-! offi-! cers working under the direction of F.B.I, agents. In West Los Angeles 18 were grabbed, 18 were taken into custody custody at Newton police station. 7 in Hollywood, 4 at Wil-shire, Wil-shire, Wil-shire, between 30 and 40 went through the University station, I at Pasadena, 4 at Santa Monica, Monica, 3 at Hawthorne, 5 at Ingle-wood, Ingle-wood, Ingle-wood, 30 at Hollenbeck station, and on through the list of Los Angeles police stations and outlying outlying cities. NAMES WITHHELD The F.B.I, issued orders prohibiting prohibiting the publication of the names of those held until further orders from Washington. Raids throughout Los Angeles, San Pedro, El Centro, Pomona, Brea and Newport were carried Turn to Page F, Column 4 THE CITY. City springs to multitudinous tasks of defense. Page 1, Part I. F.B.I, rounding up Japanese aliens. Page 1, Part I. Seven cyclists mowed down by motorist. Page 1, Part II. Welders cancel nation-wide nation-wide nation-wide strike scheduled tomorrow. Page 7, Part I. County Civilian Defense Committee Committee ordered to be on 21-hour 21-hour 21-hour call. Page 4, Part I. Little Tokyo carries on &quot;business &quot;business as usual.&quot; Page 2, Part I. Public at first skeptical of Japanese attack. Page 2, Part I. Local Japanese pledge loyally to United States. Page 2, Part I. THE WEST. SaUors, recalled to duty, swarm back to stations. Page 4, Part I. REMEMBER THIS No nation is free that annot eirn its own living. LIBERTY UNDER THE LAW m Ml F.D.R. Will Ask Congress Action Today President to Make Plea Personally on Move to Answer Japan Attacks WASHINGTON, Dec. S (Monday.) (P) Bombs from Japan made war on the Unit ed States today and as death tolls mounted President Roosevelt announced he will deliver in person today a special special message to Congress. In the background as the Com mander-in-Chief mander-in-Chief mander-in-Chief mander-in-Chief mander-in-Chief went before the joint session of the House and Senate was a government report of &quot;heavy&quot; naval and &quot;large&quot; losses losses to the Army. ACTION UNCERTAIN Whether Mr. Roosevelt will ask for-a for-a for-a formal declaration of war by this country, to match the action taken in Tokyo, was left uncertain after a hurriedly summoned summoned meeting of his Cabinet NEW YORK, Dec. 7. (IP) All three major network National Broadcasting Co.. Columbia Broadcasting Broadcasting System and Mutual Broadcasting Broadcasting System will carry President President Roosevelt&#039;s message to Con-gress Con-gress Con-gress at 12.-30 12.-30 12.-30 p.m. (E.S.T..) 9:30 a.m. (P.S.T.) tomorrow. and Congressional leaders of both parties tonieht at the v h i t e House. Also uncertain was wheth er that declaration might extend to Japan&#039;s Axis allies, Germany and Italy. It was clear from a statement made by the participants, however, however, that Congress would be re quested to adopt a resolution of some nature, and equally clear that it would quickly give its approval. A request for govern mental power equivalent to that under a war declaration was expected expected as a minimum. WITHOUT WARNING War came suddenly to the United States early yesterday afternoon. Without warning, and while J mancse diplomats Turn to Page A, Column 7 Lindbergh Keeps Silent WEST TISBURY (Mass.) Dec. 7. (P) Charles A. Lindbergh, visiting at Seven Gates farm in this Martha&#039;s Vineyard Island village, refused tonight to see newspapermen or accept any messages. MONDAY DECEMBER 8, 1941 World Affairs Institute opens session in .Riverside. Page 5, Part I. GENERAL EASTERN. Arbitration Arbitration board grants captive coal diggers union shop. Page 7, Part 1. &#039; THE WAR. United States Fleet races to battle after Japan launches war In Hawaii. Page 1, Part I. Tokyo notifies American and British envoys of war&#039;s start. Page 1, Part I. Britl. declaration of war on Jans, awaited as Parliament meets today, rage C. Three American &quot;warships reported reported damaged. Page C. Japanese troops swarm Into foreign settlement at Shanghai. &#039; Pago C. &#039; Libya tanks s(ok knockout blow &#039;in pitched battle begun Saturday. Pipe S, Pan 1. Russians crack Nazis&#039; Moscow drive, rage 0, Part 1. MONDAY MORNING, Berlin Shy About Aid to Tokyo BERLIN, Dec. 8 (Monday.) (Monday.) (P) Obligated under the three-power three-power three-power pact to go to Japan&#039;s assistance if Japan Japan is &quot;attacked,&quot; Germany referred early today to hostilities hostilities in the Pacific as &quot;clashes.&quot; A special communique failed to clarify Germany&#039;s intentions, intentions, but termed President Roosevelt a &quot;war incendiary.&quot; &quot;The warmonger Roosevelt has reached his aim,&quot; said the Berlin statement. &quot;Driven&#039; by blind hatred against the Reich of Adolf Hitler, Hitler, he sent weapons and materials materials to British campaign areas and finally gave his fleet orders to fire on German warships. warships. &quot;So Roosevelt ran after war like a demon until the Pacifier-Ocean Pacifier-Ocean Pacifier-Ocean also is inflamed. &quot;Dollar imperialism overcame the good sense of a wide circle of North American people.&quot; Attacks Precede War Declaration Tokyo Notifies Envoys After Surprise Raid Upon Pearl Harbor Base TOKYO. Dec. R (Monday.) UP) Japan went to war against the United, States and Great Britain today with air and sea attacks against Hawaii followed by a formal declaration of hostilities. Japanese Imperial headquarters headquarters announced at 6 a.m. (1 p.m. Sunday. P.S.T.) that a state of war existed among these nations in the Western Pacific, as of dawn. Shortly afterward Domei announced announced that &quot;naval operations are progressing oft Hawaii, with at least one Japanese aircraft carrier carrier in action against Pearl Harbor.&quot; Harbor.&quot; the American naval base in the islands. U.S. ENVOY NOTIFIED Japanese bombers were declared declared to have raided Honolulu at 7:35 a.m. Hawaii time (10:05 a.m. Sunday. P.S.T.) Premier-War Premier-War Premier-War Minister Gen. Hideki Tojo held a 20-minute 20-minute 20-minute Cabinet session at his official residence at 7 a.m., and shortly afterward it was announced that both the United States Ambassador, Ambassador, Joseph C. Grew, and the British Ambassador, Sir Robert Leslie Craigie, had been summoned by Foreign Minister Shigenori &#039;Togo. The Foreign Minister, Domei said, handed to Grew the Japanese Japanese government&#039;s formal reply to the note sent to Japan by United States Secretary of State Cordell Hull on Nov. 26.. REJECT HULL&#039;S TERMS (In the course of the&#039;diplomatlc negotiations leading up to Sunday&#039;s Sunday&#039;s events, the Domei agency had stated that Japan could&#039;not accept the premises of Hull&#039;s note.) mi if km Air Guards, Attention! To chief observers: All observation. pests: A.W.S. (Aircraft Warning System) You are directed to activate your observation posts immediately immediately and to see that the post is fully manned at all times. By order Brig. Gen. William O. Ryan, . Commanding Gen., 4th Interceptor Command. TRUE INDUSTRIAL FREEDOM DECEMBER 8, 1941. loll Feared High in Attack Against Isles Field Near Honolulu&quot;&quot;&quot; Takes Brunt of Bombing; Naval Battle Reported HONOLULU, Dec. 1. () War struck suddenly and without warning from the sky and sea today at the Hawaiian Hawaiian Islands. Japanese bombs took a heavy toll in American! lives. j Cannonading offshore indi-i indi-i indi-i cated a naval engagement in progress. Wave after wave of planes streamed over Oahu in an attack which the Army said started at S:10 a.m.. Honolulu lime, and which ended at around 9:25, an hour and 15 minutes later. COUNT 50 PLANES Witnesses said they counted at least 50 planes in the initial attack. attack. The attack seemed to center on Hickam Field, huge Army air port three miles nonnwest oi Honolulu, and Honolulu, where the islands&#039;&quot; heaviest fortifications fortifications are located. T!i nianpc strpampd throuch the sky from the southwest, their bombs shattering tne morning calm. Most of the attackers flew high, but a few came low, five down to under a hundred feet elevation to attack Pearl Harbor. WARSHIPS HIT An oil tank there was seen blazing and smoking. An unconfirmed unconfirmed report said one ship in the harbor was on its side and four others burning. Army officials said some Japanese Japanese nlanes had been shot down in the Honolulu area. Planes which did not borne Pearl Harbor apparently headed for Hickam Field. But there the attackers apparently did not confine confine themselves to the heavily fortified areas. From Wahiawa, a town of 3000 population about 20 miles northwest of Honolulu, came reports that 10 or more persons were injured when enemy planes sprayed bullets on the streets. FROM PLANE CARRIERS Unconfirmed reports said the attackers came from two airplane carriers. United States destroyers were seen steaming full speed from Pearl Harbor, and spectators reported reported seeing shell splashes in the ocean, indicating an engagement engagement between United States and Japanese &#039; ships. Several fires were started in the Honolulu area, but all were immediately controlled. ESTIMATE -QF -QF CASUALTIES There was no immediate statement statement by military officials here as to whether any servicemen were killed or Injured, or as to property damage at military and naval posts. (Soon after this dispatch was telephoned, a tight censorship sas imposed on dispatches from the Hawaiian Islands. In Wash-. Wash-. Wash-. Turn to Page A, Column 1 Fleet Speeds Out to Battle Invader Tdkyo&quot; Claims Battleship Sunk and Another Set Afire With Hundreds Killed on Island; Singapore Attacked and Thailand Force Landed Japan assaulted every main United States and British possession possession in the Central and Western Pacific and invaded Thailand today (Monday) in a hasty but evidently shrewdly-planned shrewdly-planned shrewdly-planned prosecution of a war she began Sunday without warning. Her formal declaration of war against both the United States and Britain came 2 hours and 55 minutes after Japanese planes spread death and terrific destruction in Honolulu and Pearl Harbor at 7:35 a.m., Hawaiian Latest War Bulletins Radio Tokyo, as heard by the N.B.C. listening post in brought new and flaming accounts of Japanese Los Angeles, reported that !aggression in her secretly launched war of con-Japanese con-Japanese con-Japanese bombers had at- at- ! t death f the land Qf the Rising Sun. tacked the island of Pala wan in the Philippines. NEW YORK, Dec. S. (U.R) The British radio today quoted Tokyo broadcasts as saying that Germany probably probably will declare war on the United States within &#039; the next 24 hours. WASHINGTON, Dec. 7. (VP) The White House announced announced tonight that dur ing President Roosevelt&#039;s L conference with legislative legislative leaders and members of the Cabinet he received word from Gen. Douglas Mac Arthur that &quot;enemy planes were over Central Luzon in the Philippines.&quot; N.B.C.&#039;s listening post here tonight heard a Tokyo Tokyo radio report that 63 American soldiers guarding guarding the American Consulate Consulate in the international settlement at Tientsin had been captured and disarmed. disarmed. The report, quoting quoting the Japanese Army Bureau, Bureau, did not mention the Consulate staff. MANAGUA (Nicaragua) (Nicaragua) Dec. 7. (U.R) Nicaragua Nicaragua tonight declared war on Japan. NEW YORK, Dec. &#039;7. (U.R) The Berlin radio, heard by the United Press listening post here, said Tokyo had announced a big naval engagement between between Japanese and Anglo-American Anglo-American Anglo-American Anglo-American fleets in the Western Pacific in which the United- United- States battleship battleship West Virginia was sunk,-the sunk,-the sunk,-the battleship Oklahoma Oklahoma set afire and tKree Turn to I&#039;ngo A, Column 3 18744&quot; BY THE ASSOCIATED mF.S time (10:05 a.m., P.S.T.) Sunday. The claimed successes for this fell swoop included included sinking of the United States battleship West Virginia and setting afire of the battleship Oklahoma. WAKE CAPTURED AND GUAM BOMBED From that moment, eacn tense uck oi tne ciock. As compiled from official and unofficial accounts from all affected countries, the record ran like this: Honolulu bombed a second time; Lumber-laden Lumber-laden Lumber-laden United States Army transport torpedoed 1300 miles west of San Francisco and another transport in distress; Shanghai&#039;s International Settlement seized; United States gunboat Wake captured there and British gunboat Peterel destroyed; Capture of the United States island of Wake; Bombing of the United States island of Guam; Bombing of many points throughout the Philippine Philippine Islands; Invasion of Northern Malaya and bombing of Singapore; Invasion of Thailand (Siam) and bombing of Bangkok. The first United States official casualty report listed 104 dead and more than 300 injured in the Army at Hickam Field, N.B.C. observer in Honolulu reported the death toll at Hickam was 300. There was heavy damage in Honolulu residential residential districts and the death list among civilians was large but uncounted. GERMANS CLAIM SEA BATTLE ON The German radio reported that a sea battle between the Japanese navy on one side and the British and United States on the other was in progress in the Western Pacific, with a third United United States warship hit in addition to the West Virginia Virginia and Oklahoma. The British command at Singapore announced the Japanese invasion and said empire forces are engaging the foe. There was little news of United States defensive actions, except the report that a number of the attacking planes at Honolulu had been shot down in dogfights over the city; an unconfirmed report that a Japanese aircraft carrier had been sunk off Hawaii, and&#039; announcement that United States Army and Navy forces had started carrying out; secret instructions long since issued to them1 in event of ;iust such an emergency. . : . BRITAIN SUMMONS ITS PARLIAMENT A formal United States declaration of war could not. come until today at the earliest,- earliest,- and Britain summoned her Parliament Parliament to meet today for similar action. President Roose- Roose- IN THREE PARTS 42 PACES Part I GENERAL NEWS 24 Pagan TIMES OFFICE 232 W.! Flnt Street DAILY, FIVE CENTS alone, near Honolulu. An Turn to Pago A,! Column il</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1941/12/08">08 Dec 1941, Mon</a>,&nbsp;
+<a href="/image/160847010/">Page 1</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1941/12/08">08 Dec 1941, Mon</a>,&nbsp;
+<a href="/image/160847010/">Page 1</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/jrademacher/" class="avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li><a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>   19 Jul 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/jrademacher/" class="c-avatar"><img src="/usericon.php?id=2558935&amp;user=2558935&amp;institution=0&amp;size=60" alt="jrademacher Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/jrademacher/"><strong class="ownername">jrademacher</strong></a>  &ndash;  19 Jul 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12473577"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1941/12/08">08 Dec 1941, Mon</a>
+&nbsp;•&nbsp;<a href="/image/160847010/">Page 1</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12473577#spot=12473577"  onclick="checkViewAccess('image',160847010,'/image/?spot=12473577#spot=12473577',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/160847010/250/0/0_0_4294_5857/0/yes/0_0_4294_5857.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by jrademacher <a href="/profile/jrademacher/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17032274//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/202572050/150/150/979_370_1005_1627.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/15165540//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/200841071/150/150/0_64_3401_5191.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/14866343/test/" title="test">
+<i><img src="/i/spacer.gif" alt="test" style="background-image: url(https://img.newspapers.com/img/thumbnail/201375373/150/150/2251_1001_1310_1757.jpg);"/></i>
+<span class="alsoby-text">test</span></a>
+</li>
+<li> <a href="/clip/13450538/thornton_ad/" title="Thornton Ad">
+<i><img src="/i/spacer.gif" alt="Thornton Ad" style="background-image: url(https://img.newspapers.com/img/thumbnail/281264290/150/150/3338_2836_2139_2999.jpg);"/></i>
+<span class="alsoby-text">Thornton Ad</span></a>
+</li>
+<li> <a href="/clip/12524149//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/196463225/150/150/0_0_4045_6413.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12473577;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12473577&amp;name=&amp;print=1';
+var imageId = "160847010";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12473577\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 08 Dec 1941, Mon\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"08 Dec 1941, Mon\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/160847010\\/400\\/400\\/0_0_4294_5857\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1941-12-08";
+var pageEdition = "";
+var pageNumber = "1";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":476,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

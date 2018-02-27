@@ -1,0 +1,523 @@
+        <!DOCTYPE html>
+
+<!--[if IE 8]><html class="lt-ie10 ie8 no-js"><![endif]-->
+<!--[if IE 9]><html class="lt-ie10 ie9 no-js"><![endif]-->
+<!--[if gt IE 9]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function(e,t,n){function r(n){if(!t[n]){var o=t[n]={exports:{}};e[n][0].call(o.exports,function(t){var o=e[n][1][t];return r(o||t)},o,o.exports)}return t[n].exports}if("function"==typeof __nr_require)return __nr_require;for(var o=0;o<n.length;o++)r(n[o]);return r}({1:[function(e,t,n){function r(){}function o(e,t,n){return function(){return i(e,[f.now()].concat(u(arguments)),t?null:this,n),t?void 0:this}}var i=e("handle"),a=e(2),u=e(3),c=e("ee").get("tracer"),f=e("loader"),s=NREUM;"undefined"==typeof window.newrelic&&(newrelic=s);var p=["setPageViewName","setCustomAttribute","setErrorHandler","finished","addToTrace","inlineHit","addRelease"],d="api-",l=d+"ixn-";a(p,function(e,t){s[t]=o(d+t,!0,"api")}),s.addPageAction=o(d+"addPageAction",!0),s.setCurrentRouteName=o(d+"routeName",!0),t.exports=newrelic,s.interaction=function(){return(new r).get()};var m=r.prototype={createTracer:function(e,t){var n={},r=this,o="function"==typeof t;return i(l+"tracer",[f.now(),e,n],r),function(){if(c.emit((o?"":"no-")+"fn-start",[f.now(),r,o],n),o)try{return t.apply(this,arguments)}catch(e){throw c.emit("fn-err",[arguments,this,e],n),e}finally{c.emit("fn-end",[f.now()],n)}}}};a("setName,setAttribute,save,ignore,onEnd,getContext,end,get".split(","),function(e,t){m[t]=o(l+t)}),newrelic.noticeError=function(e){"string"==typeof e&&(e=new Error(e)),i("err",[e,f.now()])}},{}],2:[function(e,t,n){function r(e,t){var n=[],r="",i=0;for(r in e)o.call(e,r)&&(n[i]=t(r,e[r]),i+=1);return n}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],3:[function(e,t,n){function r(e,t,n){t||(t=0),"undefined"==typeof n&&(n=e?e.length:0);for(var r=-1,o=n-t||0,i=Array(o<0?0:o);++r<o;)i[r]=e[t+r];return i}t.exports=r},{}],4:[function(e,t,n){t.exports={exists:"undefined"!=typeof window.performance&&window.performance.timing&&"undefined"!=typeof window.performance.timing.navigationStart}},{}],ee:[function(e,t,n){function r(){}function o(e){function t(e){return e&&e instanceof r?e:e?c(e,u,i):i()}function n(n,r,o,i){if(!d.aborted||i){e&&e(n,r,o);for(var a=t(o),u=m(n),c=u.length,f=0;f<c;f++)u[f].apply(a,r);var p=s[y[n]];return p&&p.push([b,n,r,a]),a}}function l(e,t){v[e]=m(e).concat(t)}function m(e){return v[e]||[]}function w(e){return p[e]=p[e]||o(n)}function g(e,t){f(e,function(e,n){t=t||"feature",y[n]=t,t in s||(s[t]=[])})}var v={},y={},b={on:l,emit:n,get:w,listeners:m,context:t,buffer:g,abort:a,aborted:!1};return b}function i(){return new r}function a(){(s.api||s.feature)&&(d.aborted=!0,s=d.backlog={})}var u="nr@context",c=e("gos"),f=e(2),s={},p={},d=t.exports=o();d.backlog=s},{}],gos:[function(e,t,n){function r(e,t,n){if(o.call(e,t))return e[t];var r=n();if(Object.defineProperty&&Object.keys)try{return Object.defineProperty(e,t,{value:r,writable:!0,enumerable:!1}),r}catch(i){}return e[t]=r,r}var o=Object.prototype.hasOwnProperty;t.exports=r},{}],handle:[function(e,t,n){function r(e,t,n,r){o.buffer([e],r),o.emit(e,t,n)}var o=e("ee").get("handle");t.exports=r,r.ee=o},{}],id:[function(e,t,n){function r(e){var t=typeof e;return!e||"object"!==t&&"function"!==t?-1:e===window?0:a(e,i,function(){return o++})}var o=1,i="nr@id",a=e("gos");t.exports=r},{}],loader:[function(e,t,n){function r(){if(!x++){var e=h.info=NREUM.info,t=d.getElementsByTagName("script")[0];if(setTimeout(s.abort,3e4),!(e&&e.licenseKey&&e.applicationID&&t))return s.abort();f(y,function(t,n){e[t]||(e[t]=n)}),c("mark",["onload",a()+h.offset],null,"api");var n=d.createElement("script");n.src="https://"+e.agent,t.parentNode.insertBefore(n,t)}}function o(){"complete"===d.readyState&&i()}function i(){c("mark",["domContent",a()+h.offset],null,"api")}function a(){return E.exists&&performance.now?Math.round(performance.now()):(u=Math.max((new Date).getTime(),u))-h.offset}var u=(new Date).getTime(),c=e("handle"),f=e(2),s=e("ee"),p=window,d=p.document,l="addEventListener",m="attachEvent",w=p.XMLHttpRequest,g=w&&w.prototype;NREUM.o={ST:setTimeout,SI:p.setImmediate,CT:clearTimeout,XHR:w,REQ:p.Request,EV:p.Event,PR:p.Promise,MO:p.MutationObserver};var v=""+location,y={beacon:"bam.nr-data.net",errorBeacon:"bam.nr-data.net",agent:"js-agent.newrelic.com/nr-1071.min.js"},b=w&&g&&g[l]&&!/CriOS/.test(navigator.userAgent),h=t.exports={offset:u,now:a,origin:v,features:{},xhrWrappable:b};e(1),d[l]?(d[l]("DOMContentLoaded",i,!1),p[l]("load",r,!1)):(d[m]("onreadystatechange",o),p[m]("onload",r)),c("mark",["firstbyte",u],null,"api");var x=0,E=e(4)},{}]},{},["loader"]);</script>
+<title>Clipping from The Los Angeles Times - Newspapers.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@_newspapers">
+<meta name="twitter:creator" content="@_newspapers">
+<meta property="og:site_name" content="Newspapers.com">
+<meta property="og:title" content="Clipping from The Los Angeles Times - Newspapers.com">
+<meta property="og:type" content="article">
+
+<meta property="og:url" content="http://www.newspapers.com/clip/12014974/the_los_angeles_times/">
+
+<meta name="description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 21 Oct 1988, Fri.  SPORTS CoeAtujetcs Slimes Friday, October 21, 1988 CCttPart III 0 The World Series JSL. OAftLi'l AlULtT ICb tv. LOS jvdLl tS DODGERS Jim Another Mickey Is Series Hero OAKLAND-The OAKLAND-The OAKLAND-T"><meta property="og:description" content="Clipping found in The Los Angeles Times in Los Angeles, California on 21 Oct 1988, Fri.  SPORTS CoeAtujetcs Slimes Friday, October 21, 1988 CCttPart III 0 The World Series JSL. OAftLi&#039;l AlULtT ICb tv. LOS jvdLl tS DODGERS Jim Another Mickey Is Series Hero OAKLAND-The OAKLAND-The OAKLAND-T"><meta name="keywords" content=", Tronc_Archives, Los Angeles, California, newspapers, articles, article, news articles, headlines, picture, history, information, photo, bio, blog, history, life, references, image">
+
+
+<link rel="canonical" href="https://www.newspapers.com/clip/12014974/the_los_angeles_times/">
+<meta property="og:url" content="https://www.newspapers.com/clip/12014974/the_los_angeles_times/">
+<meta property="og:image" content="https://img.newspapers.com/img/img?id=175957367&width=557&height=884&crop=0_0_3099_5010&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671549&h=b0452f621e829de603bfb3183d1b017c">
+
+<link rel="mask-icon" href="https://www.newspapers.com/i/newspapers-icon.svg" color="#414141">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.newspapers.com/apple-touch-icon-144x144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.newspapers.com/apple-touch-icon-114x114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.newspapers.com/apple-touch-icon-72x72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+<link rel="shortcut icon" href="https://www.newspapers.com/apple-touch-icon-precomposed.png">
+
+<link type='text/css' rel='stylesheet' href='/c/base.css?v=cf9ad67'>
+<link type='text/css' rel='stylesheet' href='/c/clip.css?v=cf9ad67'>
+
+
+<script>
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+
+ga('create', 'UA-34211646-1', 'newspapers.com');
+
+ga('set','dimension1', 'not signed in');
+
+ga('set','dimension2', 'none');
+ga('set','dimension3', 'none');
+ga('set','dimension4', 'none');
+
+ga('send','pageview');
+</script>
+
+<script type="text/javascript">
+var utag_data = {
+page_name : 'newspapers : Clipping from The Los Angeles Times - Newspapers.com',
+sub_type: 'not signed in',
+}
+</script>
+<script type="text/javascript">
+(function(a,b,c,d){
+a='//tags.tiqcdn.com/utag/ancestry/newspapers/prod/utag.js';
+b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
+a=b.getElementsByTagName(c)[0];a.parentNode.insertBefore(d,a);
+})();
+</script>
+
+
+
+<script>
+var thirdparty_paper_date = "21 Oct 1988, Fri";
+var thirdparty_publication = "The Los Angeles Times";
+</script>
+
+<script>
+var _gaq=[]; // this is so as not to break any un-migrated code still calling _gaq.push
+</script>
+
+<script>
+var _comscore = _comscore || [];
+_comscore.push({ c1: "2", c2: "6035489" });
+(function() {
+var s = document.createElement("script"), el = document.getElementsByTagName("script")[0]; s.async = true;
+s.src = (document.location.protocol == "https:" ? "https://sb" : "http://b") + ".scorecardresearch.com/beacon.js";
+el.parentNode.insertBefore(s, el);
+})();
+</script>
+<noscript>
+<img src="https://sb.scorecardresearch.com/p?c1=2&c2=6035489&cv=2.0&cj=1" />
+</noscript>
+
+
+
+
+</head>
+<body id="spotlight-page" class=" silo desktop" jserror="">
+<!--[if lte IE 9]><div id="ie6warning" class="error_strip" style='text-align: center; clear: both; position: relative;margin-bottom: 12px;margin-top: -1px;'>
+<div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='return hideIE6warning();'><img src='/i/clip-message-close.png' style='border: none;' alt='Close this notice'/></a></div>
+<div style="width: 200px;margin: 0px 50px 0px 10px; float:right;">
+<a href='https://www.google.com/chrome' target='_blank' class="badbrowse"><i class="badbrowse-ch">Chrome</i></a>
+<a href='https://www.mozilla.org/en-US/firefox/new/' target='_blank' class="badbrowse"><i class="badbrowse-ff" >Firefox</i></a>
+</div>
+<div style='margin: 0 50px; text-align: left; overflow: hidden;'>
+<div style='font-size: 14px; font-weight: bold; margin-top: 8px;' class="error_24">Your browser is no longer supported. You are using an outdated version of Internet Explorer.</div>
+
+<p style='font-size: 14px; margin-top: 6px; line-height: 16px;'>Old and nonstandard browsers can put your security at risk, are slow and don't work with newer features. To get the latest that Newspapers.com has to offer, you'll need to update to one of the following <a href="http://www.whatbrowser.org/en/">modern browsers</a> to the right.</p>
+
+</div>
+</div>
+<![endif]-->
+
+<div class="header on">
+<header class="clear" >
+
+<a href="https://www.newspapers.com/" title="Return to Home" id="logo">Newspapers.com</a>
+
+<nav class="nav" role="navigation">
+<input id="navcheck" type="checkbox" aria-hidden="true">
+<div class="nav-btn">
+<label for="navcheck" class="start" aria-controls="#main-nav-list" aria-expanded="false" id="start" class="start">
+<div class="spinner diagonal part-1"></div>
+<div class="spinner horizontal"></div>
+<div class="spinner diagonal part-2"></div>
+</label>
+</div>
+
+<ul class="nl" id="main-nav-list" aria-hidden="false">
+<li id="pg-home"><a href="https://www.newspapers.com/">Home</a></li><li id="pg-search"><a href="https://www.newspapers.com/search/">Search</a></li>
+<li id="pg-browse"><a href="https://www.newspapers.com/browse/">Browse</a></li>
+<li id="pg-docs"><a href="https://www.newspapers.com/papers/">Papers</a></li>
+<li id="pg-clippings"><a href="https://www.newspapers.com/clippings/">Clippings</a></li>
+</ul>
+</nav>
+</header>
+</div>
+
+
+
+<section id="fn-page" role="main">
+
+<div id="content">
+
+<div id="tp2" class="clear">
+<div id="logoclip"></div>
+<div id="clip-wrap">
+<div id="clip-col-left">
+<div id="lc-head-wrap">
+<div id="lc-head-left">
+<div id="title">
+
+<div id="spotlight_12293544">
+<h1>
+<span id="spotTitle" class="dt">Clipped From <em>The Los Angeles Times</em></span>
+</h1>
+</div>
+<div id="spot-desc-wrap">
+<div id="desc-wrap">
+<form class="sourceby" action="/search/">
+<h4>
+<span id="spotBody" class="disc-body"></span>
+</h4>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="lc-head-right">
+<div class="author">
+<a href="/profile/Tronc_Archives/" class="c-avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<div class="author-source">
+<p class="comment-source"> Clipped by <a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a></li>
+</div>
+</div>
+</div>
+
+
+</div>
+
+
+<div id="action-links">
+<a title="Reclip" href="#" id="fn-clipthispagedeny" onclick=""><span class="icon-news icon-clip clip-reclip-btn"></span> <span class="clip-btn-txt">Reclip</span></a>
+
+<a title="Share" id="fn-sharespotlight"><span class="icon-news icon-share clip-share-btn"></span> <span class="clip-btn-txt">Share</span></a>
+<a title="Print" id="fn-printclip" href="#" rel="nofollow"><span class="icon-news icon-print clip-prtdwn-btn"></span> <span class="clip-btn-txt">Print</span></a>
+<a class="clipDownload" title="Download" rel="nofollow" href="https://www.newspapers.com/clippings/download/?id=12014974"><span class="icon-news icon-download clip-dwn-btn"></span> <span class="clip-btn-txt">Download</span></a>
+<div id="save-button-wrap"> <div id="save-button-wrap2"> <button id="saveToAncestryButton" type="button" class="saveToAncestry">Save to Ancestry</button></div></div></div>
+
+
+<div id="spotlight">
+<figure id="sl-image">
+<a  href="/image/?spot=12014974#spot=12014974"  onclick="checkViewAccess('image',175957367,'/image/?spot=12014974#spot=12014974',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img src="https://img.newspapers.com/img/img?id=175957367&width=557&height=884&crop=0_0_3099_5010&rotation=0&brightness=0&contrast=0&invert=0&ts=1518671549&h=b0452f621e829de603bfb3183d1b017c" alt=" - SPORTS CoeAtujetcs Slimes Friday, October 21,..."/>
+</a>
+
+</figure>
+
+<input type="checkbox" id="ocr">
+<label for="ocr" class="subdued"><span>Show</span><i>Hide</i> article text (OCR)</label>
+<div class="ocrtext">SPORTS CoeAtujetcs Slimes Friday, October 21, 1988 CCttPart III 0 The World Series JSL. OAftLi&#039;l AlULtT ICb tv. LOS jvdLl tS DODGERS Jim Another Mickey Is Series Hero OAKLAND-The OAKLAND-The OAKLAND-The &quot;weakest team in the history of the World Series&quot; won it Thursday night. The team from Lourdes did it. They came in on crutches, so to speak, and went out dancing and wearing halos at a rakish angle. It was a script right out of &quot;The Song of Bernadette.&quot; As this is written, they&#039;re throwing champagne champagne around the visiting team clubhouse. They should be throwing throwing holy water. World champions!? The Dodgers!? Dodgers!? You got to be kidding! I mean, look, gang, we&#039;re not talking the 1927 Yankees here. We&#039;re talking more banjos than a minstrel show. This wasn&#039;t even the varsity. This was the Dodgers&#039; No. 1 farm club. This was the Los Angeles Scrubs. The B team. The one you send off on long bus trips in spring training when the A team slays at the base to play the Yankees. Everyone thought this was a club running on empty. With their best pitcher and their worst lineup lineup going, they were spotting the most physical team in baseball a lot of muscle, to say nothing of homers, doubles, triples and runs batted in. On paper, it looked like the Bayonne Bleeder vs. Mike Tyson. Orel Hershiser for President! Orel, who has had a season that&#039;s right out of Frank Merriwcll, won it like Billy Graham. He stood out on the mound, thinking the good thought and humming hymns. Ordinarily, when you face the Oakland lineup, the hymn that comes to mind is &quot;Nearer My God to Thee.&quot; The game was won by the Bash Brothers Mickey Hatcher and Mike Davis. When you get beat on home runs by Mickey Hatcher and Mike Davis, you begin to listen for voices or watch for tables to start lifting by themselves and lighted saucers to begin landing on the front lawn. Mickey Hatcher may be E.T. He came into this Series with a record of having hit exactly one ( 1 ) &#039; home run this season. I think it went out in the air. But Mickey doesn&#039;t take any chances. He runs out home runs the way Carl Lewis Please see MURRAY, Page 13 Gome 1 Dodgers 5, Athletics 4 Game 2 Dodgers 6, Athletics 0 Garne3&#039; Athletics 2, Dodgers 1 Game 4 Dodger s 4. Athlotics 3 Game 6 Dodgers 5, Athletics 2 Dodgers win World Set iaa, 4-1 4-1 4-1 , Attilartle: American League champions ore embarrassed by their World Series showing. Mike Partner&#039;s Partner&#039;s story, Pago 8. Afflka Davitc He delivers a crushing blow against his former teammates. Bill Plaschka&#039;s story, PageS. Notebook Page 9. Ptay-by-ptoy Ptay-by-ptoy Ptay-by-ptoy Ptay-by-ptoy Ptay-by-ptoy and boxscora: Page 14. 3 Killed, Reggie Rogers Hurt Three teen-agers teen-agers teen-agers are killed and defensive end Reggie Rogers of the Detroit Lions suffers a broken neck in an automobile crash. Please see Page 4. Pitcher Orel Hershiser gets a bearhug from Rick Dempsey as the Dodgers start to celebrate their World Series victory after beating the Oakland A&#039;s, 5-2, 5-2, 5-2, Thursday night to win, 4 games to 1. Scott Ostler Hatcher Has the Name That guy hit a home run, Hatcher What&#039;s-his-name. What&#039;s-his-name. What&#039;s-his-name. What&#039;s-his-name. What&#039;s-his-name. DAVE PARKER, reliving a nightmare. OAKLAND-Exactly OAKLAND-Exactly OAKLAND-Exactly as predicted and advertised, one World Series team bashed the ball over the fences game after game and the other team went down meekly, its dejected dejected fans leaving the ballpark early to beat the traffic. The A&#039;s were beaten by the Jayvees, 4 games to 1, in the World Series shocker of at least the last 2 decades. Naturally, the Dodgers did it unnaturally, completely outplaying outplaying the A&#039;s with a lineup only Tom Lasorda could love. And Mickey Hatcher, the unknown unknown soldier, supplied the inspiration inspiration Thursday night with a first-inning, first-inning, first-inning, 2-run 2-run 2-run homer. That&#039;s the same Mickey Hatcher Hatcher who hit a first-inning, first-inning, first-inning, 2-run 2-run 2-run homer in Game 1 of this Series. &quot;Luckily, they didn&#039;t check my bat,&quot; Hatcher said. If they did, they would have found it filled with Tinkerbell&#039;s fairy dust. Or, knowing Mickey the prankster, a sign would have popped out that said, &quot;BANG!&quot; S Gastineau Says He&#039;s Quitting Defensive end Mark Gastineau tells the New York Jets that he doesn&#039;t want to play, football anymore, citing personal reasons. Please see Page 4. United Press International ofHis Life Or &quot;BASH!&quot; Who would&#039;ve thought Mickey Hatcher would emerge as the offensive star of the World Series? Series? Who would&#039;ve imagined any of this nonsense? The Amazin&#039; A&#039;s, a team of already legendary power, beaten by a cartoon gang Mickey. Mickey. Bulldog, Moose, Gibby, Saxy, Tommy. . . . With a lineup that looked and sounded more like a Mousketeer roil call, the Dodgers cruelly mugged the A&#039;s. The A&#039;s were an emerging Please see OSTLER, Page 12 Hershiser&#039;s 4-Hitter 4-Hitter 4-Hitter Lifts Never-Say-Die Never-Say-Die Never-Say-Die Never-Say-Die Never-Say-Die Dodgers to Clincher Over A&#039;s, 5-2 5-2 5-2 By SAM McMANIS, Times Staff Writer OAKLAND jPact and fantasy had mingled for weeks, like a Hollywood creation slowly unfolding. unfolding. But now they have somehow somehow intertwined, and the Dodgers&#039; Dodgers&#039; improbable dream of winning the World Series is a reality. Thursday night at the Oakland Coliseum, the final scene was played in a Dodger season of expectations not only fulfilled but surpassed. The Dodgers used the tireless right arm of pitcher Orel Hershiser, Hershiser, the leading man, and the efforts of their corps of &quot;Stunt-men&quot; &quot;Stunt-men&quot; &quot;Stunt-men&quot; to beat the Oakland Athletics, Athletics, 5-2, 5-2, 5-2, and win baseball&#039;s championship championship in a startling 5 games. As Hershiser. the Series&#039; most valuable player, struck out Tony Phillips in the dramatic climax of the Dodgers&#039; championship season, season, he looked skyward to give thanks. But he also may have been asking, &quot;Is it real?&quot; It certainly was. Reality may have hit the A&#039;s like a forearm bash to the midsection, but it cascaded over the Dodgers like champagne. &quot;It wasn&#039;t supposed to happen.&quot; relief pitcher Jay Howell said. &quot;People weren&#039;t supposed to write this. I think we are as overwhelmed overwhelmed as anyone by this. We didn&#039;t think we&#039;d beat the New DOGGONE GOOD Orel Hershiser Proves His Bark Can Be as Devastating as His Bite By ROSS NEWHAN, Times Staff Writer OAKLAND Bulldog? Orel Hershiser proved the appropriateness appropriateness of the nickname again Thursday night. He did it with both bark and bite. &quot;I don&#039;t usually get emotional on the mound, but when I get upset it just makes me pitch better,&quot; the amazing Hershiser said after restricting the Oakland Athletics to 4 hits and pitching the Dodgers to a 5-2 5-2 5-2 victory and the championship of the 85th World Series. Hershiser got upset at himself in a tense eighth inning after earlier getting upset at the A&#039;s attempt to disrupt his rbjrthm by repeatedly stepping in&amp;ad out of Dodger Mike Davis (right) gets after hitting a 2-run 2-run 2-run home run York Mets in the playoffs, and we weren&#039;t sure about the A&#039;s.&quot; There is no mistake: It is the Dodgers, not the seemingly more talented A&#039;s, who are officially crowned baseball&#039;s best. This is the Dodgers&#039; sixth World Series title, the second in Manager Tom Lasorda&#039;s tenure. Typical of the Dodgers&#039; rise, contributions were made by many sources. Most notable on a night of stars was another dominating pitching effort by the indefatigable indefatigable Hershiser, who pitched a 4-hitter, 4-hitter, 4-hitter, and another offensive windfall off the bat of Mickey Hatcher, who hit a 2-run 2-run 2-run home run as he became the offensive star of the Series. Those are the facts. Now for the fantasy. Even as late as 2 weeks ago, hardly anyone not wearing blue gave the Dodgers a chance to beat the Mets in the National League championship series. And once the Mets were dismissed, the Dodgers were said to have no chance against the all-powerful all-powerful all-powerful A&#039;s, who won 104 regular-season regular-season regular-season games. Yet, it was as if Lasorda knew the script in advance and used it to his team&#039;s advantage. Every time the Dodgers were counted out, Lasorda pointed it out to his club. &quot;I planned it,&quot; Lasorda said. &quot;I Please see DODGERS, Page 10 the batter&#039;s box. &quot;They were trying anything,&quot; said Hershiser, who finally had enough of it while Tony Phillips was batting in the fifth inning. &quot;I walked in to talk to catcher Rick Dempsey, but I talked loud enough to let Phillips and the umpire hear me,&quot; he said. &quot;I asked Rick at what time and how often can they do it (step out. &quot;I wanted to let them know I didn&#039;t like it and that anytime I get aggravated I become a better pitcher. &quot;I wanted to let them know it was inspiring me and not affecting me adversely. People would have better luck if they tried to lull me to sleep. The A&#039;s made sure I stayed awake.&quot; Please see OREL, Page 11 THOHASKELSEY Loa AnjelttTlmu a high-five high-five high-five from Mickey Hatcher in the fourth inning of Game 5, Morning Briefing Page 2 TV-Radio TV-Radio TV-Radio Larry Stewart Newswire Tennis Roundup 5 College Football Richard Holler 7 The Day in Sports 14-15 14-15 14-15</div>
+<h3 class="source-info">Clipped from
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1988/10/21">21 Oct 1988, Fri</a>,&nbsp;
+<a href="/image/175957367/">Page 66</a>
+</h3>
+</div>
+
+<span id="printlocation">
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312">The Los Angeles Times (Los Angeles, California)</a>,&nbsp;
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1988/10/21">21 Oct 1988, Fri</a>,&nbsp;
+<a href="/image/175957367/">Page 66</a>
+</span>
+
+<div class="print-author clear">
+<h4>
+Clipped by:
+</h4>
+<a href="/profile/Tronc_Archives/" class="avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<ul>
+<li><a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a>   29 Jun 2017</li>
+</ul>
+</div>
+
+<div id="author-wrap">
+<div class="author">
+<a href="/profile/Tronc_Archives/" class="c-avatar"><img src="/usericon.php?id=2895498&amp;user=2895498&amp;institution=0&amp;size=60" alt="Tronc_Archives Member Photo" /></a>
+<ul>
+<li class="author-comments"><p class="comment-source"> Clipped by <a href="/profile/Tronc_Archives/"><strong class="ownername">Tronc_Archives</strong></a>  &ndash;  29 Jun 2017</li>
+</ul>
+</div>
+</div>
+
+<div id="comments" class="cliner">
+<form method="get" action="/updatecomment.php" id="spotcommentform" name="spotcommentform" onsubmit="if(this.text.value.length==0) {alert('Please enter your comment'); return false;}">
+<input type="hidden" name="id" value="12014974"/>
+<input type="hidden" name="type" value="footnote"/>
+<input type="hidden" name="htitle" value=""/>
+
+<p><strong>Want to comment on this Clipping?</strong> <a href="#" class="fn-addacommentdeny">Sign up</a> for a free account, or <a href="https://www.newspapers.com/signon.php">sign in</a></p>
+</form>
+</div>
+</div>
+
+
+</div>
+<!--! Side Column  -->
+
+<div id="clip-col-right">
+<div class="preview-block clear">
+<span class="location">
+<a href="/title_4312/the_los_angeles_times/">
+<span class="paper-title">The Los Angeles Times</span>
+<br/>(Los Angeles, California)<br/>
+</a>
+<a href="/browse/US/California/Los%20Angeles/The%20Los%20Angeles%20Times_4312/1988/10/21">21 Oct 1988, Fri</a>
+&nbsp;•&nbsp;<a href="/image/175957367/">Page 66</a>
+</span>
+<div id="image-context">
+<a  href="/image/?spot=12014974#spot=12014974"  onclick="checkViewAccess('image',175957367,'/image/?spot=12014974#spot=12014974',1,'1');return false"  title="View Full Resolution Paper" class="sl-img">
+<img data-src="https://img.newspapers.com/img/thumbnail/175957367/250/0/0_0_3099_5010/0/yes/0_0_3099_5010.jpg" id="image-context-img" alt="Page context" title="Page context of clipping"/>
+</a>
+</div>
+</div>
+
+<div id="alsoby" class="clear">
+<h4>Other Clippings by Tronc_Archives <a href="/profile/Tronc_Archives/"><small>(See all)</small></a></h4>
+<ul class="clear">
+<li> <a href="/clip/17064363/1938_lat_masthead/" title="1938 LAT MASTHEAD">
+<i><img src="/i/spacer.gif" alt="1938 LAT MASTHEAD" style="background-image: url(https://img.newspapers.com/img/thumbnail/160072725/150/150/1007_199_2406_398.jpg);"/></i>
+<span class="alsoby-text">1938 LAT MASTHEAD</span></a>
+</li>
+<li> <a href="/clip/16044195//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120746810/150/150/0_0_4085_5705.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044101//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/717_4503_1087_1163.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044068//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/0_0_4845_6750.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+<li> <a href="/clip/16044023//" title="">
+<i><img src="/i/spacer.gif" alt="" style="background-image: url(https://img.newspapers.com/img/thumbnail/120436583/150/150/722_4517_1083_1173.jpg);"/></i>
+<span class="alsoby-text"></span></a>
+</li>
+</ul>
+</div>
+<!--   -->
+<div id='div-gpt-ad-1441906195073-0' class="a-spot">
+
+</div>
+<!--   -->
+
+</div>
+</div>
+
+<script type="text/javascript">
+var spotlightId = 12014974;
+var printClipUrl = 'https://www.newspapers.com/clippings/download/?id=12014974&amp;name=&amp;print=1';
+var imageId = "175957367";
+var watching = 0;
+var obj, widget;
+var contributionLevel = 'full';
+var userEmail = '';
+var isError = false;
+var errorCb = function(){regBox('','','');};
+var staPageDetail = JSON.parse("{\"citation\":{\"title\":\"\",\"url\":\"https:\\/\\/www.newspapers.com\\/clip\\/12014974\\/the_los_angeles_times\\/?xid=637\"},\"source\":{\"title\":\"Newspapers.com - The Los Angeles Times - 21 Oct 1988, Fri\",\"publisherName\":\"The Los Angeles Times\",\"publishedDate\":\"21 Oct 1988, Fri\",\"publishedLocation\":\"Los Angeles, California\"},\"repositoryDomain\":\"www.newspapers.com\",\"media\":{\"url\":\"https:\\/\\/img.newspapers.com\\/img\\/thumbnail\\/175957367\\/400\\/400\\/0_0_3099_5010\\/\",\"note\":\"\"}}");
+var publicationId = 4312;
+var issueDate = "1988-10-21";
+var pageEdition = "";
+var pageNumber = "66";
+var imageArchived = false;
+</script>
+
+
+</div>
+<div id="div-gpt-ad-1441906195073-1" class="a-spot a-lead">
+
+</div>
+</section>
+
+<hr />
+<footer>
+
+<div id="boot" class="clear">
+<div id="breadcrumbs"> </div>
+
+<div class="boot-contain clear">
+<div class="bootbox b1">
+<h3>Newspapers</h3>
+<ul>
+<li><a ID="searchFooter" href="/search/">Search Newspapers</a></li>
+<li><a ID="browseFooter" href="/browse/">Browse Newspapers</a></li>
+<li><a ID="newlyAddedFooter" href="/papers/?type=titles&start=0&sort=updated">Newly Added &amp; Updated</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Site Links</h3>
+<ul>
+<li><a ID="homePageFooter" href="https://www.newspapers.com/">Homepage</a></li>
+<li><a ID="papersFooter" href="https://www.newspapers.com/papers/">Papers</a></li>
+<li><a ID="clippingsFooter" href="https://www.newspapers.com/clippings/">Clippings</a></li>
+
+
+<li><a ID="helpFooter" href="https://www.newspapers.com/help/">Help</a></li>
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>Membership</h3>
+<ul>
+<li><a ID="signinFooter" href="https://www.newspapers.com/signon.php">Sign in</a></li>
+<li><a ID="tryFreeFooter" href="https://www.newspapers.com/free/">Try it FREE</a></li>
+<li><a ID="subscriptionsFooter" href="https://www.newspapers.com/choose-a-plan/?iid=624">Subscriptions</a></li>
+<li><a ID="registerFooter"href="https://www.newspapers.com/register/">Register</a></li>
+
+</ul>
+</div>
+<div class="bootbox b1">
+<h3>About</h3>
+<ul>
+<li><a ID="whoAreWeFooter" href="https://www.newspapers.com/about/">Who are we</a></li>
+<li><a ID="contentProvidersFooter" href="https://go.newspapers.com/content/">Content Providers</a></li>
+<li><a ID="affiliatesFooter" href="https://go.newspapers.com/affiliates/">Affiliates</a></li>
+</ul>
+</div>
+
+<div class="b3">
+<div class="logo"></div>
+
+</div>
+<div class="footsection">
+<div id="cr">
+<p>The names, logos, and other source identifying features of newspapers depicted in our database are the trademarks of their respective owners, and our use of newspaper content in the public domain or by private agreement does not imply any affiliation with, or endorsement from, the publishers of the newspaper titles that appear on our site. Newspapers.com makes these newspapers available for the purpose of historical research, and is not responsible for the content of any newspapers archived at our site.</p>
+</div>
+</div>
+</div>
+
+
+<div id="cr" class="tam">
+&copy; 2018 Newspapers.com by <a href="https://www.ancestry.com" target="_blank">Ancestry</a>.  All Rights Reserved. <a href="https://www.ancestry.com/legal/terms.aspx" onclick="_gaq.push(['_trackPageview', '/fnav-tnu/']); return true;" target="acom">Terms and Conditions</a>  &#183; <a href="https://www.ancestry.com/cs/legal/privacystatement" onclick="_gaq.push(['_trackPageview', '/fnav-privacy/']); return true;" target="acom">Privacy Statement</a> &#183; <a href="https://www.newspapers.com/sitemap/">Site Map</a> &#183; <a href="https://www.newspapers.com/contact/">Contact</a>
+</div>
+<div class="social tam">
+<ul class="inline">
+<li><a ID="twitterFooter" href="https://twitter.com/_newspapers" class="twitter-btn">Twitter</a></li>
+<li><a ID="facebookFooter" href="https://www.facebook.com/newspaperscom" class="fb-btn">Facebook</a></li>
+<li><a ID="googlePlusFooter" href="https://plus.google.com/+newspaperscom" class="gp-btn">Google+</a></li>
+<li><a ID="blogFooter" href="https://blog.newspapers.com" class="blog-btn">Blog</a></li>
+</ul>
+</div>
+
+</footer>
+<noscript class="noscript"><div class="alert_strip error_block floater"><div class="line-length error_24"><b>Javascript required:</b> We're sorry, but Newspapers.com doesn't work properly without JavaScript enabled. You will need to enable Javascript by changing your browser settings. <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" class="outlink" target="_blank" nofollow>Learn how to enable it.</a></div></div></noscript>
+
+
+
+
+<script>
+var isNcom = true;//Used by mbox.js
+var appRoot = 'https://www.newspapers.com/';
+var fbappid = 397139687020404;
+var facebookAppRoot = '';
+
+var footnotePathNormal = 'https://www.newspapers.com/';
+var fullPathNormal = 'https://www.newspapers.com/';
+var fullPathFootnote = 'https://www.newspapers.com/';
+var fullPathSecure = 'https://www.newspapers.com/';
+var footnotePathAgnostic = 'https://www.newspapers.com/';
+var fullPathLanding = 'https://go.newspapers.com/';
+var imagePathNormal = 'https://img.newspapers.com/img/';
+var contributionLevel = 'full';
+var cookieDomain = '.newspapers.com';
+var browsePathSecure = 'https://browse.newspapers.com/browse/';
+var clippingPathSecure = 'https://clipping.newspapers.com/';
+var documentService = 'http://monolith.news-prod.cloud';
+var isLibrary = false;
+var siteversion = "standard";
+var sitesecure = "1";
+var siteiteration = "cf9ad67";
+var clipStatus = '';
+var fn_error = '';
+var useMboxDeny = false;
+var onloadaction = null;
+var userData = null;
+var wallpage = 'subscription/registerwall';
+var institutionData = null;
+var productData = {
+id: '1',
+open: '',
+name: 'Newspapers.com',
+default: true,
+irish: false,
+proquest: false,
+discontinued: false,
+hideNarrowByLocation:  false,
+hideAddedSince: false,
+disablePrintSaveStartDate: '',//ISO-8601 Format
+viewerPrintSaveDenyLink: '',
+startYear: 1690,
+endYear: 2018
+};
+
+
+
+var silo = 0;
+var productId = 1;
+var CLICK = "click",
+CLICK_START = 'touchstart mousedown',
+CLICK_MOVE  = 'touchmove mousemove',
+CLICK_END   = 'touchend mouseup',
+touchEnabled = ('ontouchstart' in window);
+var saveToAncestryOverrideUrl = 'https://www.ancestry.com/savetoancestry/';
+</script><script type="text/javascript">
+window.onerror = function (msg, url, line) {
+var f = function (str) {
+return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+return '%' + c.charCodeAt(0).toString(16);
+});
+};
+try {
+var sl = 'https://www.newspapers.com/report';
+var body = document.body;
+if (body.attributes.jserror) {
+var prevjserrors = body.attributes.jserror.value;
+body.attributes.jserror.value = prevjserrors + '\n' + msg + " url:" + url;
+var x = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+var p = sl + "/?page="+f(document.location.href)+"&error=" + f(msg) + "&script=" + f(url);
+x.open('POST', p, true);
+x.send(null);
+}
+} catch (e) {}
+};
+</script>
+<script>
+var require = {
+deps: ["jquery", "core"],//Requests these dependencies. However, it doesn't mean that they will be loaded before main.js runs.
+paths: {
+jquery: [
+'//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min',
+'//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min',
+'jquery-1.11.3.min'
+],
+rx: [
+"//cdnjs.cloudflare.com/ajax/libs/rxjs/2.3.18/rx.lite.min",
+"rx.lite"//Fallback if fails to load from cdn
+],
+facebooksdk: "//connect.facebook.com/en_US/sdk",
+savetoancestry: "https://www.ancestry.com/savetoancestry/javascript/saveToAncestryApi",
+},
+urlArgs: "ncomv="+siteiteration,
+shim: {
+//Define dependencies for non-amd code.
+"rx": {
+exports: "rx",
+deps: ['jquery']
+},
+"jquery.infieldlabel.min": {
+exports: "$",
+deps: ['jquery']
+},
+"facebooksdk": {
+exports: "FB"
+},
+"modernizr": {
+exports: "Modernizr",
+deps: ['yepnope']
+}
+}
+};
+</script>
+<script async data-main="/js/requirejs/bin/app.clippings.page.main.js" src="/js/requirejs/require.js?v=cf9ad67"></script>
+
+
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"bam.nr-data.net","licenseKey":"ae44cb1d6a","applicationID":"61881318","transactionName":"NVJQMRAEWhBRUUNbCgwYcwYWDFsNH3FbWxUSXlwCEUpXD1lC","queueTime":0,"applicationTime":500,"atts":"GRVTR1geSR4=","errorBeacon":"bam.nr-data.net","agent":""}</script></body>
+</html>

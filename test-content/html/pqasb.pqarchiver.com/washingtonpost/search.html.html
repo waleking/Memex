@@ -1,0 +1,733 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8"/>
+<title>washingtonpost.com - search nation, world, technology and Washington area news archives.</title>
+<link rel="stylesheet" href="/washingtonpost/genericstyles.css" type="text/css">
+<script type="javascript" src="https://ssl1.washingtonpost.com/rw/sites/twpweb/js/twp-external.js"></script>
+<!-- New additions START -->
+<link type="text/css" rel="stylesheet" href="https://ssl1.washingtonpost.com/wpost/css/combo?context=wpost&c=true&m=true&r=/header/twp-external-header.css&r=/footer/twp-external-footer.css"></link>
+<script type="text/javascript" src="https://ssl1.washingtonpost.com/wpost/js/combo?context=wpost&m=true&c=false&r=/yui-base/3.3.0/build/yui/yui-min.js&r=/yui-base/twp-yui/twp-yui.js&r=/yui-base/global/global-external-modules.js"></script>
+<!-- New additions ENDS -->
+
+<script language="javascript" src="/washingtonpost/js/ad_configurations_article_v2.js"></script>
+<script type="text/javascript" src="http://media3.washingtonpost.com/wp-srv/ad/ad_v2.js"></script>
+<style>
+#footer-v3.external .services ul.grid a {
+    font-weight: normal;
+}
+</style>
+
+<link href="/washingtonpost/css/revclamp970.css" rel="stylesheet" media="all"/>
+<style>
+ li {
+background:xxx !important;
+list-style-type:none;
+} 
+
+h5 {
+    display: block;
+    font-size: 0.98em;
+    font-weight: bold;
+    margin: 1.67em 0;
+}
+</style>
+</head>
+<body id="PageArticle">
+
+
+<!-- start visible content -->
+<div id="PageArticleCommon">
+
+  <div><a href="http://www.washingtonpost.com/"><img src="/washingtonpost/main/art/wp_mast_logo.png"></a></div>
+  <div style="clear:both;"></div>
+
+  <div id="wrapperMain">
+    <div id="wrapperMainCenter">
+      <div id="wrapperInternalCenter">
+
+        <div id="article" style="margin-left:10px;">
+          <div id="container">
+
+<div style="width: 600px;">
+ 
+<!-- begin included file: shutdown.txt -->
+<style>
+.sd_info, .sd_success, .sd_warning, .sd_error {
+border: 1px solid;
+margin: 10px 0px;
+padding:15px 10px 15px 50px;
+background-repeat: no-repeat;
+background-position: 10px center;
+}
+.sd_info {
+color: #00529B;
+background-color: #BDE5F8;
+background-image: url('/art/info.png');
+}
+.sd_success {
+color: #4F8A10;
+background-color: #DFF2BF;
+background-image:url('/art/success.png');
+}
+.sd_warning {
+color: #9F6000;
+background-color: #FEEFB3;
+background-image: url('/art/warning.png');
+}
+.sd_error {
+color: #D8000C;
+background-color: #FFBABA;
+background-image: url('/art/error.png');
+}
+</style>
+
+<!-- end included file: shutdown.txt -->
+
+
+
+
+<script type="text/javascript" src="/washingtonpost/js/archive_search.js"></script>
+
+ 
+<!-- begin included file: promo_blurb.txt -->
+<!-- end included file: promo_blurb.txt -->
+
+
+<!-- begin included file: jscript.txt -->
+<script language="JavaScript" type="text/javascript"><!--
+var search_type;
+
+function Trim (str) {
+    var whitespace = new String(" \t\n\r");
+    var s = new String(str);
+    var i;
+
+    // Strip right side:
+    i = s.length - 1;   // index of last character
+    if ( whitespace.indexOf(s.charAt(i)) != -1 ) {
+        // We have a string with trailing blank(s)...
+        // Iterate from the far right of string until we
+        // don't have any more whitespace...
+        while ( i >= 0 && whitespace.indexOf(s.charAt(i)) != -1 ) {
+            i--;
+        }
+        // Get the substring from the front of the string to
+        // where the last non-whitespace character is...
+        s = s.substring(0,i+1);
+    }
+
+    // Strip left side:
+    i = 0;  // index of first character
+    if ( whitespace.indexOf(s.charAt(i)) != -1 ) {
+        // We have a string with leading blank(s)...
+        // Iterate from the far left of string until we
+        // don't have any more whitespace...
+        var j = s.length;
+        while ( i < j && whitespace.indexOf(s.charAt(i)) != -1 ) {
+           i++;
+        }
+
+        // Get the substring from the first non-whitespace
+        // character to the end of the string...
+        s = s.substring(i,j);
+    }
+    return s;
+}
+
+function checkinput (form)
+{
+if (form.name == 'pqa_hist_search') {
+
+search_type = 1;
+
+var select_flag = 0;
+var len = form.at_hist.length;
+var i = 0;
+for (i = 0; i < len; i++)
+{
+ if(form.at_hist[i].selected)
+ { select_flag = 1; }
+}
+
+
+    if (
+         Trim(form.QryTxt.value) == '' ) {
+
+        alert( "Please enter terms to search for.\n" +
+               "To search only by date range,\n" +
+               "enter \"*\" in the \"Search for\" field." );
+
+        return;
+    }
+
+}
+else {
+    if (
+         Trim(form.QryTxt.value) == '' ) {
+
+        alert( "Please enter terms to search for.\n" +
+               "To search only by date range,\n" +
+               "enter \"*\" in the \"Search for\" field." );
+
+        return;
+    }
+}
+
+
+    form.submit();
+//    search_progress_start( 1, 1, 1 );
+
+    return;
+}
+
+function search_progress_start( i, t, j ) {
+    window.status = "washingtonpost.com - search nation, world, technology and Washington area news archives.";
+    if ( i < 6 ) {
+        search_progress_run( i );
+        i++;
+    }
+    else {
+        if ( j < 6 ) {
+            search_progress_runb(j);
+            j++;
+        }
+        else {         
+            search_progress_run(1);
+            i = 2;
+            j = 1;
+        }
+    }
+    t++;
+    var myfunc = "search_progress_start(" + i + "," + t + "," + j +  ")";
+    if ( t < 200 ) {
+        window.setTimeout(myfunc, 200);
+    }
+    else {
+        search_progress_clear( );
+        return;
+    }
+}
+
+function search_progress_run( i ) {
+    var iName = "";
+    iName = eval("document.images.dot"  +  i);
+    iName.src = "/art/search_dot.gif";
+    return i;
+}
+
+function search_progress_runb( j ) {
+    var iName = "";
+    iName = eval("document.images.dot"  +  j);
+    iName.src = "/art/null.gif";
+    return j;
+}
+
+function search_progress_clear( ) {
+    var iName = "";
+    for (i = 1; i < 6; i++) {
+        iName = eval("document.images.dot"  +  i);
+        iName.src = "/art/null.gif";
+    }	  
+    return;
+}
+
+(new Image(10,10)).src = "/art/search_dot.gif";
+
+function setMyDate(force) {
+    var thisform = document.forms.search;
+
+    if ( !force ) {
+        today = new Date();
+        var month = today.getMonth();
+        var day   = today.getDate();
+        var yr    = today.getFullYear();
+        thisform.toyear.value = yr;
+        thisform.tomonth.selectedIndex = month;
+        thisform.today.selectedIndex   = day - 1;
+    }
+}
+
+function resetvalues(form, endyear, endmonth, endday) {
+    form.Title.value = "";
+    form.By.value = "";
+
+
+    form.Sect.options.selectedIndex = 0;
+
+
+    form.frommonth.options.selectedIndex = 0;
+    form.tomonth.selectedIndex = endmonth - 1;
+
+    form.fromday.options.selectedIndex = 0;
+    form.today.selectedIndex   = endday - 1;
+
+    form.fromyear.value = "1987";
+    form.toyear.value = endyear;
+
+
+    form.datetype[0].checked = true;
+    form.sortby[0].checked   = true;
+    form.QryTxt.value = "";
+
+    return;
+}
+
+function setradio(num) {
+    document.forms.pqa_search.datetype[num].checked = true;
+}
+
+function pub_check(val) {
+    var checkboxes = document.forms.pqa_search.publications;
+    var totalboxes = checkboxes.length;
+
+    if (val.checked == false) {
+        var numchecked = 0;
+        var i = 1;
+        for (i = 1; i < totalboxes; i++) {
+            if ( checkboxes[i].checked == true ) {
+                numchecked = numchecked + 1;
+            }
+        }
+
+        if ( numchecked < 1 ) {
+            checkboxes[0].checked = true;
+        }
+    }
+    else {
+        if (val.value != '') {
+            checkboxes[0].checked = false;
+        }
+        else {
+            var i = 1;
+            for (i = 1; i < totalboxes; i++) {
+                checkboxes[i].checked = false;
+            }
+        }
+    }
+}
+
+// -->
+</script>
+<!-- end included file: jscript.txt -->
+
+
+
+<br>
+
+
+<!-- begin included file: top_retrieves.txt -->
+<style>
+.top_ret {
+    width: 578px;
+    padding: 0px 10px;
+    border: 1px solid #63739c;
+}
+</style>
+<div style="background-color: #eee;text-align: center;" class="top_ret">
+  <b>Most Viewed Articles</b>&nbsp;&nbsp;<span class="footnote">(Updated Daily)</span>
+</div>
+<div style="border-top: 0px solid #fff;" class="top_ret">
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a title="Colder Winters Held Dawn of New Ice Age" href="/washingtonpost/doc/147902052.html?FMT=ABS&FMTS=ABS:FT&type=147902052.html&date=washingtonpost+%2C+&author=Washington+Post+Staff+Writer%7C%7C%7C%7C%7C%7CBy+David+R.+Boldt&pub=The+Washington+Post%2C+Times+Herald++%281959-1973%29&desc=Colder+Winters+Held+Dawn+of+New+Ice+Age&pqatl=top_retrieves">Colder Winters Held Dawn of New Ice Age</a><br>
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a title="U.S. Scientist Sees New Ice Age Coming" href="/washingtonpost_historical/doc/148085303.html?FMT=ABS&FMTS=ABS:AI&type=historic&date=washingtonpost+%2C+&author=By+Victor+Cohn%7C%7C%7C%7C%7C%7CWashington+Post+Staff+Writer&pub=The+Washington+Post%2C+Times+Herald++%281959-1973%29&desc=U.S.+Scientist+Sees+New+Ice+Age+Coming&pqatl=top_retrieves">U.S. Scientist Sees New Ice Age Coming</a><br>
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a title="VC Offer 6-Month Withdrawal Plan" href="/washingtonpost_historical/doc/143701527.html?FMT=ABS&FMTS=ABS:FT&type=historic&date=washingtonpost+%2C+&author=By+Jonathan+C.+RandalWashington+Post+Foreign+Service&pub=The+Washington+Post%2C+Times+Herald++%281959-1973%29&desc=VC+Offer+6-Month+Withdrawal+Plan&pqatl=top_retrieves">VC Offer 6-Month Withdrawal Plan</a><br>
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a title="Weather War: A Gathering Storm" href="/washingtonpost_historical/doc/148252079.html?FMT=ABS&FMTS=ABS:AI&type=historic&date=washingtonpost+%2C+&author=By+Victor+CohnWashington+Post+Staff+Writer&pub=The+Washington+Post%2C+Times+Herald++%281959-1973%29&desc=Weather+War%3A+A+Gathering+Storm&pqatl=top_retrieves">Weather War: A Gathering Storm</a><br>
+&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a title="Boycott of Inaugural Is Seen by Congressman" href="/washingtonpost_historical/doc/148471384.html?FMT=ABS&FMTS=ABS:AI&type=historic&date=washingtonpost+%2C+&author=&pub=The+Washington+Post%2C+Times+Herald++%281959-1973%29&desc=Boycott+of+Inaugural+Is+Seen+by+Congressman&pqatl=top_retrieves">Boycott of Inaugural Is Seen by Congressman</a><br>
+</div>
+<!-- end included file: top_retrieves.txt -->
+
+<br>
+<table border=0 cellpadding=0 cellspacing=0>
+<tr>
+  <td width=271 valign="top">
+    <h5>1987 - Current</h5>
+  </td>
+  <td>
+    <img src="/art/null.gif" height=1 width=8>
+  </td>
+  <td><img src="/art/null.gif" height=1 width=1></td>
+  <td width=283 valign="top">
+   <h5>1877 - 1995 Historical</h5>
+  </td>
+</tr>
+
+<tr>
+  <td width=271 valign="top">
+    <form action="results.html" method="GET">
+      <input type="hidden" name="st" value="basic">
+      <input type="hidden" name="uid" value="">
+      <input type="hidden" name="MAC" value="50a23aa1f3f5c6104e90e36051420d61">
+      <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td colspan=2 class="default"><b>Search:</b></td>
+      </tr>
+      <tr>
+        <td valign="bottom" class="default" colspan="2">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr><td>
+                <input name="QryTxt" value="" maxLength="256">
+                </td>
+                <td>
+                <img src="/art/null.gif" border="0" width="7" height="3"><input type="image" value="Search" onclick="checkinput(this.form); return false;" src="/washingtonpost/main/art/go_white.gif" border=0>
+               </td></tr>
+           </table>
+        </td>
+      </tr>
+
+      <tr><td colspan=2>&nbsp;</td></tr>
+
+      <tr>
+        <td colspan=2 class="default"><b>Sort&nbsp;By:</b></td>
+      </tr>
+      <tr>
+        <td colspan=2 class="default">
+          <input name="sortby" checked type="radio" value="RELEVANCE">&nbsp;Relevance<br>
+          <input name="sortby" type="radio"
+                 value="REVERSE_CHRON">&nbsp;Most&nbsp;Recent&nbsp;First<br>
+          <input name="sortby" type="radio" value="CHRON">&nbsp;Oldest&nbsp;First
+	 </td>
+      </tr>
+
+      <tr><td colspan=2>&nbsp;</td></tr>
+
+      <tr>
+        <td colspan=2>
+          <table border=0 cellspacing=0 cellpadding=0>
+          <tr>
+            <td class="copyright" valign="top">*&nbsp;</td>
+            <td class="copyright">This archive does not contain articles published in the last 14 days.</td>
+          </tr>
+          </table>
+        </td>
+      </tr>
+      </table>
+    </form>
+  </td>
+  <td>
+    <img src="/art/null.gif" height=1 width=8>
+  </td>
+  <td bgcolor="#707070"><img src="/art/null.gif" height=40 width=1></td>
+  <td width=283 valign="top">
+    <form action="/washingtonpost_historical/results.html" method="GET">
+      <input type="hidden" name="st" value="basic">
+      <input type="hidden" name="uid" value="">
+      <input type="hidden" name="MAC" value="50a23aa1f3f5c6104e90e36051420d61">
+      <table border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td rowspan=10 width=8><img src="/art/null.gif" width=8 height=1></td>
+        <td colspan=2 class="default"><b>Search:</b></td>
+      </tr>
+      <tr>
+        <td valign="bottom" class="default" bgcolor="#ffffff" colspan=2>
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tr><td>
+              <input name="QryTxt" value="" maxLength="256">
+                </td>
+                <td>
+                <img src="/art/null.gif" border="0" width="7" height="3"><input type="image" value="Search" onclick="checkinput(this.form); return false;" src="/washingtonpost/main/art/go_white.gif" border=0>
+                </td></tr>
+           </table>
+        </td>
+      </tr>
+
+      <tr><td colspan=2>&nbsp;</td></tr>
+
+      <tr>
+        <td colspan=2 class="default"><b>Sort&nbsp;By:</b></td>
+      </tr>
+      <tr>
+        <td colspan=2 class="default">
+          <input name="sortby" checked type="radio" value="RELEVANCE">&nbsp;Relevance<br>
+          <input name="sortby" type="radio"
+                 value="REVERSE_CHRON">&nbsp;Most&nbsp;Recent&nbsp;First<br>
+          <input name="sortby" type="radio" value="CHRON">&nbsp;Oldest&nbsp;First
+        </td>
+      </tr>
+
+      <tr><td colspan=2>&nbsp;</td></tr>
+
+      <tr><td colspan=2 class="default"><b>More&nbsp;Options:</b></td></tr>
+      <tr>
+        <td colspan=2 class="default">
+          <input name="restrict" type="radio" value="articles" checked>
+          Search&nbsp;Articles&nbsp;Only<br>
+          <input name="restrict" type="radio" value="none">
+          Search&nbsp;Articles,&nbsp;Ads&nbsp;and&nbsp;Listings
+        </td>
+      </tr>
+      </table>
+    </form>
+  </td>
+</tr>
+
+<tr><td colspan=4 class="default" align="center">&nbsp;</td></tr>
+
+<tr>
+  <td colspan=4 class="default" align="center">
+    <a href="/washingtonpost/advancedsearch.html"><b>Advanced Search</b></a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/washingtonpost/tips.html"><b>Search Tips</b></a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="/washingtonpost/faq.html"><b>FAQ</b></a>
+  </td>
+</tr>
+</table>
+
+
+
+
+<!-- begin included file: search_bottom.txt -->
+
+<!-- begin included file: separator.txt -->
+
+<div class="btmborder"> </div>
+
+<!-- end included file: separator.txt -->
+
+<!-- begin included file: please_view_terms.txt -->
+<p class="default">
+  The <a href="terms.html">Terms of Service</a> for this Web
+  site are applicable to your use of the archive. Please read them.
+  Your use of the site indicates your acceptance of these Terms of Service.
+</p>
+
+<!-- end included file: please_view_terms.txt -->
+
+<!-- end included file: search_bottom.txt -->
+
+
+<!-- end main file: search.html -->
+
+
+<div id="pqa_login_status" style="border: 1px solid #63739c; width: 590px; padding: 4px; margin: 4px 0px">
+
+
+<a href="https://secure.pqarchiver.com/washingtonpost/login.html?url=%2Fwashingtonpost%2Fsearch.html">Log In</a><br>
+
+<table border=0 cellpadding=5 cellspacing=0 width="590">
+<tr>
+<td valign="top" align="center">
+<a href="http://www.mypqa.com/"><img src="/art/PQA_Branding.jpg" alt="ProQuest" border="0" width="265" height="46"></a>
+</td>
+</tr>
+</table>
+</div>
+
+
+
+<div class="btmlinks" style="text-align:center;">
+    <a href="/washingtonpost/about.html">About the Archive</a>
+  | <a href="/washingtonpost/offers.html">Pricing</a>
+  | <a href="http://www.mypqa.com/?interface=washingtonpost">Account &amp; Purchases</a>
+  | <a href="/washingtonpost/help.html">Help</a>
+  | <a href="/washingtonpost/terms.html">Terms of Service</a>
+</div>
+<br>
+<br>
+</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div id="wrapperMainRight">
+
+
+
+<SCRIPT>
+<!--
+if ( show_doubleclick_ad && ( adTemplate & TILE_RIGHT_TOP ) == TILE_RIGHT_TOP  )
+{
+document.write('<div style="margin-top:4px; margin-bottom:4px; margin-right:10px; float:left;">') ;
+document.writeln ('<div><img src="http://media3.washingtonpost.com/wp-srv/hp/img/ad_label_leftjust.gif" alt="ad_icon" width="100" height="13" border="0"/></div>' );
+}
+// -->
+</SCRIPT>
+<script>
+if ( show_doubleclick_ad && ( adTemplate & TILE_RIGHT_TOP ) == TILE_RIGHT_TOP  )
+{
+placeAd('ARTICLE',commercialNode,8,'',false) ;
+}
+</script>
+<SCRIPT LANGUAGE="javascript">
+<!--
+if ( show_doubleclick_ad && ( adTemplate & TILE_RIGHT_TOP ) == TILE_RIGHT_TOP  )
+{
+document.write('</div>') ;
+}
+// -->
+</SCRIPT>
+<SCRIPT>
+<!--
+if ( show_doubleclick_ad && ( adTemplate & TILE_RIGHT_TOP2 ) == TILE_RIGHT_TOP2  )
+{
+document.write('<div style="margin-top:4px; margin-bottom:4px; float:left;">') ;
+document.writeln ('<div><img src="http://media3.washingtonpost.com/wp-srv/hp/img/ad_label_leftjust.gif" alt="ad_icon" width="100" height="13" border="0"/></div>' );
+}
+// -->
+</SCRIPT>
+<script>
+if ( show_doubleclick_ad && ( adTemplate & TILE_RIGHT_TOP2 ) == TILE_RIGHT_TOP2  )
+{
+placeAd('ARTICLE',commercialNode,10,'',false) ;
+}
+</script>
+<SCRIPT LANGUAGE="javascript">
+<!--
+if ( show_doubleclick_ad && ( adTemplate & TILE_RIGHT_TOP2 ) == TILE_RIGHT_TOP2  )
+{
+document.write('</div>') ;
+}
+// -->
+</SCRIPT>
+<SCRIPT>
+<!--
+if ( show_doubleclick_ad && ( adTemplate & BIG_FLEX_RIGHT ) == BIG_FLEX_RIGHT  )
+{
+document.write('<div style="margin-top:4px; margin-bottom:4px;clear:left;">') ;
+document.writeln ('<div><img src="http://media3.washingtonpost.com/wp-srv/hp/img/ad_label_leftjust.gif" alt="ad_icon" width="100" height="13" border="0"/></div>' );
+}
+// -->
+</SCRIPT>
+<script>
+if ( show_doubleclick_ad && ( adTemplate & BIG_FLEX_RIGHT ) == BIG_FLEX_RIGHT  )
+{
+placeAd('ARTICLE',commercialNode,6,'',true) ;
+}
+</script>
+<SCRIPT LANGUAGE="javascript">
+<!--
+if ( show_doubleclick_ad && ( adTemplate & BIG_FLEX_RIGHT ) == BIG_FLEX_RIGHT  )
+{
+document.write('</div>') ;
+}
+// -->
+</SCRIPT>
+<div style="clear:both;">
+<!--
+document.write('<div id="ad_links_right">') ;
+// -->
+</script>
+<script>
+<!--
+document.write('</div>') ;
+if (! ( ( adTemplate & AD_LINKS_RIGHT ) == AD_LINKS_RIGHT ) )
+{
+if ( document.getElementById )
+document.getElementById('ad_links_right').style.display='none' ;
+}
+// -->
+</script>
+<script>
+<!--
+document.write('<div id="virtual_marketplace">') ;
+document.write('<div><img src="http://media3.washingtonpost.com/wp-srv/hp/img/ad_label_leftjust.gif" width="100" height="13"></div>') ;
+// -->
+</script>
+<!--business include-->
+<noscript></noscript>
+<script type="text/javascript">
+document.getElementById('virtual_marketplace').style.display = 'none';
+</script>       <script>
+<!--
+document.write('</div>') ;
+if ( ( adTemplate & VM ) == VM )
+{
+if ( document.getElementById )
+document.getElementById('virtual_marketplace').style.display='block' ;
+}
+// -->
+</script>
+<script>
+<!--
+if ( typeof thisNode == "undefined" )
+thisNode = "admin" ;
+document.write('<s\cript src="http://media.washingtonpost.com/wp-adv/topjobs/TobJob.js"></s\cript>') ;
+document.write('<s\cript src="http://www.washingtonpost.com/wp-adv/topjobs/listings.js"></s\cript>') ;
+document.write('<s\cript src="http://media.washingtonpost.com/wp-adv/topjobs/displayTopJobs2.js"></s\cript>') ;
+document.write('<s\cript src="http://media.washingtonpost.com/wp-adv/topjobs/TopJobsManager.js"></s\cript>') ;
+document.write('<link rel="stylesheet" href="http://media.washingtonpost.com/wp-adv/topjobs/TopJobs.css" rel="stylesheet" media="all"/>') ;
+document.write('<div id="topjobs">') ;
+// -->
+</script>
+<script>
+<!--
+//if ( isTjDisplayable( thisNode ) )
+//displayTopJobs("article") ;
+// -->
+</script>
+<script>
+<!--
+document.write('</div>') ;
+if ( document.getElementById )
+document.getElementById('topjobs').style.display='block' ;
+// -->
+</script>
+<script>
+<!--
+document.write('<div id="textlinks">') ;
+// -->
+</script>
+
+<div><link rel="stylesheet" media="all" href="/washingtonpost/css/textlinks.css"><div id="textlinkWrapper" class="wp_textlinks noTextLinks"><div><div class="header">Featured Advertiser Links</div><ul id="text_links"><li><span class="off"><a href="http://www.weitzlux.com/asbestos-lung-cancer_612371.html" target="_blank" rel="nofollow">Lawyer: Asbestos Lung Cancer</a>, <a href="http://www.weitzlux.com/hydroxycut-lawyer_1937053.html" target="_blank" rel="nofollow">Hydroxycut</a>, <a href="http://www.weitzlux.com/raptiva-lawyer_1936657.html" target="_blank" rel="nofollow">Raptiva</a><span class="arrow">&gt;&gt;</span></span></li><li class="divider"><span class="spacer"><span></span></span></li><li><span class="off"><a href="http://www.weitzlux.com/mesothelioma-lawyer_1055.html" target="_blank" rel="nofollow">Mesothelioma Lawyer</a>, <a href="http://www.weitzlux.com/Stryker-hip-lawsuits_1923170.html" target="_blank" rel="nofollow">Stryker Hips</a>, <a href="http://www.weitzlux.com/shoulder-pain-pump_1937057.html" target="_blank" rel="nofollow">Shoulder Pain Pump</a><span class="arrow">&gt;&gt;</span></span></li><li class="divider"><span class="spacer"><span></span></span></li><li><span class="off"><a href="http://ad.doubleclick.net/clk;212633553;33713842;a?http://www.vacationstogo.com/?source=wpostArt" target="_blank" rel="nofollow">Save Up To 75% On Cruises at Vacations To Go</a><span class="arrow">&gt;&gt;</span></span></li><li class="divider"><span class="spacer"><span></span></span></li><li><span class="off"><a href="http://ad.doubleclick.net/clk;215404462;4414071;s?http://investorplace.com/offer/?sid=JY2100" target="_blank" rel="nofollow">3 Stocks to Help Rebuild Your Wealth-Click Here!</a><span class="arrow">&gt;&gt;</span></span></li></ul></div><div class="footer"><div></div></div></div><script type="text/javascript" src="/washingtonpost/js/utilsTextLinksXML.js"></script></div><div style="clear:both" id="googleRightBox"></div><script LANGUAGE="JAVASCRIPT1.1" type="TEXT/JAVASCRIPT" src="/washingtonpost/js/google_side_box.js"></script>
+
+<script language="javascript">
+<!--
+document.write('</div>') ;
+if (! ( ( adTemplate & TEXTLINKS ) == TEXTLINKS ) ) {
+if ( document.getElementById )
+document.getElementById('textlinks').style.display='none' ;
+}
+// -->
+</script>
+<script>
+<!--
+document.write('<div id="tile_right">') ;
+document.write('<div><img src="http://media3.washingtonpost.com/wp-srv/hp/img/ad_label_leftjust.gif" width="100" height="13"></div>') ;
+// -->
+</script>
+<noscript></noscript> <script language="javascript">
+<!--
+document.write('</div>') ;
+if (! ( ( adTemplate & TILE_RIGHT ) == TILE_RIGHT ) )
+{
+if ( document.getElementById )
+document.getElementById('tile_right').style.display='none' ;
+}
+// -->
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+<div class="standards external" id="footer-v3">
+</div>
+
+</body>
+</html>
+
