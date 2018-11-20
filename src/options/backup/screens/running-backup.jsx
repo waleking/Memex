@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { remoteFunction } from 'src/util/webextensionRPC'
+import analytics from 'src/analytics'
 import localStyles from './running-backup.css'
 import { BackupProgressBar } from '../components/progress-bar'
 import MovingDotsLabel from '../components/moving-dots-label'
@@ -18,6 +19,14 @@ export default class RunningBackupContainer extends React.Component {
     async componentDidMount() {
         browser.runtime.onMessage.addListener(this.messageListener)
 
+        analytics.trackEvent(
+            {
+                category: 'Backup',
+                action: 'backup-progress-shown',
+            },
+            true,
+        )
+
         const info = await remoteFunction('getBackupInfo')()
         if (info) {
             this.setState({
@@ -25,6 +34,14 @@ export default class RunningBackupContainer extends React.Component {
                 info,
             })
         } else {
+            analytics.trackEvent(
+                {
+                    category: 'Backup',
+                    action: 'backup-triggered-from-ui',
+                },
+                true,
+            )
+
             this.setState({
                 status: 'running',
                 info: { state: 'preparing' },
@@ -67,8 +84,24 @@ export default class RunningBackupContainer extends React.Component {
                 info: event.info || this.state.info,
             })
         } else if (event.type === 'success') {
+            analytics.trackEvent(
+                {
+                    category: 'Backup',
+                    action: 'backup-success-from-ui',
+                },
+                true,
+            )
+
             this.setState({ status: 'success' })
         } else if (event.type === 'fail') {
+            analytics.trackEvent(
+                {
+                    category: 'Backup',
+                    action: 'backup-fail-from-ui',
+                },
+                true,
+            )
+
             this.setState({ status: 'fail' })
         }
     }

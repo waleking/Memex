@@ -86,6 +86,14 @@ export default class BackupSettingsContainer extends React.Component {
             return (
                 <Overview
                     onBackupRequested={() => {
+                        analytics.trackEvent(
+                            {
+                                category: 'Backup',
+                                action: 'backup-now-button-clicked',
+                            },
+                            true,
+                        )
+
                         if (this.state.isAuthenticated) {
                             this.setState({ screen: 'running-backup' })
                         } else {
