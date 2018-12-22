@@ -2,6 +2,10 @@ import * as React from 'react'
 import cx from 'classnames'
 
 import { getExtUrl } from '../../utils'
+<<<<<<< HEAD
+=======
+import { ClickHandler } from '../../types'
+>>>>>>> Not working: Begin basic refactoring of sidebar
 
 const styles = require('./ribbon.css')
 
