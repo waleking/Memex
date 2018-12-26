@@ -1,7 +1,7 @@
 export const directLink = {
     pageTitle: 'Some random page',
     pageUrl: 'https://somerandomurl.com',
-    url: 'https://memex.link/3234235/',
+    url: 'http://memex.link/3234235/',
     body: 'Some random quote in some random page',
     comment: '',
     selector: {},
