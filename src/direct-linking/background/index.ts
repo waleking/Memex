@@ -109,12 +109,13 @@ export default class DirectLinkingBackground {
     async createDirectLink({ tab }, request) {
         const pageTitle = tab.title
         const result = await this.backend.createDirectLink(request)
-        await this.annotationStorage.insertDirectLink({
+        await this.annotationStorage.createAnnotation({
             pageTitle,
             pageUrl: tab.url,
             body: request.anchor.quote,
             url: result.url,
             selector: request.anchor,
+            comment: '',
         })
 
         // Attempt to (re-)index, if user preference set, but don't wait for it

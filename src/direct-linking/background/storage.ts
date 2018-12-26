@@ -412,27 +412,6 @@ export class AnnotationStorage extends FeatureStorage {
         return this.projectSearchResults(annotResults)
     }
 
-    async insertDirectLink({
-        pageTitle,
-        pageUrl,
-        url,
-        body,
-        selector,
-    }: Annotation) {
-        await this.storageManager
-            .collection(this._annotationsColl)
-            .createObject({
-                pageTitle,
-                pageUrl,
-                body,
-                selector,
-                createdWhen: new Date(),
-                lastEdited: {},
-                url,
-                comment: '',
-            })
-    }
-
     async createAnnotation({
         pageTitle,
         pageUrl,

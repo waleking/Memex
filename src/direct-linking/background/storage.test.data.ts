@@ -3,10 +3,11 @@ export const directLink = {
     pageUrl: 'https://somerandomurl.com',
     url: 'https://memex.link/3234235/',
     body: 'Some random quote in some random page',
+    comment: '',
     selector: {},
 }
 
-export const pageUrl = 'https://annotation.url'
+export const pageUrl = 'annotation.url'
 
 export const tag1 = 'tag1'
 export const tag2 = 'tagwithahugename'

@@ -2,18 +2,32 @@ import initStorageManager from '../../search/memory-storex'
 import normalize from '../../util/encode-url-for-id'
 import AnnotationBackground from './'
 import { AnnotationStorage } from './storage'
-import getDb from '../../search'
+import getDb, { StorageManager } from '../../search'
 import * as DATA from './storage.test.data'
 
 describe('Annotations storage', () => {
     let annotationStorage: AnnotationStorage
+    let storageManager: StorageManager
 
     async function insertTestData() {
-        // Insert annotations and direct links
-        await annotationStorage.insertDirectLink(DATA.directLink)
-        await annotationStorage.createAnnotation(DATA.highlight)
-        await annotationStorage.createAnnotation(DATA.annotation)
-        await annotationStorage.createAnnotation(DATA.comment)
+        for (const annot of [
+            DATA.directLink,
+            DATA.highlight,
+            DATA.annotation,
+            DATA.comment,
+        ]) {
+            // Pages also need to be seeded to match domains filters against
+            await storageManager.collection('pages').createObject({
+                url: normalize(annot.url),
+                hostname: 'annotation.url',
+                domain: 'annotation.url',
+                text: '',
+                canonicalUrl: annot.url,
+            })
+
+            await annotationStorage.createAnnotation(annot)
+        }
+
         // Insert tags
         await annotationStorage.modifyTags(true)(DATA.tag1, DATA.annotation.url)
         await annotationStorage.modifyTags(true)(DATA.tag2, DATA.annotation.url)
@@ -25,7 +39,7 @@ describe('Annotations storage', () => {
     }
 
     beforeEach(async () => {
-        const storageManager = initStorageManager()
+        storageManager = initStorageManager()
         const annotBg = new AnnotationBackground({
             storageManager,
             getDb,
