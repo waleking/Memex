@@ -1,5 +1,4 @@
 import { browser, Tabs, Storage } from 'webextension-polyfill-ts'
-import uniqBy from 'lodash/fp/uniqBy'
 
 import {
     createPageFromTab,
@@ -11,6 +10,8 @@ import {
 import { FeatureStorage } from '../../search/storage'
 import { STORAGE_KEYS as IDXING_PREF_KEYS } from '../../options/settings/constants'
 import { Annotation, SearchParams, UrlFilters } from '../types'
+
+const uniqBy = require('lodash/fp/uniqBy')
 
 export interface DirectLinkingStorageProps {
     storageManager: StorageManager

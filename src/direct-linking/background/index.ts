@@ -1,26 +1,49 @@
+import { browser } from 'webextension-polyfill-ts'
+
 import { makeRemotelyCallable, remoteFunction } from 'src/util/webextensionRPC'
 import QueryBuilder from 'src/search/query-builder'
+import { StorageManager, Dexie } from 'src/search'
 import DirectLinkingBackend from './backend'
 import { setupRequestInterceptor } from './redirect'
 import { AnnotationRequests } from './request'
 import DirectLinkingStorage, { AnnotationStorage } from './storage'
 import normalize from '../../util/encode-url-for-id'
+import { AnnotationSender } from '../types'
 
 export default class DirectLinkingBackground {
-    constructor({ storageManager, getDb, queryBuilder = new QueryBuilder() }) {
+    private backend: DirectLinkingBackend
+    private queryBuilder: QueryBuilder
+    private annotationStorage: AnnotationStorage
+    private directLinkingStorage: DirectLinkingStorage
+    private sendAnnotation: AnnotationSender
+    private requests: AnnotationRequests
+
+    constructor({
+        storageManager,
+        getDb,
+        queryBuilder = new QueryBuilder(),
+    }: {
+        storageManager: StorageManager
+        getDb: () => Promise<Dexie>
+        queryBuilder?: QueryBuilder
+    }) {
         this.backend = new DirectLinkingBackend()
         this.queryBuilder = queryBuilder
-        this.directLinkingStorage = new DirectLinkingStorage({
-            storageManager,
-            getDb,
-        })
+
         this.annotationStorage = new AnnotationStorage({
             storageManager,
             getDb,
         })
+
+        this.directLinkingStorage = new DirectLinkingStorage({
+            storageManager,
+            getDb,
+        })
+
         this.sendAnnotation = ({ tabId, annotation }) => {
             browser.tabs.sendMessage(tabId, { type: 'direct-link', annotation })
         }
+
         this.requests = new AnnotationRequests(
             this.backend,
             this.sendAnnotation,

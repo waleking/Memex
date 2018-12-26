@@ -30,7 +30,7 @@ describe('Annotations storage', () => {
             storageManager,
             getDb,
         })
-        annotationStorage = annotBg.annotationStorage
+        annotationStorage = annotBg['annotationStorage']
 
         await storageManager.finishInitialization()
         await insertTestData()
