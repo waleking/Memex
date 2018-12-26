@@ -12,7 +12,7 @@ import { AnnotationSender } from '../types'
 
 export default class DirectLinkingBackground {
     private backend: DirectLinkingBackend
-    private queryBuilder: QueryBuilder
+    private queryBuilderFactory: () => QueryBuilder
     private annotationStorage: AnnotationStorage
     private directLinkingStorage: DirectLinkingStorage
     private sendAnnotation: AnnotationSender
@@ -21,14 +21,14 @@ export default class DirectLinkingBackground {
     constructor({
         storageManager,
         getDb,
-        queryBuilder = new QueryBuilder(),
+        queryBuilder = () => new QueryBuilder(),
     }: {
         storageManager: StorageManager
         getDb: () => Promise<Dexie>
-        queryBuilder?: QueryBuilder
+        queryBuilder?: () => QueryBuilder
     }) {
         this.backend = new DirectLinkingBackend()
-        this.queryBuilder = queryBuilder
+        this.queryBuilderFactory = queryBuilder
 
         this.annotationStorage = new AnnotationStorage({
             storageManager,
@@ -156,7 +156,9 @@ export default class DirectLinkingBackground {
     }
 
     async searchAnnotations(_, { query, ...params }) {
-        const qb = this.queryBuilder.searchTerm(query).get()
+        const qb = this.queryBuilderFactory()
+            .searchTerm(query)
+            .get()
 
         if (qb.isBadTerm || qb.isInvalidSearch) {
             return []
