@@ -31,6 +31,8 @@ export type AnnotationSender = (
 export interface SearchParams {
     /** Main text terms to search against annot body/comments. */
     terms?: string[]
+    /** Collections to include (all results must be of pages in this collection). */
+    collections?: string[]
     /** Tags to include (all results must have these tags). */
     tagsInc?: string[]
     /** Tags to exclude (no results can have these tags). */

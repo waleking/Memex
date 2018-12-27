@@ -3,11 +3,13 @@ import normalize from '../../util/encode-url-for-id'
 import AnnotationBackground from './'
 import { AnnotationStorage } from './storage'
 import getDb, { StorageManager } from '../../search'
+import CustomListBackground from 'src/custom-lists/background'
 import * as DATA from './storage.test.data'
 
 describe('Annotations storage', () => {
     let annotationStorage: AnnotationStorage
     let storageManager: StorageManager
+    let customListsBg: CustomListBackground
 
     async function insertTestData() {
         for (const annot of [
@@ -29,6 +31,7 @@ describe('Annotations storage', () => {
             await annotationStorage.createAnnotation(annot)
         }
 
+        // Insert bookmarks
         await storageManager.collection('bookmarks').createObject({
             url: DATA.directLink.pageUrl,
             time: Date.now(),
@@ -36,6 +39,20 @@ describe('Annotations storage', () => {
         await storageManager.collection('bookmarks').createObject({
             url: DATA.hybrid.pageUrl,
             time: Date.now(),
+        })
+
+        // Insert collections + collection entries
+        const coll1Id = await customListsBg.createCustomList({
+            name: DATA.coll1,
+        })
+        await customListsBg.createCustomList({ name: DATA.coll2 })
+        await customListsBg.insertPageToList({
+            id: coll1Id,
+            url: DATA.hybrid.url,
+        })
+        await customListsBg.insertPageToList({
+            id: coll1Id,
+            url: DATA.directLink.url,
         })
 
         // Insert tags
@@ -54,6 +71,8 @@ describe('Annotations storage', () => {
             storageManager,
             getDb,
         })
+        customListsBg = new CustomListBackground({ storageManager })
+
         annotationStorage = annotBg['annotationStorage']
 
         await storageManager.finishInitialization()
@@ -135,6 +154,16 @@ describe('Annotations storage', () => {
 
                 expect(linkOnlyRes).toBeDefined()
                 expect(linkOnlyRes.length).toBe(1)
+            })
+
+            test('collections filter', async () => {
+                const results = await annotationStorage.search({
+                    terms: ['highlight', 'annotation', 'quote', 'comment'],
+                    collections: [DATA.coll1, DATA.coll2],
+                })
+
+                expect(results).toBeDefined()
+                expect(results.length).toBe(2)
             })
 
             test('tags filter', async () => {
