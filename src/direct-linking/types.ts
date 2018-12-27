@@ -57,6 +57,7 @@ export interface SearchParams {
 }
 
 export interface UrlFilters {
+    collUrlsInc?: Set<string>
     tagUrlsInc?: Set<string>
     domainUrlsInc?: Set<string>
     tagUrlsExc?: Set<string>

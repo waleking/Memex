@@ -50,10 +50,6 @@ describe('Annotations storage', () => {
             id: coll1Id,
             url: DATA.hybrid.url,
         })
-        await customListsBg.insertPageToList({
-            id: coll1Id,
-            url: DATA.directLink.url,
-        })
 
         // Insert tags
         await annotationStorage.modifyTags(true)(DATA.tag1, DATA.annotation.url)
@@ -157,13 +153,21 @@ describe('Annotations storage', () => {
             })
 
             test('collections filter', async () => {
-                const results = await annotationStorage.search({
-                    terms: ['highlight', 'annotation', 'quote', 'comment'],
+                const resA = await annotationStorage.search({
+                    terms: ['quote'],
                     collections: [DATA.coll1, DATA.coll2],
                 })
 
-                expect(results).toBeDefined()
-                expect(results.length).toBe(2)
+                expect(resA).toBeDefined()
+                expect(resA.length).toBe(1)
+
+                const resB = await annotationStorage.search({
+                    terms: ['quote'],
+                    collections: ['not a real coll'],
+                })
+
+                expect(resB).toBeDefined()
+                expect(resB.length).toBe(0)
             })
 
             test('tags filter', async () => {
