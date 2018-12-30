@@ -27,8 +27,6 @@ class IndexDropdown extends PureComponent {
         clearSearchField: PropTypes.func,
         showClearfieldBtn: PropTypes.bool,
         onBackBtnClick: PropTypes.func,
-        allTabs: PropTypes.bool,
-        allTabsCollection: PropTypes.bool,
     }
 
     get styles() {
@@ -76,7 +74,7 @@ class IndexDropdown extends PureComponent {
     render() {
         return (
             <div className={this.mainClass} ref={this.props.setTagDivRef}>
-                <form
+                <div
                     className={cx(this.styles.searchContainer, {
                         [this.styles.commentBox]: this.props.allowAdd,
                     })}
@@ -105,17 +103,7 @@ class IndexDropdown extends PureComponent {
                             cancel
                         </i>
                     )}
-                </form>
-                {this.props.allTabs && (
-                    <p className={styles.allTabs}>
-                        Add tags to all tabs in window
-                    </p>
-                )}
-                {this.props.allTabsCollection && (
-                    <p className={styles.allTabs}>
-                        Add all tabs in window to collections
-                    </p>
-                )}
+                </div>
                 <div
                     className={cx(this.styles.tagContainerSB, {
                         [this.styles.tagContainer]: this.props.isForSidebar,
