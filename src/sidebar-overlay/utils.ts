@@ -69,8 +69,4 @@ export const setSidebarState = async (enabled: boolean) =>
     setLocalStorage(constants.SIDEBAR_STORAGE_NAME, enabled)
 
 export const getExtUrl = (location: string) =>
-<<<<<<< HEAD
     browser.runtime ? browser.runtime.getURL(location) : location
-=======
-    browser.extension ? browser.extension.getURL(location) : location
->>>>>>> Not working: Begin basic refactoring of sidebar

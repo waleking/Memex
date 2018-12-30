@@ -27,8 +27,6 @@ class IndexDropdown extends PureComponent {
         clearSearchField: PropTypes.func,
         showClearfieldBtn: PropTypes.bool,
         onBackBtnClick: PropTypes.func,
-        allTabs: PropTypes.bool,
-        allTabsCollection: PropTypes.bool,
     }
 
     get styles() {
