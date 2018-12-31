@@ -47,20 +47,18 @@ export default class DirectLinkingBackground {
         makeRemotelyCallable(
             {
                 createDirectLink: this.createDirectLink.bind(this),
-                getAllAnnotations: this.getAllAnnotationsByUrl.bind(this),
+                getAllAnnotationsByUrl: this.getAllAnnotationsByUrl.bind(this),
                 createAnnotation: this.createAnnotation.bind(this),
                 editAnnotation: this.editAnnotation.bind(this),
                 deleteAnnotation: this.deleteAnnotation.bind(this),
-                toggleSidebar: this.toggleSidebar.bind(this),
-                getAnnotationTags: this.getTagsByAnnotationUrl.bind(this),
+                getTagsByAnnotationUrl: this.getTagsByAnnotationUrl.bind(this),
                 addAnnotationTag: this.addTagForAnnotation.bind(this),
                 delAnnotationTag: this.delTagForAnnotation.bind(this),
+                editAnnotationTags: this.editAnnotationTags.bind(this),
                 followAnnotationRequest: this.followAnnotationRequest.bind(
                     this,
                 ),
-                openSidebarWithHighlight: this.openSidebarWithHighlight.bind(
-                    this,
-                ),
+                toggleSidebarOverlay: this.toggleSidebarOverlay.bind(this),
                 toggleAnnotBookmark: this.toggleAnnotBookmark.bind(this),
                 insertAnnotToList: this.insertAnnotToList.bind(this),
                 removeAnnotFromList: this.removeAnnotFromList.bind(this),
@@ -85,16 +83,17 @@ export default class DirectLinkingBackground {
         await remoteFunction(functionName, { tabId: currentTab.id })(...args)
     }
 
-    async toggleSidebar() {
-        await this.triggerSidebar('toggleSidebarOverlay')
-    }
+    async toggleSidebarOverlay(_, { anchor, override }) {
+        const [currentTab] = await browser.tabs.query({
+            active: true,
+            currentWindow: true,
+        })
 
-    async openSidebarWithHighlight(_, anchor) {
-        // Toggling the sidebar ensures that if the page does not have the
-        // ribbon mounted at this point, then it will get inserted before
-        // proceeding any further.
-        await this.toggleSidebar()
-        this.triggerSidebar('openSidebarAndSendAnchor', anchor)
+        const { id: tabId } = currentTab
+        // Make sure that the ribbon is inserted before trying to open the
+        // sidebar.
+        await remoteFunction('insertRibbon', { tabId })({ override })
+        await remoteFunction('openSidebar', { tabId })(anchor)
     }
 
     followAnnotationRequest({ tab }: TabArg) {
@@ -199,5 +198,13 @@ export default class DirectLinkingBackground {
 
     async delTagForAnnotation(_, { tag, url }) {
         return this.annotationStorage.modifyTags(false)(tag, url)
+    }
+
+    async editAnnotationTags({ tab }, { tagsToBeAdded, tagsToBeDeleted, url }) {
+        return this.annotationStorage.editAnnotationTags(
+            tagsToBeAdded,
+            tagsToBeDeleted,
+            url,
+        )
     }
 }
