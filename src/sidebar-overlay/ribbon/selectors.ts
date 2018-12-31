@@ -1,13 +1,8 @@
 import { createSelector } from 'reselect'
 
-import * as RootSelectors from '../ribbon-sidebar-container'
+import * as RootSelectors from '../ribbon-sidebar-controller/selectors'
 
 export const ribbon = RootSelectors.ribbon
-
-export const isPageFullScreen = createSelector(
-    ribbon,
-    state => state.isPageFullScreen,
-)
 
 export const isExpanded = createSelector(ribbon, state => state.isExpanded)
 
