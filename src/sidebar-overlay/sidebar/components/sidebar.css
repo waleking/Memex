@@ -5,18 +5,6 @@
     height: 100%;
     background: #fff;
 
-    /* TODO: Check if the following scrolling property is desired. */
-
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
     border-left: 3px solid #e1ece9;
-
-    /* &::-webkit-scrollbar {
-        display: none;
-    } */
-
-    /* & > * {
-        font-family: 'IBM Plex Serif', serif;
-        margin: 0;
-        box-sizing: border-box;
-    } */
 }
