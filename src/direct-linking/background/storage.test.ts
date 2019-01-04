@@ -32,22 +32,18 @@ describe('Annotations storage', () => {
         }
 
         // Insert bookmarks
-        await storageManager.collection('bookmarks').createObject({
-            url: DATA.directLink.pageUrl,
-            time: Date.now(),
+        await annotationStorage.toggleAnnotBookmark({
+            url: DATA.directLink.url,
         })
-        await storageManager.collection('bookmarks').createObject({
-            url: DATA.hybrid.pageUrl,
-            time: Date.now(),
-        })
+        await annotationStorage.toggleAnnotBookmark({ url: DATA.hybrid.url })
 
         // Insert collections + collection entries
         const coll1Id = await customListsBg.createCustomList({
             name: DATA.coll1,
         })
         await customListsBg.createCustomList({ name: DATA.coll2 })
-        await customListsBg.insertPageToList({
-            id: coll1Id,
+        await annotationStorage.insertAnnotToList({
+            listId: coll1Id,
             url: DATA.hybrid.url,
         })
 

@@ -158,6 +158,37 @@ export default class AnnotationStorage extends FeatureStorage {
         ])
     }
 
+    async insertAnnotToList({ listId, url }: { listId: number; url: string }) {
+        const list = await this.storageManager
+            .collection(this._listsColl)
+            .findOneObject({ id: listId })
+
+        if (list == null) {
+            throw new Error(`No list exists for ID: ${listId}`)
+        }
+
+        return this.storageManager
+            .collection(this._listEntriesColl)
+            .createObject({ listId, url, createdAt: new Date() })
+    }
+
+    /**
+     * @returns Promise resolving to a boolean denoting whether or not a bookmark was created.
+     */
+    async toggleAnnotBookmark({ url }: { url: string }) {
+        const coll = this.storageManager.collection(this._bookmarksColl)
+
+        const bookmark = await coll.findOneObject({ url })
+
+        if (bookmark == null) {
+            await coll.createObject({ url, createdAt: new Date() })
+            return true
+        }
+
+        await coll.deleteOneObject({ url })
+        return false
+    }
+
     private async fetchIndexingPrefs(): Promise<{ shouldIndexLinks: boolean }> {
         const storage = await this._browserStorageArea.get(
             IDXING_PREF_KEYS.LINKS,
