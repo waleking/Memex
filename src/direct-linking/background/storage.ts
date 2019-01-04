@@ -31,9 +31,9 @@ export default class AnnotationStorage extends FeatureStorage {
     static ANNOTS_COLL = 'annotations'
     static TAGS_COLL = 'tags'
     static PAGES_COLL = 'pages'
-    static BMS_COLL = 'bookmarks'
+    static BMS_COLL = 'annotBookmarks'
     static LISTS_COLL = 'customLists'
-    static LIST_ENTRIES_COLL = 'pageListEntries'
+    static LIST_ENTRIES_COLL = 'annotListEntries'
     static MEMEX_LINK_PROVIDERS = [
         'http://memex.link',
         'http://staging.memex.link',
@@ -90,6 +90,29 @@ export default class AnnotationStorage extends FeatureStorage {
                 { field: 'createdWhen' },
                 { field: 'comment' },
             ],
+        })
+
+        this.storageManager.registry.registerCollection(this._listEntriesColl, {
+            version: new Date(2019, 0, 4),
+            fields: {
+                listId: { type: 'string' },
+                url: { type: 'string' },
+                createdAt: { type: 'datetime' },
+            },
+            indices: [
+                { field: ['listId', 'url'], pk: true },
+                { field: 'listId' },
+                { field: 'url' },
+            ],
+        })
+
+        this.storageManager.registry.registerCollection(this._bookmarksColl, {
+            version: new Date(2019, 0, 5),
+            fields: {
+                url: { type: 'string' },
+                createdAt: { type: 'datetime' },
+            },
+            indices: [{ field: 'url', pk: true }, { field: 'createdAt' }],
         })
 
         // NOTE: This is no longer used; keeping to maintain DB schema sanity
