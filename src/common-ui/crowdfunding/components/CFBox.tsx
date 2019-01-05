@@ -8,6 +8,8 @@ const styles = require('./CFBox.css')
 
 export interface Props {
     onClose: MouseEventHandler
+    tabs?: Tabs.Static
+    learnMoreUrl?: string
 }
 
 class CrowdfundingBox extends PureComponent<Props> {
