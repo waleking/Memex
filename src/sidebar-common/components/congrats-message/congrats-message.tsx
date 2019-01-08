@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { browser } from 'webextension-polyfill-ts'
 import { remoteFunction } from 'src/util/webextensionRPC'
 
-const styles = require('./CongratsMessage.css')
+const styles = require('./congrats-message.css')
 
 const partyPopperIcon = browser.runtime.getURL('/img/party_popper.svg')
 
