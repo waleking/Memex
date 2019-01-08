@@ -32,8 +32,6 @@ class CommentBoxForm extends React.Component<Props, State> {
     componentDidMount() {
         // Auto resize text area.
         if (this._textAreaRef) {
-            this._textAreaRef.focus()
-
             this._textAreaRef.addEventListener('scroll', (e: UIEvent) => {
                 const targetElement = e.target as HTMLElement
 
@@ -63,20 +61,13 @@ class CommentBoxForm extends React.Component<Props, State> {
         e: React.KeyboardEvent<HTMLTextAreaElement>,
     ) => {
         // Save comment.
-        if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        if (e.metaKey && e.key === 'Enter') {
             this.props.saveComment(e)
         } else if (e.key === 'Tab' && !e.shiftKey) {
             this.setTagInputActive(true)
             setTimeout(() => {
                 this._tagInputRef.querySelector('input').focus()
             }, 0)
-        } else if (
-            !(e.ctrlKey || e.metaKey) &&
-            /[a-zA-Z0-9-_ ]/.test(String.fromCharCode(e.keyCode))
-        ) {
-            e.preventDefault()
-            e.stopPropagation()
-            this.props.handleCommentTextChange(this.props.commentText + e.key)
         }
     }
 

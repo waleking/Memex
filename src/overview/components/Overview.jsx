@@ -5,7 +5,6 @@ import propTypes from 'prop-types'
 import SidebarContainer, {
     selectors as sidebarSelectors,
 } from '../../sidebar-common'
-import SidebarContainer from '../../sidebar-overlay/sidebar'
 import Onboarding from '../onboarding'
 import { DeleteConfirmModal } from '../delete-confirm-modal'
 import {
@@ -43,15 +42,11 @@ class Overview extends PureComponent {
                 {isDuringInstall() ? <Onboarding /> : <Results />}
                 <DeleteConfirmModal />
                 <DragElement />
-<<<<<<< HEAD
                 <SidebarContainer
                     env="overview"
                     annotationsManager={this._annotationsManager}
                     goToAnnotation={goToAnnotation(this.props.pageUrl)}
                 />
-=======
-                <SidebarContainer env="overview" />
->>>>>>> Use sidebar in Overview
                 <Tooltip />
             </React.Fragment>
         )

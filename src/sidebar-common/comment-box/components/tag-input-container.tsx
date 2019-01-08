@@ -3,8 +3,7 @@ import { connect, MapStateToProps } from 'react-redux'
 
 import * as actions from '../actions'
 import * as selectors from '../selectors'
-import State from '../types'
-import { MapDispatchToProps } from '../../types'
+import State, { MapDispatchToProps } from '../../types'
 import { TagInput } from '../../components'
 
 interface StateProps {

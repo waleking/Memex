@@ -1,8 +1,8 @@
 import { createAction } from 'redux-act'
 
-import { Anchor } from 'src/direct-linking/content_script/interactions'
+import { Anchor } from '../../direct-linking/content_script/interactions'
 import { Thunk } from '../types'
-import { createAnnotation } from '../sidebar/actions'
+import { createAnnotation } from '../actions'
 
 export const setShowCommentBox = createAction<boolean>('setShowCommentBox')
 
@@ -19,13 +19,6 @@ export const setInitTagSuggestions = createAction<string[]>(
 export const addTag = createAction<string>('addTag')
 
 export const deleteTag = createAction<string>('deleteTag')
-
-export const openCommentBoxWithHighlight: (
-    anchor: Anchor,
-) => Thunk = anchor => dispatch => {
-    dispatch(setAnchor(anchor))
-    dispatch(setShowCommentBox(true))
-}
 
 /**
  * Resets the state of the comment box in the Redux store.

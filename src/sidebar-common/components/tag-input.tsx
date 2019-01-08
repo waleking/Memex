@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import { IndexDropdown } from 'src/common-ui/containers'
+import { IndexDropdown } from '../../common-ui/containers'
 import TagHolder from './tag-holder'
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
 }
 
 /* tslint:disable-next-line variable-name */
-const TagInput = ({
+const TagInputContainer = ({
     isTagInputActive,
     tags,
     initTagSuggestions,
@@ -47,4 +47,4 @@ const TagInput = ({
     )
 }
 
-export default TagInput
+export default TagInputContainer
