@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
 import RibbonSidebarController from './ribbon-sidebar-controller'
+<<<<<<< HEAD
 import AnnotationsManager from 'src/sidebar-common/annotations-manager'
 import {
     highlightAnnotations,
@@ -11,6 +12,9 @@ import {
     removeMediumHighlights,
     sortAnnotationsByPosition,
 } from './content_script/highlight-interactions'
+=======
+import AnnotationsManager from '../sidebar-common/annotations-manager'
+>>>>>>> Create annotations using `AnnotationsManager` class.
 
 export const setupRibbonAndSidebarUI = (
     target: HTMLElement,
