@@ -1,4 +1,4 @@
-import { remoteFunction } from '../util/webextensionRPC'
+import { remoteFunction } from 'src/util/webextensionRPC'
 
 // TODO: Perhaps move RPC calls to some sort of a manager.
 const openOptionsTabRPC = remoteFunction('openOptionsTab')
