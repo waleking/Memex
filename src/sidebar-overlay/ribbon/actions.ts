@@ -7,6 +7,8 @@ import { getTooltipState, setTooltipState } from 'src/content-tooltip/utils'
 
 export const setIsPageFullScreen = createAction<boolean>('setIsPageFullScreen')
 
+export const setIsPageFullScreen = createAction<boolean>('setIsPageFullScreen')
+
 export const setIsExpanded = createAction<boolean>('setIsExpanded')
 
 export const setRibbonEnabled = createAction<boolean>('setRibbonEnabled')
