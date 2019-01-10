@@ -9,7 +9,7 @@ import {
 } from '../../search'
 import { FeatureStorage } from '../../search/storage'
 import { STORAGE_KEYS as IDXING_PREF_KEYS } from '../../options/settings/constants'
-import { Annotation, SearchParams, UrlFilters } from '../types'
+import { Annotation, AnnotListEntry, SearchParams, UrlFilters } from '../types'
 
 const uniqBy = require('lodash/fp/uniqBy')
 
@@ -157,7 +157,7 @@ export default class AnnotationStorage extends FeatureStorage {
         ])
     }
 
-    async insertAnnotToList({ listId, url }: { listId: number; url: string }) {
+    async insertAnnotToList({ listId, url }: AnnotListEntry) {
         const list = await this.storageManager
             .collection(this._listsColl)
             .findOneObject({ id: listId })
@@ -171,6 +171,10 @@ export default class AnnotationStorage extends FeatureStorage {
             .createObject({ listId, url, createdAt: new Date() })
 
         return [object.listId, object.url]
+    }
+
+    async removeAnnotFromList({ listId, url }: AnnotListEntry) {
+        return
     }
 
     /**
