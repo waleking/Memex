@@ -157,14 +157,20 @@ export default class AnnotationStorage extends FeatureStorage {
         ])
     }
 
-    async insertAnnotToList({ listId, url }: AnnotListEntry) {
+    private async getListById({ listId }: { listId: number }) {
         const list = await this.storageManager
             .collection(this._listsColl)
-            .findOneObject({ id: listId })
+            .findOneObject<{ id: number }>({ id: listId })
 
         if (list == null) {
             throw new Error(`No list exists for ID: ${listId}`)
         }
+
+        return list.id
+    }
+
+    async insertAnnotToList({ listId, url }: AnnotListEntry) {
+        await this.getListById({ listId })
 
         const { object } = await this.storageManager
             .collection(this._listEntriesColl)
@@ -174,7 +180,11 @@ export default class AnnotationStorage extends FeatureStorage {
     }
 
     async removeAnnotFromList({ listId, url }: AnnotListEntry) {
-        return
+        await this.getListById({ listId })
+
+        await this.storageManager
+            .collection(this._listEntriesColl)
+            .deleteObjects({ listId, url })
     }
 
     /**
