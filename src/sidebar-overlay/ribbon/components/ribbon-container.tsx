@@ -5,7 +5,6 @@ import RootState, { MapDispatchToProps } from '../../types'
 import Ribbon from './ribbon'
 import * as actions from '../actions'
 import * as selectors from '../selectors'
-import { actions as sidebarActions } from '../../../sidebar-common'
 
 interface StateProps {
     isExpanded: boolean
