@@ -4,10 +4,16 @@ import { Annotation } from 'src/sidebar-common/sidebar/types'
 
 const styles = require('src/direct-linking/content_script/styles.css')
 
+const _getOffsetTop = (element: HTMLElement) =>
+    element.offsetTop +
+    (element.offsetParent
+        ? _getOffsetTop(element.offsetParent as HTMLElement)
+        : 0)
+
 /**
  * Scrolls to the highlight of the given annotation on the current page.
  */
-export const scrollToHighlight = ({ url }: Annotation) => {
+export function scrollToHighlight({ url }: Annotation) {
     const baseClass = styles['memex-highlight']
     const $highlight = document.querySelector(
         `.${baseClass}[data-annotation="${url}"]`,
@@ -15,7 +21,7 @@ export const scrollToHighlight = ({ url }: Annotation) => {
 
     if ($highlight) {
         const top =
-            getOffsetTop($highlight as HTMLElement) - window.innerHeight / 2
+            _getOffsetTop($highlight as HTMLElement) - window.innerHeight / 2
         window.scrollTo({ top, behavior: 'smooth' })
         // The pixels scrolled need to be returned in order to restrict
         // scrolling when mouse is over the sidebar.
@@ -41,16 +47,14 @@ export const highlightAndScroll = (annotation: Annotation) => {
  */
 export const highlightAnnotations = async (
     annotations: Annotation[],
-    focusOnAnnotation?: (url: string) => void,
-    hoverAnnotationContainer?: (url: string) => void,
+    focusOnAnnotation: (url: string) => void,
+    hoverAnnotationContainer: (url: string) => void,
 ) => {
-    await Promise.all(
-        annotations.map(async annotation =>
-            highlightAnnotation(
-                { annotation },
-                focusOnAnnotation,
-                hoverAnnotationContainer,
-            ),
+    annotations.forEach(async annotation =>
+        highlightAnnotation(
+            { annotation },
+            focusOnAnnotation,
+            hoverAnnotationContainer,
         ),
     )
 }
@@ -91,8 +95,8 @@ export const attachEventListenersToNewHighlights = (
             if (!e.target.dataset.annotation) {
                 return
             }
-            removeMediumHighlights()
-            makeHighlightMedium(annotation)
+            _removeMediumHighlights()
+            _makeHighlightMedium(annotation)
             hoverAnnotationContainer(annotation.url)
         }
         highlight.addEventListener('mouseenter', mouseenterListener, false)
@@ -101,7 +105,7 @@ export const attachEventListenersToNewHighlights = (
             if (!e.target.dataset.annotation) {
                 return
             }
-            removeMediumHighlights()
+            _removeMediumHighlights()
             hoverAnnotationContainer(null)
         }
         highlight.addEventListener('mouseleave', mouseleaveListener, false)
@@ -111,7 +115,7 @@ export const attachEventListenersToNewHighlights = (
 /**
  * Removes the medium class from all the highlights making them light.
  */
-export const removeMediumHighlights = () => {
+const _removeMediumHighlights = () => {
     // Remove previous "medium" highlights
     const baseClass = styles['memex-highlight']
     const mediumClass = styles['medium']
@@ -125,7 +129,7 @@ export const removeMediumHighlights = () => {
  * Makes the given annotation as a medium highlight.
  * @param {string} url PK of the annotation to make medium
  */
-export const makeHighlightMedium = ({ url }: Annotation) => {
+const _makeHighlightMedium = ({ url }: Annotation) => {
     // Make the current annotation as a "medium" highlight.
     const baseClass = styles['memex-highlight']
     const mediumClass = styles['medium']
@@ -169,34 +173,6 @@ export const removeHighlights = (onlyRemoveDarkHighlights = false) => {
 }
 
 /**
- * Finds each annotation's position in page, sorts it by the position and
- * returns the sorted annotations.
- */
-export const sortAnnotationsByPosition = (annotations: Annotation[]) => {
-    const offsetTopObjects = annotations.map((annotation, index) => {
-        const firstHighlight = document.querySelector(
-            `.${styles['memex-highlight']}[data-annotation="${
-                annotation.url
-            }"]`,
-        )
-        return {
-            index,
-            offsetTop: firstHighlight
-                ? getOffsetTop(firstHighlight as HTMLElement)
-                : Infinity,
-        }
-    })
-
-    const sortedOffsetTopObjects = offsetTopObjects.sort(
-        (a, b) => a.offsetTop - b.offsetTop,
-    )
-
-    return sortedOffsetTopObjects.map(
-        offsetTopObject => annotations[offsetTopObject.index],
-    )
-}
-
-/**
  * Unwraps the `memex-highlight` element from the highlight,
  * resetting the DOM Text to how it was.
  */
@@ -218,4 +194,25 @@ const _removeAnnotationHighlights = ({ url }: Annotation) => {
         `.${baseClass}[data-annotation="${url}"]`,
     )
     highlights.forEach(highlight => _removeHighlight(highlight))
+}
+
+/**
+ * Finds each annotation's position in page, sorts it by the position and
+ * returns the sorted annotations.
+ */
+export const sortAnnotationsByPosition = (annotations: Annotation[]) => {
+    const annotationsWithTops = annotations.map(annotation => {
+        const firstHighlight = document.querySelector(
+            `.${styles['memex-highlight']}[data-annotation="${
+                annotation.url
+            }"]`,
+        )
+        return {
+            ...annotation,
+            offsetTop: firstHighlight ? getOffsetTop(firstHighlight) : Infinity,
+        }
+    })
+
+    // TODO: Check if it should be a minus or plus.
+    return annotationsWithTops.sort((a, b) => a.offsetTop - b.offsetTop)
 }
