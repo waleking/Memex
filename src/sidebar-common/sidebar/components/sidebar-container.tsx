@@ -28,20 +28,14 @@ interface DispatchProps {
     setAnnotationsManager: (annotationsManager: AnnotationsManager) => void
     closeSidebar: () => void
     handleAddCommentBtnClick: () => void
-    setHoverAnnotationUrl: (url: string) => void
 }
 
 interface OwnProps {
     env: 'inpage' | 'overview'
     annotationsManager: AnnotationsManager
-    sortAnnotationsByPosition?: (annotations: Annotation[]) => Annotation[]
     goToAnnotation: (annotation: Annotation) => void
     /** Optional callback function that gets called after the sidebar is closed. */
     closeSidebarCallback?: () => void
-    /** Optional callback function that gets called when the mouse enters an annotation box area. */
-    handleAnnotationBoxMouseEnter?: (annotation: Annotation) => void
-    /** Optional callback function that gets called when the mouse leaves the annotation box area. */
-    handleAnnotationBoxMouseLeave?: () => void
 }
 
 type Props = StateProps & DispatchProps & OwnProps
@@ -97,32 +91,6 @@ class SidebarContainer extends React.Component<Props, State> {
         }
     }
 
-    private _handleGoToAnnotation = (annotation: Annotation) => (
-        e: React.MouseEvent<HTMLElement>,
-    ) => {
-        e.preventDefault()
-        e.stopPropagation()
-        this.props.goToAnnotation(annotation)
-    }
-
-    private _handleAnnotationBoxMouseEnter = (annotation: Annotation) => (
-        e: Event,
-    ) => {
-        e.stopPropagation()
-        this.props.setHoverAnnotationUrl(annotation.url)
-        if (this.props.handleAnnotationBoxMouseEnter) {
-            this.props.handleAnnotationBoxMouseEnter(annotation)
-        }
-    }
-
-    private _handleAnnotationBoxMouseLeave = () => (e: Event) => {
-        e.stopPropagation()
-        this.props.setHoverAnnotationUrl(null)
-        if (this.props.handleAnnotationBoxMouseLeave) {
-            this.props.handleAnnotationBoxMouseLeave()
-        }
-    }
-
     render() {
         const {
             env,
@@ -132,9 +100,9 @@ class SidebarContainer extends React.Component<Props, State> {
             activeAnnotationUrl,
             hoverAnnotationUrl,
             handleAddCommentBtnClick,
-            // sortAnnotationsByPosition,
             showCommentBox,
             showCongratsMessage,
+            goToAnnotation,
         } = this.props
 
         return (
@@ -142,27 +110,16 @@ class SidebarContainer extends React.Component<Props, State> {
                 env={env}
                 isOpen={isOpen}
                 isLoading={isLoading}
-                // annotations={
-                //     sortAnnotationsByPosition
-                //         ? sortAnnotationsByPosition(annotations)
-                //         : annotations
-                // }
                 annotations={annotations}
                 activeAnnotationUrl={activeAnnotationUrl}
                 hoverAnnotationUrl={hoverAnnotationUrl}
                 showCommentBox={showCommentBox}
                 showCongratsMessage={showCongratsMessage && !isLoading}
                 handleAddCommentBtnClick={handleAddCommentBtnClick}
+                goToAnnotation={goToAnnotation}
                 closeSidebar={this._closeSidebar}
-                handleGoToAnnotation={this._handleGoToAnnotation}
                 handleMouseEnter={this._handleMouseEnter}
                 handleMouseLeave={this._handleMouseLeave}
-                handleAnnotationBoxMouseEnter={
-                    this._handleAnnotationBoxMouseEnter
-                }
-                handleAnnotationBoxMouseLeave={
-                    this._handleAnnotationBoxMouseLeave
-                }
             />
         )
     }
@@ -192,7 +149,6 @@ const mapDispatchToProps: MapDispatchToProps<
     closeSidebar: () => dispatch(actions.closeSidebar()),
     handleAddCommentBtnClick: () =>
         dispatch(commentBoxActions.setShowCommentBox(true)),
-    setHoverAnnotationUrl: url => dispatch(actions.setHoverAnnotationUrl(url)),
 })
 
 export default connect(

@@ -1,8 +1,13 @@
 import * as React from 'react'
 import Menu from 'react-burger-menu/lib/menus/slide'
 
-import { CongratsMessage, Topbar, Loader, EmptyMessage } from '../../components'
-import AnnotationBoxContainer from '../../annotation-box'
+import {
+    CongratsMessage,
+    Topbar,
+    Loader,
+    EmptyMessage,
+    AnnotationBoxContainer,
+} from '../../components'
 import menuStyles from './menu-styles'
 import CommentBoxContainer from '../../comment-box'
 import { Annotation } from '../types'
@@ -20,16 +25,10 @@ interface Props {
     showCommentBox: boolean
     showCongratsMessage: boolean
     closeSidebar: () => void
-    handleGoToAnnotation: (
-        annotation: Annotation,
-    ) => (e: React.MouseEvent<HTMLElement>) => void
+    goToAnnotation: (annotation: Annotation) => void
     handleAddCommentBtnClick: () => void
     handleMouseEnter: (e: Event) => void
     handleMouseLeave: (e: Event) => void
-    handleAnnotationBoxMouseEnter: (
-        annotation: Annotation,
-    ) => (e: Event) => void
-    handleAnnotationBoxMouseLeave: () => (e: Event) => void
 }
 
 class Sidebar extends React.Component<Props> {
@@ -73,6 +72,15 @@ class Sidebar extends React.Component<Props> {
         openSettings()
     }
 
+    private _handleGoToAnnotation = (annotation: Annotation) => (
+        e: React.MouseEvent<HTMLElement>,
+    ) => {
+        e.preventDefault()
+        e.stopPropagation()
+
+        this.props.goToAnnotation(annotation)
+    }
+
     render() {
         const {
             env,
@@ -84,10 +92,7 @@ class Sidebar extends React.Component<Props> {
             showCommentBox,
             showCongratsMessage,
             closeSidebar,
-            handleGoToAnnotation,
             handleAddCommentBtnClick,
-            handleAnnotationBoxMouseEnter,
-            handleAnnotationBoxMouseLeave,
         } = this.props
 
         return (
@@ -126,13 +131,9 @@ class Sidebar extends React.Component<Props> {
                                     isHovered={
                                         hoverAnnotationUrl === annotation.url
                                     }
-                                    handleGoToAnnotation={handleGoToAnnotation(
+                                    handleGoToAnnotation={this._handleGoToAnnotation(
                                         annotation,
                                     )}
-                                    handleMouseEnter={handleAnnotationBoxMouseEnter(
-                                        annotation,
-                                    )}
-                                    handleMouseLeave={handleAnnotationBoxMouseLeave()}
                                 />
                             ))}
                             {showCongratsMessage && <CongratsMessage />}
