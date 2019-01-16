@@ -7,11 +7,8 @@ import * as selectors from './selectors'
 import AnnotationsManager from '../annotations-manager'
 import { remoteFunction } from 'src/util/webextensionRPC'
 import { EVENT_NAMES } from 'src/analytics/internal/constants'
-import { FLOWS, STAGES } from 'src/overview/onboarding/constants'
-import {
-    fetchOnboardingStage,
-    setOnboardingStage,
-} from 'src/overview/onboarding/utils'
+import { getLocalStorage, setLocalStorage } from 'src/util/storage'
+import { STORAGE_KEYS } from 'src/overview/onboarding/constants'
 
 // Remote function declarations.
 const processEventRPC = remoteFunction('processEvent')
@@ -133,7 +130,7 @@ export const editAnnotation: (
         // Edit the annotation in Redux store.
         const newAnnotations = [
             ...annotations.slice(0, index),
-            { ...annotation, comment, tags, lastEdited: Date.now() },
+            { ...annotation, comment, tags, lastEdited: new Date() },
             ...annotations.slice(index + 1),
         ]
         dispatch(setAnnotations(newAnnotations))
@@ -160,19 +157,19 @@ export const checkAndSetCongratsMessage: () => Thunk = () => async (
     getState,
 ) => {
     const showCongratsMessage = selectors.showCongratsMessage(getState())
-    const onboardingAnnotationStage = await fetchOnboardingStage(
-        FLOWS.annotation,
+    const onboardingAnnotationStage = await getLocalStorage(
+        STORAGE_KEYS.onboardingDemo.step1,
     )
 
     if (
         !showCongratsMessage &&
-        onboardingAnnotationStage === STAGES.annotation.annotationCreated
+        onboardingAnnotationStage === 'annotation_created'
     ) {
         dispatch(setShowCongratsMessage(true))
         await processEventRPC({
             type: EVENT_NAMES.FINISH_ANNOTATION_ONBOARDING,
         })
-        await setOnboardingStage(FLOWS.annotation, STAGES.done)
+        await setLocalStorage(STORAGE_KEYS.onboardingDemo.step1, 'DONE')
     } else if (showCongratsMessage) {
         // Since we need to display the congrats message only once,
         // it can be set to false after setting it true once.
