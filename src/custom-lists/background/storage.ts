@@ -38,6 +38,14 @@ export default class CustomListStorage extends FeatureStorage {
                     { field: 'listId' },
                     { field: 'pageUrl' },
                 ],
+                relationships: [
+                    {
+                        alias: 'list',
+                        reverseAlias: 'entries',
+                        childOf: CustomListStorage.CUSTOM_LISTS_COLL,
+                        fieldName: 'listId',
+                    },
+                ],
             },
         })
     }
