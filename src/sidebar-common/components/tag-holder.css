@@ -16,7 +16,7 @@
     box-sizing: border-box;
 
     & > * {
-        font-family: 'Inter';
+        font-family: 'Inter', sans-serif;
     }
 }
 
@@ -34,8 +34,7 @@
     display: inline-block;
     margin-left: 3px;
     color: #4a4a4a;
-    font-weight: 500;
-    font-family: 'Lato';
+    font-style: italic;
 }
 
 .plus {
@@ -50,7 +49,7 @@
 .tagsLeft {
     font-weight: 800;
     color: #888;
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
 }
 
 .cross {

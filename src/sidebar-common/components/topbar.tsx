@@ -31,7 +31,7 @@ const Topbar = ({
 
         <div className={styles.right}>
             {/* Button to open settings. */}
-            <button
+            <span
                 title="Open settings."
                 className={styles.settingsBtn}
                 onClick={e => {
@@ -41,7 +41,7 @@ const Topbar = ({
             />
 
             {/* Button to add a comment. */}
-            <button
+            <div
                 title="Add a comment."
                 className={cx(styles.addCommentBtn, {
                     [styles.disabled]: disableAddCommentBtn,
@@ -52,7 +52,7 @@ const Topbar = ({
                 }}
             >
                 Add Comment
-            </button>
+            </div>
         </div>
     </div>
 )

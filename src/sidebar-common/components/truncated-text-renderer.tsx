@@ -36,8 +36,7 @@ class TruncatedTextRenderer extends React.Component<Props, State> {
         }
     }
 
-    private _toggleTextTruncation = (e: React.MouseEvent) => {
-        e.stopPropagation()
+    private _toggleTextTruncation = () => {
         this.setState(prevState => ({
             shouldTruncate: !prevState.shouldTruncate,
         }))
@@ -53,9 +52,9 @@ class TruncatedTextRenderer extends React.Component<Props, State> {
 
         return (
             <React.Fragment>
-                {textToBeDisplayed}
+                "{textToBeDisplayed}"
                 {isTextTooLong && (
-                    <button
+                    <span
                         className={cx(styles.showMoreBtn, {
                             [styles.rotated]: !shouldTruncate,
                         })}
