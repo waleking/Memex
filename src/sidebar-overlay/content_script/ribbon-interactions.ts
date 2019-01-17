@@ -4,7 +4,7 @@ import { browser } from 'webextension-polyfill-ts'
 import { makeRemotelyCallable } from 'src/util/webextensionRPC'
 import { setupRibbonAndSidebarUI, destroyRibbonAndSidebarUI } from '..'
 import { getSidebarState } from '../utils'
-import { getTooltipState } from 'src/content-tooltip/utils'
+// import { getTooltipState } from 'src/content-tooltip/utils'
 import { createRootElement, destroyRootElement } from './rendering'
 import { removeHighlights } from './highlight-interactions'
 import AnnotationsManager from 'src/sidebar-common/annotations-manager'
@@ -39,7 +39,7 @@ export const insertRibbon = async ({
 }) => {
     // If target is set, Ribbon has already been injected.
     if (target) {
-        await updateRibbon()
+        // await updateRibbon()
         return
     }
 
@@ -188,7 +188,7 @@ export const setupRPC = ({
         /**
          * RPC for updating the ribbon's state.
          */
-        updateRibbon,
+        // updateRibbon,
     })
 }
 
