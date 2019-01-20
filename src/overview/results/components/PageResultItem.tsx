@@ -9,6 +9,7 @@ import classNames from 'classnames'
 import { LoadingIndicator } from '../../../common-ui/components'
 import niceTime from '../../../util/nice-time'
 import SemiCircularRibbon from './SemiCircularRibbon'
+import AnnotationList from './annotation-list'
 
 const styles = require('./PageResultItem.css')
 
@@ -176,6 +177,7 @@ class PageResultItem extends PureComponent<Props> {
                         )}
                     </div>
                 </div>
+                <AnnotationList />
                 {this.props.tagManager}
             </li>
         )
