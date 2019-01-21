@@ -218,7 +218,7 @@ export default class AnnotationStorage extends FeatureStorage {
     async indexPageFromTab({ id, url }: Tabs.Tab) {
         const indexingPrefs = await this.fetchIndexingPrefs()
 
-        const page = await createPageFromTab({
+        const page = await createPageFromTab(this._getDb)({
             tabId: id,
             url,
             stubOnly: !indexingPrefs.shouldIndexLinks,
