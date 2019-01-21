@@ -3,6 +3,7 @@ import { browser } from 'webextension-polyfill-ts'
 import * as index from '..'
 import { AnnotsSearcher } from './annots-search'
 import { Dexie, StorageManager } from '../types'
+import SearchStorage from './storage'
 import QueryBuilder from 'src/search/query-builder'
 import { TabManager } from 'src/activity-logger/background'
 import { makeRemotelyCallable } from 'src/util/webextensionRPC'
@@ -10,38 +11,11 @@ import AnnotsStorage from 'src/direct-linking/background/storage'
 
 export default class SearchBackground {
     private backend
+    private storage: SearchStorage
     private tabMan: TabManager
     private queryBuilderFactory: () => QueryBuilder
     private getDb: () => Promise<Dexie>
     private annotsSearcher: AnnotsSearcher
-
-    private static initBackend(idx: typeof index, getDb: () => Promise<Dexie>) {
-        return {
-            addPage: idx.addPage(getDb),
-            addPageTerms: idx.addPageTerms(getDb),
-            updateTimestampMeta: idx.updateTimestampMeta(getDb),
-            addVisit: idx.addVisit(getDb),
-            addFavIcon: idx.addFavIcon(getDb),
-            delPages: idx.delPages(getDb),
-            delPagesByDomain: idx.delPagesByDomain(getDb),
-            delPagesByPattern: idx.delPagesByPattern(getDb),
-            addTag: idx.addTag(getDb),
-            delTag: idx.delTag(getDb),
-            fetchPageTags: idx.fetchPageTags(getDb),
-            addBookmark: idx.addBookmark(getDb),
-            delBookmark: idx.delBookmark(getDb),
-            pageHasBookmark: idx.pageHasBookmark(getDb),
-            getPage: idx.getPage(getDb),
-            grabExistingKeys: idx.grabExistingKeys(getDb),
-            search: idx.search(getDb),
-            suggest: idx.suggest(getDb),
-            extendedSuggest: idx.extendedSuggest(getDb),
-            getMatchingPageCount: idx.getMatchingPageCount(getDb),
-            domainHasFavIcon: idx.domainHasFavIcon(getDb),
-            createPageFromTab: idx.createPageFromTab(getDb),
-            createPageFromUrl: idx.createPageFromUrl(getDb),
-        }
-    }
 
     constructor({
         storageManager,
@@ -56,10 +30,11 @@ export default class SearchBackground {
         tabMan: TabManager
         idx?: typeof index
     }) {
-        this.backend = SearchBackground.initBackend(idx, getDb)
         this.tabMan = tabMan
         this.getDb = getDb
         this.queryBuilderFactory = queryBuilder
+        this.storage = new SearchStorage({ storageManager })
+        this.initBackend(idx)
 
         this.annotsSearcher = new AnnotsSearcher({
             storageManager,
@@ -79,6 +54,34 @@ export default class SearchBackground {
         )
     }
 
+    private initBackend(idx: typeof index) {
+        this.backend = {
+            addPage: idx.addPage(this.getDb),
+            addPageTerms: idx.addPageTerms(this.getDb),
+            updateTimestampMeta: idx.updateTimestampMeta(this.getDb),
+            addVisit: idx.addVisit(this.getDb),
+            addFavIcon: idx.addFavIcon(this.getDb),
+            delPages: idx.delPages(this.getDb),
+            delPagesByDomain: idx.delPagesByDomain(this.getDb),
+            delPagesByPattern: idx.delPagesByPattern(this.getDb),
+            addTag: idx.addTag(this.getDb),
+            delTag: idx.delTag(this.getDb),
+            fetchPageTags: idx.fetchPageTags(this.getDb),
+            addBookmark: idx.addBookmark(this.getDb),
+            delBookmark: idx.delBookmark(this.getDb),
+            pageHasBookmark: idx.pageHasBookmark(this.getDb),
+            getPage: idx.getPage(this.getDb),
+            grabExistingKeys: idx.grabExistingKeys(this.getDb),
+            search: idx.search(this.getDb),
+            suggest: idx.suggest(this.getDb),
+            extendedSuggest: idx.extendedSuggest(this.getDb),
+            getMatchingPageCount: idx.getMatchingPageCount(this.getDb),
+            domainHasFavIcon: idx.domainHasFavIcon(this.getDb),
+            createPageFromTab: idx.createPageFromTab(this.getDb),
+            createPageFromUrl: idx.createPageFromUrl(this.getDb),
+        }
+    }
+
     setupRemoteFunctions() {
         makeRemotelyCallable({
             search: this.backend.search,
@@ -93,6 +96,7 @@ export default class SearchBackground {
             delPagesByDomain: this.backend.delPagesByDomain,
             delPagesByPattern: this.backend.delPagesByPattern,
             getMatchingPageCount: this.backend.getMatchingPageCount,
+            listAnnotations: this.storage.listAnnotations.bind(this.storage),
             searchAnnotations: this.searchAnnotations.bind(this),
         })
     }
