@@ -17,8 +17,6 @@
     font-size: 14px;
     margin: 0 3px;
     background-color: transparent;
-    border: none;
-    outline: none;
 
     &:hover {
         background-color: #efefef;
@@ -31,9 +29,6 @@
     cursor: pointer;
     margin: 0 3px;
     font-size: 14px;
-    background-color: #fff;
-    border: none;
-    outline: none;
 }
 
 .deleteReally {

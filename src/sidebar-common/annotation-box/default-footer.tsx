@@ -23,7 +23,7 @@ const DefaultFooter = ({
 }: Props) => (
     <div className={styles.annotationBoxDefaultFooter}>
         <div>
-            <button
+            <span
                 className={cx(styles.commonIcon, styles.editIcon)}
                 title="Edit note"
                 onClick={e => {
@@ -31,7 +31,7 @@ const DefaultFooter = ({
                     editIconClickHandler()
                 }}
             />
-            <button
+            <span
                 className={cx(styles.commonIcon, styles.trashIcon)}
                 title="Delete note"
                 onClick={e => {
@@ -39,7 +39,7 @@ const DefaultFooter = ({
                     trashIconClickHandler()
                 }}
             />
-            <button
+            <span
                 className={cx(styles.commonIcon, styles.shareIcon)}
                 title="Share this note"
                 onClick={e => {
@@ -47,7 +47,7 @@ const DefaultFooter = ({
                     shareIconClickHandler()
                 }}
             />
-            <button
+            <span
                 className={cx(styles.commonIcon, styles.replyIcon)}
                 title="Reply to this note"
                 onClick={e => {
@@ -58,7 +58,7 @@ const DefaultFooter = ({
         </div>
         <div>
             {displayGoToAnnotation && (
-                <button
+                <span
                     className={cx(styles.commonIcon, styles.goToPageIcon)}
                     title="Go to annotation"
                     onClick={goToAnnotationHandler}
