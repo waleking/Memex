@@ -1,18 +1,19 @@
 import { browser } from 'webextension-polyfill-ts'
 
-import QueryBuilder from 'src/search/query-builder'
-import { makeRemotelyCallable } from 'src/util/webextensionRPC'
 import * as index from '..'
+import { AnnotsSearcher } from './annots-search'
 import { Dexie, StorageManager } from '../types'
+import QueryBuilder from 'src/search/query-builder'
 import { TabManager } from 'src/activity-logger/background'
-import AnnotsBackground from 'src/direct-linking/background'
+import { makeRemotelyCallable } from 'src/util/webextensionRPC'
+import AnnotsStorage from 'src/direct-linking/background/storage'
 
 export default class SearchBackground {
     private backend
     private tabMan: TabManager
-    private annotsBg: AnnotsBackground
     private queryBuilderFactory: () => QueryBuilder
     private getDb: () => Promise<Dexie>
+    private annotsSearcher: AnnotsSearcher
 
     private static initBackend(idx: typeof index, getDb: () => Promise<Dexie>) {
         return {
@@ -45,14 +46,12 @@ export default class SearchBackground {
     constructor({
         storageManager,
         getDb,
-        annotsBg,
         queryBuilder = () => new QueryBuilder(),
         tabMan,
         idx = index,
     }: {
         storageManager: StorageManager
         getDb: () => Promise<Dexie>
-        annotsBg: AnnotsBackground
         queryBuilder?: () => QueryBuilder
         tabMan: TabManager
         idx?: typeof index
@@ -60,8 +59,16 @@ export default class SearchBackground {
         this.backend = SearchBackground.initBackend(idx, getDb)
         this.tabMan = tabMan
         this.getDb = getDb
-        this.annotsBg = annotsBg
         this.queryBuilderFactory = queryBuilder
+
+        this.annotsSearcher = new AnnotsSearcher({
+            storageManager,
+            listsColl: AnnotsStorage.LISTS_COLL,
+            listEntriesColl: AnnotsStorage.LIST_ENTRIES_COLL,
+            tagsColl: AnnotsStorage.TAGS_COLL,
+            bookmarksColl: AnnotsStorage.BMS_COLL,
+            annotsColl: AnnotsStorage.ANNOTS_COLL,
+        })
 
         // Handle any new browser bookmark actions (bookmark mananger or bookmark btn in URL bar)
         browser.bookmarks.onCreated.addListener(
@@ -86,9 +93,24 @@ export default class SearchBackground {
             delPagesByDomain: this.backend.delPagesByDomain,
             delPagesByPattern: this.backend.delPagesByPattern,
             getMatchingPageCount: this.backend.getMatchingPageCount,
+            searchAnnotations: this.searchAnnotations.bind(this),
         })
     }
 
+    async searchAnnotations({ query, ...params }) {
+        const qb = this.queryBuilderFactory()
+            .searchTerm(query)
+            .get()
+
+        if (qb.isBadTerm || qb.isInvalidSearch) {
+            return []
+        }
+
+        return this.annotsSearcher.search({
+            terms: [...qb.query],
+            ...params,
+        })
+    }
     async handleBookmarkRemoval(id, { node }) {
         // Created folders won't have `url`; ignore these
         if (!node.url) {

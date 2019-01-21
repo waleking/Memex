@@ -38,7 +38,6 @@ directLinking.setupRequestInterceptor()
 const search = new SearchBackground({
     storageManager,
     getDb,
-    annotsBg: directLinking,
     tabMan: tabManager,
 })
 search.setupRemoteFunctions()
@@ -90,5 +89,6 @@ window['storageMan'] = storageManager
 window['bgScript'] = bgScript
 window['eventLog'] = eventLog
 window['directLinking'] = directLinking
+window['search'] = search
 window['customList'] = customList
 window['notifications'] = notifications
