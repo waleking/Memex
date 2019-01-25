@@ -6,6 +6,7 @@ import { Searcher } from './searcher'
 const uniqBy = require('lodash/fp/uniqBy')
 
 export class AnnotsSearcher extends Searcher<AnnotSearchParams, any> {
+    static NUM_ANNOTS_PER_PAGE = 3
     static MEMEX_LINK_PROVIDERS = [
         'http://memex.link',
         'http://staging.memex.link',
@@ -137,7 +138,12 @@ export class AnnotsSearcher extends Searcher<AnnotSearchParams, any> {
 
         for (const annot of annots) {
             const pageAnnots = annotsByUrl.get(annot.pageUrl) || []
-            annotsByUrl.set(annot.pageUrl, [...pageAnnots, annot])
+            annotsByUrl.set(
+                annot.pageUrl,
+                [...pageAnnots, annot].slice(
+                    AnnotsSearcher.NUM_ANNOTS_PER_PAGE,
+                ),
+            )
         }
 
         const pages = await this.findMatchingPages([...pageUrls])
