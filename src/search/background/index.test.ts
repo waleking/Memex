@@ -1,17 +1,21 @@
 import initStorageManager from '../memory-storex'
 import { StorageManager, getDb } from '..'
+import SearchBg from './index'
 import { AnnotsSearcher } from './annots-search'
 import normalize from 'src/util/encode-url-for-id'
 import { AnnotPage } from './types'
-import CustomListBackground from 'src/custom-lists/background'
+import CustomListBg from 'src/custom-lists/background'
 import AnnotsBg from 'src/direct-linking/background'
 import AnnotsStorage from 'src/direct-linking/background/storage'
 import * as DATA from 'src/direct-linking/background/storage.test.data'
 
+const mockEvent = { addListener: () => undefined }
+
 describe('Annotations search', () => {
     let annotsStorage: AnnotsStorage
     let storageManager: StorageManager
-    let customListsBg: CustomListBackground
+    let customListsBg: CustomListBg
+    let searchBg: SearchBg
     let searcher: AnnotsSearcher
 
     async function insertTestData() {
@@ -67,17 +71,16 @@ describe('Annotations search', () => {
             storageManager,
             getDb,
         })
-        customListsBg = new CustomListBackground({ storageManager })
-        searcher = new AnnotsSearcher({
-            annotsColl: AnnotsStorage.ANNOTS_COLL,
-            bookmarksColl: AnnotsStorage.BMS_COLL,
-            listsColl: AnnotsStorage.LISTS_COLL,
-            listEntriesColl: AnnotsStorage.LIST_ENTRIES_COLL,
-            tagsColl: AnnotsStorage.TAGS_COLL,
-            pagesColl: AnnotsStorage.PAGES_COLL,
+
+        searchBg = new SearchBg({
             storageManager,
+            getDb,
+            tabMan: { getActiveTab: () => ({ id: 1, url: 'test' }) } as any,
+            bookmarksAPI: { onCreated: mockEvent, onRemoved: mockEvent } as any,
         })
 
+        customListsBg = new CustomListBg({ storageManager })
+        searcher = searchBg['annotsSearcher']
         annotsStorage = annotBg['annotationStorage']
 
         await storageManager.finishInitialization()

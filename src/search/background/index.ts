@@ -1,4 +1,4 @@
-import { browser } from 'webextension-polyfill-ts'
+import { browser, Bookmarks } from 'webextension-polyfill-ts'
 
 import * as index from '..'
 import { AnnotsSearcher } from './annots-search'
@@ -25,15 +25,17 @@ export default class SearchBackground {
     constructor({
         storageManager,
         getDb,
-        queryBuilder = () => new QueryBuilder(),
         tabMan,
+        queryBuilder = () => new QueryBuilder(),
         idx = index,
+        bookmarksAPI = browser.bookmarks,
     }: {
         storageManager: StorageManager
         getDb: () => Promise<Dexie>
         queryBuilder?: () => QueryBuilder
         tabMan: TabManager
         idx?: typeof index
+        bookmarksAPI?: Bookmarks.Static
     }) {
         this.tabMan = tabMan
         this.getDb = getDb
@@ -57,10 +59,10 @@ export default class SearchBackground {
         })
 
         // Handle any new browser bookmark actions (bookmark mananger or bookmark btn in URL bar)
-        browser.bookmarks.onCreated.addListener(
+        bookmarksAPI.onCreated.addListener(
             this.handleBookmarkCreation.bind(this),
         )
-        browser.bookmarks.onRemoved.addListener(
+        bookmarksAPI.onRemoved.addListener(
             this.handleBookmarkRemoval.bind(this),
         )
     }
