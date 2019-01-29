@@ -44,6 +44,7 @@ describe('Annotations search', () => {
             url: DATA.directLink.url,
         })
         await annotsStorage.toggleAnnotBookmark({ url: DATA.hybrid.url })
+        await annotsStorage.toggleAnnotBookmark({ url: DATA.highlight.url })
 
         // Insert collections + collection entries
         const coll1Id = await customListsBg.createCustomList({
@@ -102,7 +103,7 @@ describe('Annotations search', () => {
         })
 
         expect(resA).toBeDefined()
-        expect(resA.length).toBe(1)
+        expect(resA.length).toBe(2)
     })
 
     test('exclude highlights search', async () => {
@@ -220,5 +221,44 @@ describe('Annotations search', () => {
         expect(results).toBeDefined()
         expect(results.length).toBe(2)
         expect(results[0].annotations.length).toBe(3)
+    })
+
+    test('blank annots search', async () => {
+        const results = await searchBg.searchAnnotations({
+            url: DATA.pageUrl,
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(3)
+    })
+
+    test('blank annots search + bookmark filter', async () => {
+        const results = await searchBg.searchAnnotations({
+            url: DATA.pageUrl,
+            bookmarksOnly: true,
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(1)
+    })
+
+    test('blank annots search + tag inc filter', async () => {
+        const results = await searchBg.searchAnnotations({
+            url: DATA.pageUrl,
+            tagsInc: [DATA.tag1],
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(1)
+    })
+
+    test('blank annots search + tag exc filter', async () => {
+        const results = await searchBg.searchAnnotations({
+            url: DATA.pageUrl,
+            tagsExc: [DATA.tag1, DATA.tag2, 'dummy'],
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(0)
     })
 })

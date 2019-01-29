@@ -142,6 +142,7 @@ export default class SearchBackground {
             collections: qb.lists,
             includeNotes: contentTypes.notes,
             includeHighlights: contentTypes.highlights,
+            isBlankSearch: !qb.terms.length,
         }
     }
 
@@ -217,7 +218,7 @@ export default class SearchBackground {
         }
 
         // Blank search; just list annots, applying search filters
-        if (!searchParams.termsInc.length) {
+        if (searchParams.isBlankSearch) {
             return this.storage.listAnnotations(searchParams)
         }
 
@@ -235,7 +236,7 @@ export default class SearchBackground {
         }
 
         // Blank search; just list annots, applying search filters
-        if (!searchParams.termsInc.length) {
+        if (searchParams.isBlankSearch) {
             return this.blankPageSearch(searchParams)
         }
 
