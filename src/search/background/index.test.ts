@@ -50,10 +50,16 @@ describe('Annotations search', () => {
         const coll1Id = await customListsBg.createCustomList({
             name: DATA.coll1,
         })
-        await customListsBg.createCustomList({ name: DATA.coll2 })
+        const coll2Id = await customListsBg.createCustomList({
+            name: DATA.coll2,
+        })
         await annotsStorage.insertAnnotToList({
             listId: coll1Id,
             url: DATA.hybrid.url,
+        })
+        await annotsStorage.insertAnnotToList({
+            listId: coll2Id,
+            url: DATA.highlight.url,
         })
 
         // Insert tags
@@ -260,5 +266,22 @@ describe('Annotations search', () => {
 
         expect(results).toBeDefined()
         expect(results.length).toBe(0)
+    })
+
+    test('blank annots search + collection filter', async () => {
+        const resA = await searchBg.searchAnnotations({
+            url: DATA.pageUrl,
+            collections: [DATA.coll2],
+        })
+
+        const resB = await searchBg.searchAnnotations({
+            url: DATA.pageUrl,
+            collections: [DATA.coll1],
+        })
+
+        expect(resA).toBeDefined()
+        expect(resA.length).toBe(1)
+        expect(resB).toBeDefined()
+        expect(resB.length).toBe(0)
     })
 })

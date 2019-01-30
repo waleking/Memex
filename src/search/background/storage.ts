@@ -81,8 +81,6 @@ export default class SearchStorage extends FeatureStorage {
             .collection('tags')
             .findObjects<any>(query)
 
-        return results
-
         const resultSet = new Set(results.map(result => result.url))
         return annots.filter(annot => resultSet.has(annot.url))
     }
@@ -91,14 +89,16 @@ export default class SearchStorage extends FeatureStorage {
         annots: Annotation[],
         { collections }: AnnotSearchParams,
     ) {
-        const urls = annots.map(annot => annot.url)
-
-        const listIds = await this.storageManager
+        const lists = await this.storageManager
             .collection('customLists')
             .findObjects<any>({ name: { $in: collections } })
+
         const results = await this.storageManager
             .collection('annotListEntries')
-            .findObjects<any>({ url: { $in: urls }, listId: { $in: listIds } })
+            .findObjects<any>({
+                url: { $in: annots.map(annot => annot.url) },
+                listId: { $in: lists.map(list => list.id) },
+            })
 
         const resultSet = new Set(results.map(result => result.url))
         return annots.filter(annot => resultSet.has(annot.url))
@@ -147,6 +147,7 @@ export default class SearchStorage extends FeatureStorage {
                     innerResults,
                     params,
                 )
+                return innerResults
             }
 
             results = [...results, ...innerResults]
