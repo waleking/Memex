@@ -1,5 +1,6 @@
 import initStorageManager from '../memory-storex'
-import { StorageManager, getDb } from '..'
+import { StorageManager } from '..'
+import getDb, { setStorexBackend } from '../get-db'
 import SearchBg from './index'
 import { AnnotsSearcher } from './annots-search'
 import normalize from 'src/util/encode-url-for-id'
@@ -34,6 +35,12 @@ describe('Annotations search', () => {
                 title: annot.pageTitle,
                 text: '',
                 canonicalUrl: annot.url,
+            })
+
+            // Create a dummy visit 30 secs before annot creation time
+            await storageManager.collection('visits').createObject({
+                url: annot.pageUrl,
+                time: new Date(annot.createdWhen.getTime() - 300000).getTime(),
             })
 
             await annotsStorage.createAnnotation(annot)
@@ -91,6 +98,7 @@ describe('Annotations search', () => {
         annotsStorage = annotBg['annotationStorage']
 
         await storageManager.finishInitialization()
+        setStorexBackend(storageManager.backend)
         await insertTestData()
     })
     test('terms search', async () => {
@@ -283,5 +291,20 @@ describe('Annotations search', () => {
         expect(resA.length).toBe(1)
         expect(resB).toBeDefined()
         expect(resB.length).toBe(0)
+    })
+
+    test('blank page search', async () => {
+        const results = await searchBg.searchPages({
+            contentTypes: { highlights: true, notes: true, pages: true },
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(2)
+
+        const resByUrl = new Map()
+        results.forEach(res => resByUrl.set(res.url, res))
+
+        expect(resByUrl.get(DATA.pageUrl).annotations.length).toBe(3)
+        expect(resByUrl.get(DATA.directLink.pageUrl).annotations.length).toBe(1)
     })
 })

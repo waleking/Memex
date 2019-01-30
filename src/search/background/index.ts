@@ -120,7 +120,9 @@ export default class SearchBackground {
         domainsExc,
         tagsInc,
         collections,
-        contentTypes = { notes: true, highlights: true },
+        contentTypes = { notes: true, highlights: true, pages: true },
+        skip = 0,
+        limit = 10,
         ...params
     }: any) {
         // Extract query terms and in-query-filters via QueryBuilder
@@ -143,6 +145,8 @@ export default class SearchBackground {
             includeNotes: contentTypes.notes,
             includeHighlights: contentTypes.highlights,
             isBlankSearch: !qb.terms.length,
+            limit,
+            skip,
         }
     }
 
@@ -203,6 +207,7 @@ export default class SearchBackground {
                 annotations: await this.storage.listAnnotations({
                     ...params,
                     limit: params.maxAnnotsPerPage,
+                    url: page.url,
                 }),
             })),
         )
