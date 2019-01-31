@@ -33,7 +33,7 @@ describe('Annotations search', () => {
                 hostname: normalize(annot.pageUrl),
                 domain: normalize(annot.pageUrl),
                 title: annot.pageTitle,
-                text: '',
+                text: annot.body,
                 canonicalUrl: annot.url,
             })
 
@@ -320,5 +320,55 @@ describe('Annotations search', () => {
         expect(resByUrl.get(DATA.pageUrl).annotations.length).toBe(3)
         expect(resByUrl.get(DATA.directLink.pageUrl).annotations.length).toBe(1)
         expect(resByUrl.get(DATA.hybrid.pageUrl).annotations.length).toBe(1)
+    })
+
+    test('comment-text-only page search', async () => {
+        const results = await searchBg.searchPages({
+            query: 'comment',
+            contentTypes: { highlights: false, notes: true, pages: false },
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(1)
+        expect(results[0].annotations.length).toBe(2)
+        expect(results[0].annotations.map(annot => annot.url)).toEqual([
+            DATA.annotation.url,
+            DATA.comment.url,
+        ])
+    })
+
+    test('highlight-text-only page search', async () => {
+        const results = await searchBg.searchPages({
+            query: 'whooo',
+            contentTypes: { highlights: true, notes: false, pages: false },
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(2)
+        expect(results.map(res => res.url)).toEqual([
+            DATA.highlight.pageUrl,
+            DATA.hybrid.pageUrl,
+        ])
+
+        expect(results[0].annotations.length).toBe(2)
+        expect(results[0].annotations.map(annot => annot.url)).toEqual([
+            DATA.highlight.url,
+            DATA.annotation.url,
+        ])
+
+        expect(results[1].annotations.length).toBe(1)
+        expect(results[1].annotations.map(annot => annot.url)).toEqual([
+            DATA.hybrid.url,
+        ])
+    })
+
+    test('page-text-only page search', async () => {
+        const results = await searchBg.searchPages({
+            query: 'whooo',
+            contentTypes: { highlights: false, notes: false, pages: true },
+        })
+
+        expect(results).toBeDefined()
+        expect(results.length).toBe(2)
     })
 })

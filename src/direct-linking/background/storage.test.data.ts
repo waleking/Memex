@@ -49,7 +49,7 @@ export const annotation = {
 export const comment = {
     pageTitle: 'Annotation title',
     pageUrl,
-    body: '',
+    body: 'some test text',
     url: 'https://annotation.url/#12124124159',
     comment: 'Hmm this is just a comment',
     selector: {},
