@@ -244,6 +244,12 @@ describe('Annotations search', () => {
 
         expect(results).toBeDefined()
         expect(results.length).toBe(3)
+
+        expect(results.map(res => res.url)).toEqual([
+            DATA.highlight.url,
+            DATA.annotation.url,
+            DATA.comment.url,
+        ])
     })
 
     test('blank annots search + bookmark filter', async () => {
@@ -299,12 +305,20 @@ describe('Annotations search', () => {
         })
 
         expect(results).toBeDefined()
-        expect(results.length).toBe(2)
+        expect(results.length).toBe(3)
+
+        // Ensure order is by latest visit
+        expect(results.map(res => res.url)).toEqual([
+            DATA.hybrid.pageUrl,
+            DATA.highlight.pageUrl,
+            DATA.directLink.pageUrl,
+        ])
 
         const resByUrl = new Map()
         results.forEach(res => resByUrl.set(res.url, res))
 
         expect(resByUrl.get(DATA.pageUrl).annotations.length).toBe(3)
         expect(resByUrl.get(DATA.directLink.pageUrl).annotations.length).toBe(1)
+        expect(resByUrl.get(DATA.hybrid.pageUrl).annotations.length).toBe(1)
     })
 })
