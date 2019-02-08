@@ -313,32 +313,6 @@ export default class AnnotationStorage extends FeatureStorage {
         )
     }
 
-    editAnnotationTags = async (
-        tagsToBeAdded: string[],
-        tagsToBeDeleted: string[],
-        url: string,
-    ) => {
-        // Remove the tags that are to be deleted.
-        await Promise.all(
-            tagsToBeDeleted.map(async tag =>
-                this.storageManager.deleteObject(TAGS_TABLE, {
-                    name: tag,
-                    url,
-                }),
-            ),
-        )
-
-        // Add the tags that are to be added.
-        return Promise.all(
-            tagsToBeAdded.map(async tag =>
-                this.storageManager.putObject(TAGS_TABLE, {
-                    name: tag,
-                    url,
-                }),
-            ),
-        )
-    }
-
     modifyTags = (shouldAdd: boolean) => async (name: string, url: string) => {
         if (shouldAdd) {
             this.storageManager.collection(this._tagsColl).createObject({
