@@ -64,17 +64,6 @@ export default class SearchStorage extends FeatureStorage {
         return { ...baseQuery, ...tagsQuery }
     }
 
-    static projectPageResults(results): AnnotPage[] {
-        return results.map(page => ({
-            url: page.url,
-            title: page.fullTitle,
-            hasBookmark: page.hasBookmark,
-            screenshot: page.screenshot,
-            favIcon: page.favIcon,
-            annotations: [],
-        }))
-    }
-
     constructor({
         storageManager,
         annotationsColl = SearchStorage.ANNOTS_COLL,
