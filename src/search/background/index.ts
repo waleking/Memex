@@ -18,6 +18,15 @@ export default class SearchBackground {
     private getDb: () => Promise<Dexie>
     private legacySearch
 
+    static shapePageResult(results) {
+        // TODO: actually calculate these properly
+        return {
+            resultsExhausted: !results.length,
+            totalCount: results.length,
+            docs: results,
+        }
+    }
+
     constructor({
         storageManager,
         getDb,
@@ -216,7 +225,7 @@ export default class SearchBackground {
         }) as any
     }
 
-    async searchPages(params: PageSearchParams): Promise<AnnotPage[]> {
+    async searchPages(params: PageSearchParams) {
         const searchParams = this.processSearchParams(params)
 
         if (searchParams.isBadTerm || searchParams.isInvalidSearch) {
@@ -225,21 +234,29 @@ export default class SearchBackground {
 
         // Blank search; just list annots, applying search filters
         if (searchParams.isBlankSearch) {
-            return this.blankPageSearch(searchParams)
+            return SearchBackground.shapePageResult(
+                await this.blankPageSearch(searchParams),
+            )
         }
 
         if (pageSearchOnly(params.contentTypes)) {
-            return this.storage.searchPages(params, this.legacySearch)
+            return SearchBackground.shapePageResult(
+                await this.storage.searchPages(params, this.legacySearch),
+            )
         }
 
         if (annotSearchOnly(params.contentTypes)) {
-            return this.storage.searchAnnots({
-                ...searchParams,
-                includePageResults: true,
-            }) as any
+            return SearchBackground.shapePageResult(
+                await this.storage.searchAnnots({
+                    ...searchParams,
+                    includePageResults: true,
+                }),
+            )
         }
 
-        return this.combinedSearch(searchParams)
+        return SearchBackground.shapePageResult(
+            await this.combinedSearch(searchParams),
+        )
     }
 
     async handleBookmarkRemoval(id, { node }) {
