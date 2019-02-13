@@ -24,6 +24,7 @@ export interface Props {
     hasBookmark: boolean
     isSidebarOpen: boolean
     isListFilterActive: boolean
+    annotations: any[]
     tagPills: ReactNode[]
     tagManager: ReactNode
     onTagBtnClick: MouseEventHandler
@@ -171,6 +172,7 @@ class PageResultItem extends PureComponent<Props> {
                 </div>
                 <AnnotationList
                     openAnnotationSidebar={this.props.onCommentBtnClick}
+                    annotations={this.props.annotations}
                 />
                 {this.props.tagManager}
             </li>

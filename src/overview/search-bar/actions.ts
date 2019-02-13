@@ -15,7 +15,7 @@ import { actions as notifActs } from '../../notifications'
 import { EVENT_NAMES } from '../../analytics/internal/constants'
 
 const processEventRPC = remoteFunction('processEvent')
-const requestSearchRPC = remoteFunction('search')
+const requestSearchRPC = remoteFunction('searchPages')
 
 export const setQuery = createAction<string>('header/setQuery')
 export const setStartDate = createAction<number>('header/setStartDate')

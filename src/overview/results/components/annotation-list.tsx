@@ -3,7 +3,6 @@ import cx from 'classnames'
 
 import AnnotationBox from 'src/sidebar-common/annotation-box'
 import { Annotation } from 'src/sidebar-common/sidebar/types'
-import { DUMMY_ANNOTATION } from '../constants'
 
 const styles = require('./annotation-list.css')
 
@@ -20,14 +19,6 @@ export interface State {
 }
 
 class AnnotationList extends Component<Props, State> {
-    static defaultProps = {
-        annotations: [
-            { ...DUMMY_ANNOTATION },
-            { ...DUMMY_ANNOTATION },
-            { ...DUMMY_ANNOTATION },
-        ],
-    }
-
     state = {
         isExpanded: false,
     }
