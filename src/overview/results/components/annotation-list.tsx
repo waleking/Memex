@@ -43,7 +43,7 @@ class AnnotationList extends Component<Props, State> {
                     isHovered={false}
                     url={annot.url}
                     body={annot.body}
-                    comment={annot.body}
+                    comment={annot.comment}
                     tags={annot.tags}
                     createdWhen={annot.createdWhen}
                     handleGoToAnnotation={() => null}

@@ -170,10 +170,12 @@ class PageResultItem extends PureComponent<Props> {
                         )}
                     </div>
                 </div>
-                <AnnotationList
-                    openAnnotationSidebar={this.props.onCommentBtnClick}
-                    annotations={this.props.annotations}
-                />
+                {this.props.annotations.length > 0 && (
+                    <AnnotationList
+                        openAnnotationSidebar={this.props.onCommentBtnClick}
+                        annotations={this.props.annotations}
+                    />
+                )}
                 {this.props.tagManager}
             </li>
         )
