@@ -9,6 +9,7 @@ import { makeRemotelyCallable } from 'src/util/webextensionRPC'
 import { PageSearchParams, AnnotSearchParams, AnnotPage } from './types'
 import { annotSearchOnly, pageSearchOnly } from './utils'
 import { Annotation } from 'src/direct-linking/types'
+import { SearchError, BadTermError, InvalidSearchError } from './errors'
 
 export default class SearchBackground {
     private backend
@@ -17,6 +18,25 @@ export default class SearchBackground {
     private queryBuilderFactory: () => QueryBuilder
     private getDb: () => Promise<Dexie>
     private legacySearch
+
+    static handleSearchError(e: SearchError) {
+        if (e instanceof BadTermError) {
+            return {
+                docs: [],
+                resultsExhausted: true,
+                totalCount: null,
+                isBadTerm: true,
+            }
+        }
+
+        // Default error case
+        return {
+            docs: [],
+            resultsExhausted: true,
+            totalCount: null,
+            isInvalidSearch: true,
+        }
+    }
 
     static shapePageResult(results) {
         // TODO: actually calculate these properly
@@ -106,17 +126,20 @@ export default class SearchBackground {
         })
     }
 
-    private processSearchParams({
-        query,
-        domainsInc,
-        domainsExc,
-        tagsInc,
-        collections,
-        contentTypes = { notes: true, highlights: true, pages: true },
-        skip = 0,
-        limit = 10,
-        ...params
-    }: any) {
+    private processSearchParams(
+        {
+            query,
+            domainsInc,
+            domainsExc,
+            tagsInc,
+            collections,
+            contentTypes = { notes: true, highlights: true, pages: true },
+            skip = 0,
+            limit = 10,
+            ...params
+        }: any,
+        ignoreBadSearch = false,
+    ) {
         // Extract query terms and in-query-filters via QueryBuilder
         const qb = this.queryBuilderFactory()
             .searchTerm(query)
@@ -125,6 +148,14 @@ export default class SearchBackground {
             .filterTags(tagsInc)
             .filterLists(collections)
             .get()
+
+        if (qb.isBadTerm && !ignoreBadSearch) {
+            throw new BadTermError()
+        }
+
+        if (qb.isInvalidSearch && !ignoreBadSearch) {
+            throw new InvalidSearchError()
+        }
 
         return {
             ...params,
@@ -208,7 +239,7 @@ export default class SearchBackground {
     }
 
     async searchAnnotations(params: AnnotSearchParams): Promise<Annotation[]> {
-        const searchParams = this.processSearchParams(params)
+        const searchParams = this.processSearchParams(params, true)
 
         if (searchParams.isBadTerm || searchParams.isInvalidSearch) {
             return []
@@ -226,7 +257,13 @@ export default class SearchBackground {
     }
 
     async searchPages(params: PageSearchParams) {
-        const searchParams = this.processSearchParams(params)
+        let searchParams
+
+        try {
+            searchParams = this.processSearchParams(params)
+        } catch (e) {
+            return SearchBackground.handleSearchError(e)
+        }
 
         if (searchParams.isBadTerm || searchParams.isInvalidSearch) {
             return []
