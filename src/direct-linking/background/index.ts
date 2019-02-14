@@ -137,7 +137,10 @@ export default class DirectLinkingBackground {
             ({ createdWhen, lastEdited, ...annotation }) => ({
                 ...annotation,
                 createdWhen: createdWhen.getTime(),
-                lastEdited: lastEdited.getTime ? lastEdited.getTime() : null,
+                lastEdited:
+                    lastEdited && lastEdited instanceof Date
+                        ? lastEdited.getTime()
+                        : undefined,
             }),
         )
     }
