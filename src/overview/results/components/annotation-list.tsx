@@ -7,14 +7,14 @@ import { Annotation } from 'src/sidebar-common/sidebar/types'
 const styles = require('./annotation-list.css')
 
 export interface Props {
-    /* Array of matched annotations, limited to 3 */
+    /** Array of matched annotations, limited to 3 */
     annotations: Annotation[]
-    /* Opens the annotation sidebar with all of the annotations */
+    /** Opens the annotation sidebar with all of the annotations */
     openAnnotationSidebar: MouseEventHandler
 }
 
 export interface State {
-    /* Boolean to denote whether the list is expanded or not */
+    /** Boolean to denote whether the list is expanded or not */
     isExpanded: boolean
 }
 
@@ -32,58 +32,57 @@ class AnnotationList extends Component<Props, State> {
         )
     }
 
-    renderAnnotations = () => {
+    renderAnnotations() {
+        if (!this.state.isExpanded) {
+            return null
+        }
+
         return this.props.annotations.map(annot => (
-            /* Wrapper element to restrict the width of the annotation box */
-            <div className={styles.annotation}>
-                <AnnotationBox
-                    key={annot.url}
-                    env="overview"
-                    isActive={false}
-                    isHovered={false}
-                    url={annot.url}
-                    body={annot.body}
-                    comment={annot.comment}
-                    tags={annot.tags}
-                    createdWhen={annot.createdWhen}
-                    handleGoToAnnotation={() => null}
-                    handleDeleteAnnotation={() => null}
-                    handleEditAnnotation={() => null}
-                    handleMouseEnter={() => null}
-                    handleMouseLeave={() => null}
-                />
-            </div>
+            <AnnotationBox
+                key={annot.url}
+                className={styles.annotation}
+                env="overview"
+                handleGoToAnnotation={() => undefined}
+                handleDeleteAnnotation={() => undefined}
+                handleEditAnnotation={() => undefined}
+                {...annot}
+            />
         ))
     }
 
+    renderText() {
+        if (this.state.isExpanded) {
+            return null
+        }
+
+        return (
+            <Fragment>
+                {/* Element to show the number of annotations that matched the term */}
+                <p className={styles.resultCount}>
+                    {this.props.annotations.length} annotations found on this
+                    page
+                </p>
+                {/* Button to open sidebar with the given page URL */}
+                <a
+                    className={styles.seeAll}
+                    onClick={this.props.openAnnotationSidebar}
+                >
+                    See all
+                </a>
+            </Fragment>
+        )
+    }
+
     render() {
-        const { isExpanded } = this.state
         return (
             <div className={styles.container}>
-                {/* Only show these following elements when the container is not expanded */}
-                {!isExpanded ? (
-                    <Fragment>
-                        {/* Element to show the number of annotations that matched the term */}
-                        <p className={styles.resultCount}>
-                            {this.props.annotations.length} annotations found on
-                            this page
-                        </p>
-                        {/* Button to open sidebar with the given page URL */}
-                        <a
-                            className={styles.seeAll}
-                            onClick={this.props.openAnnotationSidebar}
-                        >
-                            {/* TODO: Show total annotations count */}
-                            See all
-                        </a>
-                    </Fragment>
-                ) : null}
+                {this.renderText()}
 
                 {/* Chevron up/down toggle button */}
                 <div className={styles.iconContainer}>
                     <span
                         className={cx(styles.icon, {
-                            [styles.inverted]: isExpanded,
+                            [styles.inverted]: this.state.isExpanded,
                         })}
                         onClick={this.handleArrowClick}
                     />
@@ -91,7 +90,7 @@ class AnnotationList extends Component<Props, State> {
 
                 {/* Container for displaying AnnotationBox */}
                 <div className={styles.annotationList}>
-                    {isExpanded ? this.renderAnnotations() : null}
+                    {this.renderAnnotations()}
                 </div>
             </div>
         )
