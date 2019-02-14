@@ -16,16 +16,17 @@ interface Props {
     /** Required to decide how to go to an annotation when it's clicked. */
     env: 'inpage' | 'overview'
     url: string
-    isActive: boolean
-    isHovered: boolean
+    className?: string
+    isActive?: boolean
+    isHovered?: boolean
     createdWhen: Date
     lastEdited?: Date
     body?: string
     comment?: string
     tags: string[]
     handleGoToAnnotation: (e: React.MouseEvent<HTMLElement>) => void
-    handleMouseEnter: (e: Event) => void
-    handleMouseLeave: (e: Event) => void
+    handleMouseEnter?: (e: Event) => void
+    handleMouseLeave?: (e: Event) => void
     handleEditAnnotation: (url: string, comment: string, tags: string[]) => void
     handleDeleteAnnotation: (url: string) => void
 }
@@ -36,6 +37,11 @@ interface State {
 }
 
 class AnnotationBoxContainer extends React.Component<Props, State> {
+    static defaultProps = {
+        handleMouseEnter: () => undefined,
+        handleMouseLeave: () => undefined,
+    }
+
     private _processEventRPC = remoteFunction('processEvent')
     private _boxRef: HTMLDivElement = null
 
@@ -184,7 +190,7 @@ class AnnotationBoxContainer extends React.Component<Props, State> {
         return (
             <div
                 id={this.props.url} // Focusing on annotation relies on this ID.
-                className={cx(styles.container, {
+                className={cx(styles.container, this.props.className, {
                     [styles.isActive]: this.props.isActive,
                     [styles.isHovered]: this.props.isHovered,
                     [styles.isClickable]: isClickable,
