@@ -277,7 +277,7 @@ describe('Annotations search', () => {
     })
 
     test('blank page search', async () => {
-        const results = await searchBg.searchPages({
+        const { docs: results } = await searchBg.searchPages({
             contentTypes: { highlights: true, notes: true, pages: true },
         })
 
@@ -299,11 +299,12 @@ describe('Annotations search', () => {
         expect(resByUrl.get(DATA.hybrid.pageUrl).annotations.length).toBe(1)
     })
 
-    test('blank annots search', async () => {
-        const results = await searchBg.searchPages({
+    test('blank annots-only search', async () => {
+        const { docs: results, resultsExhausted } = await searchBg.searchPages({
             contentTypes: { highlights: true, notes: true, pages: false },
         })
 
+        expect(resultsExhausted).toBe(true)
         expect(results).toBeDefined()
         expect(results.length).toBe(3)
 
@@ -316,11 +317,12 @@ describe('Annotations search', () => {
     })
 
     test('comment-text-only page search', async () => {
-        const results = await searchBg.searchPages({
+        const { docs: results, resultsExhausted } = await searchBg.searchPages({
             query: 'comment',
             contentTypes: { highlights: false, notes: true, pages: false },
         })
 
+        expect(resultsExhausted).toBe(true)
         expect(results).toBeDefined()
         expect(results.length).toBe(1)
         expect(results[0].annotations.length).toBe(2)
@@ -331,11 +333,12 @@ describe('Annotations search', () => {
     })
 
     test('highlight-text-only page search', async () => {
-        const results = await searchBg.searchPages({
+        const { docs: results, resultsExhausted } = await searchBg.searchPages({
             query: 'whooo',
             contentTypes: { highlights: true, notes: false, pages: false },
         })
 
+        expect(resultsExhausted).toBe(true)
         expect(results).toBeDefined()
         expect(results.length).toBe(2)
         expect(results.map(res => res.url)).toEqual([
@@ -356,11 +359,12 @@ describe('Annotations search', () => {
     })
 
     test.skip('page-text-only page search', async () => {
-        const results = await searchBg.searchPages({
+        const { docs: results, resultsExhausted } = await searchBg.searchPages({
             query: 'whooo',
             contentTypes: { highlights: false, notes: false, pages: true },
         })
 
+        expect(resultsExhausted).toBe(true)
         expect(results).toBeDefined()
         expect(results.length).toBe(2)
     })
