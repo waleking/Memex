@@ -15,6 +15,11 @@ export interface SearchStorageProps {
     annotationsColl?: string
 }
 
+export interface Interaction {
+    time: number
+    url: string
+}
+
 export type LegacySearch = (
     params: OldSearchParams,
 ) => Promise<{
@@ -118,6 +123,54 @@ export default class SearchStorage extends FeatureStorage {
         return annots.filter(annot => resultSet.has(annot.url))
     }
 
+    private async calcLatestInteraction(url: string, upperTimeBound?: number) {
+        let max = 0
+        const visitQuery: any = { url }
+        const bmQuery: any = { url }
+
+        if (upperTimeBound) {
+            visitQuery.time = { $lte: upperTimeBound }
+            bmQuery.time = { $lte: upperTimeBound }
+        }
+
+        const [visits, bookmark] = await Promise.all([
+            this.storageManager
+                .collection('visits')
+                .findObjects<Interaction>(visitQuery),
+            this.storageManager
+                .collection('bookmarks')
+                .findOneObject<Interaction>(bmQuery),
+        ])
+
+        max = visits.sort((a, b) => b.time - a.time)[0].time
+
+        if (!!bookmark && bookmark.time > max) {
+            max = bookmark.time
+        }
+
+        return max
+    }
+
+    private async mapDisplayTimeToPages(
+        pages: AnnotPage[],
+        endDate: Date | number,
+    ): Promise<AnnotPage[]> {
+        return Promise.all(
+            pages.map(async page => {
+                const upperTimeBound =
+                    endDate instanceof Date ? endDate.getTime() : endDate
+
+                return {
+                    ...page,
+                    displayTime: await this.calcLatestInteraction(
+                        page.url,
+                        upperTimeBound,
+                    ),
+                }
+            }),
+        )
+    }
+
     private async mapAnnotsToPages(
         annots: Annotation[],
         maxAnnotsPerPage: number,
@@ -205,25 +258,33 @@ export default class SearchStorage extends FeatureStorage {
         )
 
         if (params.includePageResults) {
-            return this.mapAnnotsToPages(
+            const pages = await this.mapAnnotsToPages(
                 results,
                 params.maxAnnotsPerPage ||
                     AnnotationsSearchPlugin.MAX_ANNOTS_PER_PAGE,
             )
+
+            return this.mapDisplayTimeToPages(pages, params.endDate)
         }
 
         return results.map(reshapeAnnotForDisplay as any) as any
     }
 
-    async searchPages(params: AnnotSearchParams, legacySearch: LegacySearch) {
+    async searchPages(
+        params: AnnotSearchParams,
+        legacySearch: LegacySearch,
+    ): Promise<AnnotPage[]> {
         const searchParams = reshapeParamsForOldSearch(params)
 
         const { ids } = await legacySearch(searchParams)
 
         const pageUrls = new Set(ids.map(([url]) => url))
 
-        return this.storageManager.operation(PageUrlMapperPlugin.MAP_OP_ID, [
-            ...pageUrls,
-        ])
+        const pages = await this.storageManager.operation(
+            PageUrlMapperPlugin.MAP_OP_ID,
+            [...pageUrls],
+        )
+
+        return this.mapDisplayTimeToPages(pages, params.endDate)
     }
 }
