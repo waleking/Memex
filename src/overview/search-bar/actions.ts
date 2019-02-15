@@ -129,6 +129,7 @@ export const search: (args?: any) => Thunk = (
         skip: results.resultsSkip(state),
         // lists for now is just id of one list
         lists: [filters.listFilter(state)],
+        contentTypes: filters.contentType(state),
     }
 
     try {
