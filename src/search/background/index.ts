@@ -38,10 +38,9 @@ export default class SearchBackground {
         }
     }
 
-    static shapePageResult(results) {
-        // TODO: actually calculate these properly
+    static shapePageResult(results, limit: number) {
         return {
-            resultsExhausted: !results.length,
+            resultsExhausted: results.length < limit,
             totalCount: results.length,
             docs: results,
         }
@@ -266,20 +265,18 @@ export default class SearchBackground {
             return SearchBackground.handleSearchError(e)
         }
 
-        if (searchParams.isBadTerm || searchParams.isInvalidSearch) {
-            return []
-        }
-
         // Blank search; just list annots, applying search filters
         if (searchParams.isBlankSearch) {
             return SearchBackground.shapePageResult(
                 await this.blankPageSearch(searchParams),
+                searchParams.limit,
             )
         }
 
         if (pageSearchOnly(searchParams.contentTypes)) {
             return SearchBackground.shapePageResult(
                 await this.storage.searchPages(searchParams, this.legacySearch),
+                searchParams.limit,
             )
         }
 
@@ -289,11 +286,13 @@ export default class SearchBackground {
                     ...searchParams,
                     includePageResults: true,
                 }),
+                searchParams.limit,
             )
         }
 
         return SearchBackground.shapePageResult(
             await this.combinedSearch(searchParams),
+            searchParams.limit,
         )
     }
 
