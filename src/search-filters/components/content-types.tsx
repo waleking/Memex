@@ -10,7 +10,7 @@ interface State {}
 class ContentTypes extends PureComponent<Props, State> {
     render() {
         return (
-            <div>
+            <React.Fragment>
                 <CheckmarkRow
                     value="Annotations"
                     subtitle="Highlights including notes"
@@ -44,7 +44,7 @@ class ContentTypes extends PureComponent<Props, State> {
                     active={false}
                     onClick={() => null}
                 />
-            </div>
+            </React.Fragment>
         )
     }
 }

@@ -168,6 +168,7 @@ export default class SearchBackground {
             includeNotes: contentTypes.notes,
             includeHighlights: contentTypes.highlights,
             isBlankSearch: !qb.terms.length,
+            contentTypes,
             limit,
             skip,
         }
@@ -276,13 +277,13 @@ export default class SearchBackground {
             )
         }
 
-        if (pageSearchOnly(params.contentTypes)) {
+        if (pageSearchOnly(searchParams.contentTypes)) {
             return SearchBackground.shapePageResult(
-                await this.storage.searchPages(params, this.legacySearch),
+                await this.storage.searchPages(searchParams, this.legacySearch),
             )
         }
 
-        if (annotSearchOnly(params.contentTypes)) {
+        if (annotSearchOnly(searchParams.contentTypes)) {
             return SearchBackground.shapePageResult(
                 await this.storage.searchAnnots({
                     ...searchParams,
