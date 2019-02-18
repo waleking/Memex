@@ -306,11 +306,24 @@ describe('Annotations search', () => {
         expect(results).toBeDefined()
         expect(results.length).toBe(3)
 
-        // Ensure order is by latest annot
+        // Ensure order of pages is by latest annot
         expect(results.map(res => res.url)).toEqual([
             DATA.hybrid.pageUrl,
+            DATA.annotation.pageUrl,
             DATA.directLink.pageUrl,
-            DATA.highlight.pageUrl,
+        ])
+
+        // For each page, ensure order of annots is by latest
+        expect(results[0].annotations.map(annot => annot.url)).toEqual([
+            DATA.hybrid.url,
+        ])
+        expect(results[1].annotations.map(annot => annot.url)).toEqual([
+            DATA.annotation.url,
+            DATA.comment.url,
+            DATA.highlight.url,
+        ])
+        expect(results[2].annotations.map(annot => annot.url)).toEqual([
+            DATA.directLink.url,
         ])
     })
 
