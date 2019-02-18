@@ -2,9 +2,7 @@ import initStorageManager from '../memory-storex'
 import { StorageManager } from '..'
 import getDb, { setStorexBackend } from '../get-db'
 import SearchBg from './index'
-import { AnnotationsSearchPlugin } from './annots-search'
 import normalize from 'src/util/encode-url-for-id'
-import { AnnotPage } from './types'
 import CustomListBg from 'src/custom-lists/background'
 import AnnotsBg from 'src/direct-linking/background'
 import AnnotsStorage from 'src/direct-linking/background/storage'
@@ -92,7 +90,7 @@ describe('Annotations search', () => {
             bookmarksAPI: { onCreated: mockEvent, onRemoved: mockEvent } as any,
         })
 
-        customListsBg = new CustomListBg({ storageManager })
+        customListsBg = new CustomListBg({ storageManager, getDb })
         annotsStorage = annotBg['annotationStorage']
 
         await storageManager.finishInitialization()

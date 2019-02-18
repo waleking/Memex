@@ -8,7 +8,7 @@ import AnnotationsManager from '../annotations-manager'
 import { remoteFunction } from 'src/util/webextensionRPC'
 import { EVENT_NAMES } from 'src/analytics/internal/constants'
 import { getLocalStorage, setLocalStorage } from 'src/util/storage'
-import { STORAGE_KEYS } from 'src/overview/onboarding/constants'
+import { STORAGE_KEYS, FLOWS } from 'src/overview/onboarding/constants'
 
 // Remote function declarations.
 const processEventRPC = remoteFunction('processEvent')
@@ -158,7 +158,7 @@ export const checkAndSetCongratsMessage: () => Thunk = () => async (
 ) => {
     const showCongratsMessage = selectors.showCongratsMessage(getState())
     const onboardingAnnotationStage = await getLocalStorage(
-        STORAGE_KEYS.onboardingDemo.step1,
+        STORAGE_KEYS.onboardingFlows[FLOWS.annotation],
     )
 
     if (
@@ -169,7 +169,10 @@ export const checkAndSetCongratsMessage: () => Thunk = () => async (
         await processEventRPC({
             type: EVENT_NAMES.FINISH_ANNOTATION_ONBOARDING,
         })
-        await setLocalStorage(STORAGE_KEYS.onboardingDemo.step1, 'DONE')
+        await setLocalStorage(
+            STORAGE_KEYS.onboardingFlows[FLOWS.annotation],
+            'DONE',
+        )
     } else if (showCongratsMessage) {
         // Since we need to display the congrats message only once,
         // it can be set to false after setting it true once.
