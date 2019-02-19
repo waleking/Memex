@@ -50,6 +50,10 @@ class PageResultItem extends PureComponent<Props> {
         })
     }
 
+    get hrefToPage() {
+        return `http://${this.props.url}`
+    }
+
     dragStart: DragEventHandler = e => {
         const { url, setUrlDragged } = this.props
 
@@ -80,7 +84,7 @@ class PageResultItem extends PureComponent<Props> {
                         onDragStart={this.dragStart}
                         onDragEnd={this.props.resetUrlDragged}
                         className={styles.root}
-                        href={this.props.url}
+                        href={this.hrefToPage}
                         target="_blank"
                         draggable
                     >
