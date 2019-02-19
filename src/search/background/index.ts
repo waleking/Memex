@@ -226,7 +226,7 @@ export default class SearchBackground {
         ...params
     }: PageSearchParams) {
         if (annotSearchOnly(contentTypes)) {
-            return this.storage.listAnnotationsBlank(params)
+            return this.storage.searchPagesByLatestAnnotation(params)
         }
 
         let results = await this.storage.searchPages(params, this.legacySearch)
