@@ -79,7 +79,7 @@ export default class AnnotationStorage extends FeatureStorage {
         this.storageManager.registry.registerCollection(this._listEntriesColl, {
             version: new Date(2019, 0, 4),
             fields: {
-                listId: { type: 'string' },
+                listId: { type: 'int' },
                 url: { type: 'string' },
                 createdAt: { type: 'datetime' },
             },
