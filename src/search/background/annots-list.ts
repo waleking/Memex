@@ -1,5 +1,7 @@
+import { Dexie } from 'dexie'
 import { StorageBackendPlugin } from '@worldbrain/storex'
 import { DexieStorageBackend } from '@worldbrain/storex-backend-dexie'
+
 import { AnnotSearchParams } from 'src/search/background/types'
 import { Annotation } from 'src/direct-linking/types'
 import AnnotsStorage from 'src/direct-linking/background/storage'
@@ -8,30 +10,67 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
     DexieStorageBackend
 > {
     static LIST_OP_ID = 'memex:dexie.listAnnotations'
+    static LIST_BY_PAGE_OP_ID = 'memex:dexie.listAnnotationsByPage'
 
     install(backend: DexieStorageBackend) {
         super.install(backend)
 
         backend.registerOperation(
             AnnotationsListPlugin.LIST_OP_ID,
-            this.list.bind(this),
+            this.listAnnots.bind(this),
+        )
+
+        backend.registerOperation(
+            AnnotationsListPlugin.LIST_BY_PAGE_OP_ID,
+            this.listAnnotsByPage.bind(this),
         )
     }
 
-    private listWithoutTimeBounds() {
-        return this.backend.dexieInstance
-            .table(AnnotsStorage.ANNOTS_COLL)
+    private listWithoutTimeBounds = (params: Partial<AnnotSearchParams>) =>
+        this.backend.dexieInstance
+            .table<any, string>(AnnotsStorage.ANNOTS_COLL)
             .orderBy('createdWhen')
-    }
+            .reverse()
 
-    private listWithTimeBounds({
+    private listWithTimeBounds = ({
         startDate = 0,
         endDate = new Date(),
-    }: Partial<AnnotSearchParams>) {
-        return this.backend.dexieInstance
-            .table(AnnotsStorage.ANNOTS_COLL)
+    }: Partial<AnnotSearchParams>) =>
+        this.backend.dexieInstance
+            .table<any, string>(AnnotsStorage.ANNOTS_COLL)
             .where('createdWhen')
             .between(startDate, endDate, true, true)
+            .reverse()
+
+    private listWithUrl = ({
+        url,
+        endDate,
+        startDate,
+    }: Partial<AnnotSearchParams>) => {
+        if (!url) {
+            throw new Error('URL must be supplied to list annotations.')
+        }
+
+        const coll = this.backend.dexieInstance
+            .table<Annotation, string>(AnnotsStorage.ANNOTS_COLL)
+            .where('pageUrl')
+            .equals(url)
+
+        if (!startDate && !endDate) {
+            return coll
+        }
+        // Set defaults
+        startDate = startDate || 0
+        endDate = endDate || new Date()
+
+        // Ensure ms extracted from any Date instances
+        startDate = startDate instanceof Date ? startDate.getTime() : startDate
+        endDate = endDate instanceof Date ? endDate.getTime() : endDate
+
+        return coll.filter(annot => {
+            const time = annot.createdWhen.getTime()
+            return time >= startDate && time <= endDate
+        })
     }
 
     private async filterByBookmarks(urls: string[]) {
@@ -49,12 +88,12 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
             .anyOf(urls)
             .primaryKeys()
 
-        if (params.tagsExc.length) {
+        if (params.tagsExc && params.tagsExc.length) {
             const tagsExc = new Set(params.tagsExc)
             tags = tags.filter(([name]) => !tagsExc.has(name))
         }
 
-        if (params.tagsInc.length) {
+        if (params.tagsInc && params.tagsInc.length) {
             const tagsInc = new Set(params.tagsInc)
             tags = tags.filter(([name]) => tagsInc.has(name))
         }
@@ -103,24 +142,20 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
         return urls.map(url => annotUrlMap.get(url))
     }
 
-    async list({
-        limit = 10,
-        skip = 0,
-        ...params
-    }: AnnotSearchParams): Promise<Annotation[]> {
+    // The main logic
+    private async list(
+        { limit = 10, skip = 0, ...params }: AnnotSearchParams,
+        listQuery: (
+            params: AnnotSearchParams,
+        ) => Dexie.Collection<Annotation, string>,
+    ): Promise<Annotation[]> {
         const innerLimit = limit * 2 // x2 is an arbitrary choice
         let innerSkip = 0
         let results: string[] = []
         let continueLookup = true
 
         while (continueLookup) {
-            // Ensure proper sorting happens, depending on set time bounds
-            const coll = params.endDate
-                ? this.listWithTimeBounds(params)
-                : this.listWithoutTimeBounds()
-
-            let innerResults: string[] = await coll
-                .reverse()
+            let innerResults: string[] = await listQuery(params)
                 .offset(innerSkip)
                 .limit(innerLimit)
                 .primaryKeys()
@@ -154,5 +189,17 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
         }
 
         return this.mapUrlsToAnnots(results)
+    }
+
+    async listAnnots(params: AnnotSearchParams): Promise<Annotation[]> {
+        const listQuery = params.endDate
+            ? this.listWithTimeBounds
+            : this.listWithoutTimeBounds
+
+        return this.list(params, listQuery)
+    }
+
+    async listAnnotsByPage(params: AnnotSearchParams): Promise<Annotation[]> {
+        return this.list(params, this.listWithUrl)
     }
 }
