@@ -9,6 +9,7 @@ import { Annotation } from 'src/direct-linking/types'
 import { AnnotationsSearchPlugin } from './annots-search'
 import { PageUrlMapperPlugin } from './page-url-mapper'
 import { reshapeAnnotForDisplay, reshapeParamsForOldSearch } from './utils'
+import { AnnotationsListPlugin } from 'src/search/background/annots-list'
 
 export interface SearchStorageProps {
     storageManager: StorageManager
@@ -195,6 +196,21 @@ export default class SearchStorage extends FeatureStorage {
             ...page,
             annotations: annotsByUrl.get(page.url),
         }))
+    }
+
+    async listAnnotationsBlank(params: AnnotSearchParams) {
+        const results = await this.storageManager.operation(
+            AnnotationsListPlugin.LIST_OP_ID,
+            params,
+        )
+
+        const pages = await this.mapAnnotsToPages(
+            results,
+            params.maxAnnotsPerPage ||
+                AnnotationsSearchPlugin.MAX_ANNOTS_PER_PAGE,
+        )
+
+        return this.mapDisplayTimeToPages(pages, params.endDate)
     }
 
     async listAnnotations({

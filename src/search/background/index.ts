@@ -221,7 +221,14 @@ export default class SearchBackground {
         return mergedResults.slice(skip, params.limit)
     }
 
-    private async blankPageSearch(params: AnnotSearchParams) {
+    private async blankPageSearch({
+        contentTypes,
+        ...params
+    }: PageSearchParams) {
+        if (annotSearchOnly(contentTypes)) {
+            return this.storage.listAnnotationsBlank(params)
+        }
+
         let results = await this.storage.searchPages(params, this.legacySearch)
 
         results = await Promise.all(
