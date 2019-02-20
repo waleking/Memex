@@ -10,7 +10,7 @@ import { PageUrlMapperPlugin } from './page-url-mapper'
 import { reshapeAnnotForDisplay, reshapeParamsForOldSearch } from './utils'
 import { AnnotationsSearchPlugin } from './annots-search'
 import { AnnotationsListPlugin } from './annots-list'
-import { Tag } from 'src/search/models'
+import { Tag, Bookmark } from 'src/search/models'
 
 export interface SearchStorageProps {
     storageManager: StorageManager
@@ -62,9 +62,17 @@ export default class SearchStorage extends FeatureStorage {
         return max
     }
 
-    private async attachDisplayTagsToAnnots(
+    private async attachDisplayDataToAnnots(
         annots: Annotation[],
     ): Promise<Annotation[]> {
+        const bookmarks = await this.storageManager
+            .collection('annotBookmarks')
+            .findAllObjects<Bookmark>({
+                url: { $in: annots.map(annot => annot.url) },
+            })
+
+        const bmUrls = new Set(bookmarks.map(bm => bm.url))
+
         return Promise.all(
             annots.map(async annot => {
                 const tags = await this.storageManager
@@ -74,6 +82,7 @@ export default class SearchStorage extends FeatureStorage {
                 return {
                     ...annot,
                     tags: tags.map(tag => tag.name),
+                    hasBookmark: bmUrls.has(annot.url),
                 }
             }),
         )
@@ -131,7 +140,7 @@ export default class SearchStorage extends FeatureStorage {
             params,
         )
 
-        results = await this.attachDisplayTagsToAnnots(results)
+        results = await this.attachDisplayDataToAnnots(results)
 
         const pages = await this.mapAnnotsToPages(
             results,
@@ -148,7 +157,7 @@ export default class SearchStorage extends FeatureStorage {
             params,
         )
 
-        return this.attachDisplayTagsToAnnots(results)
+        return this.attachDisplayDataToAnnots(results)
     }
 
     async searchAnnots(
@@ -159,7 +168,7 @@ export default class SearchStorage extends FeatureStorage {
             params,
         )
 
-        results = await this.attachDisplayTagsToAnnots(results)
+        results = await this.attachDisplayDataToAnnots(results)
 
         if (params.includePageResults) {
             const pages = await this.mapAnnotsToPages(
