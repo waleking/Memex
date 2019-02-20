@@ -6,10 +6,11 @@ import {
 } from '../types'
 import { AnnotSearchParams, AnnotPage } from './types'
 import { Annotation } from 'src/direct-linking/types'
-import { AnnotationsSearchPlugin } from './annots-search'
 import { PageUrlMapperPlugin } from './page-url-mapper'
 import { reshapeAnnotForDisplay, reshapeParamsForOldSearch } from './utils'
-import { AnnotationsListPlugin } from 'src/search/background/annots-list'
+import { AnnotationsSearchPlugin } from './annots-search'
+import { AnnotationsListPlugin } from './annots-list'
+import { Tag } from 'src/search/models'
 
 export interface SearchStorageProps {
     storageManager: StorageManager
@@ -61,7 +62,24 @@ export default class SearchStorage extends FeatureStorage {
         return max
     }
 
-    private async mapDisplayTimeToPages(
+    private async attachDisplayTagsToAnnots(
+        annots: Annotation[],
+    ): Promise<Annotation[]> {
+        return Promise.all(
+            annots.map(async annot => {
+                const tags = await this.storageManager
+                    .collection('tags')
+                    .findAllObjects<Tag>({ url: annot.url }, { limit: 4 })
+
+                return {
+                    ...annot,
+                    tags: tags.map(tag => tag.name),
+                }
+            }),
+        )
+    }
+
+    private async attachDisplayTimeToPages(
         pages: AnnotPage[],
         endDate: Date | number,
     ): Promise<AnnotPage[]> {
@@ -108,10 +126,12 @@ export default class SearchStorage extends FeatureStorage {
     }
 
     async searchPagesByLatestAnnotation(params: AnnotSearchParams) {
-        const results = await this.storageManager.operation(
+        let results = await this.storageManager.operation(
             AnnotationsListPlugin.LIST_OP_ID,
             params,
         )
+
+        results = await this.attachDisplayTagsToAnnots(results)
 
         const pages = await this.mapAnnotsToPages(
             results,
@@ -119,23 +139,27 @@ export default class SearchStorage extends FeatureStorage {
                 AnnotationsSearchPlugin.MAX_ANNOTS_PER_PAGE,
         )
 
-        return this.mapDisplayTimeToPages(pages, params.endDate)
+        return this.attachDisplayTimeToPages(pages, params.endDate)
     }
 
     async listAnnotations(params: AnnotSearchParams): Promise<Annotation[]> {
-        return this.storageManager.operation(
+        const results: Annotation[] = await this.storageManager.operation(
             AnnotationsListPlugin.LIST_BY_PAGE_OP_ID,
             params,
         )
+
+        return this.attachDisplayTagsToAnnots(results)
     }
 
     async searchAnnots(
         params: AnnotSearchParams,
     ): Promise<Annotation[] | AnnotPage[]> {
-        const results: Annotation[] = await this.storageManager.operation(
+        let results: Annotation[] = await this.storageManager.operation(
             AnnotationsSearchPlugin.SEARCH_OP_ID,
             params,
         )
+
+        results = await this.attachDisplayTagsToAnnots(results)
 
         if (params.includePageResults) {
             const pages = await this.mapAnnotsToPages(
@@ -144,7 +168,7 @@ export default class SearchStorage extends FeatureStorage {
                     AnnotationsSearchPlugin.MAX_ANNOTS_PER_PAGE,
             )
 
-            return this.mapDisplayTimeToPages(pages, params.endDate)
+            return this.attachDisplayTimeToPages(pages, params.endDate)
         }
 
         return results.map(reshapeAnnotForDisplay as any) as any
@@ -165,6 +189,6 @@ export default class SearchStorage extends FeatureStorage {
             [...pageUrls],
         )
 
-        return this.mapDisplayTimeToPages(pages, params.endDate)
+        return this.attachDisplayTimeToPages(pages, params.endDate)
     }
 }

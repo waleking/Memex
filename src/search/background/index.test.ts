@@ -367,6 +367,20 @@ describe('Annotations search', () => {
         expect(resC[0].annotations[1].url).toBe(DATA.highlight.url)
     })
 
+    test('blank annots-only search + tags filter', async () => {
+        const { docs: results, resultsExhausted } = await searchBg.searchPages({
+            contentTypes: { highlights: true, notes: true, pages: false },
+            tagsInc: [DATA.tag1],
+        })
+
+        expect(resultsExhausted).toBe(true)
+        expect(results).toBeDefined()
+        expect(results.length).toBe(1)
+
+        expect(results[0].annotations.length).toBe(1)
+        expect(results[0].annotations[0].url).toEqual(DATA.annotation.url)
+    })
+
     test('comment-text-only page search', async () => {
         const { docs: results, resultsExhausted } = await searchBg.searchPages({
             query: 'comment',
