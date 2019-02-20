@@ -167,6 +167,7 @@ export default class SearchBackground {
             includeNotes: contentTypes.notes,
             includeHighlights: contentTypes.highlights,
             isBlankSearch: !qb.terms.length,
+            bookmarksOnly: params.showOnlyBookmarks || params.bookmarksOnly,
             contentTypes,
             limit,
             skip,
