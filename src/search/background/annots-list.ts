@@ -34,12 +34,12 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
 
     private listWithTimeBounds = ({
         startDate = 0,
-        endDate = new Date(),
+        endDate = Date.now(),
     }: Partial<AnnotSearchParams>) =>
         this.backend.dexieInstance
             .table<any, string>(AnnotsStorage.ANNOTS_COLL)
             .where('createdWhen')
-            .between(startDate, endDate, true, true)
+            .between(new Date(startDate), new Date(endDate), true, true)
             .reverse()
 
     private listWithUrl = ({
@@ -61,14 +61,14 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
         }
         // Set defaults
         startDate = startDate || 0
-        endDate = endDate || new Date()
+        endDate = endDate || Date.now()
 
         // Ensure ms extracted from any Date instances
         startDate = startDate instanceof Date ? startDate.getTime() : startDate
         endDate = endDate instanceof Date ? endDate.getTime() : endDate
 
-        return coll.filter(annot => {
-            const time = annot.createdWhen.getTime()
+        return coll.filter(({ createdWhen }) => {
+            const time = createdWhen.getTime()
             return time >= startDate && time <= endDate
         })
     }
@@ -192,9 +192,10 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
     }
 
     async listAnnots(params: AnnotSearchParams): Promise<Annotation[]> {
-        const listQuery = params.endDate
-            ? this.listWithTimeBounds
-            : this.listWithoutTimeBounds
+        const listQuery =
+            params.endDate || params.startDate
+                ? this.listWithTimeBounds
+                : this.listWithoutTimeBounds
 
         return this.list(params, listQuery)
     }

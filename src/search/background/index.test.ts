@@ -327,6 +327,46 @@ describe('Annotations search', () => {
         ])
     })
 
+    test('blank annots-only search + time filters', async () => {
+        // Should result in only the newest annot
+        const { docs: resA } = await searchBg.searchPages({
+            contentTypes: { highlights: true, notes: true, pages: false },
+            startDate: new Date('2019-01-30'),
+        })
+
+        expect(resA).toBeDefined()
+        expect(resA.length).toBe(1)
+
+        expect(resA[0].annotations.length).toBe(1)
+        expect(resA[0].annotations[0].url).toBe(DATA.hybrid.url)
+
+        // Should result in only the oldest annot
+        const { docs: resB } = await searchBg.searchPages({
+            contentTypes: { highlights: true, notes: true, pages: false },
+            endDate: new Date('2019-01-26'),
+        })
+
+        expect(resB).toBeDefined()
+        expect(resB.length).toBe(1)
+
+        expect(resB[0].annotations.length).toBe(1)
+        expect(resB[0].annotations[0].url).toBe(DATA.highlight.url)
+
+        // Should result in only the oldest annot
+        const { docs: resC } = await searchBg.searchPages({
+            contentTypes: { highlights: true, notes: true, pages: false },
+            startDate: new Date('2019-01-25'),
+            endDate: new Date('2019-01-28T23:00Z'),
+        })
+
+        expect(resC).toBeDefined()
+        expect(resC.length).toBe(1)
+
+        expect(resC[0].annotations.length).toBe(2)
+        expect(resC[0].annotations[0].url).toBe(DATA.comment.url)
+        expect(resC[0].annotations[1].url).toBe(DATA.highlight.url)
+    })
+
     test('comment-text-only page search', async () => {
         const { docs: results, resultsExhausted } = await searchBg.searchPages({
             query: 'comment',
