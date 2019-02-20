@@ -260,26 +260,10 @@ export class AnnotationsSearchPlugin extends StorageBackendPlugin<
         )
 
         // Flatten out results
-        let annotResults = AnnotationsSearchPlugin.uniqAnnots(
+        const annotResults = AnnotationsSearchPlugin.uniqAnnots(
             [].concat(...termResults),
         ).slice(0, limit)
 
-        annotResults = await this.mapSearchResToBookmarks(
-            searchParams,
-            annotResults,
-        )
-
-        // Lookup tags for each annotation
-        return Promise.all(
-            annotResults.map(async annot => {
-                const tagKeys = await this.backend.dexieInstance
-                    .table(this.tagsColl)
-                    .where('url')
-                    .equals(annot.url)
-                    .primaryKeys()
-
-                return { ...annot, tags: tagKeys.map(([name]) => name) }
-            }),
-        )
+        return this.mapSearchResToBookmarks(searchParams, annotResults)
     }
 }

@@ -122,7 +122,7 @@ export const search: (args?: any) => Thunk = (
         startDate,
         endDate,
         showOnlyBookmarks: filters.onlyBookmarks(state),
-        tags: filters.tags(state),
+        tagsInc: filters.tags(state),
         domains: filters.domainsInc(state),
         domainsExclude: filters.domainsExc(state),
         limit: constants.PAGE_SIZE,
