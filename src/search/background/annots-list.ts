@@ -11,6 +11,7 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
 > {
     static LIST_OP_ID = 'memex:dexie.listAnnotations'
     static LIST_BY_PAGE_OP_ID = 'memex:dexie.listAnnotationsByPage'
+    static DEF_INNER_LIMIT_MULTI = 2
 
     install(backend: DexieStorageBackend) {
         super.install(backend)
@@ -148,9 +149,10 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
         listQuery: (
             params: AnnotSearchParams,
         ) => Dexie.Collection<Annotation, string>,
+        innerLimitMultiplier: number,
     ): Promise<Annotation[]> {
-        const innerLimit = limit * 2 // x2 is an arbitrary choice
-        let innerSkip = 0
+        const innerLimit = limit * innerLimitMultiplier
+        let innerSkip = skip * innerLimitMultiplier
         let results: string[] = []
         let continueLookup = true
 
@@ -191,16 +193,22 @@ export class AnnotationsListPlugin extends StorageBackendPlugin<
         return this.mapUrlsToAnnots(results)
     }
 
-    async listAnnots(params: AnnotSearchParams): Promise<Annotation[]> {
+    async listAnnots(
+        params: AnnotSearchParams,
+        innerLimitMulti = AnnotationsListPlugin.DEF_INNER_LIMIT_MULTI,
+    ): Promise<Annotation[]> {
         const listQuery =
             params.endDate || params.startDate
                 ? this.listWithTimeBounds
                 : this.listWithoutTimeBounds
 
-        return this.list(params, listQuery)
+        return this.list(params, listQuery, innerLimitMulti)
     }
 
-    async listAnnotsByPage(params: AnnotSearchParams): Promise<Annotation[]> {
-        return this.list(params, this.listWithUrl)
+    async listAnnotsByPage(
+        params: AnnotSearchParams,
+        innerLimitMulti = AnnotationsListPlugin.DEF_INNER_LIMIT_MULTI,
+    ): Promise<Annotation[]> {
+        return this.list(params, this.listWithUrl, innerLimitMulti)
     }
 }
