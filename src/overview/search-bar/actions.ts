@@ -127,8 +127,7 @@ export const search: (args?: any) => Thunk = (
         domainsExclude: filters.domainsExc(state),
         limit: constants.PAGE_SIZE,
         skip: results.resultsSkip(state),
-        // lists for now is just id of one list
-        lists: [filters.listFilter(state)],
+        lists: filters.listFilterParam(state),
         contentTypes: filters.contentType(state),
     }
 
