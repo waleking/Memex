@@ -35,6 +35,12 @@ export const domainsExc = createSelector(
     state => state.domainsExc,
 )
 export const listFilter = createSelector(searchFilters, state => state.lists)
+
+// Lists for now is just id of one list
+export const listFilterParam = createSelector(
+    listFilter,
+    state => (state === '' ? [] : [state]),
+)
 export const displayDomains = createSelector(
     domainsInc,
     domainsExc,
