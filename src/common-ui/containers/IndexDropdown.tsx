@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import debounce from 'lodash/fp/debounce'
 import noop from 'lodash/fp/noop'
 
-import { updateLastActive } from '../../analytics'
 import { remoteFunction } from '../../util/webextensionRPC'
 import {
     IndexDropdown,
@@ -226,8 +225,6 @@ class IndexDropdownContainer extends Component<Props, State> {
         })
 
         this.props.onFilterAdd(newTag)
-
-        updateLastActive() // Consider user active (analytics)
     }
 
     private async handleSingleTagEdit(tag: string) {
@@ -294,8 +291,6 @@ class IndexDropdownContainer extends Component<Props, State> {
             focused: 0,
             clearFieldBtn: false,
         })
-
-        updateLastActive() // Consider user active (analytics)
     }
 
     private handleSearchEnterPress(
@@ -350,6 +345,17 @@ class IndexDropdownContainer extends Component<Props, State> {
     }
 
     handleSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (
+            this.props.isForAnnotation &&
+            !(event.ctrlKey || event.metaKey) &&
+            /[a-zA-Z0-9-_ ]/.test(String.fromCharCode(event.keyCode))
+        ) {
+            event.preventDefault()
+            event.stopPropagation()
+            this.setState(state => ({ searchVal: state.searchVal + event.key }))
+            return
+        }
+
         switch (event.key) {
             case 'Enter':
                 return this.handleSearchEnterPress(event)

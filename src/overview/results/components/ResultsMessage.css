@@ -2,7 +2,6 @@
     text-align: center;
     margin-top: 80px;
     font-size: 20px;
-    font-family: 'Inter';
     color: grey;
     animation-name: fadeIn;
     animation-duration: 0.4s;
@@ -13,8 +12,8 @@
 
 .smallMessage {
     position: relative;
-    left: -272px;
-    top: -20px;
+    left: -267px;
+    top: -25px;
     margin: 0;
     color: #4abf9d;
     font-size: 15px;

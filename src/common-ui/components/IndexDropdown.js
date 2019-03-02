@@ -104,6 +104,16 @@ class IndexDropdown extends PureComponent {
                         </i>
                     )}
                 </div>
+                {this.props.allTabs && (
+                    <p className={styles.allTabs}>
+                        Add tags to all tabs in window
+                    </p>
+                )}
+                {this.props.allTabsCollection && (
+                    <p className={styles.allTabs}>
+                        Add all tabs in window to collections
+                    </p>
+                )}
                 <div
                     className={cx(this.styles.tagContainerSB, {
                         [this.styles.tagContainer]: this.props.isForSidebar,

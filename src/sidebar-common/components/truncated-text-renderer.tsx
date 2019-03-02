@@ -53,9 +53,9 @@ class TruncatedTextRenderer extends React.Component<Props, State> {
 
         return (
             <React.Fragment>
-                "{textToBeDisplayed}"
+                {textToBeDisplayed}
                 {isTextTooLong && (
-                    <span
+                    <button
                         className={cx(styles.showMoreBtn, {
                             [styles.rotated]: !shouldTruncate,
                         })}

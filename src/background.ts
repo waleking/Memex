@@ -15,7 +15,6 @@ import NotificationBackground from './notifications/background'
 import SearchBackground from './search/background'
 import * as backup from './backup/background'
 import * as backupStorage from './backup/background/storage'
-import * as driveBackup from './backup/background/backend/google-drive'
 import setupChangeTracking from './backup/background/change-hooks'
 import BackgroundScript from './background-script'
 import TagsBackground from './tags/background'
@@ -65,23 +64,13 @@ tags.setupRemoteFunctions()
 
 const backupModule = new backup.BackupBackgroundModule({
     storageManager,
-    backend:
-        process.env.BACKUP_BACKEND === 'local'
-            ? new (require('./backup/background/backend/simple-http')).default({
-                  url: 'http://localhost:8000',
-              })
-            : new driveBackup.DriveBackupBackend({
-                  tokenStore: new driveBackup.LocalStorageDriveTokenStore({
-                      prefix: 'drive-token-',
-                  }),
-                  memexCloudOrigin: backup._getMemexCloudOrigin(),
-              }),
     lastBackupStorage: new backupStorage.LocalLastBackupStorage({
         key: 'lastBackup',
     }),
 })
+
+backupModule.setBackendFromStorage()
 backupModule.setupRemoteFunctions()
-backupModule.setupRequestInterceptor()
 backupModule.startRecordingChangesIfNeeded()
 
 const bgScript = new BackgroundScript({ notifsBackground: notifications })
