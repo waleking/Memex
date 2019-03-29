@@ -32,30 +32,32 @@ export default class NotificationStorage extends StorageModule {
                 collection: NotificationStorage.NOTIFS_COLL,
                 operation: 'createObject',
             },
-            findUnreadNotifications: {
+            findNotificationsByRead: {
                 collection: NotificationStorage.NOTIFS_COLL,
                 operation: 'findObjects',
-                args: { readTime: '$readTime:any' },
+                args: [
+                    { readTime: { $exists: '$isRead:boolean' } },
+                    {
+                        reverse: '$reverse:boolean',
+                        limit: '$limit:int',
+                        skip: '$skip:int',
+                    },
+                ],
             },
-            findReadNotifications: {
-                collection: NotificationStorage.NOTIFS_COLL,
-                operation: 'findObjects',
-                args: { readTime: '$readTime:any' },
-            },
-            findNotificationForId: {
+            findNotificationById: {
                 collection: NotificationStorage.NOTIFS_COLL,
                 operation: 'findOneObject',
                 args: { id: '$id:pk' },
             },
-            countUnreadNotifications: {
+            countNotifications: {
                 collection: NotificationStorage.NOTIFS_COLL,
                 operation: 'countObjects',
-                args: { readTime: '$readTime:any' },
+                args: { readTime: { $exists: '$isRead:boolean' } },
             },
             readNotification: {
                 collection: NotificationStorage.NOTIFS_COLL,
                 operation: 'countObjects',
-                args: [{ id: '$id:pk' }, { readTime: '$readTime:any' }],
+                args: { id: '$id:pk', readTime: '$readTime:any' },
             },
         },
     })
@@ -65,26 +67,18 @@ export default class NotificationStorage extends StorageModule {
     }
 
     async fetchUnreadNotifications() {
-        const opt = {
+        return this.operation('findNotificationsByRead', {
+            isRead: false,
             reverse: true,
-        }
-
-        // TODO: make sure opts is passed in
-        return this.operation('findUnreadNotifications', {
-            readTime: { $exists: false },
         })
     }
 
     async fetchReadNotifications({ limit, skip }) {
-        const opt = {
+        const results = await this.operation('findNotificationsByRead', {
+            isRead: true,
             reverse: true,
             limit,
             skip,
-        }
-
-        // TODO: make sure opts is passed in
-        const results = await this.operation('findUnreadNotifications', {
-            readTime: { $exists: true },
         })
 
         return {
@@ -94,8 +88,8 @@ export default class NotificationStorage extends StorageModule {
     }
 
     async fetchUnreadCount() {
-        return this.operation('countUnreadNotifications', {
-            readTime: { $exists: false },
+        return this.operation('countNotifications', {
+            isRead: false,
         })
     }
 

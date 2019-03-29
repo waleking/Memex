@@ -36,12 +36,18 @@ export default class EventLogStorage extends StorageModule {
             findLatestEventOfType: {
                 collection: EventLogStorage.EVENT_LOG_COLL,
                 operation: 'findOneObject',
-                args: { type: '$type:number' },
+                args: [
+                    { type: '$type:int' },
+                    {
+                        reverse: '$reverse:boolean',
+                        limit: '$limit:int',
+                    },
+                ],
             },
             countEventsOfType: {
                 collection: EventLogStorage.EVENT_LOG_COLL,
                 operation: 'countObjects',
-                args: { type: '$type:number' },
+                args: { type: '$type:int' },
             },
         },
     })
@@ -58,15 +64,12 @@ export default class EventLogStorage extends StorageModule {
         let eventLogCount = 0
         let latestEvent = 0
 
-        const opts = {
-            reverse: true,
-            limit: 1,
-        }
-
         for (const type of NOTIF_TYPE_EVENT_IDS[notifType]) {
             // TODO: make sure opts are passed in
             const latest = await this.operation('findLatestEventOfType', {
                 type,
+                reverse: true,
+                limit: 1,
             })
 
             if (latest) {

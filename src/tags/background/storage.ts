@@ -34,7 +34,7 @@ export default class TagStorage extends StorageModule {
             deleteTag: {
                 collection: TagStorage.TAGS_COLL,
                 operation: 'deleteObjects',
-                args: [{ name: '$name:string' }, { url: '$url:string' }],
+                args: { name: '$name:string', url: '$url:string' },
             },
         },
     })
