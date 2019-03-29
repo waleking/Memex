@@ -1,14 +1,18 @@
-import { FeatureStorage } from '../../../search/storage'
+import {
+    StorageModule,
+    StorageModuleConfig,
+} from '@worldbrain/storex-pattern-modules'
 import { NOTIF_TYPE_EVENT_IDS, EVENT_TYPES } from '../constants'
 
-export default class EventLogStorage extends FeatureStorage {
+export default class EventLogStorage extends StorageModule {
     static EVENT_LOG_COLL = 'eventLog'
     constructor(storageManager) {
         super(storageManager)
+    }
 
-        this.storageManager.registry.registerCollection(
-            EventLogStorage.EVENT_LOG_COLL,
-            {
+    getConfig = (): StorageModuleConfig => ({
+        collections: {
+            [EventLogStorage.EVENT_LOG_COLL]: {
                 version: new Date(2018, 6, 14),
                 fields: {
                     time: { type: 'datetime' },
@@ -23,17 +27,31 @@ export default class EventLogStorage extends FeatureStorage {
                 watch: false,
                 backup: false,
             },
-        )
-    }
+        },
+        operations: {
+            createEvent: {
+                collection: EventLogStorage.EVENT_LOG_COLL,
+                operation: 'createObject',
+            },
+            findLatestEventOfType: {
+                collection: EventLogStorage.EVENT_LOG_COLL,
+                operation: 'findOneObject',
+                args: { type: '$type:number' },
+            },
+            countEventsOfType: {
+                collection: EventLogStorage.EVENT_LOG_COLL,
+                operation: 'countObjects',
+                args: { type: '$type:number' },
+            },
+        },
+    })
 
     async storeEvent({ time, details, type }) {
-        await this.storageManager
-            .collection(EventLogStorage.EVENT_LOG_COLL)
-            .createObject({
-                time,
-                type: EVENT_TYPES[type].id,
-                details,
-            })
+        return this.operation('createEvent', {
+            time,
+            details,
+            type: EVENT_TYPES[type].id,
+        })
     }
 
     async getLatestTimeWithCount({ notifType }) {
@@ -46,17 +64,18 @@ export default class EventLogStorage extends FeatureStorage {
         }
 
         for (const type of NOTIF_TYPE_EVENT_IDS[notifType]) {
-            const latest = await this.storageManager
-                .collection(EventLogStorage.EVENT_LOG_COLL)
-                .findOneObject({ type }, opts)
+            // TODO: make sure opts are passed in
+            const latest = await this.operation('findLatestEventOfType', {
+                type,
+            })
 
             if (latest) {
                 latestEvent = Math.max(latest['time'], latestEvent)
             }
 
-            const eventCountNotif = await this.storageManager
-                .collection(EventLogStorage.EVENT_LOG_COLL)
-                .countObjects({ type })
+            const eventCountNotif = await this.operation('countEventsOfType', {
+                type,
+            })
 
             eventLogCount += eventCountNotif
         }
