@@ -38,7 +38,6 @@ export default class AnnotationStorage extends StorageModule {
     private _tagsColl: string
     private _listsColl: string
     private _listEntriesColl: string
-    private storageManager: StorageManager
 
     constructor({
         storageManager,
@@ -51,8 +50,6 @@ export default class AnnotationStorage extends StorageModule {
         listEntriesColl = AnnotationStorage.LIST_ENTRIES_COLL,
     }: AnnotationStorageProps) {
         super({ storageManager })
-
-        this.storageManager = storageManager
 
         this._annotationsColl = annotationsColl
         this._tagsColl = tagsColl
@@ -333,7 +330,7 @@ export default class AnnotationStorage extends StorageModule {
     }
 
     async getAllAnnotationsByUrl(params: AnnotSearchParams) {
-        const results: Annotation[] = await this.storageManager.operation(
+        const results: Annotation[] = await this.operation(
             AnnotationsListPlugin.LIST_BY_PAGE_OP_ID,
             params,
         )

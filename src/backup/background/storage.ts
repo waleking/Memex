@@ -1,4 +1,3 @@
-import { CollectionDefinitions } from '@worldbrain/storex'
 import {
     StorageModule,
     StorageModuleConfig,
