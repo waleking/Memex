@@ -398,7 +398,6 @@ export class BackupBackgroundModule {
             this.maybeScheduleAutomaticBackup()
         }
         this.backupProcedure.events.on('success', async () => {
-            this.lastBackupStorage.storeLastBackupFinishTime(new Date())
             always()
         })
         this.backupProcedure.events.on('fail', () => {
@@ -410,11 +409,9 @@ export class BackupBackgroundModule {
 
     async prepareRestore() {
         this.clearAutomaticBackupTimeout()
-        // await this.lastBackupStorage.storeLastBackupTime(null)
 
         const runner = this.restoreProcedure.runner()
         this.restoreProcedure.events.once('success', async () => {
-            // await this.lastBackupStorage.storeLastBackupTime(new Date())
             await this.startRecordingChangesIfNeeded()
             await this.maybeScheduleAutomaticBackup()
             this.resetRestoreProcedure()

@@ -1,6 +1,7 @@
 // tslint:disable:no-console
 import * as AllRaven from 'raven-js'
 import { EventEmitter } from 'events'
+import { browser } from 'webextension-polyfill-ts'
 import { StorageManager } from '../../../search/types'
 import BackupStorage, { LastBackupStorage } from '../storage'
 import { BackupBackend } from '../backend'
@@ -131,9 +132,14 @@ export default class BackupProcedure {
             }
 
             const backupTime = new Date()
-            await this._doIncrementalBackup(backupTime, this.events)
             if (process.env.STORE_BACKUP_TIME !== 'false') {
                 await this.lastBackupStorage.storeLastBackupTime(backupTime)
+            }
+            await this._doIncrementalBackup(backupTime, this.events)
+            if (process.env.STORE_BACKUP_TIME !== 'false') {
+                await this.lastBackupStorage.storeLastBackupFinishTime(
+                    new Date(),
+                )
             }
         }
 
@@ -149,6 +155,7 @@ export default class BackupProcedure {
                         state: 'success',
                         backupId: 'success',
                     })
+                    await browser.storage.local.set({ 'backup.progress': null })
 
                     this.reset()
                     resolveCompletionPromise()
@@ -223,7 +230,16 @@ export default class BackupProcedure {
             collectionsWithVersions,
             untilWhen,
         ))
-        events.emit('info', { info })
+        const emitInfo = async () => {
+            await browser.storage.local.set({
+                'backup.progress': {
+                    total: info.totalChanges,
+                    processed: info.processedChanges,
+                },
+            })
+            events.emit('info', { info })
+        }
+        await emitInfo()
 
         for await (const batch of this.storage.streamChanges(untilWhen, {
             batchSize: parseInt(process.env.BACKUP_BATCH_SIZE, 10),
@@ -236,7 +252,7 @@ export default class BackupProcedure {
             }
 
             await this._backupChanges(batch, info, events)
-            events.emit('info', { info })
+            await emitInfo()
         }
 
         console.log('finished incremental backup')
@@ -299,6 +315,14 @@ export default class BackupProcedure {
             totalChanges: 0,
             processedChanges: 0,
             // collections: {},
+        }
+
+        const {
+            'backup.progress': lastBackupProgress,
+        } = await browser.storage.local.get({ 'backup.progress': null })
+        if (lastBackupProgress) {
+            info.totalChanges += lastBackupProgress.processed
+            info.processedChanges += lastBackupProgress.processed
         }
 
         const collectionCountPairs = (await Promise.all(
