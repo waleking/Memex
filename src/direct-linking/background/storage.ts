@@ -1,8 +1,11 @@
 import { browser, Tabs, Storage } from 'webextension-polyfill-ts'
 import {
+    withHistory,
     StorageModule,
     StorageModuleConfig,
 } from '@worldbrain/storex-pattern-modules'
+
+import history from './storage.history'
 
 import { createPageFromTab, Tag, Dexie, StorageManager } from '../../search'
 import { STORAGE_KEYS as IDXING_PREF_KEYS } from '../../options/settings/constants'
@@ -61,31 +64,11 @@ export default class AnnotationStorage extends StorageModule {
         this._getDb = getDb
     }
 
-    getConfig = (): StorageModuleConfig => ({
-        collections: {
-            [this._annotationsColl]: [
-                {
-                    version: new Date(2018, 7, 26),
-                    fields: {
-                        pageTitle: { type: 'text' },
-                        pageUrl: { type: 'url' },
-                        body: { type: 'text' },
-                        comment: { type: 'text' },
-                        selector: { type: 'json' },
-                        createdWhen: { type: 'datetime' },
-                        lastEdited: { type: 'datetime' },
-                        url: { type: 'string' },
-                    },
-                    indices: [
-                        { field: 'url', pk: true },
-                        { field: 'pageTitle' },
-                        { field: 'body' },
-                        { field: 'createdWhen' },
-                        { field: 'comment' },
-                    ],
-                },
-                // Indexes the `pageUrl` and `lastEdited` fields
-                {
+    getConfig = (): StorageModuleConfig =>
+        withHistory({
+            history,
+            collections: {
+                [this._annotationsColl]: {
                     version: new Date('2019-02-19'),
                     fields: {
                         pageTitle: { type: 'text' },
@@ -107,48 +90,32 @@ export default class AnnotationStorage extends StorageModule {
                         { field: 'comment' },
                     ],
                 },
-            ],
-            [this._listEntriesColl]: {
-                version: new Date(2019, 0, 4),
-                fields: {
-                    listId: { type: 'int' },
-                    url: { type: 'string' },
-                    createdAt: { type: 'datetime' },
-                },
-                indices: [
-                    { field: ['listId', 'url'], pk: true },
-                    { field: 'listId' },
-                    { field: 'url' },
-                ],
-            },
-            [this._bookmarksColl]: {
-                version: new Date(2019, 0, 5),
-                fields: {
-                    url: { type: 'string' },
-                    createdAt: { type: 'datetime' },
-                },
-                indices: [{ field: 'url', pk: true }, { field: 'createdAt' }],
-            },
-            // NOTE: This is no longer used; keeping to maintain DB schema sanity
-            directLinks: [
-                {
-                    version: new Date(2018, 5, 31),
+                [this._listEntriesColl]: {
+                    version: new Date(2019, 0, 4),
                     fields: {
-                        pageTitle: { type: 'text' },
-                        pageUrl: { type: 'url' },
-                        body: { type: 'text' },
-                        selector: { type: 'json' },
-                        createdWhen: { type: 'datetime' },
+                        listId: { type: 'int' },
                         url: { type: 'string' },
+                        createdAt: { type: 'datetime' },
+                    },
+                    indices: [
+                        { field: ['listId', 'url'], pk: true },
+                        { field: 'listId' },
+                        { field: 'url' },
+                    ],
+                },
+                [this._bookmarksColl]: {
+                    version: new Date(2019, 0, 5),
+                    fields: {
+                        url: { type: 'string' },
+                        createdAt: { type: 'datetime' },
                     },
                     indices: [
                         { field: 'url', pk: true },
-                        { field: 'pageTitle' },
-                        { field: 'body' },
-                        { field: 'createdWhen' },
+                        { field: 'createdAt' },
                     ],
                 },
-                {
+                // NOTE: This is no longer used; keeping to maintain DB schema sanity
+                directLinks: {
                     version: new Date(2018, 7, 3),
                     fields: {
                         pageTitle: { type: 'text' },
@@ -169,80 +136,79 @@ export default class AnnotationStorage extends StorageModule {
                         { field: 'comment' },
                     ],
                 },
-            ],
-        },
-        operations: {
-            findListById: {
-                collection: this._listsColl,
-                operation: 'findOneObject',
-                args: { id: '$id:pk' },
             },
-            findBookmarkByUrl: {
-                collection: this._bookmarksColl,
-                operation: 'findOneObject',
-                args: { url: '$url:pk' },
-            },
-            findAnnotationByUrl: {
-                collection: this._annotationsColl,
-                operation: 'findOneObject',
-                args: { url: '$url:pk' },
-            },
-            findTagsByAnnotation: {
-                collection: this._tagsColl,
-                operation: 'findOneObject',
-                args: { url: '$url:string' },
-            },
-            createAnnotationForList: {
-                collection: this._listEntriesColl,
-                operation: 'createObject',
-            },
-            createBookmark: {
-                collection: this._bookmarksColl,
-                operation: 'createObject',
-            },
-            createAnnotation: {
-                collection: this._annotationsColl,
-                operation: 'createObject',
-            },
-            createTag: {
-                collection: this._tagsColl,
-                operation: 'createObject',
-            },
-            editAnnotation: {
-                collection: this._annotationsColl,
-                operation: 'updateOneObject',
-                args: [
-                    { url: '$url:pk' },
-                    {
-                        $set: {
-                            comment: '$comment:string',
-                            lastEdited: new Date(),
+            operations: {
+                findListById: {
+                    collection: this._listsColl,
+                    operation: 'findOneObject',
+                    args: { id: '$id:pk' },
+                },
+                findBookmarkByUrl: {
+                    collection: this._bookmarksColl,
+                    operation: 'findOneObject',
+                    args: { url: '$url:pk' },
+                },
+                findAnnotationByUrl: {
+                    collection: this._annotationsColl,
+                    operation: 'findOneObject',
+                    args: { url: '$url:pk' },
+                },
+                findTagsByAnnotation: {
+                    collection: this._tagsColl,
+                    operation: 'findOneObject',
+                    args: { url: '$url:string' },
+                },
+                createAnnotationForList: {
+                    collection: this._listEntriesColl,
+                    operation: 'createObject',
+                },
+                createBookmark: {
+                    collection: this._bookmarksColl,
+                    operation: 'createObject',
+                },
+                createAnnotation: {
+                    collection: this._annotationsColl,
+                    operation: 'createObject',
+                },
+                createTag: {
+                    collection: this._tagsColl,
+                    operation: 'createObject',
+                },
+                editAnnotation: {
+                    collection: this._annotationsColl,
+                    operation: 'updateOneObject',
+                    args: [
+                        { url: '$url:pk' },
+                        {
+                            $set: {
+                                comment: '$comment:string',
+                                lastEdited: new Date(),
+                            },
                         },
-                    },
-                ],
+                    ],
+                },
+                deleteAnnotation: {
+                    collection: this._annotationsColl,
+                    operation: 'deleteOneObject',
+                    args: { url: '$url:pk' },
+                },
+                deleteAnnotationFromList: {
+                    collection: this._listEntriesColl,
+                    operation: 'deleteObjects',
+                    args: { listId: '$listId:int', url: '$url:string' },
+                },
+                deleteBookmarkByUrl: {
+                    collection: this._bookmarksColl,
+                    operation: 'deleteOneObject',
+                    args: { url: '$url:pk' },
+                },
+                deleteTags: {
+                    collection: this._tagsColl,
+                    operation: 'deleteObjects',
+                    args: { name: '$name:string', url: '$url:string' },
+                },
             },
-            deleteAnnotation: {
-                collection: this._annotationsColl,
-                operation: 'deleteOneObject',
-                args: { url: '$url:pk' },
-            },
-            deleteAnnotationFromList: {
-                collection: this._listEntriesColl,
-                operation: 'deleteObjects',
-                args: { listId: '$listId:int', url: '$url:string' },
-            },
-            deleteBookmarkByUrl: {
-                collection: this._bookmarksColl,
-                operation: 'deleteOneObject',
-                args: { url: '$url:pk' },
-            },
-            deleteTags: {
-                collection: this._tagsColl,
-                operation: 'deleteObjects',
-                args: { name: '$name:string', url: '$url:string' },
-            },
-        },
-    })
+        })
 
     private async getListById({ listId }: { listId: number }) {
         const list = await this.operation('findListById', { id: listId })
