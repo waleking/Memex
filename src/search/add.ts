@@ -16,8 +16,6 @@ export const addPage = (getDb: () => Promise<Dexie>) => async ({
     pageDoc,
     rejectNoContent,
 }: Partial<PageAddRequest>) => {
-    const db = await getDb()
-
     const { favIconURI, ...pageData } = await pipeline({
         pageDoc,
         rejectNoContent,
@@ -75,8 +73,9 @@ export const updateTimestampMeta = (getDb: () => Promise<Dexie>) => async (
     const normalized = normalizeUrl(url)
 
     await db
-        .transaction('rw', db.visits, () =>
-            db.visits
+        .transaction('rw', db.table('visits'), () =>
+            db
+                .table('visits')
                 .where('[time+url]')
                 .equals([time, normalized])
                 .modify(data),
