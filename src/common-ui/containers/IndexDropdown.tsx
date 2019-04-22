@@ -511,7 +511,10 @@ class IndexDropdownContainer extends Component<Props, State> {
         let suggestions = this.state.filters
 
         try {
-            suggestions = await this.suggestRPC(searchVal, this.props.source)
+            suggestions = await this.suggestRPC({
+                query: searchVal,
+                type: this.props.source,
+            })
         } catch (err) {
             console.error(err)
         } finally {
@@ -534,7 +537,7 @@ class IndexDropdownContainer extends Component<Props, State> {
         // parentNode.scrollTop = domNode.offsetTop - parentNode.offsetTop
     }
 
-     private renderTags() {
+    private renderTags() {
         const tags = this.getDisplayTags()
 
         const tagOptions: React.ReactNode[] = tags.map((tag, i) => (
