@@ -15,7 +15,6 @@ import { Annotation, AnnotListEntry } from '../types'
 
 export interface AnnotationStorageProps {
     storageManager: StorageManager
-    getDb: () => Promise<Dexie>
     browserStorageArea?: Storage.StorageArea
     annotationsColl?: string
     pagesColl?: string
@@ -44,7 +43,6 @@ export default class AnnotationStorage extends StorageModule {
 
     constructor({
         storageManager,
-        getDb,
         browserStorageArea = browser.storage.local,
         annotationsColl = AnnotationStorage.ANNOTS_COLL,
         bookmarksColl = AnnotationStorage.BMS_COLL,
@@ -61,7 +59,8 @@ export default class AnnotationStorage extends StorageModule {
         this._listEntriesColl = listEntriesColl
 
         this._browserStorageArea = browserStorageArea
-        this._getDb = getDb
+
+        this._getDb = () => storageManager.backend['dexieInstance']
     }
 
     getConfig = (): StorageModuleConfig =>
