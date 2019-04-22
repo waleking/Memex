@@ -206,6 +206,10 @@ export default class AnnotationStorage extends StorageModule {
                     operation: 'deleteObjects',
                     args: { name: '$name:string', url: '$url:string' },
                 },
+                listAnnotsByPage: {
+                    operation: AnnotationsListPlugin.LIST_BY_PAGE_OP_ID,
+                    args: [],
+                },
             },
         })
 
@@ -296,7 +300,7 @@ export default class AnnotationStorage extends StorageModule {
 
     async getAllAnnotationsByUrl(params: AnnotSearchParams) {
         const results: Annotation[] = await this.operation(
-            AnnotationsListPlugin.LIST_BY_PAGE_OP_ID,
+            'listAnnotsByPage',
             params,
         )
 
