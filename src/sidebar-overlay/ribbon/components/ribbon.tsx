@@ -156,25 +156,24 @@ class Ribbon extends Component<Props> {
 
         this.props.setSearchValue(searchValue)
     }
+
     private getTooltipText(name: string): string {
-        const toTooltipText = (tooltip: string) => {
-            const short: Shortcut = this.keyboardShortcuts[name]
-            return short.shortcut && short.enabled
-                ? tooltip + ' ' + '(' + short.shortcut + ')'
-                : tooltip
-        }
-        const elData: ShortcutElData = this.shortcutsData.get(name)
+        const elData = this.shortcutsData.get(name)
+        const short: Shortcut = this.keyboardShortcuts[name]
+
         if (!elData) {
             return ''
         }
-        switch (name) {
-            case 'createBookmark':
-                return this.props.isBookmarked
-                    ? toTooltipText(elData.turnOff)
-                    : toTooltipText(elData.turnOn)
-            default:
-                return toTooltipText(elData.tooltip)
+
+        let source = elData.tooltip
+
+        if (name === 'createBookmark') {
+            source = this.props.isBookmarked ? elData.turnOff : elData.turnOn
         }
+
+        return short.shortcut && short.enabled
+            ? `${source} (${short.shortcut})`
+            : source
     }
 
     render() {
