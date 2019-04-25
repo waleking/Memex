@@ -1,6 +1,6 @@
 import Storex from '@worldbrain/storex'
 
-import { GetPksPlugin } from './plugins/get-pks'
+import { DexieUtilsPlugin } from './plugins/dexie-utils'
 import { DBGet } from './types'
 import { Page } from './models'
 import normalizeUrl from '../util/encode-url-for-id'
@@ -37,9 +37,11 @@ export const grabExistingKeys = (getDb: DBGet) => async () => {
     let bmKeys: Set<string>
 
     try {
-        histKeys = new Set(await db.operation(GetPksPlugin.GET_PKS_OP, 'pages'))
+        histKeys = new Set(
+            await db.operation(DexieUtilsPlugin.GET_PKS_OP, 'pages'),
+        )
         bmKeys = new Set(
-            await db.operation(GetPksPlugin.GET_PKS_OP, 'bookmarks'),
+            await db.operation(DexieUtilsPlugin.GET_PKS_OP, 'bookmarks'),
         )
     } catch (err) {
         initErrHandler({ histKeys: new Set(), bmKeys: new Set() })(err)
