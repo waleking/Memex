@@ -3,6 +3,8 @@ import { StorageCollection } from '@worldbrain/storex/lib/types/manager'
 import DexieOrig from 'dexie'
 import { FilterQuery } from 'dexie-mongoify'
 
+export type DBGet = () => Promise<Storex>
+
 export type SuggestOptions = FindManyOptions & { includePks?: boolean }
 export type SuggestResult<S, P> = Array<{
     collection: string
