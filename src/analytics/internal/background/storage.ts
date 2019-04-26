@@ -6,8 +6,9 @@ import { NOTIF_TYPE_EVENT_IDS, EVENT_TYPES } from '../constants'
 
 export default class EventLogStorage extends StorageModule {
     static EVENT_LOG_COLL = 'eventLog'
+
     constructor(storageManager) {
-        super(storageManager)
+        super({ storageManager })
     }
 
     getConfig = (): StorageModuleConfig => ({
