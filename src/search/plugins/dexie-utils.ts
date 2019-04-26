@@ -5,8 +5,9 @@ export class DexieUtilsPlugin extends StorageBackendPlugin<
     DexieStorageBackend
 > {
     static GET_PKS_OP = 'memex:dexie.getPks'
-    static REGEXP_DELETE_OP = 'memex:dexie.deleteByRegexp'
     static NUKE_DB_OP = 'memex:dexie.recreateDatabase'
+    static REGEXP_COUNT_OP = 'memex:dexie.countByRegexp'
+    static REGEXP_DELETE_OP = 'memex:dexie.deleteByRegexp'
 
     install(backend: DexieStorageBackend) {
         super.install(backend)
@@ -17,38 +18,48 @@ export class DexieUtilsPlugin extends StorageBackendPlugin<
             this.deleteByRegexp,
         )
         backend.registerOperation(
+            DexieUtilsPlugin.REGEXP_COUNT_OP,
+            this.countByRegexp,
+        )
+        backend.registerOperation(
             DexieUtilsPlugin.NUKE_DB_OP,
             this.recreateDatabase,
         )
     }
 
-    private getPks = (collection: string) =>
-        this.backend.dexieInstance
-            .table(collection)
-            .toCollection()
-            .primaryKeys()
-
     /**
      * NOTE: This is SUPER innefficient.
      */
-    private deleteByRegexp = (
-        collection: string,
-        fieldName: string,
-        pattern: string | RegExp,
-    ) => {
+    private queryByRegexp({
+        collection,
+        fieldName,
+        pattern,
+    }: {
+        collection: string
+        fieldName: string
+        pattern: string | RegExp
+    }) {
         const re =
             typeof pattern === 'string' ? new RegExp(pattern, 'i') : pattern
 
         return this.backend.dexieInstance
             .table(collection)
             .filter(doc => re.test(doc[fieldName]))
-            .delete()
     }
+
+    getPks = (collection: string) =>
+        this.backend.dexieInstance
+            .table(collection)
+            .toCollection()
+            .primaryKeys()
+
+    deleteByRegexp = args => this.queryByRegexp(args).delete()
+    countByRegexp = args => this.queryByRegexp(args).count()
 
     /**
      * NOTE: Super dangerous; deletes all data
      */
-    private recreateDatabase = async () => {
+    recreateDatabase = async () => {
         await this.backend.dexieInstance.delete()
         await this.backend.dexieInstance.open()
     }

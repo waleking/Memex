@@ -35,12 +35,11 @@ export const delPagesByPattern = (getDb: DBGet) => async (
     pattern: string | RegExp,
 ) => {
     const db = await getDb()
-    return db.operation(
-        DexieUtilsPlugin.REGEXP_DELETE_OP,
-        'pages',
-        'url',
+    return db.operation(DexieUtilsPlugin.REGEXP_DELETE_OP, {
+        collection: 'pages',
+        fieldName: 'url',
         pattern,
-    )
+    })
 }
 
 export const dangerousPleaseBeSureDeleteAndRecreateDatabase = (
