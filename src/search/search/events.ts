@@ -1,6 +1,7 @@
 import { DBGet, SearchParams, PageResultsMap, FilteredURLs } from '..'
 import { Bookmark } from '../models'
 import { SearchLookbacksPlugin } from '../plugins/search-lookbacks'
+import { DexieUtilsPlugin } from '../plugins/dexie-utils'
 
 /**
  * Given some URLs, grab the latest assoc. event timestamp for each one within the time filter bounds.
@@ -47,12 +48,13 @@ export const mapUrlsToLatestEvents = (getDb: DBGet) => async (
     // Simple state to keep track of when to finish each query
     const doneFlags = urlsToCheck.map(url => false)
 
-    const visits = await db
-        .table('visits')
-        .where('url')
-        .anyOf(urlsToCheck)
-        .reverse()
-        .primaryKeys()
+    const visits = await db.operation(DexieUtilsPlugin.GET_PKS_OP, {
+        collection: 'visits',
+        fieldName: 'url',
+        opName: 'anyOf',
+        opValue: urlsToCheck,
+        reverse: true,
+    })
 
     const visitsPerPage = new Map<string, number[]>()
     visits.forEach(([time, url]) => {

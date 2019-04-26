@@ -81,9 +81,7 @@ export const search = (getDb: DBGet) => async ({
 }
 
 // WARNING: Inefficient; goes through entire table
-export const getMatchingPageCount = (
-    getDb: () => Promise<Dexie>,
-) => async pattern => {
+export const getMatchingPageCount = (getDb: DBGet) => async pattern => {
     const db = await getDb()
 
     return db

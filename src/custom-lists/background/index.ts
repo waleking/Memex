@@ -26,7 +26,7 @@ export default class CustomListBackground {
         windows?: Windows.Static
     }) {
         // Makes the custom list Table in indexed DB.
-        this.storage = new CustomListStorage()
+        this.storage = new CustomListStorage({ storageManager })
         this.getDb = async () => storageManager
         this.tabMan = tabMan
         this.windows = windows

@@ -2,6 +2,7 @@ import initStorageManager from './memory-storex'
 import getDb, { setStorex } from './get-db'
 import * as idx from '.'
 import * as DATA from './index.test.data'
+import { FavIcon } from './models'
 
 jest.mock('./models/abstract-model')
 jest.mock('lodash/fp/intersection')
@@ -429,8 +430,12 @@ describe('Search index integration', () => {
             await idx.addFavIcon(getDb)(DATA.PAGE_1.url, DATA.FAV_1)
             await idx.addFavIcon(getDb)(DATA.PAGE_2.url, DATA.FAV_1)
 
-            const fav1 = await db.table('favIcons').get(hostname1)
-            const fav2 = await db.table('favIcons').get(hostname2)
+            const fav1 = await db
+                .collection('favIcons')
+                .findOneObject<FavIcon>({ hostname: hostname1 })
+            const fav2 = await db
+                .collection('favIcons')
+                .findOneObject<FavIcon>({ hostname: hostname2 })
             expect(fav1.hostname).toBe(hostname1)
             expect(fav2.hostname).toBe(hostname2)
         })

@@ -173,7 +173,9 @@ export default class Page extends AbstractModel
     }
 
     addVisit(time = Date.now(), data: Partial<VisitInteraction> = {}) {
-        this[visitsProp].push(new Visit({ url: this.url, time, ...data }))
+        this[visitsProp].push(
+            new Visit(this.db, { url: this.url, time, ...data }),
+        )
     }
 
     addTag(name: string) {
@@ -182,7 +184,7 @@ export default class Page extends AbstractModel
         )
 
         if (index === -1) {
-            this[tagsProp].push(new Tag({ url: this.url, name }))
+            this[tagsProp].push(new Tag(this.db, { url: this.url, name }))
         }
     }
 
@@ -200,7 +202,7 @@ export default class Page extends AbstractModel
     }
 
     setBookmark(time = Date.now()) {
-        this[bookmarkProp] = new Bookmark({ url: this.url, time })
+        this[bookmarkProp] = new Bookmark(this.db, { url: this.url, time })
     }
 
     delBookmark() {

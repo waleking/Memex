@@ -38,10 +38,14 @@ export const grabExistingKeys = (getDb: DBGet) => async () => {
 
     try {
         histKeys = new Set(
-            await db.operation(DexieUtilsPlugin.GET_PKS_OP, 'pages'),
+            await db.operation(DexieUtilsPlugin.GET_PKS_OP, {
+                collection: 'pages',
+            }),
         )
         bmKeys = new Set(
-            await db.operation(DexieUtilsPlugin.GET_PKS_OP, 'bookmarks'),
+            await db.operation(DexieUtilsPlugin.GET_PKS_OP, {
+                collection: 'bookmarks',
+            }),
         )
     } catch (err) {
         initErrHandler({ histKeys: new Set(), bmKeys: new Set() })(err)
