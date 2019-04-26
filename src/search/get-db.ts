@@ -1,5 +1,5 @@
-import initDexie from './dexie'
-import { Dexie } from './types'
+import Storex from '@worldbrain/storex'
+import { DBGet } from './types'
 
 /*
  * Bit of a hack to allow the storex Dexie backend to be available to all
@@ -7,20 +7,20 @@ import { Dexie } from './types'
  * Storex is init'd async, hence this needs to be a Promise that resolves to
  * the backend. It is resolved after storex is init'd in the BG script entrypoint.
  */
-let db: Promise<Dexie>
-let resolveDb: (db: Dexie) => void = null
+let db: Promise<Storex>
+let resolveDb: (db: Storex) => void = null
 const createNewDbPromise = () => {
-    db = new Promise<Dexie>(resolve => (resolveDb = resolve))
+    db = new Promise<Storex>(resolve => (resolveDb = resolve))
 }
 createNewDbPromise()
 
-export const setStorexBackend = backend => {
+export const setStorex = (backend: Storex) => {
     if (!resolveDb) {
         createNewDbPromise()
     }
 
     // Extend the base Dexie instance with all the Memex-specific stuff we've added
-    resolveDb(initDexie({ backend }))
+    resolveDb(backend)
 
     resolveDb = null
 }
@@ -29,6 +29,6 @@ export const setStorexBackend = backend => {
  * WARNING: This should only ever be used by the legacy memex code which relies on Dexie.
  * Any new code should use the storex instance set up in the BG script entrypoint.
  */
-const getDb = () => db
+const getDb: DBGet = () => db
 
 export default getDb

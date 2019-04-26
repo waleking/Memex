@@ -1,5 +1,5 @@
 import initStorageManager from './memory-storex'
-import getDb, { setStorexBackend } from './get-db'
+import getDb, { setStorex } from './get-db'
 import * as idx from '.'
 import * as DATA from './index.test.data'
 
@@ -50,7 +50,7 @@ describe('Search index integration', () => {
     beforeEach(async () => {
         storageManager = initStorageManager()
         await storageManager.finishInitialization()
-        setStorexBackend(storageManager.backend)
+        setStorex(storageManager.backend)
         await resetTestData()
     })
 
