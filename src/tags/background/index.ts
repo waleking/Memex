@@ -1,6 +1,6 @@
 import TagStorage from './storage'
 import { TabManager } from 'src/activity-logger/background/tab-manager'
-import { Dexie, StorageManager } from 'src/search/types'
+import { StorageManager } from 'src/search/types'
 import { makeRemotelyCallable } from 'src/util/webextensionRPC'
 import normalizeUrl from 'src/util/encode-url-for-id'
 import { Windows } from 'webextension-polyfill-ts'
